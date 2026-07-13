@@ -1,0 +1,632 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 505,
+      "width": 895
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 9
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 9
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 9
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label"
+          },
+          "text": "RE-PRINT NUMBER PUNCHING",
+          "textStyle": {
+            "fontFamily": "Arial",
+            "fontWeight": "bolder",
+            "textAlign": "center",
+            "textTransform": "uppercase"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "lblSerialNumber"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          },
+          "text": "Serial Number"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtSerialNumber"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 3
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 3
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 3
+            }
+          ],
+          "height": 50
+        },
+        "propConfig": {
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tSerialNumber \u003d self.props.text\n\t#get GearRation and Fill the next Field\n\tsystem.perspective.print(\"serial num --\u003e %s\"%SerialNumber)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getGearRatio\",{\"SerialNumber\":SerialNumber})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"GearRatio not Found or Invalid Serial Number.\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.getSibling(\"txtGearRatio\").props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"txtGearRatio\").props.enabled \u003d False\t\n\telse:\n\t\tself.getSibling(\"txtGearRatio\").props.text \u003d data\n\t\tself.getSibling(\"txtGearRatio\").props.enabled \u003d False\t"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#F5F5DC",
+            "classes": "Project_VECV/Reports/label",
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "lblGearRatio"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 3,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 3,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 3,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          },
+          "text": "Gear Ratio"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtGearRatio"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 3,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 3,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 3,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            }
+          ],
+          "height": 50
+        },
+        "props": {
+          "enabled": false,
+          "style": {
+            "borderBottomLeftRadius": 5,
+            "borderBottomRightRadius": 5,
+            "borderStyle": "solid",
+            "borderTopLeftRadius": 5,
+            "borderTopRightRadius": 5,
+            "marginLeft": 10,
+            "outlineStyle": "solid",
+            "outlineWidth": "1"
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "lblShift"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 5,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 5,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          },
+          "text": "Shift"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtShift"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 1
+            },
+            {
+              "colIndex": 5,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 1
+            },
+            {
+              "colIndex": 5,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 1
+            }
+          ],
+          "height": 50
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#F5F5DC",
+            "classes": "Project_VECV/Reports/label",
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\n\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 12/01/2024\n\t\tPurpose: Number Punching\n\t\"\"\"\t\n\ttry:\n\t\tfrom java.text import SimpleDateFormat\n\t\tfrom java.util import Date\n\t\t\n\t\tareaName\u003dself.session.custom.CurrentAreaName\n\t\tWorkStationName\u003dself.session.custom.CurrentWorkStation\n\t\tsystem.perspective.print(\"Inside print btn\")\n\t\tserialNumber \u003d self.getSibling(\"txtSerialNumber\").props.text\n\t\tserialNumber\u003dserialNumber.upper()\n\t\tSerialNumber \u003d serialNumber.split(\u0027-\u0027)[0]\n\t\tModel \u003d serialNumber.split(\u0027-\u0027)[1]\n\t\tGearRatio \u003d self.getSibling(\"txtGearRatio\").props.text\n\t\tGearRatio\u003dGearRatio.upper()\n\t\tshift \u003d self.getSibling(\"txtShift\").props.text\n\t\tshift\u003dshift.upper()\n\t\tWorkStationID \u003d self.getSibling(\"drpStation\").props.value\n\t\toptions \u003d self.getSibling(\"drpStation\").props.options\n\t\toptions \u003d system.dataset.toPyDataSet(options)\n\t\tUserName\u003dself.getSibling(\"txtUser\").props.text\n\t\tgetUserID\u003dsystem.db.runNamedQuery(\u0027Project_VECV/ITSupport/rePrint/getUsertoSave\u0027,{\u0027UserName\u0027:UserName})\n\t\t\n\t#\tnow \u003d Date()\n\t#\tformatter \u003d SimpleDateFormat(\"dd/MM/yyyy\")\n\t#\tformatted_date \u003d formatter.format(now)\n\t#\ttagDate\u003dformatted_date\n\t#\tsystem.perspective.print(\"Date set for NumberPunching\u003d%s\"%tagDate)\n\t\tif (areaName\u003d\u003d\u0027Legacy Axle\u0027):\n\t\t\tWorkStationName\u003d\u0027LAML10\u0027\n\t\telif (areaName\u003d\u003d\u0027Titan Axle\u0027):\n\t\t\tWorkStationName\u003d\u0027TAWM02\u0027\n\t\tdateparams \u003d {\u0027SerialNumber\u0027: serialNumber,\u0027WorkStationName\u0027:WorkStationName}\n\t\tdateres \u003d system.db.runNamedQuery(\u0027Project_VECV/NumberPunching/getStartDate\u0027, dateparams)\n\t\tsystem.perspective.print(\u0027dateres\u003d%s\u0027%dateres)\n\t\t\n\t\t# Format the date\n\t\tif dateres is not None:\n\t\t    sdf \u003d SimpleDateFormat(\"dd/MM/yyyy\")\n\t\t    tagDate \u003d sdf.format(dateres)\n\t\t    system.perspective.print(\"Date set for NumberPunching\u003d%s\"%tagDate)\n\t\telse:\n\t\t    system.perspective.print(\"Date cannot be found in query for serialNumber\u003d%s\"%serialNumber)\n\t\t\n\t\tWorkStation \u003d \u0027\u0027\n\t\tfor i in options:\n\t\t\tif i[\u0027value\u0027] \u003d\u003d WorkStationID:\n\t\t\t\tWorkStation \u003d i[\u0027label\u0027]\n\t\t\t\tbreak\n\t\tif str(WorkStation).upper() \u003d\u003d \u0027LAML20\u0027:\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/MES_Print\", 1)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/MODEL\", Model)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/SERIAL_NUMBER\", SerialNumber)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/Shift\", shift)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/Gear_Ratio\", GearRatio)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/Date\", tagDate)\n\t\t\t\n\t\t\t\n\t\t\tmessage \u003d \"Serial Number sent for Punching successfully.\"\n\t\t\tstate \u003d \"info\"\n\t\t\tsystem.db.runNamedQuery(\"Project_VECV/ITSupport/InsertNumberPunchingStatus\",{\"WorkStationName\":WorkStation,\"SerialNumber\":serialNumber,\"BOMNumber\":Model,\"CreatedBy\":getUserID})\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\tself.getSibling(\"txtSerialNumber\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"txtGearRatio\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"txtShift\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"drpStation\").props.value \u003d -1\n\t\t\tself.getSibling(\"txtUser\").props.text\u003d\u0027\u0027\n\t\t\tself.getSibling(\"txtPass\").props.text\u003d\u0027\u0027\n\t\t\tself.getSibling(\"txtPass\").props.enabled\u003dFalse\n\t\t\tself.getSibling(\"txtGearRatio\").props.enabled\u003dFalse\n\t\t\tsystem.perspective.closePopup(\"rePrintSRNP\")\n\t\tif str(WorkStation).upper() \u003d\u003d \u0027TAML20\u0027:\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/MES_Print\", 1)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/MODEL\", Model)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/SERIAL_NUMBER\", SerialNumber)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/Shift\", shift)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/Gear_Ratio\", GearRatio)\n\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/Titan Axle/TITAN MAIN LINE/TAML20/Number_Punching/Date\", tagDate)\n\t\t\t\n\t\t\tmessage \u003d \"Serial Number sent for Punching successfully.\"\n\t\t\tstate \u003d \"info\"\n\t\t\tsystem.db.runNamedQuery(\"Project_VECV/ITSupport/InsertNumberPunchingStatus\",{\"WorkStationName\":WorkStation,\"SerialNumber\":serialNumber,\"BOMNumber\":Model,\"CreatedBy\":getUserID})\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\tself.getSibling(\"txtSerialNumber\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"txtGearRatio\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"txtShift\").props.text \u003d \u0027\u0027\n\t\t\tself.getSibling(\"drpStation\").props.value \u003d -1\n\t\t\tself.getSibling(\"txtUser\").props.text\u003d\u0027\u0027\n\t\t\tself.getSibling(\"txtPass\").props.text\u003d\u0027\u0027\n\t\t\tself.getSibling(\"txtPass\").props.enabled\u003dFalse\n\t\t\tself.getSibling(\"txtGearRatio\").props.enabled\u003dFalse\n\t\t\tsystem.perspective.closePopup(\"rePrintSRNP\")\n\texcept Exception as e:\n\t\tsystem.perspective.print(\u0027Error \u003d %s\u0027%e)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 4,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 4,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 3,
+              "rowIndex": 2,
+              "span": 4
+            }
+          ],
+          "height": 50
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if({../txtSerialNumber.props.text}!\u003d \u0027\u0027\u0026\r\n{../txtGearRatio.props.text}!\u003d \u0027\u0027 \u0026 {../txtPass.props.text}!\u003d\u0027\u0027 \u0026\r\n{../txtShift.props.text}!\u003d\u0027\u0027 \u0026\r\n{../drpStation.props.value} !\u003d -1 \r\n,ToBoolean(1),ToBoolean(0))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+          },
+          "text": "Print"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "drpStation"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 9,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 3
+            },
+            {
+              "colIndex": 9,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 3
+            },
+            {
+              "colIndex": 9,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 3
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "queryPath": "Project_VECV/ITSupport/rePrint/getnumberPunchingStation"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "dropdownOptionStyle": {
+            "classes": "Project_VECV/Reports/drpDownInternal"
+          },
+          "placeholder": {
+            "icon": {
+              "color": "#47FF47",
+              "path": "material/star"
+            },
+            "text": "Select Station"
+          },
+          "style": {
+            "classes": "Project_VECV/Reports/drpDown",
+            "margin": 5
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "lblUserID"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 1
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "text": "UserID",
+          "textStyle": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtUser"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            }
+          ],
+          "height": 50
+        },
+        "propConfig": {
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tUserName \u003d self.props.text\n\t#get GearRation and Fill the next Field\n\tsystem.perspective.print(\"UserName --\u003e %s\"%UserName)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/rePrint/authenticateUser\",{\"User\":UserName})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"You Dont have access to print, Kindly Contact MES Support Team\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.getSibling(\"txtPass\").props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"txtPass\").props.enabled \u003d False\n\t\tself.props.text\u003d\u0027\u0027\t\n\telse:\n\t\tself.getSibling(\"txtPass\").props.enabled\u003dTrue"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#F5F5DC",
+            "classes": "Project_VECV/Reports/label",
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "lblPassword"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 1
+            },
+            {
+              "colIndex": 2,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 1
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "text": "Password",
+          "textStyle": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtPass"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 2
+            }
+          ],
+          "height": 50
+        },
+        "propConfig": {
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tpassword\u003d\u0027Vecv123\u0027\n\tlblPass\u003dself.props.text\n\tif(lblPass!\u003dpassword):\n\t\tmessage \u003d \"Wrong Password , Please Enter correct Password\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"Button\").props.enabled\u003dFalse\n"
+            }
+          }
+        },
+        "props": {
+          "enabled": false,
+          "style": {
+            "borderBottomLeftRadius": 5,
+            "borderBottomRightRadius": 5,
+            "borderStyle": "solid",
+            "borderTopLeftRadius": 5,
+            "borderTopRightRadius": 5,
+            "marginLeft": 10,
+            "outlineStyle": "solid",
+            "outlineWidth": "1"
+          },
+          "type": "password"
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundClip": "padding-box",
+        "backgroundColor": "#FFFFF0",
+        "borderBottomLeftRadius": 5,
+        "borderBottomRightRadius": 5,
+        "borderStyle": "outset",
+        "borderTopLeftRadius": 5,
+        "borderTopRightRadius": 5,
+        "borderWidth": 10,
+        "boxShadow": "10%",
+        "cursor": "pointer",
+        "margin": 10,
+        "opacity": "1",
+        "outlineStyle": "outset",
+        "outlineWidth": "5",
+        "padding": 10,
+        "textShadow": "#808080"
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

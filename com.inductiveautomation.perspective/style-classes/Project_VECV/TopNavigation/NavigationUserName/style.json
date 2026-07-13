@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "color": "#000000",
+      "fontSize": "12px",
+      "marginLeft": "1%"
+    }
+  }
+}

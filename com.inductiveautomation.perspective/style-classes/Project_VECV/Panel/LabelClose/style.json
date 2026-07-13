@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "color": "#000000",
+      "cursor": "pointer",
+      "fontSize": "12px",
+      "marginLeft": "94%"
+    }
+  }
+}

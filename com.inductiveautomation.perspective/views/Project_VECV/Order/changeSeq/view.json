@@ -1,0 +1,156 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tsystem.perspective.sendMessage(\"focus\", scope \u003d \"page\")"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "len": 0,
+    "type": ""
+  },
+  "propConfig": {
+    "params.len": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.type": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 150,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TextField"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "propConfig": {
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "#\tsystem.perspective.print(self.view.params.len)\n#\ttry:\n#\t\tvalue \u003d int(self.props.text)\n#\t\tsystem.perspective.print(value \u003e 1 and value \u003c\u003d self.view.params.len)\n#\t\tself.props.text \u003d self.props.text\n#\t\tif value \u003c\u003d self.view.params.len:\n#\t\t\tself.props.text \u003d self.props.text\n#\t\telse:\n#\t\t\tself.props.text \u003d \u0027\u0027\n#\t\t\tsystem.perspective.print(\"invalid\")\n#\t\t\t\n#\texcept:\n#\t\tself.props.text \u003d \u0027\u0027\n#\t\tsystem.perspective.print(\"break\")"
+            }
+          }
+        },
+        "props": {
+          "deferUpdates": false,
+          "placeholder": "Enter Sequence Number....",
+          "rejectUpdatesWhileFocused": false,
+          "style": {
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": 0.5,
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "none",
+            "margin": 10
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "focus",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.focus()",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "Label",
+          "visible": false
+        },
+        "position": {
+          "basis": "0px"
+        },
+        "props": {
+          "style": {
+            "color": "#D90000",
+            "fontWeight": "bolder",
+            "marginLeft": 10,
+            "marginRight": 10
+          },
+          "text": "Invalid Sequence Number...."
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.print(self.view.params.len)\n\t\n\tif int(self.getSibling(\"TextField\").props.text) \u003e 1 and int(self.getSibling(\"TextField\").props.text) \u003c\u003d self.view.params.len:\n\t\tpayload \u003d {\u0027target\u0027: int(self.getSibling(\"TextField\").props.text)}\n\t\tsystem.perspective.print(\"In Project_VECV/Order/changeSeq Type %s and target %s\"%(self.view.params.type,self.getSibling(\"TextField\").props.text))\n\t\tsystem.perspective.sendMessage(self.view.params.type, payload\u003dpayload,scope\u003d\"page\")\n\t\tsystem.perspective.closePopup(\"#changeSeq_CR\")\n\t\tsystem.tag.writeAsync(\"[default]Order/OrderLock\", [False])\n\t\t\n\telse:\n\t\tself.getSibling(\"Label\").position.basis \u003d \u0027auto\u0027\n\t\tself.getSibling(\"Label\").meta.visible \u003d True"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if(toInteger({../TextField.props.text}) \u003e 5,toBoolean(1),toBoolean(0))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#5555F1, #0000AC) ",
+            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Order/Button ",
+            "margin": 10
+          },
+          "text": "Move"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tsystem.perspective.sendMessage(\"focus\", scope \u003d \"page\")"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

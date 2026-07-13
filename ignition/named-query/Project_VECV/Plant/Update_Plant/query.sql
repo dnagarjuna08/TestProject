@@ -1,0 +1,17 @@
+exec usp_AddUpdateMST_Plant
+@Description =  :Description,
+@IPAddress =  :IPAddress,
+@CreatedBy =  0,
+@LevelId =  :LevelId,
+@WorkStationTypeId = :WorkStationTypeId,
+@UnitName = :UnitName,
+@AttachedTo=  :AttachedTo,
+@IsActive = :IsActive, 
+@UnitId =  :UnitId,
+@ModifiedBy =  :ModifiedBy,
+@plantid =:plantid,
+@areaid = :areaid,
+@lineid = :lineid,
+@linetypeid = :linetypeid,
+@plantaddress=:plantaddress,
+@plantcode=:plantcode

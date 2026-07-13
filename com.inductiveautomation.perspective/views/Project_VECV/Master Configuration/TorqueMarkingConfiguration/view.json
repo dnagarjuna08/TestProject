@@ -1,0 +1,672 @@
+{
+  "custom": {
+    "OPCodeId": "",
+    "OPDefinition": ""
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 07/05/2024\n\t\tPurpose: If previous page not logged in then revert to login page. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\t#If user is not Authenticate return to Login page\n\t\tpreviousPage \u003d self.session.custom.IsTorqueMarkingAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Torque Marking\"\n\t\t\tself.getChild(\"root\").getChild(\"ViewCanvas\").props.instances \u003d []\n\t\t\tself.getChild(\"root\").getChild(\"ViewCanvas\").props.style.cursor \u003d \"not-allowed\"\n\t\t\tself.session.custom.demoInstances \u003d []\n#\t\t\tsystem.perspective.openDock(\u0027leftNav\u0027)\n\t\tval\u003dsystem.perspective.getSessionInfo()\n\t#End of try block\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Torque Marking\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "count": 1
+  },
+  "propConfig": {
+    "custom.OPCodeId": {
+      "persistent": true
+    },
+    "custom.OPDefinition": {
+      "persistent": true
+    },
+    "params.count": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 1300,
+      "width": 1200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Label"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": ".../cntImage/Image.custom.ImageName"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/DWI/Labelheader"
+                      },
+                      "textStyle": {
+                        "textAlign": "center"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblQuantity"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 10,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 2
+                        },
+                        {
+                          "colIndex": 10,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 2
+                        },
+                        {
+                          "colIndex": 10,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 2
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "{...../ViewCanvas.custom.maxTag}"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\treturn \u0027Torque Count : \u0027 + str(value)",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/DWI/Labelheader"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntText"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": -7,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": -7,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 60
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "custom": {
+                      "ImageId": "",
+                      "ImageName": "",
+                      "TorqueMarking": []
+                    },
+                    "meta": {
+                      "name": "Image"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": -7,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": -7,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        }
+                      ],
+                      "height": 0.9951,
+                      "width": 0.9971
+                    },
+                    "props": {
+                      "fit": {
+                        "mode": "percent"
+                      },
+                      "source": "/system/images/VECV/no-image-available.png"
+                    },
+                    "type": "ia.display.image"
+                  }
+                ],
+                "meta": {
+                  "name": "cntImage"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 12
+                    }
+                  ],
+                  "height": 450
+                },
+                "props": {
+                  "mode": "percent"
+                },
+                "type": "ia.container.coord"
+              }
+            ],
+            "meta": {
+              "name": "cntOpInfo"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 1,
+                  "span": 7
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 1,
+                  "span": 7
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 0.5,
+                  "rowIndex": 1,
+                  "span": 7
+                }
+              ],
+              "height": 520
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Reset Form to Empty.\n\t\t\"\"\"\n\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").props.instances \u003d []\n\t\tself.view.params.count \u003d 1\n\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound \u003d 1\n\t\tself.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking \u003d []\n\t#End of try block\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root/cntColumn/cntColumn/btnresetAll  -\u003e Torque Marking\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnresetAll"
+                    },
+                    "position": {
+                      "basis": "40px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({...../ViewCanvas.props.instances})\u003e0,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton",
+                        "margin": "5px"
+                      },
+                      "text": "Reset All",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Reset Last Marking.\n\t\t\"\"\"\n\t\tif self.view.custom.OPDefinition \u003d\u003d 2:\n\t\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").props.instances.pop()\n\t\t\tself.view.params.count \u003d self.view.params.count - 1\n\t\t\tself.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking.pop()\n\t\telif self.view.custom.OPDefinition \u003d\u003d 12:\n\t\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").props.instances.pop()\n\t\t\tself.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking.pop()\n\t\t\tcount \u003d self.view.params.count\n\t\t\ttorqueRound \u003d self.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound\n\t\t\tmaxTag \u003d self.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.maxTag\n\t\t\tsystem.perspective.print(\"before count %s\"%count)\n\t\t\tsystem.perspective.print(\"before torqueRound %s\"%torqueRound)\n\t\t\tif self.view.params.count \u003d\u003d 1:\n\t\t\t\tself.view.params.count \u003d maxTag\n\t\t\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound -\u003d 1\n\t\t\telif maxTag \u003e (count - 1):\n\t\t\t\tself.view.params.count -\u003d 1\n\t\t\telif maxTag \u003d\u003d (count - 1):\n\t\t\t\tself.view.params.count \u003d maxTag\n\t\t\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound -\u003d 1\n\t\t\tcount \u003d self.view.params.count\n\t\t\ttorqueRound \u003d self.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound\n\t\t\tmaxTag \u003d self.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.maxTag\n\t\t\tsystem.perspective.print(\"after count %s\"%count)\n\t\t\tsystem.perspective.print(\"after torqueRound %s\"%torqueRound)\n\t#End of try block\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root/cntColumn/cntColumn/btnresetLast  -\u003e Torque Marking\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnresetLast"
+                    },
+                    "position": {
+                      "basis": "40px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({...../ViewCanvas.props.instances})\u003e0,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton",
+                        "margin": "5px"
+                      },
+                      "text": "Reset Last",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Save Marking Done on Image.\n\t\t\"\"\"\n\t\tTorqueMarking \u003d self.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking\n\t\tTorqueList \u003d []\n\t\tOpcode\u003dself.view.custom.OPCodeId\n\t\tfor mark in TorqueMarking:\n\t\t\tTorqueList.append(mark)\n\t\tId \u003d self.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageId\n\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\tparams\u003d{\u0027TorqueMarking\u0027:TorqueList,\u0027Id\u0027:Id,\u0027ModifiedBy\u0027:ModifiedBy}\n\t\tdataset \u003d system.db.runNamedQuery(\u0027Project_VECV/TorqueMarking/UpdateTorqueMarking\u0027,params)\n\t\tfor data in dataset:\n\t\t\tresult \u003d data[\u0027Result\u0027]\n\t\tif result \u003d\u003d 1:\n\t\t\tmessage \u003d \"Torque Marking saved successfully.\"\n\t\t\tstate \u003d \"success\"\n\t\t\tauditMsg\u003d message + \" for ImageID\u003d\" + str(Id) + \",OpcodeId\u003d\" + str(Opcode)\n\t\t\t#addToAuditLogStart\n\t\t\tsystem.perspective.print(auditMsg)\n\t\t\tcategory\u003d\u0027Master Configuration\u0027\n\t\t\tsubCategory\u003d\u0027Tarque Marking Configuration\u0027\n\t\t\tdescription\u003dstr(auditMsg)\n\t\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t\t#addAuditLogEnd\n\t\t\t\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tpayload \u003d{\u0027OPCodeId\u0027:self.view.custom.OPCodeId}\n\t\tsystem.perspective.sendMessage(\u0027populateImageFlexRepeater\u0027,payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").props.instances \u003d []\n\t\tself.view.params.count \u003d 1\n\t\tself.parent.parent.parent.parent.getChild(\"ViewCanvas\").custom.torqueRound \u003d 1\n\t\tself.parent.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking \u003d []\n\t\t\n\t\t\n\t#End of try block\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root/cntColumn/cntColumn/btnSave  -\u003e Torque Marking\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnSave"
+                    },
+                    "position": {
+                      "basis": "40px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({...../ViewCanvas.props.instances})\u003e0,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton",
+                        "margin": "5px"
+                      },
+                      "text": "Save",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 5,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 6
+                    }
+                  ],
+                  "height": 150
+                },
+                "props": {
+                  "direction": "column"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "meta": {
+                  "name": "ImageFlexRepeater"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 350
+                },
+                "props": {
+                  "direction": "column",
+                  "path": "Project_VECV/Master Configuration/ImageSubView/ImageViewTemplate"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "populateImageFlexRepeater",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Populate Image for selection and Marking Torque .\n\t\t\"\"\"\n\t\tself.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").props.source \u003d \"/system/images/VECV/no-image-available.png\"\n\t\tself.view.params.count \u003d 1\n\t\tself.parent.parent.parent.getChild(\"ViewCanvas\").custom.maxTag \u003d 0\n\t\tself.parent.parent.parent.getChild(\"ViewCanvas\").props.instances \u003d []\n\t\tself.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking \u003d []\n\t\tself.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageId \u003d \u0027\u0027\n\t\tself.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageName \u003d \u0027\u0027\n\t\tself.parent.parent.getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageName \u003d \u0027\u0027\n\t\tOPCodeId \u003d payload[\u0027OPCodeId\u0027]\n\t\tOPDefinition \u003d payload[\u0027OPDefinition\u0027]\n\t\tself.view.custom.OPCodeId \u003d OPCodeId\n\t\tself.view.custom.OPDefinition \u003d OPDefinition\n\t\tparams\u003d{\u0027OPCodeId\u0027:OPCodeId, \u0027MST_OPDefinition_Id\u0027 : OPDefinition}\n\t\tResult\u003dsystem.db.runNamedQuery(\"Project_VECV/TorqueMarking/getImageDetails\",params)\n\t\tInstance \u003d []\n\t\tfor i in Result:\n\t\t\tdict \u003d \t  {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"url\": i[\u0027ImagePath\u0027],\n\t\t\t    \"ImageId\": i[\u0027MST_OPDefinitionTorque_Id\u0027],\n\t\t\t    \"ImageName\": i[\u0027ImageName\u0027],\n\t\t\t    \"TorqueMarking\": i[\u0027TorqueMarking\u0027],\n\t\t\t    \"TorqueQuantity\":i[\u0027TorqueQuantity\u0027]\n\t\t\t  }\n\t\t\tInstance.append(dict)\n\t\tself.props.instances \u003d Instance\n\t\tif len(Instance) \u003c 1:\n\t\t\tmessage \u003d \"No Images found for the above Filters.\"\n\t\t\tstate \u003d \"Warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:populateImageFlexRepeater -\u003e cntColumn/ImageFlexRepeater\u0027) \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\t\t\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "cntColumn"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 5
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 5
+                },
+                {
+                  "colIndex": 2,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 3
+                }
+              ],
+              "height": 520
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "meta": {
+              "name": "EmbeddedView"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 2,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 10
+                },
+                {
+                  "colIndex": 2,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 10
+                },
+                {
+                  "colIndex": 2,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 10
+                }
+              ],
+              "height": 120
+            },
+            "props": {
+              "path": "Project_VECV/Pannel/Master/SearchPanel",
+              "style": {
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 39
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "custom": {
+          "maxTag": 0,
+          "torqueRound": 1
+        },
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Torqur marking and counting.\n\t\t\"\"\"\n\t\tsystem.perspective.print(\"self.view.custom.OPDefinition %s\"%self.view.custom.OPDefinition)\n\t\tsystem.perspective.print(\"self.view.params.count %s\"%self.view.params.count)\n\t\tif len(self.parent.getChild(\"cntColumn\").getChild(\"cntColumn\").getChild(\"ImageFlexRepeater\").props.instances) \u003e 0:\n\t\t\tif self.view.custom.OPDefinition \u003d\u003d 2:\n\t\t\t\tmaxTag \u003d self.custom.maxTag\n\t\t\t\tcount \u003d self.view.params.count\n\t\t\t\tif count \u003c\u003d maxTag:\n\t\t\t\t\tyourViewPath \u003d  \"Project_VECV/Templates/torque\" #change this to your view of th cricle thingy\n\t\t\t\t\t#set co-ordinate for marking\n\t\t\t\t\tbaseInstance \u003d {\n\t\t\t\t\t  \"position\": \"absolute\",\n\t\t\t\t\t  \"top\": event.clientY - 245,\n\t\t\t\t\t  \"left\": event.clientX - 640,\n\t\t\t\t\t  \"bottom\": \"auto\",\n\t\t\t\t\t  \"right\": \"auto\",\n\t\t\t\t\t  \"zIndex\": \"auto\",\n\t\t\t\t\t  \"width\": \"auto\",\n\t\t\t\t\t  \"height\": \"auto\",\n\t\t\t\t\t  \"viewPath\": yourViewPath,\n\t\t\t\t\t  \"viewParams\": {\n\t\t\t\t\t  \t  \"torque\": count ,\n\t\t\t\t\t  \t  \"color\": \u0027#000000\u0027\n\t\t\t\t\t  \t},\n\t\t\t\t\t  \"style\": {\n\t\t\t\t\t    \"classes\": \"\"\n\t\t\t\t\t  }\n\t\t\t\t\t}\n\t\t\t\t\t#set co-ordinate for saving marking for Operator Screen\n\t\t\t\t\tself.props.instances.append(baseInstance)\n\t\t\t\t\tnewbaseInstance \u003d {\n\t\t\t\t\t  \"position\": \"absolute\",\n\t\t\t\t\t  \"top\": event.clientY - 240,\n\t\t\t\t\t  \"left\": event.clientX - 640,\n\t\t\t\t\t  \"bottom\": \"auto\",\n\t\t\t\t\t  \"right\": \"auto\",\n\t\t\t\t\t  \"zIndex\": \"auto\",\n\t\t\t\t\t  \"width\": \"auto\",\n\t\t\t\t\t  \"height\": \"auto\",\n\t\t\t\t\t  \"viewPath\": yourViewPath,\n\t\t\t\t\t  \"viewParams\": {\n\t\t\t\t\t  \t  \"torque\": count,\n\t\t\t\t\t  \t  \"color\": \u0027#000000\u0027\n\t\t\t\t\t  \t},\n\t\t\t\t\t  \"style\": {\n\t\t\t\t\t    \"classes\": \"\"\n\t\t\t\t\t  }\n\t\t\t\t\t}\n\t\t\t\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking.append(newbaseInstance)\n\t\t\t\t\tcount +\u003d1\n\t\t\t\t\tself.view.params.count \u003d count\n\t\t\telif self.view.custom.OPDefinition \u003d\u003d 12:\n\t\t\t\tmaxTag \u003d self.custom.maxTag\n\t\t\t\ttorqueRound \u003d self.custom.torqueRound\n\t\t\t\tcount \u003d self.view.params.count\n\t\t\t\tsystem.perspective.print(\"before torqueRound %s\"%torqueRound)\n\t\t\t\tsystem.perspective.print(\"before count %s\"%count)\n\t\t\t\tif count \u003c\u003d maxTag and torqueRound \u003c\u003d2:\n\t\t\t\t\tyourViewPath \u003d  \"Project_VECV/Templates/torque\" #change this to your view of th cricle thingy\n\t\t\t\t\t#set co-ordinate for marking\n\t\t\t\t\tbaseInstance \u003d {\n\t\t\t\t\t  \"position\": \"absolute\",\n\t\t\t\t\t  \"top\": event.clientY - 245,\n\t\t\t\t\t  \"left\": event.clientX - 640,\n\t\t\t\t\t  \"bottom\": \"auto\",\n\t\t\t\t\t  \"right\": \"auto\",\n\t\t\t\t\t  \"zIndex\": \"auto\",\n\t\t\t\t\t  \"width\": \"auto\",\n\t\t\t\t\t  \"height\": \"auto\",\n\t\t\t\t\t  \"viewPath\": yourViewPath,\n\t\t\t\t\t  \"viewParams\": {\n\t\t\t\t\t  \t  \"torque\": count ,\n\t\t\t\t\t  \t  \"color\": \u0027#000000\u0027\n\t\t\t\t\t  \t},\n\t\t\t\t\t  \"style\": {\n\t\t\t\t\t    \"classes\": \"\"\n\t\t\t\t\t  }\n\t\t\t\t\t}\n\t\t\t\t\t#set co-ordinate for saving marking for Operator Screen\n\t\t\t\t\tself.props.instances.append(baseInstance)\n\t\t\t\t\tnewbaseInstance \u003d {\n\t\t\t\t\t  \"position\": \"absolute\",\n\t\t\t\t\t  \"top\": event.clientY - 240,\n\t\t\t\t\t  \"left\": event.clientX - 640,\n\t\t\t\t\t  \"bottom\": \"auto\",\n\t\t\t\t\t  \"right\": \"auto\",\n\t\t\t\t\t  \"zIndex\": \"auto\",\n\t\t\t\t\t  \"width\": \"auto\",\n\t\t\t\t\t  \"height\": \"auto\",\n\t\t\t\t\t  \"viewPath\": yourViewPath,\n\t\t\t\t\t  \"viewParams\": {\n\t\t\t\t\t  \t  \"torque\": count,\n\t\t\t\t\t  \t  \"color\": \u0027#000000\u0027\n\t\t\t\t\t  \t},\n\t\t\t\t\t  \"style\": {\n\t\t\t\t\t    \"classes\": \"\"\n\t\t\t\t\t  }\n\t\t\t\t\t}\n\t\t\t\t\tif maxTag \u003d\u003d count and self.custom.torqueRound !\u003d 2:\n\t\t\t\t\t\tself.custom.torqueRound+\u003d1\n\t\t\t\t\t\tcount \u003d 0\n\t\t\t\t\t\tself.view.params.count\u003d count\n\t\t\t\t\telif maxTag \u003d\u003d count and self.custom.torqueRound \u003d\u003d 2:\n\t\t\t\t\t\tcount \u003d self.custom.maxTag\n\t\t\t\t\t\tself.custom.torqueRound \u003d 3\n\t\t\t\t\t\tsystem.perspective.print(\"after torqueRound --\u003e%s\"%torqueRound)\n\t\t\t\t\t\tsystem.perspective.print(\"after count --\u003e%s\"%count)\n\t\t\t\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking.append(newbaseInstance)\n\t\t\t\t\tcount +\u003d1\n\t\t\t\t\tself.view.params.count \u003d count\t\t\n\t\t\t\t\t\n\t\t\t\t\ttorqueRound \u003d self.custom.torqueRound\n\t\t\t\t\tcount \u003d self.view.params.count\n\t\t\t\t\tsystem.perspective.print(\"after torqueRound %s\"%torqueRound)\n\t\t\t\t\tsystem.perspective.print(\"after count %s\"%count)\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root/ViewCanvas  -\u003e Torque Marking\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "ViewCanvas"
+        },
+        "position": {
+          "height": 460,
+          "y": 185
+        },
+        "propConfig": {
+          "position.width": {
+            "binding": {
+              "config": {
+                "expression": "100 / 12* 7"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn str(value) + \u0027%\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          },
+          "position.x": {
+            "binding": {
+              "config": {
+                "expression": "100 / 12* 5"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn str(value) + \u0027%\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "enableTransitions": false,
+          "style": {
+            "cursor": "not-allowed",
+            "overflow": "hidden"
+          },
+          "transitionSettings": {
+            "duration": "1s",
+            "timingFunction": "linear"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "ImageSelect",
+              "pageScope": true,
+              "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Select image where torque has to be marked.\n\t\t\"\"\"\n\t\ttorque \u003d {}\n\t\turl \u003d payload[\u0027url\u0027]\n\t\tself.props.style.cursor \u003d \u0027pointer\u0027\n\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").props.source \u003d url\n\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageId \u003d payload[\u0027ImageId\u0027]\n\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.ImageName \u003d payload[\u0027ImageName\u0027]\n\t\ttorque \u003d payload[\u0027TorqueMarking\u0027]\n\t\tTorqueQuantity \u003d payload[\"TorqueQuantity\"]\n\t\tif str(TorqueQuantity).lower() \u003d\u003d str(None).lower():\n\t\t\tself.custom.maxTag \u003d 0\n\t\telse:\n\t\t\tself.custom.maxTag \u003d TorqueQuantity\n\t\timport ast\n\t\tTorqueMarking \u003d ast.literal_eval(torque)\n\t\tinstances \u003d []\n\t\tif payload[\u0027TorqueMarking\u0027] is not None:\n\t\t\tself.parent.getChild(\"cntColumn\").getChild(\"cntOpInfo\").getChild(\"cntImage\").getChild(\"Image\").custom.TorqueMarking \u003d TorqueMarking\n\t\t\tfor mark in TorqueMarking:\n\t\t\t\tmark[\u0027top\u0027] \u003d int(mark[\u0027top\u0027]) - 5\n\t\t\t\tinstances.append(mark)\n\t\t\tself.props.instances \u003d instances\n\t\t\tif self.view.custom.OPDefinition \u003d\u003d 2:\n\t\t\t\tself.view.params.count \u003d  len(instances) + 1\n\t\t\telse:\n\t\t\t\tsystem.perspective.print(\"len(instances) %s\"%len(instances))\n\t\t\t\tsystem.perspective.print(\"self.custom.maxTag %s\"%self.custom.maxTag)\n\t\t\t\tif self.custom.maxTag \u003d\u003d len(instances):\n\t\t\t\t\tself.view.params.count \u003d  len(instances) + 1\n\t\t\t\t\tself.custom.torqueRound \u003d 2\n\t\t\t\telif self.custom.maxTag \u003e len(instances):\n\t\t\t\t\tself.view.params.count \u003d  len(instances) + 1\n\t\t\t\t\tself.custom.torqueRound \u003d 1\n\t\t\t\telse:\n\t\t\t\t\tself.view.params.count \u003d len(instances) - self.custom.maxTag + 1\n\t\t\t\t\tself.custom.torqueRound \u003d 3\n\t\t\t\t\t\n\t\telse:\n\t\t\tself.props.instances \u003d []\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Torque Marking\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/TorqueMarkingConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:ImageSelect -\u003e root/ViewCanvas\u0027) \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.viewcanvas"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

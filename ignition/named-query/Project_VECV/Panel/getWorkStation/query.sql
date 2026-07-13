@@ -1,0 +1,1 @@
+SELECT MST_WorkStation_Id, WorkStationName FROM MST_WorkStation WHERE MST_Line_Id = :MST_Line_Id and  IsActive = 1 

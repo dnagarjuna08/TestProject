@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "d58ae730608a1407d2a883a1c550495d42c41c0c97029ecac4c8eef98bd52cb4",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Nagarjuna",
+      "timestamp": "2025-08-31T10:59:50Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "OrderStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

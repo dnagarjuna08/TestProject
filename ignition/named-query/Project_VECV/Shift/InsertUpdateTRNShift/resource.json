@@ -1,0 +1,75 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "4d945f833a7c5f97b1b0323b37f8bcc396a39da0951b99e86464da8b63f4d47a",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Shift_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ShiftNumber",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ShiftStartTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ShiftEndTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "TRN_Shift_Id",
+        "sqlType": 7
+      }
+    ]
+  }
+}

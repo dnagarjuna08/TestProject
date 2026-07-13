@@ -1,0 +1,81 @@
+{
+  "custom": {},
+  "params": {
+    "value": {
+      "ALTERNATEPART": ""
+    }
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 60,
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.value.ALTERNATEPART"
+              },
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\tvalue \u003d value.split(\u0027,\u0027)\n\t\tsystem.perspective.print(value)\n\t\tAltParts \u003d \u0027\u0027\n\t\tfor i in value:\n\t\t\tsystem.perspective.print(i)\n\t\t\tif i.strip() !\u003d \u0027\u0027:\n\t\t\t\tAltParts +\u003d str(system.db.runNamedQuery(\"Project_VECV/ErrorProof/getPartNumberFromId\",{\"M_Material_Id\":int(i.strip())})) + \u0027,\u0027\n\t\treturn AltParts[:-1]\n\texcept:\n\t\treturn \u0027\u0027",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

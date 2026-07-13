@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "4dd63be0dbe1a8c5395d58fba26e504d5e83dc177089499d0c0900ceffc2565c",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "isActive",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "isDeleted",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "fromDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "toDate",
+        "sqlType": 8
+      }
+    ]
+  }
+}

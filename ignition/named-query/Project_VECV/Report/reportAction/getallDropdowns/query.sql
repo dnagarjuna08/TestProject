@@ -1,0 +1,1 @@
+exec usp_GetAllDropdownsReport @dropdowntype=:DropdownType, @areaid=:AreaID, @lineid=:LineID

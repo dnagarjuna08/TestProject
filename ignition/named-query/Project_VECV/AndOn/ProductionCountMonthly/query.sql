@@ -1,0 +1,1 @@
+select count(*) as Count from trn_releasedproductionorder where M_BOM_ID in (select M_BOM_Id from ClassificationData where ModelRange = :Mode)and IsQG02 = 1

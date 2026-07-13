@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "b51ecaac7789ceaa4e90771b4c57c77ed9f9798c235ec597c98a4d5d2c37bbe1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "TRN_StationDefect_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 7
+      }
+    ]
+  }
+}

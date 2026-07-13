@@ -1,0 +1,383 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 250,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblLogin"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 11
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "style": {
+                    "color": "#062F71",
+                    "fontFamily": "Arial",
+                    "fontWeight": "bold",
+                    "marginTop": "5px",
+                    "textAlign": "center"
+                  },
+                  "text": "Login for Log NC"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "system": {
+                    "onStartup": {
+                      "config": {
+                        "script": "\tself.focus()"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "txtUserName"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 2,
+                      "span": 10
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "placeholder": "User name",
+                  "style": {
+                    "classes": "Project_VECV/Login/TextBox"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onKeyPress": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 02/06/2024\n\t\tPurpose: on enter key, Calls message handler to start authontication process\n\t\"\"\"\n\t# Description - Calls message handler to start authontication process\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\"qualitylogin\",payload \u003d {}, scope \u003d \"page\")\n\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "txtPassword"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 2,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 3,
+                      "span": 10
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "custom.key": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.text"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": "Password",
+                  "style": {
+                    "classes": "Project_VECV/Login/TextBox",
+                    "marginTop": "5px"
+                  }
+                },
+                "type": "ia.input.password-field"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tsystem.perspective.sendMessage(\"qualitylogin\",payload \u003d {}, scope \u003d \"page\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  },
+                  "dom": {
+                    "onKeyPress": {
+                      "config": {
+                        "script": "\t# Description - Calls message handler to start authontication process\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\"qualitylogin\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\n\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSubmit"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 4,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 4,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 5,
+                      "span": 10
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({../txtUserName.props.text} !\u003d \u0027\u0027 \u0026 {../txtPassword.props.text} !\u003d \u0027\u0027),toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Login/ButtonText\nProject_VECV/CommonBackgroundColor/Button\nProject_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton ",
+                    "marginTop": "25px"
+                  },
+                  "text": "Login",
+                  "textStyle": {
+                    "classes": "Project_VECV/Login/ButtonText"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "qualitylogin",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 02/06/2024\n\t\tPurpose: Accept valid users.\n\t\"\"\"\n\tqueryPath \u003d \u0027Project_VECV/Login/Authenticate\u0027\n\tuserName \u003d self.getSibling(\"txtUserName\").props.text\n\tpassword \u003d self.getSibling(\"txtPassword\").props.text\n\tqueryParams \u003d {\"userName\":userName,\"password\":password}\n\tdataset \u003d system.db.runNamedQuery(queryPath,queryParams)\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\tfor data in pyData:\n\t\tisAuthenticate \u003d data[\u0027Result\u0027]\n\t\tself.session.custom.qualityLoginID \u003d data[\u0027ID\u0027]\n\tif isAuthenticate \u003d\u003d 1:\n\t\tsystem.perspective.closePopup(\u0027#login\u0027)\n\telse:\n\t\twarningMessage \u003d \"Invalid Credentials\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(warningMessage), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\t\t\n\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "lblwarning"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 3,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 3,
+                      "span": 10
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 4,
+                      "span": 10
+                    }
+                  ],
+                  "height": 27
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Login/LoginWarning"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tsystem.perspective.closePopup(\u0027#login\u0027)\n\tsystem.perspective.sendMessage(messageType\u003d\u0027resetTab\u0027, scope\u003d\u0027page\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblclose"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 11,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "alignVertical": "top",
+                  "style": {
+                    "color": "#000000",
+                    "cursor": "pointer",
+                    "fontFamily": "Arial",
+                    "fontWeight": "bold",
+                    "marginTop": "5px",
+                    "textAlign": "center"
+                  },
+                  "text": "x"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntColumn"
+            },
+            "position": {
+              "height": 1,
+              "width": 1
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 5
+              }
+            },
+            "type": "ia.container.column"
+          }
+        ],
+        "meta": {
+          "name": "cntLogin"
+        },
+        "position": {
+          "height": 250,
+          "width": 299,
+          "y": -80
+        },
+        "props": {
+          "mode": "percent",
+          "style": {
+            "backgroundColor": "#FFFFFF",
+            "marginTop": "80px"
+          }
+        },
+        "type": "ia.container.coord"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

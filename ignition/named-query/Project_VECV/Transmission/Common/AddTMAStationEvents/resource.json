@@ -1,0 +1,195 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "d88b2c3ec99b65df76a05aeb9f01aeaf4ba09ea8de3acd10ce9b3c79cd13f940",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsExceedTime",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Event_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOM_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PartNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPCode_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPDefinition_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Status_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PLCTorqueValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PLCTorqueResult",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PressingValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Shift_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Torque_Angle",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "UpperPressingStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LowerPressingStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "HYD_PRESS_1",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "HYD_PRESS_2",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "HYD_PRESS_3",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "HYD_PRESS_4",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "HYD_PRESS_5",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_PRESS_1",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_PRESS_2",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_PRESS_3",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_PRESS_4",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_PRESS_5",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LVDT_Value_1",
+        "sqlType": 4
+      }
+    ]
+  }
+}

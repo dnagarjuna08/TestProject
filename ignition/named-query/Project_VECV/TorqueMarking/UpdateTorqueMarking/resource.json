@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "d407f1a29c3f3c17e09a9b17d2a686642830cce86f80373253b021c3881bceb1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "TorqueMarking",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "custom": {
+    "AreaId": 0
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\n\trowData\u003dself.params.rowData\n\tsystem.perspective.print(\"rowData\"+str(rowData))\n\tself.custom.AreaId\u003drowData[\u0027MST_Area_Id\u0027]\n\t\t\n\t\n\tMST_WorkStation_Ids\u003dself.params.value\n\tsystem.perspective.print(\"MST_WorkStation_Ids rowData\"+str(MST_WorkStation_Ids))\n#\tlists\u003d[]\n#\tfor i in MST_WorkStation_Ids:\n#\t\tif i !\u003d\",\":\n#\t\t\tprint i\n#\t\t\tlists.append(i)\n\t\n\tMST_WorkStation_Ids\u003dMST_WorkStation_Ids.split(\u0027,\u0027)\n\tb\u003d[]\n\tfor i in range(len(MST_WorkStation_Ids)):\n\t    b.append(int(MST_WorkStation_Ids[i]))\n\t\n\t\t\t\n\n\t\t\n\tself.getChild(\"root\").getChild(\"ddlPrevWorkStation\").props.value\u003db\n#\tsystem.perspective.print(\"self.params.value\"+str(self.params.value))\n#\tif self.params.value \u003d\u003d -1 :\n#\t\tself.getChild(\"root\").getChild(\"ddlPrevWorkStation\").props.value\u003d-1\n#\telse:\n#\t\tself.getChild(\"root\").getChild(\"ddlPrevWorkStation\").props.value\u003dself.params.value\n\t\t\n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "column": "value",
+    "columnIndex": "value",
+    "row": "value",
+    "rowData": "value",
+    "rowIndex": "value",
+    "value": ""
+  },
+  "propConfig": {
+    "custom.AreaId": {
+      "persistent": true
+    },
+    "params.column": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.columnIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.row": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 272
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.print(self.props.value)"
+              },
+              "enabled": false,
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "ddlPrevWorkStation"
+        },
+        "position": {
+          "height": 42,
+          "width": 263,
+          "x": 5,
+          "y": 1
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "MST_Area_Id": "{view.params.rowData[\u0027MST_Area_Id\u0027]}"
+                },
+                "queryPath": "Project_VECV/LocationRouting/GetAreaWiseWorkStation"
+              },
+              "transforms": [
+                {
+                  "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027MST_WorkStation_Id\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027WorkStationName\u0027]\n\t\toptionList.append(dict)\n\treturn optionList\n\n",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          },
+          "props.value": {
+            "onChange": {
+              "enabled": null,
+              "script": "\ttry:\n\t\n\t\tscriptName \u003d \u0027Location On Action Performed\u0027\n\t\t\t\t\t\n\t\tSelctedRow\u003dself.view.params.rowIndex\n\t\tcolumnName\u003dself.view.params.column\t\n\t\trowData\u003dself.view.params.rowData\n\t\tno\u003dself.props.value\n\t\tsystem.perspective.print(\"SelctedRow \"+str(SelctedRow))\n\t\tsystem.perspective.print(\"columnName \"+str(columnName))\n\t\tsystem.perspective.print(\"no \"+str(no))\n\t\tmessageType \u003d \u0027UpdateLocationRout\u0027\n\t\tsystem.perspective.sendMessage(messageType, payload \u003d {\"columnName\":columnName,\"No\":str(no),\"SelctedRow\":SelctedRow}, scope \u003d \"page\")\n\t\n\t\n\texcept:\n\t\timport sys, os\n\t\terrorMessage\u003dscriptName  +\u0027 Exception : \u0027+  str(sys.exc_info()[1])\n\t\tsystem.perspective.print(errorMessage)"
+            }
+          }
+        },
+        "props": {
+          "multiSelect": true,
+          "value": "value"
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label",
+          "visible": false
+        },
+        "position": {
+          "height": 32,
+          "width": 50,
+          "x": 90,
+          "y": 5
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

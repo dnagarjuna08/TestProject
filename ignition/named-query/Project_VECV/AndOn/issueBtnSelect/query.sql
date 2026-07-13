@@ -1,0 +1,1 @@
+select top 1 trn_issueBtn_ID from trn_issuebtn where mst_workstation_id = :mst_workstation_id and Issue_type_id = :Issue_type_id order by createdDate desc

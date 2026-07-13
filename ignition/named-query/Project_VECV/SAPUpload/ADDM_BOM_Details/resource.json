@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "1f0dc5b66e5b5a7169b308fda08d899a159b49dc7ec89344b6049f16d2f0ae3b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "BOMNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Material_Number",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Quantity",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Mst_Area_Id",
+        "sqlType": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+select count(*) from TransmissionType where M_BOM_Id = :BOM  and IsActive = 1

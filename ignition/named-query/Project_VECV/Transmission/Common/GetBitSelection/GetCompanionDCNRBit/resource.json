@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "96362d411b437f42de7bc59f71ad4b98ccf4be5cc518c00c6399f8d2bf5e13b1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOMNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 2
+      }
+    ]
+  }
+}

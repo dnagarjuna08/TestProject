@@ -1,0 +1,1616 @@
+{
+  "custom": {
+    "Operation": "",
+    "TestBedtatus": "",
+    "areaId": 0,
+    "bomId": "",
+    "model": "",
+    "order": "",
+    "serialNumber": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.Operation": {
+      "persistent": true
+    },
+    "custom.TestBedtatus": {
+      "persistent": true
+    },
+    "custom.areaId": {
+      "persistent": true
+    },
+    "custom.bomId": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntBOM/TextField.props.text"
+        },
+        "enabled": false,
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.model": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntModel/txtModel.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.order": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntOrderNumber/TextField.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.serialNumber": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblSearchSerialNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "fontWeight": "bold"
+                      },
+                      "text": "Serial Number:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onKeyPress": {
+                          "config": {
+                            "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 25/07/2024\n\t\tPurpose: Initiate Repair/Rework operation \n\t\"\"\"\n\ttry:\n\t    if (str(self.props.text) !\u003d \u0027null\u0027 and str(self.props.text) !\u003d \u0027\u0027) and str(event.key) \u003d\u003d \u0027Enter\u0027:\n\t        serialNumber \u003d str(self.props.text)\n\t        params \u003d {\u0027SerialNumber\u0027: serialNumber}\n\t        system.perspective.print(\"params \" + str(params))\n\t        result \u003d system.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Rework/getReworkData\", params)\n\t        length \u003d len(system.dataset.toPyDataSet(result))\n\t        system.perspective.print(\"params \" + str(params) + \u0027 len \u0027 + str(length))\n\t        if length !\u003d 0:\n\t            orderNumber \u003d result.getValueAt(0, \"OrderNumber\")\n\t            serialNumber \u003d result.getValueAt(0, \"SerialNumber\")\n\t            bomNumber \u003d result.getValueAt(0, \"BOMNumber\")\n\t            model \u003d result.getValueAt(0, \"Model\")\n\t            areaId \u003d result.getValueAt(0, \"AreaId\")\n\t            operation \u003d result.getValueAt(0, \"Operation\")\n\t            testBedStatus \u003d result.getValueAt(0, \"TestBedStatus\")\n\t            bomId \u003d result.getValueAt(0, \"BomId\")\n\t            self.view.custom.bomId  \u003d bomId\n\t            self.view.custom.serialNumber \u003dserialNumber\n\t            self.parent.parent.parent.getChild(\"cntTestBedStatus\").getChild(\"CoordinateContainer\").getChild(\"lblQG_value\").props.text \u003d testBedStatus\n\t            self.view.custom.Operation \u003d operation\n\t            self.parent.parent.getChild(\"cntOrderNumber\").getChild(\"TextField\").props.text \u003d orderNumber\n\t            self.view.custom.serialNumber \u003d serialNumber\n\t            self.parent.parent.getChild(\"cntBOM\").getChild(\"TextField\").props.text \u003d bomNumber\n\t            self.parent.parent.getChild(\"cntModel\").getChild(\"txtModel\").props.text \u003d model\n\t            self.view.custom.areaId \u003d areaId\n\t            system.perspective.print(\"areaId \" + str(self.view.custom.areaId) + \" serialNumber \" + str(serialNumber))\n\t            system.perspective.sendMessage(\"refreshQGData\")\n\t            if str(operation) \u003d\u003d \u0027Invalid\u0027:\n\t                message \u003d \u0027Serial Number is not Valid for Repair and Rework\u0027\n\t                state \u003d \"fail\"\n\t                Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t            else:\n\t                if str(operation) \u003d\u003d \u0027Rework\u0027:\n\t                    eventId \u003d 10\n\t                else:\n\t                    eventId \u003d 14\n\t                popup_id \u003d \u0027Rework\u0027\n\t                view_path \u003d \u0027Project_VECV/PopUp/OperatorDashBoard/Rework/StartStop\u0027\n\t                params \u003d {\"message\": \"Do you want to Start \" + str(operation), \"serialNumber\": serialNumber, \"eventId\": int(eventId), \u0027bomId\u0027: bomId}\n\t                system.perspective.openPopup(popup_id, view_path, params\u003dparams, resizable\u003dTrue, modal\u003dFalse, draggable\u003dFalse, header\u003dFalse,showCloseIcon\u003dFalse)\n\t        else:\n\t            message \u003d \u0027Serial Number is not Valid for Repair and Rework\u0027\n\t            state \u003d \"fail\"\n\t            Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\texcept:\n\t    screenName \u003d \u0027Rework\u0027\n\t    filePath \u003d \u0027Project_VECV/Operator Dashboard/Rework Station\u0027\n\t    errorFunction \u003d \u0027Event:onAction -\u003e OnKeyPress\u0027\n\t    errorType \u003d \u0027Application\u0027\n\t    errorCode \u003d Project_VECV.Common.GenerateUUID.getUniqueUUID()\n\t    description \u003d str(sys.exc_info()[1])  # Error description\n\t    lineNumber \u003d str(sys.exc_info()[2].tb_lineno)  # Line number on which error occurred\n\t    Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName, filePath, errorFunction, errorType, errorCode, description, lineNumber)\n\t    system.perspective.print(\"lineNumber \" + str(lineNumber) + str(errorCode) + str(description))"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "SerialScanID"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "persistent": true
+                      }
+                    },
+                    "props": {
+                      "rejectUpdatesWhileFocused": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "SerialNumberFocus",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\tself.focus()\n\tsystem.perspective.print(\u0027Serial number focus\u0027)",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntSerialNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 70
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblOrderNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "fontWeight": "bold"
+                      },
+                      "text": "Order Number:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "TextField"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntOrderNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 3,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 70
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblBOM"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "fontWeight": "bold"
+                      },
+                      "text": "BOM:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "TextField"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntBOM"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 8,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 70
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "fontWeight": "bold"
+                      },
+                      "text": "Model:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntModel"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 10,
+                      "name": "sm",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "md",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 70
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 70
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0,
+                "vertical": 7
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblQualityGateStatus"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Quality Gate Status:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "FlexRepeater"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 2,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 95
+                },
+                "propConfig": {
+                  "custom.QGData": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntHeader/cntSerialNumber/SerialScanID.props.text"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tparams \u003d {\u0027AreaId\u0027:23,\u0027SerialNumber\u0027:\u0027FR000007LD-RA1001\u0027}\n\tdata \u003dsystem.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Rework/GetQGData\",params)\n\tinstances \u003d []\n\tfor row in range(data.getRowCount()):\n\t    instance \u003d {\n\t        \u0027Name\u0027: data.getValueAt(row, \u0027WorkStationName\u0027),\n\t        \u0027Value\u0027: data.getValueAt(row, \u0027Status\u0027)  \n\t    }\n\t    instances.append(instance)\n\treturn instances",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.instances": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.path"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tparams \u003d {\u0027AreaId\u0027:self.view.custom.areaId,\u0027SerialNumber\u0027: self.view.custom.serialNumber}\n\tdata \u003dsystem.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Rework/GetQGData\",params)\n\tinstances \u003d []\n\tfor row in range(data.getRowCount()):\n\t\tname \u003d data.getValueAt(row, \u0027WorkStationName\u0027)\n\t\tstatus \u003d data.getValueAt(row, \u0027Status\u0027) \n\t\tif str(status)  \u003d\u003d \u0027None\u0027:\n\t\t\tstatus \u003d \u0027NA\u0027\n\t\tinstance \u003d {\n\t\t    \u0027Name\u0027: name,\n\t\t    \u0027Value\u0027: str(status)\n\t\t}\n\t\tinstances.append(instance)\n\treturn instances",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "path": "Project_VECV/Templates/Operator Dashboard/Rework/QaulityGates"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshQGData",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.refreshBinding(\u0027props.instances\u0027)\n\tsystem.perspective.print(\"areaId from refresh\" +str(self.view.custom.areaId)+\" serialNumber \" +str(serialNumber))",
+                      "sessionScope": true,
+                      "viewScope": true
+                    }
+                  ]
+                },
+                "type": "ia.display.flex-repeater"
+              }
+            ],
+            "meta": {
+              "name": "cntQualityGateStatus"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                }
+              ],
+              "height": 145
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblTestBedStatus"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 4,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Test Bed Status:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblQG"
+                    },
+                    "position": {
+                      "height": 40,
+                      "rotate": {
+                        "anchor": "-18% 0%"
+                      },
+                      "width": 81
+                    },
+                    "props": {
+                      "text": "Station",
+                      "textStyle": {
+                        "classes": "Project_VECV/OperatorDashboard/Rework_Status_Labels"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblQG_value"
+                    },
+                    "position": {
+                      "height": 38,
+                      "rotate": {
+                        "anchor": "-18% 0%"
+                      },
+                      "width": 82,
+                      "y": 40
+                    },
+                    "propConfig": {
+                      "meta.visible": {
+                        "binding": {
+                          "config": {
+                            "path": "this.props.text"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif str(value) \u003d\u003d \u0027\u0027:\n\t\treturn False\n\telse:\n\t\treturn True",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.style.backgroundColor": {
+                        "binding": {
+                          "config": {
+                            "path": "this.props.text"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "#FFFFFF",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": "OK",
+                                  "output": "#00FF00"
+                                },
+                                {
+                                  "input": "NOK",
+                                  "output": "#FF0000"
+                                }
+                              ],
+                              "outputType": "color",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.TestBedtatus"
+                          },
+                          "enabled": false,
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "borderStyle": "groove"
+                      },
+                      "textStyle": {
+                        "classes": "Project_VECV/OperatorDashboard/Rework_Status_Labels"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "CoordinateContainer"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 2,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 91
+                },
+                "type": "ia.container.coord"
+              }
+            ],
+            "meta": {
+              "name": "cntTestBedStatus"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 6
+                }
+              ],
+              "height": 145
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblDefectInformation"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Defect Information:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "SerialNumber": "FR000007LD-RA1001"
+                },
+                "meta": {
+                  "name": "tblDefectInformation"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    }
+                  ],
+                  "height": 357
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "SerialNumber": "{view.custom.serialNumber}"
+                        },
+                        "queryPath": "Project_VECV/OperatorDashboard/Rework/GetDefectData"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkStationName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Work Station Name"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": "",
+                        "paddingLeft": "20px"
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "DefectName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Defect Name"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Comment",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Comment"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "DefectCategory",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Category"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    }
+                  ],
+                  "pager": {
+                    "initialOption": 10
+                  }
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntDefectInformation"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 415
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "# Get the table data\n\ttry:\n\t\toperation \u003d self.view.custom.Operation\n\t\tif str(operation) \u003d\u003d \u0027Rework\u0027:\n\t\t    eventId \u003d 11\n\t\telse:\n\t\t    eventId \u003d 15\n\t\tserialNumber \u003d self.view.custom.serialNumber\n\t\tbomId \u003d self.view.custom.bomId\n\t\tpopup_id \u003d \u0027Rework\u0027\n\t\tview_path \u003d \u0027Project_VECV/PopUp/OperatorDashBoard/Rework/StartStop\u0027\n\t\tparams \u003d {\"message\": \"Do you want to Stop \" + str(operation), \"serialNumber\": serialNumber, \"eventId\": int(eventId), \u0027bomId\u0027: bomId}\n\t\tsystem.perspective.openPopup(popup_id, view_path, params\u003dparams, resizable\u003dTrue, modal\u003dFalse, draggable\u003dFalse, header\u003dFalse,showCloseIcon\u003dFalse)\n\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Rework\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Rework\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:ActionPerformed  -\u003e btnStop\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnStop"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 2,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 9
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 2
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 1
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.Operation"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif str(value) in [\u0027Rework\u0027,\u0027Repair\u0027]:\n\t\treturn True\n\telse:\n\t\treturn False",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "path": "material/stop_circle"
+                        },
+                        "position": "right"
+                      },
+                      "style": {
+                        "backgroundImage": "linear-gradient(#5555F1, #0000AC) ",
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Order/Button "
+                      },
+                      "text": "Stop"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStop"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 5,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 70
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntFooter"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 70
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0,
+                "vertical": 7
+              }
+            },
+            "type": "ia.container.column"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 25/07/2024\n\t\tPurpose: Reset all parameter values to default value. \n\t\"\"\"\n\tsystem.perspective.sendMessage(\u0027SerialNumberFocus\u0027,scope \u003d \u0027page\u0027 )\n#\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntOperation\").getChild(\"drpOp\").props.value \u003d -1\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"SerialScanID\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntTestBedStatus\").getChild(\"CoordinateContainer\").getChild(\"lblQG_value\").props.text \u003d\u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntOrderNumber\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.view.custom.serialNumber \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntBOM\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntModel\").getChild(\"txtModel\").props.text \u003d\u0027\u0027\n\tself.view.custom.Operation \u003d\u0027\u0027"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "RefreshParams",
+          "pageScope": true,
+          "script": "\t\n\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 25/07/2024\n\t\tPurpose: Reset all parameter values to default value. \n\t\"\"\"\n\tsystem.perspective.print(\u0027from refresh params\u0027)\n\t\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"SerialScanID\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntTestBedStatus\").getChild(\"CoordinateContainer\").getChild(\"lblQG_value\").props.text \u003d\u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntOrderNumber\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.view.custom.serialNumber \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntBOM\").getChild(\"TextField\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntModel\").getChild(\"txtModel\").props.text \u003d\u0027\u0027\n\tself.view.custom.Operation \u003d\u0027\u0027\n\tsystem.perspective.sendMessage(\"refreshQGData\")\n",
+          "sessionScope": true,
+          "viewScope": true
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "de98d6a5f34d12a144a10e0586fbd5d36250a842d7b1e046a72d7261fd0bfaf9",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "selectedArea",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "selectedLine",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "selectedStation",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ToDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Startdate",
+        "sqlType": 8
+      }
+    ]
+  }
+}

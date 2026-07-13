@@ -1,0 +1,1 @@
+SELECT M_BOMNumber FROM M_BOM WHERE IsActive = 1 AND IsDeleted = 0 AND Mst_Area_Id = :AreaID AND LEN(M_BOMNumber) <= 6

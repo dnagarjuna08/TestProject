@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a05fb4ad1794cfbd32606cb97eb16ff3a0ec8080c07f47c19e959b321c788b9d",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "areaid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "workstationid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineid",
+        "sqlType": 2
+      }
+    ]
+  }
+}

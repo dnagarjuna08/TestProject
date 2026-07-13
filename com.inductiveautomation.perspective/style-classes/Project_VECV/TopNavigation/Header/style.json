@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "color": "#FFFFFF",
+      "fontFamily": "Roboto",
+      "fontSize": "16px",
+      "fontWeight": "bold",
+      "marginLeft": "100px",
+      "textIndent": "6px"
+    }
+  }
+}

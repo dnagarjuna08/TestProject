@@ -1,0 +1,335 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblWashing"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 6
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 6
+            }
+          ],
+          "height": 50
+        },
+        "props": {
+          "style": {
+            "color": "#000000",
+            "fontSize": 25,
+            "fontWeight": "bold",
+            "marginLeft": 5,
+            "marginRight": 5,
+            "marginTop": 5,
+            "textAlign": "center"
+          },
+          "text": "Station Status"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "lblSerialNumber"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          },
+          "text": "Serial Number"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "txtSerialNumber"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "\tSerialNumber \u003d self.props.text\n\t#get GearRation and Fill the next Field\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getGearRatio\",{\"SerialNumber\":SerialNumber})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"Invalid Serial Number.\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.getSibling(\"txtGearRatio\").props.text \u003d \u0027\u0027"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 24/08/2024\n\t\tPurpose: Update Station Status\n\t\"\"\"\t\n\tWorkStationName \u003d self.getSibling(\"drpStation\").props.value\n\tSerialNumber \u003d self.getSibling(\"txtSerialNumber\").props.text\n\tBOMNumber \u003d SerialNumber.split(\u0027-\u0027)[1]\n\tStatus \u003d self.getSibling(\"drpStatus\").props.value\n\tparams\u003d{\"WorkStationName\":WorkStationName,\"SerialNumber\":SerialNumber,\"BOMNumber\":BOMNumber,\"CreatedBy\":self.session.custom.loggedInUserId,\"Status\":Status}\n\tmessage \u003d \"Station Status Stored successfully.\"\n\tstate \u003d \"info\"\n\tsystem.db.runNamedQuery(\"Project_VECV/ITSupport/StationStatus\",{\"WorkStationName\":int(WorkStationName),\"SerialNumber\":SerialNumber,\"BOMNumber\":BOMNumber,\"CreatedBy\":self.session.custom.loggedInUserId,\"Status\":int(Status)})\n\t\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\tself.getSibling(\"txtSerialNumber\").props.text \u003d \u0027\u0027\n\tself.getSibling(\"drpStatus\").props.value \u003d -1\n\tself.getSibling(\"drpStation\").props.value \u003d -1"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 1,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 5,
+              "span": 10
+            },
+            {
+              "colIndex": 5,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 5,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if({../txtSerialNumber.props.text}!\u003d \u0027\u0027\u0026\r\n{../drpStatus.props.value} !\u003d -1 \u0026\r\n{../drpStation.props.value} !\u003d -1\r\n,ToBoolean(1),ToBoolean(0))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#000000",
+            "color": "#FFFFFF"
+          },
+          "text": "Save"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "drpStation"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 7,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 7,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "queryPath": "Project_VECV/ITSupport/getAllStation"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "margin": 5
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "lblStatus"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 12
+            },
+            {
+              "colIndex": 2,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "marginLeft": 10,
+            "marginRight": 5
+          },
+          "text": "Status\n"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "drpStatus"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 12
+            },
+            {
+              "colIndex": 2,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "options": [
+            {
+              "label": "OK",
+              "value": 2
+            },
+            {
+              "label": "NOK",
+              "value": 3
+            }
+          ],
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

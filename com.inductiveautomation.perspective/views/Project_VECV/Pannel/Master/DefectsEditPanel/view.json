@@ -1,0 +1,675 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 720,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Edit Defects"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Anand Choudhary\n\t\tWritten Date: 14/08/2025\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027editDefectView\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Edit Defect Subname "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "placeholder": "Enter new defect subname..",
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntUnitName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Edit Defect Category:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "placeholder": "Enter new defect category..",
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntDefectLevel1"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "meta.visible": {
+                "persistent": false
+              }
+            },
+            "props": {
+              "style": {
+                "display": "inline"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027editDefectView\u0027)\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "61% 25%"
+                  },
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027editDefectView\u0027)\n\tsystem.perspective.openDock(\"rightView\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel_0"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "61% 25%"
+                  },
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\n# Written By: Anand Choudhary\n# Date: 12/02/2026\n# Purpose: Edit defects in defect mapping\n\n\ttry:\n\t\tsystem.perspective.print(\"Inside try block in save\")\n\t\tpayload \u003d self.view.getChild(\"root\").custom.payload\n\t\t\n\t\tdefectCategoryId \u003d self.view.getChild(\"root\").custom.DefectCategoryId\n\t\tdefectNameId \u003d self.view.getChild(\"root\").custom.DefectNameId\n\t\tdefectSubnameId \u003d self.view.getChild(\"root\").custom.DefectSubnameId\n\t\t\n\t\tdefectSubname \u003d self.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text \n\t\tdefectCategory \u003d self.parent.parent.getChild(\"cntDefectLevel1\").getChild(\"txt\").props.text\n\t\tdefectName \u003d self.parent.parent.getChild(\"cntDefectLevel2\").getChild(\"txt\").props.text\n\t\tdemerit \u003d self.parent.parent.getChild(\"cntDemerit\").getChild(\"txt\").props.text\n\t\t\n\t\tif(defectCategory !\u003d \"\" and defectName !\u003d \"\" and defectSubname !\u003d \"\" and demerit !\u003d \"\"):\n\t\t\tif payload[\u0027DefectCategory\u0027] !\u003d defectCategory:\n\t\t\t\tparam \u003d {\n\t\t\t\t \u0027DefectCategory\u0027: defectCategory,\n\t\t\t\t \u0027DefectCategoryId\u0027: defectCategoryId\n\t\t\t\t}\n\t\t\t\tsystem.db.runNamedQuery(\u0027Project_VECV/Defects/updateDefectCategory\u0027, param)\n\t\t\t\n\t\t\tif payload[\u0027DefectName\u0027] !\u003d defectName:\n\t\t\t\tparam \u003d {\n\t\t\t\t \u0027DefectName\u0027: defectName,\n\t\t\t\t \u0027DefectNameId\u0027: defectNameId\n\t\t\t\t}\n\t\t\t\tsystem.db.runNamedQuery(\u0027Project_VECV/Defects/updateDefectName\u0027, param)\n\t\n\t\t\tif (payload[\u0027DefectSubName\u0027] !\u003d defectSubname) or (payload[\u0027Demerit\u0027] !\u003d demerit):\n\t\t\t\tparam \u003d {\n\t\t\t\t \u0027DefectSubname\u0027: defectSubname,\n\t\t\t\t \u0027Demerit\u0027: demerit,\n\t\t\t\t \u0027DefectSubnameId\u0027: defectSubnameId\n\t\t\t\t}\n\t\t\t\tsystem.db.runNamedQuery(\u0027Project_VECV/Defects/updateDefectSubname\u0027, param)\n\t\t\t\tmessage \u003d \"Defect edited successfully \"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(\"success\", \"success\", message, \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\telse:\n\t\t\tmessage \u003d \"Input field can\u0027t be empty\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(\"info\", \"Info\", message, \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\t\n\t\tsystem.perspective.sendMessage(\u0027refreshDefectMappingTable\u0027)\n\t\tsystem.perspective.closeDock(\"editDefectView\")\n\t\tsystem.perspective.openDock(\"rightView\")\n\texcept Exception as e:\n\t\timport traceback\n\t\tsystem.perspective.print(\"Error: \" + str(e))\n\t\tsystem.perspective.print(\"Traceback: \" + traceback.format_exc())"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Edit Defect Name"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "placeholder": "Enter new defect name..",
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntDefectLevel2"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "meta.visible": {
+                "persistent": false
+              }
+            },
+            "props": {
+              "style": {
+                "display": "inline"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Edit Demerit"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "placeholder": "Enter new defect demerit..",
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntDemerit"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "style": {
+                "display": "inline"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1,
+          "x": 0.0006,
+          "y": 0.0058
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "DefectCategoryId": "",
+      "DefectNameId": "",
+      "DefectSubnameId": "",
+      "payload": {}
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -0.6148,
+      "y": 0.2403
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "DefectsMappingEditPanel",
+          "pageScope": true,
+          "script": "\tsystem.perspective.print(\"IN DefectsEditPanel\")\n\tsystem.perspective.print(\"Payload received is: %s\"%payload)\n\t\n\tself.getChild(\"cntColumn\").getChild(\"cntDefectLevel1\").getChild(\"txt\").props.text \u003d payload[\u0027DefectCategory\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntDefectLevel2\").getChild(\"txt\").props.text \u003d payload[\u0027DefectName\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntUnitName\").getChild(\"txt\").props.text\u003dpayload[\u0027DefectSubName\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntDemerit\").getChild(\"txt\").props.text\u003dpayload[\u0027Demerit\u0027]\n\t\n\tsystem.perspective.print(\"SYtem: %s\"%payload[\u0027Defect_Id\u0027])  \n\tsystem.perspective.print(payload[\u0027DefectName_Id\u0027])\n\tsystem.perspective.print(payload[\u0027DefectSUBName_Id\u0027])\n\t\n\tself.custom.DefectCategoryId \u003d payload[\u0027Defect_Id\u0027]\n\tself.custom.DefectNameId \u003d payload[\u0027DefectName_Id\u0027]\n\tself.custom.DefectSubnameId \u003d payload[\u0027DefectSUBName_Id\u0027]\n\t\n\tself.custom.payload \u003d payload\n\t\n\n\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

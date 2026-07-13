@@ -1,0 +1,55 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tself.session.custom.TopViewHeader \u003d \"\""
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblview"
+        },
+        "position": {
+          "height": 0.0492,
+          "width": 0.6683,
+          "x": 0.1551,
+          "y": 0.4761
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header",
+            "color": "#FF4747",
+            "fontSize": "30px",
+            "textAlign": "center"
+          },
+          "text": "**ACCESS DENIED FOR THIS USER**"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

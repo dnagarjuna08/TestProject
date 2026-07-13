@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "4a8d6f3b01b2700b3c45fd556412c29a685e541ae4585cda34857d490f6d04e0",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "bomidfrom",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomidto",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "areaid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineid",
+        "sqlType": 3
+      }
+    ]
+  }
+}

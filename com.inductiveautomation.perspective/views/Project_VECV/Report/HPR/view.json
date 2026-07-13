@@ -1,0 +1,247 @@
+{
+  "custom": {
+    "Timeout": null,
+    "Timeout_SP_Seconds": ""
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsLoggedIn\n\t\tif not previousPage:\n\t\t\tsystem.perspective.print(\"New Session\")\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027OPCode Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/OPCode\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e OPCode\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "LogNCReport"
+  },
+  "propConfig": {
+    "custom.Timeout": {
+      "persistent": true
+    },
+    "custom.Timeout_SP_Seconds": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "cntSearch"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 100
+            },
+            "props": {
+              "params": {
+                "Area": "",
+                "EndDate": {
+                  "$": [
+                    "ts",
+                    192,
+                    1721922388248
+                  ],
+                  "$ts": 1721845800000
+                },
+                "Line": "",
+                "RACode": "",
+                "SerialNumber": "",
+                "StartDate": {
+                  "$": [
+                    "ts",
+                    192,
+                    1721922383877
+                  ],
+                  "$ts": 1719772200000
+                },
+                "WorkStation": ""
+              },
+              "path": "Project_VECV/Report/reportAction"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "ReportViewer"
+                },
+                "position": {
+                  "height": 650,
+                  "width": 1000,
+                  "x": 1.17,
+                  "y": -0.8500000000000001
+                },
+                "propConfig": {
+                  "props.params.Area": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntSearch.props.params.Area"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.EndDate": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntSearch.props.params.EndDate"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "props.params.StartDate": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntSearch.props.params.StartDate"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "page": 1,
+                  "pageCount": 27,
+                  "source": "HPR"
+                },
+                "type": "ia.reporting.report-viewer"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 675
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 0.9583,
+          "width": 0.9657,
+          "x": 0.0129,
+          "y": 0.0415
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "cntLoader",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1933,
+          "width": 0.1537,
+          "x": 0.4099,
+          "y": 0.3093
+        },
+        "propConfig": {
+          "props.params.isLoader": {
+            "binding": {
+              "config": {
+                "path": "this.meta.visible"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/Loader"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")  \n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027OPCodePanel\u0027\n\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027ModelId\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\n\t\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027OPDefinitionId\u0027:-1,\u0027WITypeId\u0027:-1,\u0027OPCode\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027Description\u0027:\u0027\u0027,\u0027AttributeText\u0027:\u0027\u0027,\u0027ImageName\u0027:\u0027\u0027,\u0027ImagePath\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\t\u0027ToolId\u0027:\u0027\u0027,\u0027ProgramId\u0027:\u0027\u0027,\u0027IsMinMaxReq\u0027:-1,\u0027MaxVal\u0027:\u0027\u0027,\u0027MinVal\u0027:\u0027\u0027,\"Action\":Action,\u0027Part\u0027:-1,\u0027BOMId\u0027:-1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

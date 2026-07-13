@@ -1,0 +1,141 @@
+{
+  "custom": {},
+  "params": {
+    "columnIndex": "value",
+    "rowData": "value",
+    "value": 4
+  },
+  "propConfig": {
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 25,
+      "width": 116
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\"\"\"\n\tWritten By: Sagar Iparkar\n\tWritten Date: 25/07/2024\n\tPurpose:\t\t\t \n\t\t\tUpdate painting status \n\t\"\"\"\n\ttry:\n\t\n\t\n\t\n\t\taction \u003d self.view.params.value\n\t\trowData \u003d self.view.params.rowData\n\t\tsystem.perspective.print(\"rowData \"+str(rowData))\n\t\tsystem.perspective.print(\"action \"+str(action))\n\t\t\n\t\tpaintingId\u003d rowData[\u0027Id\u0027]\n\t\tlineId \u003d rowData[\u0027MST_Line_Id\u0027]\n\t\tworkstationId \u003drowData[\u0027MST_WorkStation_Id\u0027]\n\t\tuserId \u003d self.session.custom.loggedInUserId\n\t\tM_BOM_Id \u003d rowData[\u0027M_BOM_Id\u0027]\n\t\tOrder_id \u003d rowData[\u0027Order_id\u0027]\n\t\tareaId  \u003d rowData[\u0027MST_Area_Id\u0027]\n\t\tM_BOMNumber \u003d rowData[\u0027BOMNumber\u0027]\n\t\tserialNumber\u003d rowData[\u0027SerialNumber\u0027]\n\t\tSerialNumber_Id \u003d rowData[\u0027SerialNumber_Id\u0027]\n\t\torderStatusId \u003d 0\n\t\tshiftId \u003d 1\n\t\tIsMaskingInProgress\u003d0\n\t\tIsMaskingCompleted\u003d0\n\t\tIsDemaskingInProgress\u003d0\n\t\tIsDemaskingCompleted\u003d0\n\t\torderStatusId \u003d 6\n\t\tif int(action) \u003d\u003d 1:\n\t\t\teventId \u003d 3\n\t\t\tmessage \u003d \u0027Paiting DeMasking Started\u0027\n\t\t\torderStatusId \u003d 6\n\t\t\tIsMaskingInProgress\u003d0\n\t\t\tIsMaskingCompleted\u003d0\n\t\t\tIsDemaskingCompleted\u003d0\n\t\t\tIsDemaskingInProgress\u003d1\n\t\telse:\n\t\t\teventId \u003d 5\n\t\t\tmessage \u003d \u0027Paiting DeMasking Completed\u0027\n\t\t\tIsMaskingInProgress\u003d0\n\t\t\tIsMaskingCompleted\u003d0\n\t\t\tIsDemaskingInProgress\u003d0\n\t\t\tIsDemaskingCompleted\u003d1\n\t\t\n\t\tshiftId\u003d1\n\n\t\tparams \u003d {\u0027AreaId\u0027:areaId,\u0027LineId\u0027:lineId,\u0027WorkStationId\u0027:workstationId,\u0027CreatedBy\u0027:userId,\u0027serialNumber\u0027:serialNumber,\u0027bomId\u0027:M_BOM_Id,\n\t\t\u0027PaintingId\u0027:paintingId,\u0027MST_Event_Id\u0027:eventId,\u0027MST_Status_Id\u0027:orderStatusId,\u0027ShiftId\u0027:shiftId,\u0027OrderId\u0027:Order_id,\u0027M_BOMNumber\u0027:M_BOMNumber,\n\t\t\u0027IsMaskingInProgress\u0027:IsMaskingInProgress,\u0027IsMaskingCompleted\u0027:IsMaskingCompleted,\u0027IsDemaskingInProgress\u0027:IsDemaskingInProgress,\n\t\t\"IsDemaskingCompleted\":IsDemaskingCompleted}\t\n\t\tsystem.perspective.print(\"paramspainting demasking\" +str(params))\n\t\t\n\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Painting/usp_UpdatePaintingStatus\",params)\n\t\tsystem.perspective.print(\"result painting demasking\" +str(result))\n\t\tif str(result) \u003d\u003d \u00271\u0027 and IsDemaskingCompleted\u003d\u003d1 and eventId\u003d\u003d5: \n\t\t\n\t\t\tparams \u003d {\u0027AreaId\u0027:areaId,\u0027LineId\u0027:lineId,\u0027WorkStationId\u0027:workstationId,\u0027M_BOM_Id\u0027:M_BOM_Id ,\u0027CreatedBy\u0027:userId,\u0027SerialNumber_Id\u0027:SerialNumber_Id ,\u0027SerialNumber\u0027:serialNumber}\t\n\t\t\tsystem.perspective.print(\"params painting \" +str(params))\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Painting/UpdatePaintingData\",params)\n\t\t\tsystem.perspective.print(\"result painting demasking\" +str(result))\n\t\t\n\t\telif str(result) \u003d\u003d \u00271\u0027:\n\t\t\tresult\u003dstr(result)\n\t\t\tsystem.perspective.print(\"result \" +str(result))\n\t\t\tstate \u003d \"success\"\n#\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\tsystem.perspective.sendMessage(\"PaintingDeMaskingTableRefresh\", scope \u003d \"page\")\n\t\t\t\t\t\t\n\t\t\tpopup_id \u003d \u0027DemaskingImagePopup\u0027\n\t\t\tparams \u003d {\u0027AreaId\u0027: areaId,\u0027MST_PaintingType_Id\u0027:2}\n\t\t\tview_path \u003d \u0027Project_VECV/Templates/Operator Dashboard/Painting/Demasking/DemaskingImagePopup\u0027\n\t\t\tsystem.perspective.openPopup(popup_id, view_path,overlayDismiss\u003dFalse,  params\u003dparams,resizable\u003dFalse, modal\u003dTrue, draggable\u003dFalse, header\u003dFalse,showCloseIcon\u003dFalse)\t\t\t\t\t\t\t\t\n\n\t\telse:\n\t\t\tmessage \u003d \u0027failed\u0027\n\t\t\tsystem.perspective.print(\"message \" +str(result)+\u0027  \u0027+str(message))\n\t\t\tstate \u003d \"warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\tsystem.perspective.sendMessage(\"PaintingDeMaskingTableRefresh\", scope \u003d \"page\")\n#\t\tsystem.perspective.sendMessage(\"OrderPunchingTableRefresh\", scope \u003d \"session\")\n\t\tproject\u003dsystem.util.getProjectName()\n\t\tmessageHandler \u003d \"PaintingDeMaskingTableRefresh\"\n\t\tsystem.util.sendMessage(project, messageHandler, scope\u003d\"S\")\n\t\t\n\t\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027StartButton\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Templates/Painting/DeMasking\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onAction  -\u003e StartCompleteButton\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\tsystem.perspective.print(\"lineNumber description  \" +str(lineNumber)+\u0027  \u0027+str(description))"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnStart"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 5
+                }
+              ],
+              "height": 23
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1 or str(value) \u003d\u003d \u00272\u0027 or str(value) \u003d\u003d \u00271\u0027:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 1:\n\t\treturn \u0027Start\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Complete\u0027\n\telse :\n\t\treturn \u0027Not Release\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "cntAction"
+        },
+        "position": {
+          "height": 24,
+          "width": 110
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 0,
+            "vertical": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

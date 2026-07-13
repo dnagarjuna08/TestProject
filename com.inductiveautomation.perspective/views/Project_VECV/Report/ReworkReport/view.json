@@ -1,0 +1,601 @@
+{
+  "custom": {},
+  "params": {
+    "Area": "-1,",
+    "AreaValue": -1,
+    "AreaVisible": true,
+    "EDateVisible": true,
+    "EndDate": null,
+    "SDateVisible": true,
+    "StartDate": null
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.AreaValue": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.AreaVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.EDateVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.EndDate": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.SDateVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.StartDate": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 505,
+      "width": 873
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "39px",
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Area :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "basis": "11px"
+                    },
+                    "props": {
+                      "alignVertical": "top",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "selectedAreaIDs": ""
+                    },
+                    "meta": {
+                      "name": "drpArea"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaID": "0",
+                              "DropdownType": "1",
+                              "LineID": "0"
+                            },
+                            "queryPath": "Project_VECV/Panel/getallDropdowns"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\treturn datalist",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "query"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tAreaID \u003d self.props.value\n\tself.view.params.AreaValue\u003dself.props.value\n\tif str(AreaID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tAreaID \u003d self.props.options\n\t\tAreaIds \u003d \u0027\u0027\n\t\tfor dt in AreaID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tAreaIds +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tAreaIds \u003d str(AreaID) + \u0027,\u0027\n\tself.view.params.Area \u003d AreaIds\n"
+                        }
+                      }
+                    },
+                    "props": {
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntArea"
+                },
+                "position": {
+                  "basis": "191px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.AreaVisible"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "61px",
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "StartDate :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "basis": "11px"
+                    },
+                    "props": {
+                      "alignVertical": "top",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "DateTimeInput"
+                    },
+                    "position": {
+                      "basis": "187px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": false,
+                          "script": "#\tself.view.params.StartDate \u003d self.props.value"
+                        }
+                      }
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "pickerType": "date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStart"
+                },
+                "position": {
+                  "basis": "248px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.SDateVisible"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "57px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "EndDate :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "basis": "11px"
+                    },
+                    "props": {
+                      "alignVertical": "top",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "DateTimeInput"
+                    },
+                    "position": {
+                      "basis": "192px"
+                    },
+                    "propConfig": {
+                      "props.minDate": {
+                        "binding": {
+                          "config": {
+                            "path": ".../cntStart/DateTimeInput.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\ttry:\n\t\treturn system.date.addDays(value, 1)\n\texcept:\n\t\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": false,
+                          "script": "#\tself.view.params.EndDate \u003d self.props.value"
+                        }
+                      }
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "pickerType": "date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "cntEnd"
+                },
+                "position": {
+                  "basis": "249px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.EDateVisible"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntSelectionFilter"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\n\t\"\"\"Created By : Gaurav Amrutkar\n\t\tDate : 05.07.2024\n\t\tPurpose : Passing values to Parameters\"\"\" \n\t\t\n\tif self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d\u003d-1:\n\t\tself.view.params.Area\u003d-1\n\telse:\n\t\tself.view.params.Area\u003dself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\t\n\tsdate \u003d self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStart\").getChild(\"DateTimeInput\").props.value\n\tif sdate \u003d\u003d \u0027\u0027 or str(sdate).upper() \u003d\u003d \u0027None\u0027.upper():\n\t\tself.view.params.StartDate \u003d None\n\telse:\n\t\tself.view.params.StartDate \u003d self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStart\").getChild(\"DateTimeInput\").props.value\n\t\t\n\tedate \u003d self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntEnd\").getChild(\"DateTimeInput\").props.value\n\tif edate \u003d\u003d \u0027\u0027 or str(edate).upper() \u003d\u003d \u0027None\u0027.upper():\n\t\tself.view.params.EndDate \u003d None\n\telse:\n\t\tself.view.params.EndDate \u003d self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntEnd\").getChild(\"DateTimeInput\").props.value\n\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnApply"
+                    },
+                    "position": {
+                      "basis": "50px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(({..../cntSelectionFilter/cntArea/drpArea.props.value} !\u003d -1 \u0026\u0026{..../cntSelectionFilter/cntStart/DateTimeInput.props.value}!\u003dnull \u0026\u0026{..../cntSelectionFilter/cntEnd/DateTimeInput.props.value}!\u003dnull),toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "View",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexApply"
+                },
+                "position": {
+                  "basis": "98px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t#CLEAR ALL FILTER SELECTION\n\tself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStart\").getChild(\"DateTimeInput\").props.value\u003dNone\n\tself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntEnd\").getChild(\"DateTimeInput\").props.value\u003dNone\n\tself.view.params.Area\u003d-1\n\tself.view.params.AreaValue\u003d-1\n\tself.view.params.StartDate\u003dNone\n\tself.view.params.EndDate\u003dNone"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnClear"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "Clear",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexClear"
+                },
+                "position": {
+                  "basis": "95px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntAction"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "props": {
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "ReportViewer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": "100%"
+            },
+            "propConfig": {
+              "props.params.Area": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Area"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.AreaValue": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.AreaValue"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.EndDate": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.EndDate"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.params.StartDate": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.StartDate"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "downloadFilename": "Rework_Report",
+              "page": 1,
+              "pageCount": 1,
+              "params": {
+                "Title": "Rework Report"
+              },
+              "source": "Rework"
+            },
+            "type": "ia.reporting.report-viewer"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 0.9842,
+          "width": 0.9924,
+          "x": 0.0021,
+          "y": 0.0011
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "type": "ia.container.coord"
+  }
+}

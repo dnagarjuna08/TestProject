@@ -1,0 +1,2 @@
+INSERT INTO I_PRODUCTION_ORDER (material_number, order_category, order_number, planned_end_time, planned_start_time, CreatedOn, MST_Area_Id,quantity)
+values ( :Material_Number,  :Order_Category,  :Order_Number, :Planned_End_Time,  :Planned_Start_Time, getdate(), :AreaId,0)

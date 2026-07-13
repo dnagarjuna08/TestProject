@@ -1,0 +1,485 @@
+{
+  "custom": {
+    "AreaWiseRework": {
+      "$": [
+        "ds",
+        192,
+        1724942439110
+      ],
+      "$columns": [
+        {
+          "data": [
+            "Legacy Axle"
+          ],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [
+            26
+          ],
+          "name": "MST_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [
+            1
+          ],
+          "name": "ReworkCount",
+          "type": "Integer"
+        }
+      ]
+    },
+    "AreawiseActual": {
+      "$": [
+        "ds",
+        192,
+        1724942439166
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "MST_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "Completed",
+          "type": "Integer"
+        }
+      ]
+    },
+    "AreawiseOnline": {
+      "$": [
+        "ds",
+        192,
+        1724942439123
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "Mst_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Online",
+          "type": "Integer"
+        }
+      ]
+    },
+    "AreawisePDI": {
+      "$": [
+        "ds",
+        192,
+        1724942439152
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "MST_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "PDICount",
+          "type": "Integer"
+        }
+      ]
+    },
+    "AreawiseTestWIP": {
+      "$": [
+        "ds",
+        192,
+        1724942499132
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Mst_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "TestInProgressCount",
+          "type": "Integer"
+        }
+      ]
+    },
+    "AreawiseTested": {
+      "$": [
+        "ds",
+        192,
+        1724942439115
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "AreaName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Mst_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "Tested",
+          "type": "Integer"
+        }
+      ]
+    }
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 30/06/2024\n\tPurpose:\t\t\t \n\t\t\tCheck if user is logged or not if not then navigate to login page\t\t\n\t\"\"\"\n\ttry:\n\t\t#start of try block\n\t\tpreviousPage \u003d self.session.custom.IsLoggedIn\n\t\tif not previousPage:\n\t\t\tsystem.perspective.print(\"New Session\")\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Production Dashboard\"\n#\t\t\tif self.session.custom.showSingleView:\n#\t\t\t\tsystem.perspective.alterDock(\u0027Nav\u0027, {\u0027handle\u0027:\u0027hide\u0027})\n#\t\t\t\tsystem.perspective.closeDock(\u0027Nav\u0027)\n\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Production Dashboard\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Production Dashboard/Dashboard\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Dashboard\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "propConfig": {
+    "custom.AreaWiseRework": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "180"
+          },
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawiseReworkCount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.AreawiseActual": {
+      "binding": {
+        "config": {
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawiseActualCount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.AreawiseOnline": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "180"
+          },
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawiseOnlineCount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.AreawisePDI": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "180"
+          },
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawisePDICount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.AreawiseTestWIP": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "30"
+          },
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawiseTestInProgressCount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    },
+    "custom.AreawiseTested": {
+      "binding": {
+        "config": {
+          "polling": {
+            "enabled": true,
+            "rate": "180"
+          },
+          "queryPath": "Project_VECV/Tracking/Production Dashboard/AreawiseTestedCount"
+        },
+        "type": "query"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 750
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Axle Area"
+            },
+            "propConfig": {
+              "props.instances[0].Area": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.instances[0].LegacyActual": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseActual},\"Legacy Axle\",0,\"AreaName\",\"Completed\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].LegacyOnline": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseOnline},\"Legacy Axle\",0,\"AreaName\",\"Online\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].LegacyPDI": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawisePDI},\"Legacy Axle\",0,\"AreaName\",\"PDICount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].LegacyRework": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreaWiseRework},\"Legacy Axle\",0,\"AreaName\",\"ReworkCount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].LegacyTesting": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseTestWIP},\"Legacy Axle\",0,\"AreaName\",\"TestInProgressCount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].LegacyTesting_Completed": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseTested},\"Legacy Axle\",0,\"AreaName\",\"Tested\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanActual": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseActual},\"Titan Axle\",0,\"AreaName\",\"Completed\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanOnline": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseOnline},\"Titan Axle\",0,\"AreaName\",\"Online\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanPDI": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawisePDI},\"Titan Axle\",0,\"AreaName\",\"PDICount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanRework": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreaWiseRework},\"Titan Axle\",0,\"AreaName\",\"ReworkCount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanTesting": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseTestWIP},\"Titan Axle\",0,\"AreaName\",\"TestInProgressCount\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.instances[0].TitanTesting_Completed": {
+                "binding": {
+                  "config": {
+                    "expression": "lookup({view.custom.AreawiseTested},\"Titan Axle\",0,\"AreaName\",\"Tested\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "instances": [
+                {
+                  "LegacyBooked": "",
+                  "LegacyRepair": "",
+                  "Painting": "",
+                  "TitanBooked": "",
+                  "TitanRepair": "",
+                  "instancePosition": {},
+                  "instanceStyle": {
+                    "classes": ""
+                  }
+                }
+              ],
+              "path": "Project_VECV/Templates/Production dashboard/AreaWiseView"
+            },
+            "type": "ia.display.flex-repeater"
+          },
+          {
+            "meta": {
+              "name": "Transmission Area"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "propConfig": {
+              "props.instances[0].Area": {
+                "binding": {
+                  "config": {
+                    "path": "this.meta.name"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "instances": [
+                {
+                  "LegacyActual": "",
+                  "LegacyBooked": "",
+                  "LegacyOnline": "",
+                  "LegacyPDI": "",
+                  "LegacyRepair": "",
+                  "LegacyRework": "",
+                  "LegacyTesting": "",
+                  "LegacyTesting_Completed": "",
+                  "Painting": "",
+                  "TitanActual": "",
+                  "TitanBooked": "",
+                  "TitanOnline": "",
+                  "TitanPDI": "",
+                  "TitanRepair": "",
+                  "TitanRework": "",
+                  "TitanTesting": "",
+                  "TitanTesting_Completed": "",
+                  "instancePosition": {},
+                  "instanceStyle": {
+                    "classes": ""
+                  }
+                }
+              ],
+              "path": "Project_VECV/Templates/Production dashboard/AreaWiseView"
+            },
+            "type": "ia.display.flex-repeater"
+          }
+        ],
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 800
+        },
+        "props": {
+          "contentStyle": {
+            "margin": 0,
+            "padding": 5
+          },
+          "currentTabIndex": 1,
+          "menuType": "modern",
+          "tabSize": {
+            "width": 150
+          },
+          "tabs": [
+            "Axle Area",
+            "Transmission Area"
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "gutters": {
+        "horizontal": 5,
+        "vertical": 20
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

@@ -1,0 +1,2 @@
+exec usp_GetStationNameFromIPaddress
+@IPAddress= :IPAddress

@@ -1,0 +1,165 @@
+name: QA Deployment
+
+on:
+  push:
+    branches:
+      - MES_QA
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      release_tag: ${{ steps.datetime.outputs.release_tag }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Working Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -lart
+
+      - name: Show Commit Details
+        run: |
+          echo "Commit Details:"
+          git log -1 --pretty=format:'%h - %an, %ar : %s'
+          echo ""
+
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            echo "Files Changed:"
+            git diff --name-only HEAD^ HEAD
+          else
+            echo "First Commit - Listing Repository Files:"
+            git ls-files
+          fi
+
+      - name: Generate Timestamp
+        id: datetime
+        run: |
+          CURRENT_DATETIME=$(TZ='Asia/Kolkata' date +'%Y-%m-%d_%H-%M-%S')
+          echo "release_tag=$CURRENT_DATETIME" >> $GITHUB_OUTPUT
+          echo "CURRENT_DATETIME=$CURRENT_DATETIME" >> $GITHUB_ENV
+
+      - name: Create ZIP Package
+        run: |
+          ZIP_FILE="${{ github.workspace }}/../TestProject_${CURRENT_DATETIME}.zip"
+
+          zip -r "$ZIP_FILE" . \
+            -x ".git/*" \
+            -x ".github/*"
+
+          echo "ZIP_FILE=$ZIP_FILE" >> $GITHUB_ENV
+          echo "Created: $ZIP_FILE"
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.CURRENT_DATETIME }}
+          name: Release-${{ env.CURRENT_DATETIME }}
+          body: |
+            Automated QA Release
+
+            Repository: ${{ github.repository }}
+            Branch: MES_QA
+            Commit: ${{ github.sha }}
+          files: |
+            ${{ env.ZIP_FILE }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete Old Releases (Keep Latest 5)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fetching releases..."
+
+          releases=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100")
+
+          ids=$(echo "$releases" | jq -r '.[].id')
+
+          count=$(echo "$ids" | wc -l)
+
+          if [ "$count" -le 5 ]; then
+            echo "Less than or equal to 5 releases. Nothing to delete."
+            exit 0
+          fi
+
+          delete_ids=$(echo "$ids" | tail -n +6)
+
+          for id in $delete_ids
+          do
+            echo "Deleting Release ID: $id"
+
+            curl -s -X DELETE \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/$id"
+          done
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, windows]
+
+    steps:
+      - name: Deploy MES_QA Code
+        shell: powershell
+        env:
+          PAT: ${{ secrets.PAT }}
+        run: |
+          $targetPath = "C:\Program Files\Inductive Automation\Ignition\data\projects\DevOps_Testing"
+
+          if (Test-Path $targetPath) {
+
+              Write-Host "Repository exists. Updating..."
+
+              Set-Location $targetPath
+
+              git fetch --all --prune
+              git checkout MES_QA
+              git reset --hard origin/MES_QA
+              git clean -fd
+          }
+          else {
+
+              Write-Host "Repository not present. Cloning repository..."
+
+              git clone `
+                --branch MES_QA `
+                https://dnagarjuna08:$env:PAT@github.com/${{ github.repository }}.git `
+                "$targetPath"
+          }
+
+      - name: Update Deployment Log
+        shell: powershell
+        run: |
+          $logPath = "E:\Ignition\DevOps\log.txt"
+
+          $message = "Deployment Completed : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+
+          if (Test-Path $logPath) {
+              Set-Content -Path $logPath -Value $message
+          }
+          else {
+              New-Item -ItemType File -Path $logPath -Force
+              Set-Content -Path $logPath -Value $message
+          }
+
+          Write-Host $message
+
+      - name: Deployment Complete
+        shell: powershell
+        run: |
+          Write-Host "======================================="
+          Write-Host "QA Deployment Completed Successfully"
+          Write-Host "Repository : ${{ github.repository }}"
+          Write-Host "Branch     : MES_QA"
+          Write-Host "Release    : ${{ needs.build.outputs.release_tag }}"
+          Write-Host "======================================="

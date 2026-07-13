@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a5a0e03d8e1f056129a33dade54d208bd8a90174aceaaa3f1f129d97c8d3fdc6",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Gaurav",
+      "timestamp": "2024-10-15T12:40:08Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOMNumber",
+        "sqlType": 7
+      }
+    ]
+  }
+}

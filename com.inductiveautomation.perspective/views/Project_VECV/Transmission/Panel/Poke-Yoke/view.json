@@ -1,0 +1,1167 @@
+{
+  "custom": {
+    "Selection": []
+  },
+  "params": {},
+  "propConfig": {
+    "custom.Selection": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 1000,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027ErrorProofPanel\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027BOM\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\u0027WorkStationId\u0027:-1,\u0027Part\u0027:-1,\u0027Description\u0027:\u0027\u0027,\u0027IsActive\u0027: 1,\u0027UnitId\u0027:0}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "ETCode:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 50,
+                  "y": -0.001239999999995689
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpETCode"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaId": "{.../cntArea/drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getModel"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1729064082427
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntETCode"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpWorkStation\").props.value \u003d -1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tresult \u003d []\n\tfor data in dataset:\n\t\tdict \u003d {}\n\t\tif \u0027Transmission\u0027 in data[1]: \n\t\t\tdict[\"label\"] \u003d data[1]\n\t\t\tdict[\"value\"] \u003d data[0]\n\t\t\tresult.append(dict)\n\treturn result",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Titan Transmission",
+                      "value": 3
+                    },
+                    {
+                      "label": "Legacy Transmission",
+                      "value": 4
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 38,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 3,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\t\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027ErrorProofPanel\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027BOM\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\u0027WorkStationId\u0027:-1,\u0027Part\u0027:-1,\u0027Description\u0027:\u0027\u0027,\u0027IsActive\u0027: 1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Add/Update values into db. \n\t\"\"\"\n\tbitSelectionData \u003d self.parent.parent.getChild(\"FlexRepeater\").custom.bitSelectionData\n\tfor bit in bitSelectionData:\n\t\tsystem.perspective.print(bit)\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntArea/drpArea.props.value} !\u003d -1 \u0026\u0026 {.../cntArea/drpArea.props.value} !\u003d \"\") \u0026\u0026\r\n({.../cntLine/drpLine.props.value} !\u003d -1 \u0026\u0026 {.../cntLine/drpLine.props.value} !\u003d \"\") \u0026\u0026\r\n({.../cntStation/drpWorkStation.props.value} !\u003d -1 \u0026\u0026 {.../cntStation/drpWorkStation.props.value} !\u003d \"\") \u0026\u0026\r\n({.../cntBOM/drpBOM.props.value} !\u003d -1 \u0026\u0026 {.../cntBOM/drpBOM.props.value} !\u003d \"\") \r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshBinding",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.enabled\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "ErrorProofPanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\t#system.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\t#system.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027UnitId\u0027)\n\t#system.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\t#system.perspective.print(\"msg handler2-----------\u003e\")\n\t#system.perspective.print(\"payload msghandler3-------------\u003e\")\n\t#system.perspective.print(self.view.getChild(\"root\").custom.payload)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 35,
+                  "y": -2.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpWorkStation\").props.value \u003d -1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1729059591662
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 69
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "WorkStation:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpWorkStation"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "LineId": "{.../cntLine/drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getWorkStation"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1729064093424
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          "CS02"
+                        ],
+                        "name": "value",
+                        "type": "String"
+                      },
+                      {
+                        "data": [
+                          "CS02"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 74,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntStation"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "custom": {
+              "bitSelectionData": []
+            },
+            "meta": {
+              "name": "FlexRepeater"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 10
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 10
+                },
+                {
+                  "colIndex": 1,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 10
+                }
+              ],
+              "height": "0px"
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../cntETCode/drpETCode.props.value}!\u003d -1 \u0026\r\n{../cntBOM/drpBOM.props.value} !\u003d -1 \u0026\r\n{../cntStation/drpWorkStation.props.value} !\u003d \u0027-1\u0027\r\n,toBoolean(1),toBoolean(0)) "
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value:\n\t\tself.position.height \u003d \u0027auto\u0027\n\t\treturn value\n\telse:\n\t\tself.position.height \u003d \u00270px\u0027\n\t\treturn value",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              },
+              "props.instances": {
+                "binding": {
+                  "config": {
+                    "path": "../cntStation/drpWorkStation.props.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tdata \u003d Project_VECV.Transmission.bitSelection.bitSelection(value)\n\tself.custom.bitSelectionData \u003d data\n\treturn data",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "path": "Project_VECV/Transmission/Poka-yoke/Poka-YokeSubView",
+              "style": {
+                "borderBottomLeftRadius": 5,
+                "borderBottomRightRadius": 5,
+                "borderStyle": "solid",
+                "borderTopLeftRadius": 5,
+                "borderTopRightRadius": 5,
+                "borderWidth": "1px"
+              },
+              "useDefaultViewWidth": false
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "poka-yoke-selection",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tsystem.perspective.print(\"poka-yoke-selection\")\n\tdesc \u003d payload[\u0027Description\u0027]\n\tinstance \u003d self.props.instances\n\tdataset \u003d self.custom.bitSelectionData\n\tresponse \u003d []\n\tfor data in dataset:\n\t\tif data[\u0027Description\u0027] \u003d\u003d desc:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": True\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\t\telse:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": data[\u0027Status\u0027]\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\tself.custom.bitSelectionData \u003d  response",
+                  "sessionScope": false,
+                  "viewScope": false
+                },
+                {
+                  "messageType": "poka-yoke-deselection",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tsystem.perspective.print(\"poka-yoke-deselection\")\n\tdesc \u003d payload[\u0027Description\u0027]\n\tinstance \u003d self.props.instances\n\tdataset \u003d self.custom.bitSelectionData\n\tresponse \u003d []\n\tfor data in dataset:\n\t\tif data[\u0027Description\u0027] \u003d\u003d desc:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": False\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\t\telse:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": data[\u0027Status\u0027]\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\tself.custom.bitSelectionData \u003d  response",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.flex-repeater"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "TM Code:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 57,
+                  "y": -3.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpBOM"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "{.../cntETCode/drpETCode.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Master/OPCodeConfiguration/GetBOMFromModel"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1729056933299
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "Value",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntBOM"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": -84
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "Poke-YokePanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Insert Row values into panel fields. \n\t\"\"\"\n\t# implement your handler here\n\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntBOM\").getChild(\"drpBOM\").props.value \u003d payload[\u0027BOM\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d payload[\u0027AreaId\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d int(payload[\u0027IsActive\u0027])\n\tself.getChild(\"cntColumn\").getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d payload[\u0027LineId\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntStation\").getChild(\"drpWorkStation\").props.value \u003d payload[\u0027WorkStationId\u0027]\n\tself.getChild(\"cntColumn\").getChild(\"cntPart\").getChild(\"drpPart\").props.value \u003d payload[\u0027Part\u0027]\n\tself.view.custom.UnitId \u003d payload[\u0027UnitId\u0027]\n\tsystem.perspective.print(\"In msg handler:%s\"%self.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value)",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,1695 @@
+{
+  "custom": {},
+  "params": {
+    "Area": "\u0027\u0027"
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1153
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblHeader"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label"
+          },
+          "text": "Takeout Report",
+          "textStyle": {
+            "fontSize": 30,
+            "fontWeight": "bolder",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "46px"
+            },
+            "props": {
+              "text": "Area:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tareaName \u003d self.props.value\n\tself.view.params.Area\u003dareaName"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "drpArea"
+            },
+            "position": {
+              "basis": "214px"
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "queryPath": "Project_VECV/Report/HPR_Report/Area_Name"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "dropdownOptionStyle": {
+                "classes": "Project_VECV/Reports/drpDownInternal",
+                "color": "#000000"
+              },
+              "placeholder": {
+                "icon": {
+                  "path": "material/star_rate"
+                }
+              },
+              "style": {
+                "classes": "Project_VECV/Reports/drpDown"
+              },
+              "value": -1
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_2"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "text": "Line:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "drpLine"
+            },
+            "position": {
+              "basis": "305px"
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "Area": "{view.params.Area}"
+                    },
+                    "queryPath": "Project_VECV/Report/takeoutReport/getLine"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "dropdownOptionStyle": {
+                "classes": "Project_VECV/Reports/drpDownInternal"
+              },
+              "placeholder": {
+                "icon": {
+                  "path": "material/star"
+                }
+              },
+              "style": {
+                "classes": "Project_VECV/Reports/drpDown"
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_4"
+            },
+            "position": {
+              "basis": "125px"
+            },
+            "props": {
+              "text": "Takein Status"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Dropdown"
+            },
+            "position": {
+              "basis": "256px"
+            },
+            "props": {
+              "dropdownOptionStyle": {
+                "classes": "Project_VECV/Reports/drpDownInternal"
+              },
+              "options": [
+                {
+                  "label": "NoK",
+                  "value": "NoK"
+                },
+                {
+                  "label": "OK",
+                  "value": "OK"
+                }
+              ],
+              "style": {
+                "classes": "Project_VECV/Reports/drpDown"
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_6"
+            },
+            "position": {
+              "basis": "100px"
+            },
+            "props": {
+              "text": "From Date:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "dateFrom"
+            },
+            "position": {
+              "basis": "203px"
+            },
+            "propConfig": {
+              "props.maxDate": {
+                "binding": {
+                  "config": {
+                    "expression": "now()"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "formattedValue": null,
+              "inputProps": {
+                "style": {
+                  "borderBottomLeftRadius": 10,
+                  "borderBottomRightRadius": 10,
+                  "borderColor": "#D5D5D5",
+                  "borderStyle": "inset",
+                  "borderTopLeftRadius": 10,
+                  "borderTopRightRadius": 10,
+                  "borderWidth": 2
+                }
+              },
+              "modalStyle": {
+                "classes": "Project_VECV/Reports/drpDown"
+              }
+            },
+            "type": "ia.input.date-time-input"
+          },
+          {
+            "meta": {
+              "name": "Label_7"
+            },
+            "position": {
+              "basis": "100px"
+            },
+            "props": {
+              "text": "To Date:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "dateTo",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "basis": "182px"
+            },
+            "propConfig": {
+              "props.maxDate": {
+                "binding": {
+                  "config": {
+                    "expression": "now()"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "formattedValue": null,
+              "inputProps": {
+                "style": {
+                  "borderBottomLeftRadius": 10,
+                  "borderBottomRightRadius": 10,
+                  "borderColor": "#D5D5D5",
+                  "borderStyle": "inset",
+                  "borderTopLeftRadius": 10,
+                  "borderTopRightRadius": 10,
+                  "borderWidth": 2
+                }
+              },
+              "modalStyle": {
+                "style": {
+                  "boxShadow": "inset 0 1px 3px rgba(0, 0, 0, 0.1)",
+                  "position": "fixed",
+                  "transform": "scale(1)",
+                  "transition": "opacity 0.3s ease, transform 0.3s ease",
+                  "width": "100%"
+                }
+              },
+              "placeholder": "Select date Time"
+            },
+            "type": "ia.input.date-time-input"
+          },
+          {
+            "meta": {
+              "name": "Label_5"
+            },
+            "position": {
+              "basis": "17px"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_3"
+            },
+            "position": {
+              "basis": "24px"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tfrom java.util import Date\n\tfrom java.text import SimpleDateFormat\n\tfrom java.util import Date\n\tfrom java.text import SimpleDateFormat\n\t\n\ttry:\n\t    startTime \u003d self.getSibling(\"dateFrom\").props.value\n\t    endTime \u003d self.getSibling(\"dateTo\").props.value\n\t\n\t    self.parent.parent.getChild(\"flexTable\").getChild(\"Table\").props.data \u003d \u0027\u0027\n\t    area \u003d self.getSibling(\"drpArea\").props.value\n\t    line \u003d self.getSibling(\"drpLine\").props.value\n\t    takeinStatus\u003dself.getSibling(\"Dropdown\").props.value\n\t    system.perspective.print(\"Line------\u003e%s\"%line)\n\t    system.perspective.print(\"area Param------\u003e%s\"%self.view.params.Area)\n\t    system.perspective.print(\"takeinStatus------\u003e%s\"%takeinStatus)\n\t\n\t    system.perspective.print(\"outside area line  if\")\n\t\n\t    if (area \u003d\u003d -1 or area \u003d\u003d \u0027\u0027) :\n\t        system.perspective.print(\"Inside area  if\")\n\t        message \u003d \"Please select Area \"\n\t        system.perspective.print(message)\n\t        setMessage(\"Error\", message)\n\t        system.perspective.print(\"end of IF\")\n\t    else:\n\t        if (startTime is None or startTime \u003d\u003d \u0027\u0027) or (endTime is None or endTime \u003d\u003d \u0027\u0027):\n\t            message \u003d \u0027From date and To date cannot be Empty\u0027\n\t            setMessage(\"Error\", message)\n\t            system.perspective.print(\"end of IF2\")\n\t        else:\n\t            try:\n\t                # Calculate the difference in days\n\t                diffMillis \u003d endTime.getTime() - startTime.getTime()\n\t                diffDays \u003d diffMillis / (1000 * 60 * 60 * 24)\n\t                system.perspective.print(\"diffDays %s\" % diffDays)\n\t\n\t                if diffDays \u003c 0:\n\t                    message \u003d \u0027End date cannot be greater than Start Date\u0027\n\t                    setMessage(\"Error\", message)\n\t                    system.perspective.print(\"message %s\" % message)\n\t                elif diffDays \u003e 30:\n\t                    message \u003d \u0027Date range cannot be greater than a Month\u0027\n\t                    setMessage(\"Error\", message)\n\t                    system.perspective.print(\"message %s\" % message)\n\t                else:\n\t                    try:\n\t                        # Format dates\n\t                        startTimeFormatted \u003d SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\").format(startTime)\n\t                        endTimeFormatted \u003d SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\").format(endTime)\n\t                        system.perspective.print(startTimeFormatted)\n\t                        system.perspective.print(endTimeFormatted)\n\t\n\t                        \n\t                        cols \u003d system.db.runNamedQuery(\n\t                            \u0027Project_VECV/Report/takeoutReport/getData\u0027,\n\t                            {\u0027FromDate\u0027: startTimeFormatted, \u0027ToDate\u0027: endTimeFormatted, \u0027Area\u0027: area, \u0027Line\u0027:line,\u0027TakeinStatus\u0027:takeinStatus}\n\t                        )\n\t                        system.perspective.print(cols)\n\t                        \n\t                        # Update the table with the retrieved data\n\t                        self.parent.parent.getChild(\"flexTable\").getChild(\"Table\").props.data \u003d cols\n\t                        self.parent.parent.getChild(\"flexTable\").meta.visible \u003d True\n\t                        message \u003d \u0027Takeout report fetch successful\u0027\n\t                        setMessage(\"Success\", message)\n\t                    except Exception as e:\n\t                        system.perspective.print(\"Error fetching data or updating table: %s\" % str(e))\n\t                        setMessage(\"Error\", \"An error occurred while fetching data.\")\n\t            except Exception as e:\n\t                system.perspective.print(\"Error in date range calculation: %s\" % str(e))\n\t                setMessage(\"Error\", \"Invalid date range.\")\n\texcept Exception as e:\n\t    system.perspective.print(\"Unexpected error in script: %s\" % str(e))\n\t    setMessage(\"Error\", \"An unexpected error occurred.\")\n\n\ndef setMessage(status, message):\n    system.perspective.sendMessage(\n        messageType\u003d\"setMessage\",\n        payload\u003d{\n            \"message\": message,\n            \"status\": status\n        },\n        scope\u003d\"view\"\n    )"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnApply"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+              },
+              "text": "Retrieve"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "basis": "17px"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tself.getSibling(\"drpArea\").props.value\u003d-1\n\tself.getSibling(\"drpLine\").props.value\u003d\u0027\u0027\n\tself.getSibling(\"Dropdown\").props.value\u003d\u0027\u0027\n\tself.getSibling(\"dateFrom\").props.value\u003d\u0027\u0027\n\tself.getSibling(\"dateTo\").props.value\u003d\u0027\u0027\n\tself.parent.parent.getChild(\"flexTable\").getChild(\"Table\").props.data\u003d\u0027\u0027\n\tmsgStrip \u003d self.parent.parent.getChild(\"msgStrip\")\n\tmsgStrip.props.text \u003d \u0027\u0027  # Clear the text\n\tmsgStrip.props.style \u003d {}  # Reset the style to an empty dictionary\n\tself.parent.parent.getChild(\"msgStrip\").props.style.borderStyle\u003dTrue\n\tself.view.params.Area\u003d\u0027\u0027\n\tsystem.perspective.print(self.view.params.Area)\n\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnClear"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+              },
+              "text": "Clear"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "meta": {
+              "name": "Label_8"
+            },
+            "position": {
+              "basis": "17px"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "   try:\n       # Get the table data\n       table_data \u003d self.parent.parent.getChild(\"flexTable\").getChild(\"Table\").props.data\n       \n       # Initialize message text\n       message_text \u003d \"\"\n   \n       # Check if the table contains data\n       if table_data is not None and len(table_data) \u003e 0:\n           try:\n               # If data is available, export it to Excel and trigger download\n               excel_data \u003d system.dataset.toExcel(True, [table_data])\n               system.perspective.download(fileName\u003d\"TakeOut Report.xlsx\", data\u003dexcel_data)\n               message \u003d \"TakeOut Report download successful to your local system in Excel format.\"\n               setMessage(\"Success\", message)\n           except Exception as e:\n               # Handle errors during Excel export or download\n               system.perspective.print(\"Error during export or download: %s\" % str(e))\n               message \u003d \"An error occurred during export. Please try again or contact MES team\"\n               setMessage(\"Error\", message)\n       else:\n           # Handle case where no data is available\n           message \u003d \"No data available to export for given Inputs.\"\n           setMessage(\"Error\", message)\n   \n   except Exception as e:\n       # Handle unexpected errors in the overall script\n       system.perspective.print(\"Unexpected error: %s\" % str(e))\n       setMessage(\"Error\", \"An unexpected error occurred. Please Contact MES team\")\n\ndef setMessage(status, message):\n    system.perspective.sendMessage(\n        messageType\u003d\"setMessage\",\n        payload\u003d{\n            \"message\": message,\n            \"status\": status\n        },\n        scope\u003d\"view\"\n    )\n   "
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "BtnDownload"
+            },
+            "position": {
+              "basis": "53px"
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/cloud_download"
+                }
+              },
+              "style": {
+                "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+              },
+              "text": ""
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "basis": "134px"
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": ".../flexTable/Table.props.data"
+                  },
+                  "transforms": [
+                    {
+                      "code": " if value:  # Check if the dataset is not empty\n    return \"Count: {}\".format(len(value))  # Returns the number of rows with the label \"Count:\"\n return \"Count: 0\"  ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                },
+                "persistent": true
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Reports/drpDown"
+              },
+              "text": "Count: 0",
+              "textStyle": {
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "flexFilter"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "justify": "space-evenly",
+          "style": {
+            "borderBottomLeftRadius": 10,
+            "borderBottomRightRadius": 10,
+            "borderColor": "#D5D5D5",
+            "borderStyle": "outset",
+            "borderTopLeftRadius": 10,
+            "borderTopRightRadius": 10,
+            "fontWeight": "bolder",
+            "opacity": "1",
+            "outlineStyle": "double"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "basis": "1815px"
+            },
+            "props": {
+              "cells": {
+                "style": {
+                  "classes": "Project_VECV/Table/RowsBorder"
+                }
+              },
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "AreaName",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": "Area"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "LineName",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Line"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "SerialNumber",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Serial Number"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": "",
+                    "textTransform": "uppercase"
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "TakeoutFrom",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Takeout Station"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "TakeoutCreatedDate",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Takeout Time"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "TakeinStation",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Takein Station"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "TakeinStatus",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Takein Status"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "DefectCategory",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Defect Category"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "DefectName",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Defect Name"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "Comments",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "Comments"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                  "editable": false,
+                  "field": "TakeIn_Time",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": true,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Border Project_VECV/Table/Header Project_VECV/Table/RowsBorder"
+                    },
+                    "title": "TakeIn_Time"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                }
+              ],
+              "data": null,
+              "emptyMessage": {
+                "noData": {
+                  "text": "NO DATA",
+                  "textStyle": {
+                    "fontSize": 20,
+                    "fontWeight": "bolder"
+                  }
+                }
+              },
+              "headerStyle": {
+                "classes": "table_header"
+              },
+              "pager": {
+                "initialOption": 50,
+                "style": {
+                  "backgroundColor": "#AAAAAA",
+                  "borderBottomLeftRadius": 10,
+                  "borderBottomRightRadius": 10,
+                  "borderStyle": "inset",
+                  "borderTopLeftRadius": 10,
+                  "borderTopRightRadius": 10,
+                  "fontWeight": "bolder"
+                }
+              },
+              "rows": {
+                "highlight": {
+                  "color": "#808080"
+                },
+                "striped": {
+                  "color": {
+                    "even": "#AAAAAA",
+                    "odd": "#D5D5D5"
+                  },
+                  "enabled": false
+                },
+                "subviewExpansionMode": "single"
+              }
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "meta": {
+          "name": "flexTable",
+          "visible": false
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 12
+            }
+          ],
+          "height": 573
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "msgStrip"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "propConfig": {
+          "meta.visible": {
+            "persistent": false
+          },
+          "props.style.classes": {
+            "persistent": false
+          },
+          "props.text": {
+            "persistent": false
+          }
+        },
+        "props": {
+          "enabled": false,
+          "style": {
+            "borderBottomLeftRadius": 10,
+            "borderBottomRightRadius": 10,
+            "borderStyle": "outset",
+            "borderTopLeftRadius": 10,
+            "borderTopRightRadius": 10,
+            "fill": "#808080",
+            "margin-left": "5px",
+            "margin-right": "5px",
+            "outlineColor": "#D5D5D5",
+            "outlineStyle": "solid",
+            "outlineWidth": "5"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "setMessage",
+              "pageScope": true,
+              "script": "\t# Get the parameters from the message\n\tmessage \u003d payload[\u0027message\u0027]  \n\tstatus \u003d payload[\u0027status\u0027]\n\t\n\t# Update the Text Field\u0027s text\n\tself.props.text \u003d message\n\tself.meta.visible\u003dTrue\n\t# Apply the style class (from the payload or a default value)\n\tself.props.style.classes \u003d \"Project_VECV/Reports/successMsg\" if status\u003d\u003d\u0027Success\u0027 else \"Project_VECV/Common/StatusBlinking/Hold\"",
+              "sessionScope": false,
+              "viewScope": true
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

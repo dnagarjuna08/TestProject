@@ -1,0 +1,90 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "23557699a66a549e9c0e4e1272116b6325c9d48b4b8c313cfb727f9a67ad195b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStationId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ProcessStartTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ProcessEndTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ExceedStartTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ExceedEndTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Reason",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      }
+    ]
+  }
+}

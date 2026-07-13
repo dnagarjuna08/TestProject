@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {
+      "backgroundClip": "padding-box",
+      "backgroundColor": "#062F71",
+      "backgroundRepeat": "no-repeat",
+      "borderColor": "#E33239",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "outlineColor": "#E33239",
+      "outlineStyle": "solid",
+      "outlineWidth": "1px"
+    }
+  }
+}

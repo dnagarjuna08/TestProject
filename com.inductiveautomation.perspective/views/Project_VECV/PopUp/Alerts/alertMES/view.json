@@ -1,0 +1,71 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 150,
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "150px"
+            },
+            "props": {
+              "color": "#FFFFFF",
+              "path": "material/warning",
+              "style": {
+                "backgroundColor": "#E31C1C",
+                "margin": "10px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "lblWarning"
+            },
+            "position": {
+              "basis": "950px",
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#E31C1C",
+                "color": "#FFFFFF",
+                "fontSize": "85px",
+                "fontWeight": "bold"
+              },
+              "text": "Please Switch to MES Mode."
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "cntFlex"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundColor": "#E31C1C"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,1 @@
+UPDATE dbo.MST_Defect SET DefectCategory =  :DefectCategory WHERE MST_Defect_Id =  :DefectCategoryId;

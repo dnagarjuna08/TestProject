@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "0933e441ed0066d318e985f2a348bc9bcd8c4e37685a6ca169450f9529be3120",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "area",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "line",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "workstation",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "serialnumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Start",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "End",
+        "sqlType": 8
+      }
+    ]
+  }
+}

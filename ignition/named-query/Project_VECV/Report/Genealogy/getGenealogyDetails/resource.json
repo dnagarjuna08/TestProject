@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "1a5ddf2c4d6782b3274d91a9caf39454fca9c8a13805a6f69e7dd2caddb60843",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "serialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Enddate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Startdate",
+        "sqlType": 8
+      }
+    ]
+  }
+}

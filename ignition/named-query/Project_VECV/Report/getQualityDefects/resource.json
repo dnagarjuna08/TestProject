@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "ff8906290b45af8ab0ff78a15a1c120f65c580586f2e86588b35b4569a715e63",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2026-04-03T05:24:15Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "row",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "date",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStationName",
+        "sqlType": 7
+      }
+    ]
+  }
+}

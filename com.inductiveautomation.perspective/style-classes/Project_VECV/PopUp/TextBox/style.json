@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFFFFF",
+      "fontFamily": "Noto Sans",
+      "fontSize": "15px",
+      "textAlign": "center"
+    }
+  }
+}

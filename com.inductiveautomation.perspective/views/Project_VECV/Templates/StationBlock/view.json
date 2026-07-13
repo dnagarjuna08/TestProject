@@ -1,0 +1,149 @@
+{
+  "custom": {},
+  "params": {
+    "Description": "value",
+    "Station": "value",
+    "Status": "value"
+  },
+  "propConfig": {
+    "params.Description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Station": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Status": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 102,
+      "width": 150
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "40px"
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.Status}\u003d0,\u0027#BEBEBE\u0027,if({view.params.Status}\u003d2,\u0027#4CFF42\u0027,\u0027#FF3E39\u0027))"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.Station}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "textStyle": {
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Desc"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.Status}\u003d0,\u0027#BEBEBE\u0027,if({view.params.Status}\u003d2,\u0027#4CFF42\u0027,\u0027#FF3E39\u0027))"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.Description}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "fontSize": 10
+              },
+              "textStyle": {
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "75px",
+          "grow": 1
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "40px"
+        },
+        "propConfig": {
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.Status}\u003d0,\u0027#BEBEBE\u0027,if({view.params.Status}\u003d2,\u0027#4CFF42\u0027,\u0027#FF3E39\u0027))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "path": "material/arrow_forward"
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

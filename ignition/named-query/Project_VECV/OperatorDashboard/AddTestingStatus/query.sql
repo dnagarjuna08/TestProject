@@ -1,0 +1,1 @@
+Update TRN_ReleasedProductionOrder set IsTested=1 where SerialNumber='' and M_BOMNumber=''

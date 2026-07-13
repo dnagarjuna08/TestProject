@@ -1,0 +1,869 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 400,
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": "90%",
+                      "x": 9
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent"
+                      },
+                      "text": "Defect Type:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpDefectType"
+                    },
+                    "position": {
+                      "height": 30,
+                      "width": "92%",
+                      "x": 9,
+                      "y": 25
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaID": "0",
+                              "DropdownType": "15",
+                              "LineID": "0"
+                            },
+                            "queryPath": "Project_VECV/Panel/getallDropdowns"
+                          },
+                          "type": "query"
+                        },
+                        "persistent": true
+                      }
+                    },
+                    "props": {
+                      "options": {
+                        "$": [
+                          "ds",
+                          192,
+                          1744787381611
+                        ],
+                        "$columns": [
+                          {
+                            "data": [
+                              16,
+                              17,
+                              18
+                            ],
+                            "name": "value",
+                            "type": "Integer"
+                          },
+                          {
+                            "data": [
+                              "In Process Defect",
+                              "Supplier Defect",
+                              "Maintenance"
+                            ],
+                            "name": "label",
+                            "type": "String"
+                          }
+                        ]
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Panel/DropdownContent"
+                      },
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": 10,
+                      "x": 73,
+                      "y": -2
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDefectType"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "style": {
+                    "marginTop": "20px"
+                  }
+                },
+                "type": "ia.container.coord"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": "90%",
+                      "x": 9
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent"
+                      },
+                      "text": "Defect Name:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": 10,
+                      "x": 76,
+                      "y": -2
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpDefectName"
+                    },
+                    "position": {
+                      "height": 30,
+                      "width": "92%",
+                      "x": 9,
+                      "y": 25
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "defectId": "{.../cntDefectType/drpDefectType.props.value}"
+                            },
+                            "queryPath": "Project_VECV/Quality/getDefectName"
+                          },
+                          "type": "query"
+                        },
+                        "persistent": true
+                      }
+                    },
+                    "props": {
+                      "options": {
+                        "$": [
+                          "ds",
+                          192,
+                          1744787381611
+                        ],
+                        "$columns": [
+                          {
+                            "data": [],
+                            "name": "mst_defectName_id",
+                            "type": "Integer"
+                          },
+                          {
+                            "data": [],
+                            "name": "DefectName",
+                            "type": "String"
+                          }
+                        ]
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Panel/DropdownContent"
+                      },
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDefectName"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "style": {
+                    "marginTop": "20px"
+                  }
+                },
+                "type": "ia.container.coord"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": "90%",
+                      "x": 9
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent"
+                      },
+                      "text": "Defect Comments:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "height": 20,
+                      "width": 10,
+                      "x": 102,
+                      "y": -1
+                    },
+                    "props": {
+                      "alignVertical": "bottom",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtComments"
+                    },
+                    "position": {
+                      "height": 100,
+                      "width": 467,
+                      "x": 9,
+                      "y": 25
+                    },
+                    "props": {
+                      "deferUpdates": false,
+                      "rejectUpdatesWhileFocused": false,
+                      "style": {
+                        "classes": "Project_VECV/Panel/TextContent"
+                      }
+                    },
+                    "type": "ia.input.text-area"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDefectComment"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 145
+                },
+                "type": "ia.container.coord"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Save defect in DB and reset all values on popup. \n\t\"\"\"\n\ttry:\n\t\tpayload \u003d {\u0027Id\u0027:self.parent.getChild(\"cntDefectType\").getChild(\"drpDefectType\").props.value,\n\t\t\u0027defectName\u0027:self.parent.getChild(\"cntDefectName\").getChild(\"drpDefectName\").props.value,\n\t\t\u0027comments\u0027:self.parent.getChild(\"cntDefectComment\").getChild(\"txtComments\").props.text}\n\t\tsystem.perspective.sendMessage(\u0027SaveOnlyDefect\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.sendMessage(\u0027refreshDefectForm\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\texcept:\t\n\t\tscreenName \u003d\u0027QualityPopup\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Operator Dashboard/QualityPopUp\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed-\u003e TabContainer/cntColumnTakeOut/btnSave\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 2,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 5
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 4
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 4
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({../cntDefectType/drpDefectType.props.value} \u003e -1) \u0026\u0026\r\n({../cntDefectName/drpDefectName.props.value} \u003e -1) \u0026\u0026\r\n({../cntDefectComment/txtComments.props.text} !\u003d \u0027\u0027)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "color": "#FFFFFF",
+                      "path": "material/save"
+                    }
+                  },
+                  "primary": false,
+                  "style": {
+                    "borderStyle": "ridge",
+                    "borderWidth": "3px",
+                    "classes": "Project_VECV/PopUp/SaveButton",
+                    "color": "#FFFFFF"
+                  },
+                  "text": "Save Defect"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Save defect in DB and reset all values. \n\t\"\"\"\n\ttry:\n\t\tpayload \u003d {\u0027Id\u0027:self.parent.getChild(\"cntDefectType\").getChild(\"drpDefectType\").props.value,\n\t\t\u0027defectName\u0027:self.parent.getChild(\"cntDefectName\").getChild(\"drpDefectName\").props.value,\n\t\t\u0027comments\u0027:self.parent.getChild(\"cntDefectComment\").getChild(\"txtComments\").props.text}\n\t\tsystem.perspective.sendMessage(\u0027saveDefect\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.sendMessage(\u0027refreshDefectForm\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.closePopup(\u0027#qualityPopup\u0027)\n\texcept:\t\n\t\tscreenName \u003d\u0027QualityPopup\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Operator Dashboard/QualityPopUp\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed-\u003e TabContainer/cntColumnTakeOut/btnSave\u0026Close\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave\u0026Close"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 7,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 5
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 4
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 3
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({../cntDefectType/drpDefectType.props.value} \u003e -1) \u0026\u0026\r\n({../cntDefectName/drpDefectName.props.value} \u003e -1) \u0026\u0026\r\n({../cntDefectComment/txtComments.props.text} !\u003d \u0027\u0027)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "color": "#FFFFFF",
+                      "path": "material/save"
+                    }
+                  },
+                  "primary": false,
+                  "style": {
+                    "borderStyle": "ridge",
+                    "borderWidth": "3px",
+                    "classes": "Project_VECV/PopUp/SaveButton",
+                    "color": "#FFFFFF",
+                    "marginRight": "10px"
+                  },
+                  "text": "TakeOut"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntColumnTakeOut"
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "style": {
+                    "color": "#062F71",
+                    "fontFamily": "Arial",
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  },
+                  "text": "Select of Non Conformance"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpNonConformance"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "16",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1744787381611
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          1,
+                          2,
+                          3,
+                          4,
+                          5
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Barcode NA",
+                          "Barcode Damage",
+                          "Part NOK",
+                          "Part NA",
+                          "Others"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent",
+                    "marginLeft": "10px",
+                    "marginRight": "10px"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Call message handler to bypass current operation and save current operation data in DB with Log NC eventId. \n\t\"\"\"\n\ttry:\n\t\tmessageType \u003d \u0027ByPassOperation\u0027  \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.print(\"LogNcId value:%s\"%self.getSibling(\"drpNonConformance\").props.value)\n\t\tpayload \u003d {\u0027Id\u0027:self.getSibling(\"drpNonConformance\").props.value,\n\t\t\u0027comments\u0027:self.getSibling(\"txtcomments\").props.text}\n\t\tsystem.perspective.sendMessage(\u0027saveLogNC\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)\n\t\tself.getSibling(\"drpNonConformance\").props.value \u003d -1\n\t\tself.getSibling(\"txtcomments\").props.text \u003d \u0027\u0027\n\t\tsystem.perspective.closePopup(\u0027#qualityPopup\u0027)\n\texcept:\t\n\t\tscreenName \u003d\u0027QualityPopup\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Operator Dashboard/QualityPopUp\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed-\u003e TabContainer/cntColumnLogNC/btnSave\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 4,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 4,
+                      "span": 4
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 4,
+                      "span": 4
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 4,
+                      "span": 4
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({../drpNonConformance.props.value} \u003e -1 ) \u0026\u0026 ({../txtcomments.props.text} !\u003d \u0027\u0027)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "color": "#FFFFFF",
+                      "path": "material/warning"
+                    }
+                  },
+                  "primary": false,
+                  "style": {
+                    "borderStyle": "ridge",
+                    "borderWidth": "3px",
+                    "classes": "Project_VECV/PopUp/EnabledButton",
+                    "color": "#FFFFFF"
+                  },
+                  "text": "Log NC"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "style": {
+                    "color": "#062F71",
+                    "fontFamily": "Arial",
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  },
+                  "text": "Comments"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtcomments"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 3,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 3,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 3,
+                      "span": 12
+                    }
+                  ],
+                  "height": 120
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent",
+                    "marginLeft": "10px",
+                    "marginRight": "10px"
+                  }
+                },
+                "type": "ia.input.text-area"
+              }
+            ],
+            "meta": {
+              "name": "cntColumnLogNC"
+            },
+            "position": {
+              "tabIndex": 1
+            },
+            "type": "ia.container.column"
+          }
+        ],
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "height": 391,
+          "width": 490,
+          "x": 4,
+          "y": 3
+        },
+        "propConfig": {
+          "props.currentTabIndex": {
+            "onChange": {
+              "enabled": null,
+              "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Open login page. \n\t\"\"\"\n\tif self.props.currentTabIndex \u003d\u003d 1:\n\t\tself.getChild(\"cntColumnLogNC\").getChild(\"drpNonConformance\").props.value \u003d -1\n\t\tsystem.perspective.openPopup(id \u003d \u0027#login\u0027, view \u003d \u0027Project_VECV/Operator Dashboard/LoginNC\u0027,showCloseIcon\u003dFalse, draggable \u003d False, modal \u003d True)"
+            }
+          }
+        },
+        "props": {
+          "tabStyle": {
+            "active": {
+              "color": "#0000FF",
+              "fontWeight": "bold"
+            },
+            "inactive": {
+              "fontWeight": "bold"
+            }
+          },
+          "tabs": [
+            "Take Out",
+            "Log NC"
+          ]
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "resetTab",
+              "pageScope": true,
+              "script": "\t# implement your handler \n\tself.props.currentTabIndex \u003d 0",
+              "sessionScope": false,
+              "viewScope": false
+            },
+            {
+              "messageType": "refreshDefectForm",
+              "pageScope": true,
+              "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# implement your handler here\n\tself.getChild(\"cntColumnTakeOut\").getChild(\"cntDefectType\").getChild(\"drpDefectType\").props.value \u003d -1\n\tself.getChild(\"cntColumnTakeOut\").getChild(\"cntDefectName\").getChild(\"txt\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumnTakeOut\").getChild(\"cntDefectComment\").getChild(\"txtComments\").props.text \u003d \u0027\u0027",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,1 @@
+Select MST_Shift_Id, ShiftName from MST_Shift where IsActive=1 and IsDeleted=0

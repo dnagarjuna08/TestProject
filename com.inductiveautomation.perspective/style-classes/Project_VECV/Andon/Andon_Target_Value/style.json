@@ -1,0 +1,19 @@
+{
+  "base": {
+    "style": {
+      "borderColor": "#808080",
+      "borderStyle": "groove",
+      "borderTopLeftRadius": "6px",
+      "borderTopRightRadius": "6px",
+      "borderBottomLeftRadius": "6px",
+      "borderBottomRightRadius": "6px",
+      "fontFamily": "Verdana",
+      "fontSize": "40px",
+      "fontWeight": "800",
+      "outlineColor": "#2B2B2B",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "textAlign": "center"
+    }
+  }
+}

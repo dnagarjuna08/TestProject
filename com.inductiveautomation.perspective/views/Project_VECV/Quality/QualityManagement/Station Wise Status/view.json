@@ -1,0 +1,170 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\n\tsystem.perspective.sendMessage(\u0027update_serial\u0027)"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Serial": "",
+    "StationName": ""
+  },
+  "propConfig": {
+    "params.Serial": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.perspective.sendMessage(\u0027update_serial\u0027, scope \u003d \u0027page\u0027)\n\tsystem.perspective.print(\"Serial change\")"
+      },
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.StationName": {
+      "onChange": {
+        "enabled": null,
+        "script": "\tsystem.perspective.sendMessage(\u0027update_serial\u0027, scope \u003d \u0027page\u0027)\n\tsystem.perspective.print(\"Station_Select\")"
+      },
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 486
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "path": "Project_VECV/Templates/StationBlock",
+          "style": {
+            "marginTop": 5
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "meta": {
+          "name": "QualityStationSelection"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 39
+        },
+        "propConfig": {
+          "props.params.CurrentIndex": {
+            "binding": {
+              "config": {
+                "path": "session.custom.CurrentWorkStation"
+              },
+              "transforms": [
+                {
+                  "code": "\tif str(value) !\u003d \u0027\u0027:\n\t\ttry:\n\t\t\tif str(value)[-1]:\n\t\t\t\treturn int(str(value)[-1]) - 1\n\t\texcept:\n\t\t\treturn 4\n\telse:\n\t\treturn 0",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.params.SelectedStation": {
+            "binding": {
+              "config": {
+                "path": "session.custom.CurrentWorkStation"
+              },
+              "transforms": [
+                {
+                  "code": "\tsystem.perspective.print(\"------------------\")\n\tsystem.perspective.print(self.session.custom.CurrentWorkStation)\n\tsystem.perspective.print(\"------------------\")\n\tsystem.perspective.print(value)\n\tsystem.perspective.print(\"------------------\")\n\treturn self.session.custom.CurrentWorkStation",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/QualityStationSelection"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "Station_Select",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 10/06/2024\n\tPurpose:\t\t\t \n\t\t\tGet station wise status based on current workstation value\t\t\t\n\t\"\"\"\n\ttry:\n\t\tif str(self.session.custom.CurrentAreaName) \u003d\u003d \u0027Legacy Axle\u0027:\n\t\t\tsystem.perspective.sendMessage(\"#stationBlock\", payload \u003d {\"Area\":\u0027Legacy Axle\u0027}, scope\u003d\u0027page\u0027)\n\t\timport re\n\t\tstation\u003dpayload[\u0027Station\u0027]\n\t\t#system.perspective.print(station)\n\t\tSerial\u003dself.view.params.Serial\n\t\t\t\n\t\tparams\u003d{\"WorkStation\":station,\"Serial\":Serial}\n\t\tsystem.perspective.print(\"params --\u003e %s \"%params)\n\t\tif str(station).upper() \u003d\u003d \u0027LAQG04\u0027:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatusCommonLD\u0027,params)\n\t\telif str(station).upper() \u003d\u003d \u0027LAQG05\u0027:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatusCommonHD\u0027,params)\n\t\telif str(station).upper() \u003d\u003d \u0027TAQG03\u0027:\n\t\t\tSerialNumber \u003d self.view.params.Serial\n\t\t\tSrNumber \u003d str(SerialNumber).split(\u0027-\u0027)\n\t\t\tif len(SrNumber) \u003d\u003d 2:\n\t\t\t\tparams \u003d {\u0027BOM\u0027: SrNumber[1], \u0027Serial\u0027:SrNumber[0]}\n\t\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/CommonQGs\u0027,params)\n\t\t\telse:\n\t\t\t\tdata \u003d []\n\t\telse:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatus\u0027,params)\n\t\tself.getChild(\"FlexRepeater\").props.instances\u003d[]\n\t\t\t\n\t\t\t\n\t\tdef find_last_index(data):\n\t\t    # Find the index of the last occurrence where the last element is 1\n\t\t    for index in range(len(data) - 1, -1, -1):  # Iterate backwards\n\t\t        if data[index][-1] \u003d\u003d 1:\n\t\t            return index\n\t\t    return None\n\t\t\n\t\tdef process_list(data):\n\t\t    # Find the last index of occurrence of 1 in the last element\n\t\t    last_index \u003d find_last_index(data)\n\t\t    print(last_index)  # Print the index for debugging\n\t\t    if last_index is None:\n\t\t        return data  # No elements with 1, return the whole list\n\t\t\n\t\t    # Now find the next occurrence of 1 above the last_index\n\t\t    for index in range(last_index - 1, -1, -1):\n\t\t        if data[index][-1] \u003d\u003d 1:\n\t\t            return data[index:last_index + 1]  # Return the slice between them\n\t\t\n\t\t    # If no next 1 found, return the entire list\n\t\t    return data\n\t\t    \n\t\tresponse\u003d[]\n\t\tfor row in data:\n\t\t\tresponse.append(row)\n\t\t\n\t\tdata \u003d process_list(response)\n\t\tws \u003d \u0027\u0027\n\t\tfor row in data:\n\t\t\tStation\u003drow[\"Station\"]\n\t\t\t#system.perspective.print(Station)\n\t\t\tStatus\u003drow[\"Status\"]\n\t\t\tDescription\u003drow[\"Description\"]\n\t\t\tsystem.perspective.print(\"Testing 52\")\n\t\t\tinstance\u003d{\n\t\t\t\"Station\": Station,\n\t\t\t\"Status\": Status,\n\t\t\t\"Description\":Description\n\t\t\t}\n\t\t\tsystem.perspective.print(\"instance--\u003e%s\"%instance)\n\t\t\tself.getChild(\"FlexRepeater\").props.instances.append(instance)\n\t\t\tws +\u003d str(row[\"MST_Workstation_id\"]) + \u0027,\u0027\n\t\tself.session.custom.ws \u003d ws\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality/Station_Block\u0027)\n\t\terrorFunction \u003d str(\u0027Scripting:FunctionName-\u003eStation_Block\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tsystem.perspective.print(str(description) + \u0027  \u0027 + str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "update_serial",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 10/06/2024\n\tPurpose:\t\t\t \n\t\t\tGet station wise status based on current workstation \u0026 serial number value\t\t\t\n\t\"\"\"\n\ttry:\n\t\tsystem.perspective.print(\"area name %s \"%self.session.custom.CurrentAreaName)\n\t\timport re\n\t\tstation\u003dself.getChild(\"QualityStationSelection\").props.params.SelectedStation\n\t\tsystem.perspective.print(\"station %s\"%station)\n\t\tSerial\u003dself.view.params.Serial\n\t\tparams\u003d{\"WorkStation\":station,\"Serial\":Serial}\n\t\tif str(station).upper() \u003d\u003d \u0027LAQG04\u0027:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatusCommonLD\u0027,params)\n\t\telif str(station).upper() \u003d\u003d \u0027LAQG05\u0027:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatusCommonHD\u0027,params)\n\t\telif str(station).upper() \u003d\u003d \u0027TAQG03\u0027:\n\t\t\tSerialNumber \u003d self.view.params.Serial\n\t\t\tSrNumber \u003d str(SerialNumber).split(\u0027-\u0027)\n\t\t\tif len(SrNumber) \u003d\u003d 2:\n\t\t\t\tparams \u003d {\u0027BOM\u0027: SrNumber[1], \u0027Serial\u0027:SerialNumber}\n\t\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/CommonQGs\u0027,params)\n\t\t\telse:\n\t\t\t\tdata \u003d []\n\t\telse:\n\t\t\tdata\u003dsystem.db.runNamedQuery(\u0027Project_VECV/Quality/getStatiowiseStatus\u0027,params)\n\t\tself.getChild(\"FlexRepeater\").props.instances\u003d[]\n\t\t\t\t\t\t\n\t\t\t\n\t\tdef find_last_index(data):\n\t\t    # Find the index of the last occurrence where the last element is 1\n\t\t    for index in range(len(data) - 1, -1, -1):  # Iterate backwards\n\t\t        if data[index][-1] \u003d\u003d 1:\n\t\t            return index\n\t\t    return None\n\t\t\n\t\tdef process_list(data):\n\t\t    # Find the last index of occurrence of 1 in the last element\n\t\t    last_index \u003d find_last_index(data)\n\t\t    print(last_index)  # Print the index for debugging\n\t\t    if last_index is None:\n\t\t        return data  # No elements with 1, return the whole list\n\t\t\n\t\t    # Now find the next occurrence of 1 above the last_index\n\t\t    for index in range(last_index - 1, -1, -1):\n\t\t        if data[index][-1] \u003d\u003d 1:\n\t\t            return data[index:last_index + 1]  # Return the slice between them\n\t\t\n\t\t    # If no next 1 found, return the entire list\n\t\t    return data\n\t\t    \n\t\tresponse\u003d[]\n\t\tfor row in data:\n\t\t\tresponse.append(row)\n\t\t\n\t\tdata \u003d process_list(response)\n\t\tws \u003d \u0027\u0027\n\t\tfor row in data:\n\t\t\tStation\u003drow[\"Station\"]\n\t\t\t#system.perspective.print(Station)\n\t\t\tStatus\u003drow[\"Status\"]\n\t\t\tDescription\u003drow[\"Description\"]\n\t\t\tinstance\u003d{\n\t\t\t\"Station\": Station,\n\t\t\t\"Status\": Status,\n\t\t\t\"Description\":Description\n\t\t\t}\n\t\t\tsystem.perspective.print(\"instance--\u003e%s\"%instance)\n\t\t\tself.getChild(\"FlexRepeater\").props.instances.append(instance)\n\t\t\tws +\u003d str(row[\"MST_Workstation_id\"]) + \u0027,\u0027\n\t\tself.session.custom.ws \u003d ws\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality - Station Status\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality/Station_Block\u0027)\n\t\terrorFunction \u003d str(\u0027Scripting:FunctionName-\u003eStation_Block\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\n\t\tsystem.perspective.print(str(description) + \u0027  \u0027 + str(lineNumber))\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.column"
+  }
+}

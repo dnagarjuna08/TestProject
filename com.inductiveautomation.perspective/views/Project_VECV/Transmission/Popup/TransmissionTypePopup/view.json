@@ -1,0 +1,469 @@
+{
+  "custom": {},
+  "params": {
+    "Design": "",
+    "Id": "",
+    "Model": "",
+    "PunchingCode": "",
+    "PunchingGroup": "",
+    "TMCode": "",
+    "WormSpeedoRatio": ""
+  },
+  "propConfig": {
+    "params.Design": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Model": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.PunchingCode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.PunchingGroup": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.TMCode": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WormSpeedoRatio": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 165,
+      "width": 813
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tID\u003dself.view.params.Id\n\tsystem.perspective.print(\"ID %s\"%ID)\n\tTMCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text\n\tModelCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text\n\tPunchingCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text\n\tPunchingGroup\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text\n\tWormSpeedoRatio\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text\n\tDesign\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text\n\tUserID\u003dself.session.custom.loggedInUserId\n\tsystem.perspective.print(UserID)\n\tparams \u003d { \"Id\" :int(ID),\n\t\t\"BOM\" :str(TMCode).upper(),\n\t\t\"Model\" :str(ModelCode).upper(),\n\t\t\"PunchingCode\" :str(PunchingCode).upper(),\n\t\t\"PunchingGroup\" :str(PunchingGroup).upper(),\n\t\t\"WormSpeedoRatio\" :str(WormSpeedoRatio).upper(),\n\t\t\"Design\" :str(Design).upper(),\n\t\t\"ModifiedBy\" :UserID}\n\tsystem.perspective.print(params)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/Transmission/TransmissionType/updateTransmissionTypeData\",params)\n\tsystem.perspective.print(data)\n\tResult \u003d 0\n\tfor dt in data:\n\t\tsystem.perspective.print(dt[\u0027Result\u0027])\n\t\tResult \u003d dt[\u0027Result\u0027]\n\tif Result \u003d\u003d 0:\n\t\tstate \u003d \u0027info\u0027\n\t\tmessage \u003d \u0027Transmission Type Already Exists!\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\telse:\n\t\tstate \u003d \u0027success\u0027\n\t\tmessage \u003d \u0027Transmission Type updated successfully !\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\n\tsystem.perspective.sendMessage(\"refreshTable\",scope\u003d\u0027page\u0027)\n\tsystem.perspective.closePopup(\u0027TransmissionTypePopupId\u0027)\n\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "updatebtn"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if( {...../FlexContainer_0/TMCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_0/ModelCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_0/PunchingCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/PunchingGrouptxt.props.text} !\u003d\u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/WormSpeedratiotxt.props.text} !\u003d\u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/Designtxt.props.text} !\u003d\u0027\u0027\r\n,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#283593",
+                        "borderStyle": "solid",
+                        "marginLeft": 10,
+                        "marginRight": 5
+                      },
+                      "text": "Update"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text \u003d \u0027\u0027"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "clearbtn"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if( {...../FlexContainer_0/TMCodetxt.props.text} !\u003d \u0027\u0027 ||\r\n{...../FlexContainer_0/ModelCodetxt.props.text} !\u003d \u0027\u0027 ||\r\n{...../FlexContainer_0/PunchingCodetxt.props.text} !\u003d \u0027\u0027 ||\r\n{...../FlexContainer_1/PunchingGrouptxt.props.text} !\u003d\u0027\u0027 ||\r\n{...../FlexContainer_1/WormSpeedratiotxt.props.text} !\u003d\u0027\u0027 ||\r\n{...../FlexContainer_1/Designtxt.props.text} !\u003d\u0027\u0027\r\n,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#283593",
+                        "borderStyle": "solid",
+                        "marginLeft": 5,
+                        "marginRight": 5
+                      },
+                      "text": "Clear"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text \u003d \u0027\u0027\n\tself.view.params.Id\u003d\u0027\u0027\n\tsystem.perspective.sendMessage(\"refreshTable\",scope\u003d\u0027page\u0027)\n\tsystem.perspective.closePopup(\u0027TransmissionTypePopupId\u0027)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "cancelbtn"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#283593",
+                        "borderStyle": "solid",
+                        "marginLeft": 5,
+                        "marginRight": 5
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "justify": "space-between",
+                  "style": {
+                    "marginBottom": 5,
+                    "marginTop": 5
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "ActionCnt"
+            },
+            "position": {
+              "basis": "249.7px"
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 4
+            }
+          ],
+          "height": 42
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TMCodetxt"
+            },
+            "position": {
+              "basis": "200px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.TMCode"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "TM Code*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "ModelCodetxt"
+            },
+            "position": {
+              "basis": "206px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Model"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Model Code*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "PunchingCodetxt"
+            },
+            "position": {
+              "basis": "200px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.PunchingCode"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Punching Code*"
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": -0.5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "PunchingGrouptxt"
+            },
+            "position": {
+              "basis": "200px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.PunchingGroup"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Punching Group*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "WormSpeedratiotxt"
+            },
+            "position": {
+              "basis": "206px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.WormSpeedoRatio"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Worm-Speedo Ratio*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "Designtxt"
+            },
+            "position": {
+              "basis": "200px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Design"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "placeholder": "Design*"
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 44
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "#FFFFFF"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "breakpoints": [
+        {
+          "minWidth": 2,
+          "name": "sm"
+        },
+        {
+          "minWidth": 480,
+          "name": "md"
+        },
+        {
+          "minWidth": 773,
+          "name": "lg"
+        }
+      ]
+    },
+    "type": "ia.container.column"
+  }
+}

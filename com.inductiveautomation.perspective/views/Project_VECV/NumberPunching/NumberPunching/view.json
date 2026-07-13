@@ -1,0 +1,1567 @@
+{
+  "custom": {
+    "AreaId": 0,
+    "LineId": 0,
+    "PrevWorkStationID": 0,
+    "WorkStationId": 0
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 14/06/2024\n\t\tPurpose: if previous pag not logged in then revert to login page. \n\t\"\"\"\n\t\n\ttry:\n\t#start of try block\n\t\tpreviousPage \u003d self.session.custom.IsLoggedIn\n\t\tif not previousPage:\n\t\t\tsystem.perspective.print(\"New Session\")\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Number Punching\"\n\t\t\tself.custom.AreaId\u003dself.session.custom.CurrentAreaId\n\t\t\tself.custom.LineId\u003dself.session.custom.CurrentLineId\n\t\t\tself.custom.WorkStationId\u003dself.session.custom.CurrentWorkStationId\n\t\t\tif self.session.custom.showSingleView:\n\t\t\t\tsystem.perspective.alterDock(\u0027Nav\u0027, {\u0027handle\u0027:\u0027hide\u0027})\n\t\t\t\tsystem.perspective.closeDock(\u0027Nav\u0027)\n#\t\t\t\n#\t\t\tself.custom.AreaId\u003d23\n#\t\t\tself.custom.LineId\u003d38\n#\t\t\tself.custom.WorkStationId\u003d359\n#\t\t\tself.custom.PrevWorkStationID\u003d357\t\n\t\t\t\n\t\t\tparams \u003d {\u0027WorkStationID\u0027:self.custom.WorkStationId,\u0027AreaID\u0027:self.custom.AreaId,\u0027LineID\u0027:self.custom.LineId}\t\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/OperatorDashboard/getPrevStationDetails\",params)\n\t\t\tself.custom.PrevWorkStationID\u003dresult[0][2].split(\u0027,\u0027)[0]\n\t\t\t\t\t\n\t\t\t\n\t\t\tif self.session.custom.showSingleView:\n\t\t\t\tsystem.perspective.alterDock(\u0027Nav\u0027, {\u0027handle\u0027:\u0027hide\u0027})\n\t\t\t\tsystem.perspective.closeDock(\u0027Nav\u0027)\n\t\t\tsystem.perspective.sendMessage(\"OrderTableRefresh\", scope\u003d\u0027page\u0027)\n\t#End of try block\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027NumberPunching\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/NumberPunching/NumberPunching\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Number Punching\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "propConfig": {
+    "custom.AreaId": {
+      "persistent": true
+    },
+    "custom.LineId": {
+      "persistent": true
+    },
+    "custom.PrevWorkStationID": {
+      "persistent": true
+    },
+    "custom.WorkStationId": {
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "custom": {
+              "selectedRow": {},
+              "selectedRowIndex": ""
+            },
+            "events": {
+              "component": {
+                "onRowClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.print(\"On row click\")\n\tvalue\u003devent.value\n\tsystem.perspective.print(\"value is %s\"%value)\n\tvarModel\u003dvalue[\u0027UD_Model\u0027]\n\taction\u003dvalue[\u0027ActionT\u0027]\n\tsystem.perspective.print(\"varModel is %s\"%varModel)\n\tif varModel\u003d\u003d\u0027Legacy UD\u0027 and action\u003d\u003d1:\n\t\tstate\u003d\u0027Info\u0027\n\t\tmessage \u003d \u0027Please Place UD NUMBER PLATE in Punching Machine \u0027\n\t\tProject_VECV.PopUp.Alerts.showAlertUD(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "tblNumberPunching"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 10
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 10
+                },
+                {
+                  "colIndex": 1,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 10
+                }
+              ],
+              "height": 600
+            },
+            "propConfig": {
+              "props.columns[8].viewParams.data": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.data"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.CurrentAreaId"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tPrevWorkStationID  \u003d self.view.custom.PrevWorkStationID\n\tWorkStationID \u003d self.view.custom.WorkStationId\n\tvariable \u003d \u0027\u0027\u0027declare\n\t@MST_Area_Id int\u003d  \u0027\u0027\u0027+ str(value)+ \u0027\u0027\u0027,\n\t@PrevWorkStationID int\u003d \u0027\u0027\u0027+ str(PrevWorkStationID)+ \u0027\u0027\u0027,\t\n\t@WorkStationID int\u003d\u0027\u0027\u0027 + str(WorkStationID) + \u0027\u0027\u0027\n\tbegin\n\t \n\tdeclare @a varchar(20)\u003dnull\n\t\n\t\n\t\n\t\tDeclare @tempPRODUCTION_ORDER TABLE(\n\t\torder_number VARCHAR(200),\n\t\tserial_number NVARCHAR(200),\n\t\tSrNo int,\n\t\trn int,\n\t\tM_BOMNumber VARCHAR(200),\n\t\tDescription VARCHAR(500),\n\t\tOrderStatusid INT,\n\t\tOrderStatus VARCHAR(200),\n\t\torder_category VARCHAR(255),\n\t\tpsn INT,\n\t\tm_BOM_id INT,\n\t\tMST_Area_Id INT,\n\t\tMST_Event_Id INT,\n\t\tspecial_instruction VARCHAR(255),\n\t\tid INT,\n\t\tGearRation NVARCHAR(200),\n\t\tCreatedDate DATETIME,\n\t\tActionT INT,\n        UD_Model VARCHAR(200)\n\t\t)\n\t\tINSERT INTO @tempPRODUCTION_ORDER\n\t\tselect \n\t\tdistinct PO.order_number,isnull(po.serial_number,\u0027\u0027) as serial_number,ROW_NUMBER() OVER (ORDER BY PO.serial_number) AS SrNo,\n\t\tROW_NUMBER() OVER (Partition by po.serial_number ORDER BY SE.CreatedDate) AS SrNo,\n\t\tmb.M_BOMNumber,mb.Description,POS.OrderStatusid,POS.OrderStatus,\n\t\tpo.order_category,psn\n\t\t,PO.m_BOM_id,PO.MST_Area_Id,se.MST_Event_Id,\n\t\tisnull(PO.special_instruction,\u0027\u0027) as special_instruction,\n\t\tPO.id,cd.GearRation,se.CreatedDate \n\t\t,0 as ActionT,(select top 1 Mode from MST_ModelConfiguration where M_BOM_Id\u003dPO.M_BOM_Id) as UD_Model\n\t\t--into #tempPRODUCTION_ORDER \n\t\tfrom PRODUCTION_ORDER PO \n\t\tinner join m_bom MB on PO.m_BOM_id\u003dMB.m_BOM_id\n\t\tinner join MST_Production_OrderStatus POS on POS.OrderStatusid\u003dPO.OrderStatusid\n\t\tand POS.OrderStatusid in(6)\n\t\tinner join ClassificationData CD on CD.m_BOM_id\u003dMB.m_BOM_id\n\t\tand POS.OrderStatusid in(6)\n\t\tinner join TRN_Station_Events SE  on Se.SerialNumber\u003dpo.serial_number\n\t\tinner join TRN_ReleasedProductionOrder as TR on po.serial_number \u003d tr.SerialNumber\n\t\twhere (se.MST_Event_Id \u003d5 )\n\t\tand PO.MST_Area_Id\u003d@MST_Area_Id and PO.IsWashingMachineStatus \u003d 1 and tr.IsPDI \u003d 0\n\t\tand se.MST_WorkStation_Id \u003d@PrevWorkStationID and CD.IsActive\u003d1\n\t\torder by se.CreatedDate \n\t\t\n\t\t\n\t\tdelete from @tempPRODUCTION_ORDER\n\t\twhere serial_number in(\n\tselect SerialNumber from @tempPRODUCTION_ORDER tpm\n\tinner join TRN_StationStatus TSS WITH(NOLOCK) on tss.SerialNumber\u003dtpm.serial_number\n\twhere MST_WorkStation_Id \u003d @WorkStationID\n\t)\n\t\n\tDeclare @NewtempPRODUCTION_ORDER TABLE(\n\t\torder_number VARCHAR(200),\n\t\tserial_number NVARCHAR(200),\n\t\tSrNo int,\n\t\trn int,\n\t\tM_BOMNumber VARCHAR(200),\n\t\tDescription VARCHAR(500),\n\t\tOrderStatusid INT,\n\t\tOrderStatus VARCHAR(200),\n\t\torder_category VARCHAR(255),\n\t\tpsn INT,\n\t\tm_BOM_id INT,\n\t\tMST_Area_Id INT,\n\t\tMST_Event_Id INT,\n\t\tspecial_instruction VARCHAR(255),\n\t\tid INT,\n\t\tGearRation NVARCHAR(200),\n\t\tCreatedDate DATETIME,\n\t\tActionT INT,\n        UD_Model VARCHAR(200)\n\t\t)\n\tInsert into @NewtempPRODUCTION_ORDER\n\tselect * \n\t from @tempPRODUCTION_ORDER order by CreatedDate\n\t\n\tdeclare @sn nvarchar(50)\n\tset @sn \u003d (select top 1 serial_number from  @NewtempPRODUCTION_ORDER order by psn)\n\t\n\tupdate TPO\n\tset ActionT\u003d2,OrderStatus\u003d\u0027Running\u0027\n\tfrom @NewtempPRODUCTION_ORDER TPO \n\tinner join TRN_Station_Events SE  on Se.SerialNumber\u003dTPO.serial_number\n\twhere (se.MST_Event_Id \u003d3 ) and (se.MST_WorkStation_Id\u003d@WorkStationID) \n\t\n\tIF NOT exists (select serial_number from @NewtempPRODUCTION_ORDER where ActionT \u003d 2)\n\t\t update top(1) @NewtempPRODUCTION_ORDER\n\t\t set ActionT\u003d1 ,OrderStatus\u003d\u0027Released\u0027 where serial_number \u003d @sn \n\t\n\t select order_number ,\n\t\tSrNo,\n\t\tserial_number ,\n\t\tM_BOMNumber ,\n\t\tDescription ,\n\t\tOrderStatusid ,\n\t\tcase \n\t\t\twhen OrderStatus \u003d \u0027Released\u0027 then \u0027Released\u0027\n\t\t\twhen OrderStatus \u003d \u0027Running\u0027 then \u0027Running\u0027\n\t\t\telse \u0027Sequenced\u0027\n\t\t\tEnd as OrderStatus,\n\t\torder_category ,\n\t\tpsn ,\n\t\tm_BOM_id ,\n\t\tMST_Area_Id ,\n\t\tMST_Event_Id ,\n\t\tspecial_instruction ,\n\t\tid ,\n\t\tGearRation ,\n\t\tCreatedDate ,\n\t\tActionT,UD_Model  from @NewtempPRODUCTION_ORDER where rn \u003d 1 order by psn\n\tEND\u0027\u0027\u0027\n\treturn system.db.runPrepQuery(variable)",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "cells": {
+                "allowEditOn": "single-click"
+              },
+              "columns": [
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "ID",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "order_number",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Order Number"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "serial_number",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Serial Number"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "M_BOMNumber",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Code"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Description",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Description"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "OrderStatus",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "order_category",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Order Category"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "GearRation",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Gear Ration"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": true,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "ActionT",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Action"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "view",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {
+                    "columnIndex": "value",
+                    "rowData": "value",
+                    "value": ""
+                  },
+                  "viewPath": "Project_VECV/Templates/NumberPunching/StartCompleteButton",
+                  "visible": true,
+                  "width": 100
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "OrderStatusid",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Action"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "string",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {
+                    "columnIndex": "value",
+                    "rowData": "value",
+                    "value": ""
+                  },
+                  "viewPath": "Project_VECV/Templates/Order/WashingMachine/StartCompleteButton",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "special_instruction",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Special Instruction"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "Status1",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": "Project_VECV/Table/Header"
+                    },
+                    "title": "Status"
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": false,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "id",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                },
+                {
+                  "align": "center",
+                  "boolean": "checkbox",
+                  "dateFormat": "MM/DD/YYYY",
+                  "editable": false,
+                  "field": "UD_Model",
+                  "filter": {
+                    "boolean": {
+                      "condition": ""
+                    },
+                    "date": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "enabled": false,
+                    "number": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "string": {
+                      "condition": "",
+                      "value": ""
+                    },
+                    "visible": "on-hover"
+                  },
+                  "footer": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "header": {
+                    "align": "center",
+                    "justify": "left",
+                    "style": {
+                      "classes": ""
+                    },
+                    "title": ""
+                  },
+                  "justify": "auto",
+                  "nullFormat": {
+                    "includeNullStrings": false,
+                    "nullFormatValue": "",
+                    "strict": false
+                  },
+                  "number": "value",
+                  "numberFormat": "0,0.##",
+                  "progressBar": {
+                    "bar": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "track": {
+                      "color": "",
+                      "style": {
+                        "classes": ""
+                      }
+                    },
+                    "value": {
+                      "enabled": true,
+                      "format": "0,0.##",
+                      "justify": "center",
+                      "style": {
+                        "classes": ""
+                      }
+                    }
+                  },
+                  "render": "auto",
+                  "resizable": true,
+                  "sort": "none",
+                  "sortable": true,
+                  "strictWidth": false,
+                  "style": {
+                    "classes": ""
+                  },
+                  "toggleSwitch": {
+                    "color": {
+                      "selected": "",
+                      "unselected": ""
+                    }
+                  },
+                  "viewParams": {},
+                  "viewPath": "",
+                  "visible": false,
+                  "width": ""
+                }
+              ],
+              "filter": {
+                "enabled": true,
+                "results": {
+                  "enabled": true
+                }
+              },
+              "footerGroups": [
+                []
+              ],
+              "headerGroups": [
+                []
+              ],
+              "pager": {
+                "initialOption": 10
+              },
+              "rows": {
+                "highlight": {
+                  "color": "#C0C0C0"
+                },
+                "style": {
+                  "classes": "Project_VECV/Table/RowsBorder"
+                },
+                "subview": {
+                  "viewPath": "Templates/EditDelete"
+                }
+              },
+              "style": {
+                "classes": "Project_VECV/Table/Border",
+                "marginTop": 10
+              },
+              "virtualized": false
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "OrderTableRefresh",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.data\")",
+                  "sessionScope": true,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "meta": {
+          "name": "cntSequenced"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "draggable": false,
+                "id": "rePrintSRNP",
+                "modal": false,
+                "overlayDismiss": false,
+                "position": {
+                  "relativeLocation": "bottom-left"
+                },
+                "positionType": "relative",
+                "resizable": false,
+                "showCloseIcon": true,
+                "type": "open",
+                "viewPath": "Project_VECV/PopUp/ReNumberPunching",
+                "viewportBound": false
+              },
+              "scope": "C",
+              "type": "popup"
+            }
+          }
+        },
+        "meta": {
+          "name": "RadioGroup"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 10,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 132,
+          "width": 54,
+          "x": "97%",
+          "y": "1%"
+        },
+        "props": {
+          "align": "end",
+          "radios": [
+            {
+              "selected": true,
+              "text": "HELP",
+              "value": "Radio button"
+            }
+          ],
+          "selectedIcon": {
+            "color": {
+              "enabled": "#00AC00"
+            },
+            "path": "material/print"
+          },
+          "style": {
+            "classes": "Project_VECV/Common/CursorPointer Project_VECV/Login/Hover ",
+            "color": "#000000",
+            "fontSize": 18,
+            "fontWeight": "bolder",
+            "textAlign": "justify-all",
+            "writingMode": "vertical-rl"
+          },
+          "textPosition": "left",
+          "unselectedIcon": {
+            "color": {
+              "enabled": "#AAAAAA"
+            },
+            "path": "material/print"
+          }
+        },
+        "type": "ia.input.radio-group"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

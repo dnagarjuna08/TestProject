@@ -1,0 +1,808 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\n\ttry:\n\t    selectedValue \u003d self.getChild(\"root\").custom.selectedDefectValue\n\t    #self.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntDefect\").meta.visible\u003dFalse\n\t    #self.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntDefectName\").meta.visible\u003dFalse\n\t    #cntDefectName.meta.visible \u003d False\n\t    #self.getChild(\"cntLevel\").getChild(\"drpLevel\").props.value \u003d 0  # optional: reset level to 0\n\n\texcept Exception as e:\n\t    system.perspective.print(\"Error during View reset: \" + str(e))"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 720,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Anand Choudhary\n\t\tWritten Date: 14/08/2025\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\tself.view.getChild(\"root\").custom.selectedDefectValue\u003d\u0027\u0027\n\tself.parent.parent.getChild(\"cntLevel\").getChild(\"drpLevel\").props.value\u003d0\n\tself.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text\u003d\"\""
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Select Defect Level: *"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\n\ttry:\n\t    #unitLevel \u003d currentValue\n\t    unitLevel \u003d int(self.props.value)\n\t    cntDefect \u003d self.parent.parent.getChild(\"cntDefect\")\n\t    cntDefectName \u003d self.parent.parent.getChild(\"cntDefectName\")\n\n\t    cntDefect.meta.visible \u003d False\n\t    cntDefectName.meta.visible \u003d False\n\n\t    if unitLevel \u003d\u003d 0:\n\t        pass  # both hidden\n\t    elif unitLevel \u003d\u003d 1:\n\t        cntDefect.meta.visible \u003d True\n\t    elif unitLevel \u003d\u003d 2:\n\t        cntDefect.meta.visible \u003d False\n\t        cntDefectName.meta.visible \u003d True\n\t    else:\n\t        system.perspective.print(\"Unexpected unitLevel: \" + str(unitLevel))\n\n\texcept Exception as e:\n\t    system.perspective.print(\"Error in level change script: \" + str(e))"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpLevel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\n\t# Reset selectedDefectValue whenever level changes\n\t#self.view.getChild(\"root\").custom.selectedLevel \u003d None\n\tself.view.getChild(\"root\").custom.selectedDefectValue \u003d None\n\tself.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text\u003d\"\"\n\t"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Add Defect Category",
+                      "value": 0
+                    },
+                    {
+                      "label": "Add Defect Name",
+                      "value": 1
+                    },
+                    {
+                      "label": "Add Defect Subname",
+                      "value": 2
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 0
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLevel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "meta.visible": {
+                "persistent": false
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntLevel/drpLevel.props.value"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d 0:\n\t\treturn \"Add Defect Category:*\"\n\telif value \u003d\u003d 1:\n\t\treturn \"Add Defect Name:*\"\n\telse:\n\t\treturn \"Add Defect Subname:*\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "placeholder": "Defect Name...",
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntUnitName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Defect Category: *"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpDefectName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "persistent": false
+                  },
+                  "props.dropdownOptionStyle.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{/root.custom.selectedLevel}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value in (1, 2):\n\t\treturn \u0027block\u0027\n\treturn \u0027none\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Defects/DefectLevel1"
+                      },
+                      "transforms": [
+                        {
+                          "code": "    # No need to re-map since query already returns label/value structure\n    return value if value else []",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "/root.custom.selectedDefectValue"
+                      },
+                      "type": "property"
+                    },
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshDefectLevel1",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.options\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntDefectLevel1"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "meta.visible": {
+                "persistent": false
+              },
+              "props.style.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{/root.custom.selectedLevel}"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value in (1, 2):\n\t\treturn \u0027block\u0027\n\treturn \u0027none\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\tself.view.getChild(\"root\").custom.selectedDefectValue\u003d\u0027\u0027\n\tself.parent.parent.getChild(\"cntLevel\").getChild(\"drpLevel\").props.value\u003d0\n\tself.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text\u003d\"\""
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "61% 25%"
+                  },
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\n\ttry:\n\t    level \u003d self.view.getChild(\"root\").custom.selectedLevel\n\t    selectedValue \u003d self.view.getChild(\"root\").custom.selectedDefectValue\n\t    selectedValueL2 \u003d self.view.getChild(\"root\").custom.selectedLevel2\n\t    unitName \u003d self.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text.strip()\n\t    createdBy \u003d int(self.session.custom.loggedInUserId)\n\n\t    message \u003d \"\"\n\t    auditMsg \u003d \"\"\n\t    \n\n\t    if level \u003d\u003d 0:\n\t        system.db.runNamedQuery(\"Project_VECV/Defects/insertDefect\", {\n\t            \"unitName\": unitName,\n\t            \"createdBy\": createdBy\n\t        })\n\t        message \u003d \"Defect added successfully.\"\n\t        auditMsg \u003d \"Defect added.\"\n\t        system.perspective.sendMessage(\u0027refreshDefectLevel1\u0027, scope\u003d\u0027page\u0027)\t        \n\n\t    elif level \u003d\u003d 1:\n\t        system.db.runNamedQuery(\"Project_VECV/Defects/insertDefectName\", {\n\t            \"MST_Defect_Id\": selectedValue,\n\t            \"unitName\": unitName,\n\t            \"createdBy\": createdBy\n\t        })\n\t        message \u003d \"Defect Name added successfully.\"\n\t        auditMsg \u003d \"Defect Name added.\"\n\t        system.perspective.sendMessage(\u0027refreshDefectLevel2\u0027, scope\u003d\u0027page\u0027)\n\t    elif level \u003d\u003d 2:\n\t        system.db.runNamedQuery(\"Project_VECV/Defects/insertDefectSubName\", {\n\t            \"MST_DefectName_Id\": selectedValueL2,\n\t            \"unitName\": unitName,\n\t            \"createdBy\": createdBy\n\t        })\n\t        message \u003d \"Defect Sub Name added successfully.\"\n\t        auditMsg \u003d \"Defect Sub Name added.\"\n\t        \n\t        \n\t    else:\n\t        system.perspective.print(\"Invalid Unit Level selected.\")\n\t        return  \n\n\t    system.perspective.print(\"popup\")\n\t    Project_VECV.PopUp.Alerts.showAlert(\"success\", \"Success\", message, \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t    \n\t    self.view.getChild(\"root\").custom.selectedDefectValue\u003d\u0027\u0027\n\t    self.parent.parent.getChild(\"cntLevel\").getChild(\"drpLevel\").props.value\u003d\u0027\u0027\n\t    self.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text\u003d\"\"\n\n\t    \n\t    system.perspective.print(auditMsg)\n\n\t \n\t    system.perspective.sendMessage(\"refreshTable\", payload\u003d{\"action\": \"refresh\"}, scope\u003d\"page\")\n\t    system.perspective.print(\"message handler called on save button of defect add panel \")\n\t    system.perspective.closeDock(\u0027rightp\u0027)\n\t    system.perspective.openDock(\u0027rightView\u0027)\n\t    \n\t    \n           \n\texcept Exception as e:\n\t    import traceback\n\t    system.perspective.print(\"Error: \" + str(e))\n\t    system.perspective.print(\"Traceback: \" + traceback.format_exc())"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(\r\n  !isNull({/root.custom.selectedLevel}),\r\n  case(\r\n    {/root.custom.selectedLevel},\r\n\r\n    // 🔹 Level 0 — Just Unit Name\r\n    0, len(trim({.../cntUnitName/txt.props.text} + \"\")) \u003e 0,\r\n\r\n    // 🔹 Level 1 — Must have Unit Name AND selectedDefectValue\r\n    1, len(trim({.../cntUnitName/txt.props.text} + \"\")) \u003e 0 \u0026\u0026\r\n       !isNull({/root.custom.selectedDefectValue} + \"\") \u0026\u0026\r\n       ({/root.custom.selectedDefectValue} + \"\") !\u003d \"\" \u0026\u0026\r\n       toInt({/root.custom.selectedDefectValue}) \u003e -1,\r\n\r\n    // 🔹 Level 2 — Must have Unit Name AND selectedDefectValue\r\n    2, len(trim({.../cntUnitName/txt.props.text} + \"\")) \u003e 0 \u0026\u0026\r\n           !isNull({/root.custom.selectedDefectValue}) \u0026\u0026\r\n           ({/root.custom.selectedDefectValue} + \"\") !\u003d \"\" \u0026\u0026\r\n           toInt({/root.custom.selectedDefectValue}) \u003e -1,\r\n\r\n    false\r\n  ),\r\n  false\r\n)\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                      },
+                      "type": "expr"
+                    },
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Defect Name: *"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpDefectName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "persistent": false
+                  },
+                  "props.dropdownOptionStyle.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{/root.custom.selectedLevel}"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003d\u003d 2:\n\t\treturn \u0027block\u0027\n\treturn \u0027none\u0027",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "DefectLevel1": "{.../cntDefectLevel1/drpDefectName.props.value}",
+                          "level": "{/root.custom.selectedLevel}"
+                        },
+                        "queryPath": "Project_VECV/Defects/unifiedQuery"
+                      },
+                      "transforms": [
+                        {
+                          "code": "    # No need to re-map since query already returns label/value structure\n    return value if value else []",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "bidirectional": true,
+                        "path": "/root.custom.selectedLevel2"
+                      },
+                      "type": "property"
+                    },
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshDefectLevel2",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.options\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntDefectLevel2"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "meta.visible": {
+                "persistent": false
+              },
+              "props.style.display": {
+                "binding": {
+                  "config": {
+                    "expression": "{/root.custom.selectedLevel}"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2:\n\t\treturn \u0027block\u0027\n\treturn \u0027none\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1,
+          "x": 0.0006,
+          "y": 0.0058
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "payload": "",
+      "selectedDefectValue": null,
+      "selectedLevel": 0,
+      "selectedLevel2": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -0.0283,
+      "y": -0.025
+    },
+    "propConfig": {
+      "custom.selectedLevel": {
+        "binding": {
+          "config": {
+            "path": "./cntColumn/cntLevel/drpLevel.props.value"
+          },
+          "type": "property"
+        },
+        "persistent": true
+      }
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

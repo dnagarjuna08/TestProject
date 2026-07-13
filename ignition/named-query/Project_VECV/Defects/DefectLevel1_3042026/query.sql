@@ -1,0 +1,1 @@
+SELECT MST_Defect_Id AS value, DefectCategory AS Label FROM MST_Defect WHERE isactive = 1

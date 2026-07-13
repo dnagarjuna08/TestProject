@@ -1,0 +1,90 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "3a59ed82f0d782988759796bce468b4a2f63e18e5d032c4d4d86f9956d0d0cb9",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Event_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOM_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Status_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOMNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "serialNumber",
+        "sqlType": 7
+      }
+    ]
+  }
+}

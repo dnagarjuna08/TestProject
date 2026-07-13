@@ -1,0 +1,249 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 12/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tcheck whether user is authenticated if not return to login poge\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsSAPUploadAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \u0027SAP Upload\u0027\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027User Managment\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/User\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e User\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Image"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "fit": {
+                    "mode": "fill"
+                  },
+                  "source": "/system/images/Logo/upload.png"
+                },
+                "type": "ia.display.image"
+              },
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "props": {
+                  "style": {
+                    "color": "#333",
+                    "display": "block",
+                    "fontSize": "16px",
+                    "fontWeight": "bold",
+                    "marginBottom": "5px",
+                    "marginTop": "5px"
+                  },
+                  "text": "Upload Files"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "basis": "60px",
+              "shrink": 0
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "lblArea"
+            },
+            "position": {
+              "basis": "40px"
+            },
+            "props": {
+              "style": {
+                "color": "#333",
+                "display": "block",
+                "fontSize": "16px",
+                "fontWeight": "bold",
+                "marginBottom": "5px",
+                "marginTop": "5px"
+              },
+              "text": "Area"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Area"
+            },
+            "position": {
+              "basis": "40px"
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "ModelId": "0"
+                    },
+                    "queryPath": "Project_VECV/Panel/getAreafromModel"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "placeholder": {
+                "text": "Select Area..."
+              },
+              "showClearIcon": true,
+              "style": {
+                "classes": "Project_VECV/SAPUpload/DropDown"
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "lblfiletype"
+            },
+            "position": {
+              "basis": "40px"
+            },
+            "props": {
+              "style": {
+                "color": "#333",
+                "display": "block",
+                "fontSize": "16px",
+                "fontWeight": "bold",
+                "marginBottom": "5px",
+                "marginTop": "5px"
+              },
+              "text": "File Type"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "TypeDropdown"
+            },
+            "position": {
+              "basis": "40px"
+            },
+            "props": {
+              "options": [
+                {
+                  "label": "Order",
+                  "value": "Order"
+                },
+                {
+                  "label": "BOM",
+                  "value": "BOM"
+                },
+                {
+                  "label": "Classification",
+                  "value": "Classification"
+                },
+                {
+                  "label": "Material",
+                  "value": "Material"
+                }
+              ],
+              "placeholder": {
+                "text": "Select FileType..."
+              },
+              "showClearIcon": true,
+              "style": {
+                "classes": "Project_VECV/SAPUpload/DropDown",
+                "marginBottom": "10px"
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "custom": {
+              "filename": ""
+            },
+            "events": {
+              "component": {
+                "onFileReceived": {
+                  "config": {
+                    "script": "\tfilename \u003d event.file.name\n\tif filename \u003c\u003e self.custom.filename:\n#\tif True:\n\t\tself.custom.filename \u003d filename\n\t\ttry:\n\t\t    # Get the uploaded file from the event\n\t\t    Area_Id \u003d self.getSibling(\"Area\").props.value\n\t\t    if self.getSibling(\"TypeDropdown\").props.value \u003d\u003d \u0027Order\u0027:\n\t\t\t\tresponse \u003d Project_VECV.SAP.OrderFileUpload.UploadOrder(event, Area_Id,self.session.custom.loggedInUser)\n\t\t\t\tif response:\n\t\t\t\t\tstate \u003d \u0027success\u0027\n\t\t\t\t\tmessage \u003d \"Record updated successfully.\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\telse:\n\t\t\t\t\tstate \u003d \u0027error\u0027\n\t\t\t\t\tmessage \u003d \"Order File Upload Failed.\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t    elif self.getSibling(\"TypeDropdown\").props.value \u003d\u003d \u0027Material\u0027:\n\t\t\t\t\tresponse \u003d Project_VECV.SAP.MaterialFileUpload.UploadMaterial(event, Area_Id, self.session.custom.loggedInUser)\n\t\t\t\t\tif response:\n\t\t\t\t\t\tstate \u003d \u0027success\u0027\n\t\t\t\t\t\tmessage \u003d \"Record updated successfully.\"\n\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\t\telse:\n\t\t\t\t\t\tstate \u003d \u0027error\u0027\n\t\t\t\t\t\tmessage \u003d \"Material File Upload Failed.\"\n\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t    elif self.getSibling(\"TypeDropdown\").props.value \u003d\u003d \u0027BOM\u0027:\n\t\t\t\t\tresponse \u003d Project_VECV.SAP.BOMFileUpload.BOMFileUpload(event, Area_Id, self.session.custom.loggedInUser)\n\t\t\t\t\tif response:\n\t\t\t\t\t\tstate \u003d \u0027success\u0027\n\t\t\t\t\t\tmessage \u003d \"Record updated successfully.\"\n\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\t\telse:\n\t\t\t\t\t\tstate \u003d \u0027error\u0027\n\t\t\t\t\t\tmessage \u003d \"BOM File Upload Failed.\"\n\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t    elif self.getSibling(\"TypeDropdown\").props.value \u003d\u003d \u0027Classification\u0027:\n\t\t\t\tresponse \u003d Project_VECV.SAP.ClassificationFileUpload.ClassificationFileUpload(event, Area_Id, self.session.custom.loggedInUser)\n\t\t\t\tif response:\n\t\t\t\t\tstate \u003d \u0027success\u0027\n\t\t\t\t\tmessage \u003d \"Record updated successfully.\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\telse:\n\t\t\t\t\tstate \u003d \u0027error\u0027\n\t\t\t\t\tmessage \u003d \"Classification File Upload Failed.\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\texcept Exception as e:\n\t\t\tscreenName \u003d\u0027SAP Upload\u0027   \n\t\t\tfilePath\u003dstr(\u0027SAPUpload\u0027)  \n\t\t\terrorFunction \u003d str(\u0027Event:onFileReceived\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "FileUpload"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../Area.props.value} \u003e 0 \u0026\u0026\r\n{../TypeDropdown.props.value} !\u003d \u0027\u0027, toBoolean(1), toBoolean(0))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "maxUploads": 1,
+              "supportedFileTypes": [
+                "xml"
+              ]
+            },
+            "type": "ia.input.fileupload"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "justify": "center",
+          "style": {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomLeftRadius": "8px",
+            "borderBottomRightRadius": "8px",
+            "borderTopLeftRadius": "8px",
+            "borderTopRightRadius": "8px",
+            "margin": "30%",
+            "marginBottom": 0,
+            "marginTop": 0,
+            "padding": "20px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "center",
+      "style": {
+        "backgroundColor": "#AF6BEC",
+        "backgroundImage": "linear-gradient(#6699cc, #e6e6fa)"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

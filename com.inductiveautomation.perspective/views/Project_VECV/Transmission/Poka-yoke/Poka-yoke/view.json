@@ -1,0 +1,791 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "bitSelectionData": []
+        },
+        "meta": {
+          "name": "FlexRepeater",
+          "visible": false
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 11
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": "auto"
+        },
+        "props": {
+          "path": "Project_VECV/Transmission/Poka-yoke/Poka-YokeSubView",
+          "style": {
+            "borderBottomLeftRadius": 5,
+            "borderBottomRightRadius": 5,
+            "borderTopLeftRadius": 5,
+            "borderTopRightRadius": 5,
+            "borderWidth": 2,
+            "marginLeft": 20
+          },
+          "wrap": "wrap"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "poka-yoke-selection",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tdesc \u003d payload[\u0027Description\u0027]\n\tinstance \u003d self.props.instances\n\tdataset \u003d self.custom.bitSelectionData\n\tresponse \u003d []\n\tfor data in dataset:\n\t\tif data[\u0027Description\u0027] \u003d\u003d desc:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": True\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\t\telse:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": data[\u0027Status\u0027]\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\tself.custom.bitSelectionData \u003d  response",
+              "sessionScope": false,
+              "viewScope": false
+            },
+            {
+              "messageType": "poka-yoke-deselection",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tsystem.perspective.print(\"poka-yoke-deselection\")\n\tdesc \u003d payload[\u0027Description\u0027]\n\tinstance \u003d self.props.instances\n\tdataset \u003d self.custom.bitSelectionData\n\tresponse \u003d []\n\tfor data in dataset:\n\t\tif data[\u0027Description\u0027] \u003d\u003d desc:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": False\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\t\telse:\n\t\t\tdt \u003d {\n\t\t\t    \"instanceStyle\": {\n\t\t\t      \"classes\": \"\"\n\t\t\t    },\n\t\t\t    \"instancePosition\": {},\n\t\t\t    \"Description\": data[\u0027Description\u0027],\n\t\t\t    \"Status\": data[\u0027Status\u0027]\n\t\t\t  }\n\t\t\tresponse.append(dt)\n\tself.custom.bitSelectionData \u003d  response",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Area :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "selectedAreaIDs": ""
+                },
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tresult \u003d []\n\tfor data in dataset:\n\t\tdict \u003d {}\n\t\tif \u0027Transmission\u0027 in data[1]: \n\t\t\tdict[\"label\"] \u003d data[1]\n\t\t\tdict[\"value\"] \u003d data[0]\n\t\t\tresult.append(dict)\n\treturn result",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Line :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px",
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "WorkStation :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpStation"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "LineId": "{.../cntLine/drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getWorkStation"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntStation"
+            },
+            "position": {
+              "basis": "290px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblName"
+                },
+                "position": {
+                  "basis": "80px",
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "WorkStation Description :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lbldesc"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "name": "{.../cntStation/drpStation.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getWorkstationDesc"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntStationdesc"
+            },
+            "position": {
+              "basis": "290px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "ET Code :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpRACode"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaId": "{.../cntArea/drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntETcode"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "TM Code :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpRACode"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "{.../cntETcode/drpRACode.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Master/OPCodeConfiguration/GetBOMFromModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntTMcode"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": 2
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntSelectionFilter"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": "auto"
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "justify": "space-between",
+          "style": {
+            "marginLeft": 5,
+            "marginRight": 5
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "lblview"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": -0.5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": -0.5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": -0.5,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header"
+          },
+          "text": " Poka-yoke Selection:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tdata \u003d self.getSibling(\"FlexRepeater\").custom.bitSelectionData\n\tdataset \u003d Project_VECV.Transmission.bitSelection.getBit()\n\tparams \u003d {}\n\tfor dt in dataset:\n\t\tfor i in dataset[dt]:\n\t\t\tparams[i] \u003d 0\n\n\tparams[\"MST_Area_Id\"] \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\tparams[\"MST_Line_Id\"] \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\n\tparams[\"WorkStationName\"] \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStation\").getChild(\"drpStation\").props.value\n\tparams[\"MST_Model_Id\"] \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntETcode\").getChild(\"drpRACode\").props.value\n\tparams[\"M_BOM_Id\"] \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntTMcode\").getChild(\"drpRACode\").props.value\n\tparams[\"CreatedBy\"] \u003d self.session.custom.loggedInUserId\n\tfor i in data:\n\t\tif str(i[\u0027Status\u0027]).upper() \u003d\u003d \u0027TRUE\u0027.upper():\n\t\t\tparams[i[\u0027Description\u0027]] \u003d 1\n\t\telse:\n\t\t\tparams[i[\u0027Description\u0027]] \u003d 0\n\tsystem.perspective.print(params)\n\tsystem.db.runNamedQuery(\"Project_VECV/Transmission/Poka-yoke/AddUpdateBitSelection\",params)\n\tmessage \u003d\"Data Saved Successfully.\"\n\tstate \u003d \"success\"\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\tsystem.perspective.sendMessage(\"SAVE\", scope\u003d\u0027page\u0027)\t\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "savebtn",
+          "visible": false
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 1.5,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 7,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 2
+            },
+            {
+              "colIndex": 9,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Transmission/buttonenable"
+          },
+          "text": "Save"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "SAVE",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n#\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d -1\n#\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1\n#\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntETcode\").getChild(\"drpRACode\").props.value \u003d -1\n#\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntTMcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.getSibling(\"cancelBtn\").meta.visible \u003d False\n\tself.getSibling(\"savebtn\").meta.visible \u003d False\n\tself.getSibling(\"FlexRepeater\").props.instances \u003d[]\n\tself.getSibling(\"FlexRepeater\").custom.bitSelectionData \u003d []\n\tself.getSibling(\"FlexRepeater\").meta.visible \u003d False\n\tself.getSibling(\"warninglbl\").meta.visible \u003d False\n\tself.getSibling(\"warninglbl\").position.height \u003d 0",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\"clear\", scope\u003d\u0027page\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "cancelBtn",
+          "visible": false
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 1,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 9,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Transmission/buttonenable"
+          },
+          "text": "Cancel"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\n\tworkstationName \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStation\").getChild(\"drpStation\").props.value\n\tETCode \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntETcode\").getChild(\"drpRACode\").props.value\n\tTMCode \u003d self.parent.getChild(\"cntSelectionFilter\").getChild(\"cntTMcode\").getChild(\"drpRACode\").props.value\n\tsystem.perspective.print(workstationName)\n\tsystem.perspective.print(ETCode)\n\tsystem.perspective.print(TMCode)\n\tdata \u003d Project_VECV.Transmission.bitSelection.bitSelection(workstationName, ETCode, TMCode)\n\tif len(data) \u003d\u003d 0:\n\t\tself.getSibling(\"warninglbl\").position.height \u003d 40\n\t\tself.getSibling(\"warninglbl\").meta.visible \u003d True\n\t\tself.getSibling(\"savebtn\").meta.visible \u003d False\n\t\tself.getSibling(\"cancelBtn\").meta.visible \u003d False\n\telse:\n\t\tself.getSibling(\"warninglbl\").position.height \u003d 0\n\t\tself.getSibling(\"warninglbl\").meta.visible \u003d False\n\t\tself.getSibling(\"savebtn\").meta.visible \u003d True\n\t\tself.getSibling(\"cancelBtn\").meta.visible \u003d True\n\tself.getSibling(\"FlexRepeater\").custom.bitSelectionData \u003d data\n\tself.getSibling(\"FlexRepeater\").props.instances \u003d data\n\tself.getSibling(\"FlexRepeater\").meta.visible \u003d True\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "viewbtn"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 8
+            },
+            {
+              "colIndex": 7,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 9,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if( {../cntSelectionFilter/cntStation/drpStation.props.value} !\u003d \u0027-1\u0027 \u0026\r\n{../cntSelectionFilter/cntETcode/drpRACode.props.value} !\u003d -1 \u0026\r\n{../cntSelectionFilter/cntTMcode/drpRACode.props.value} !\u003d-1\r\n,toBoolean(1),toBoolean(0))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Transmission/buttonenable"
+          },
+          "text": "View"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\"clear\", scope\u003d\u0027page\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "clearbtn"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 8
+            },
+            {
+              "colIndex": 9,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Transmission/buttonenable"
+          },
+          "text": "Clear"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "clear",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d -1\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntETcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.parent.getChild(\"cntSelectionFilter\").getChild(\"cntTMcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.getSibling(\"cancelBtn\").meta.visible \u003d False\n\tself.getSibling(\"savebtn\").meta.visible \u003d False\n\tself.getSibling(\"FlexRepeater\").props.instances \u003d[]\n\tself.getSibling(\"FlexRepeater\").custom.bitSelectionData \u003d []\n\tself.getSibling(\"FlexRepeater\").meta.visible \u003d False\n\tself.getSibling(\"warninglbl\").meta.visible \u003d False\n\tself.getSibling(\"warninglbl\").position.height \u003d 0",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "warninglbl",
+          "visible": false
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 3,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 12
+            }
+          ],
+          "height": 0
+        },
+        "props": {
+          "style": {
+            "color": "#FF0000",
+            "fontWeight": "bold",
+            "margin": 10,
+            "textAlign": "center"
+          },
+          "text": "No Poka-Yoke Selection Avaiable for this Station."
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

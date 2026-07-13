@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e481ad90d549cb2821b318dd2af562a59e2ea759f625b925283f7b0ecef731de",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "createdby",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomidto",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WIID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WSID",
+        "sqlType": 3
+      }
+    ]
+  }
+}

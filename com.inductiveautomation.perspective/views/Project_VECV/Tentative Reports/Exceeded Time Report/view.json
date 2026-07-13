@@ -1,0 +1,1650 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1200
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblFrom"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "text": "From"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblTo"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 8,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "lg",
+                      "order": 6,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "text": "To"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblSerialNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "text": "Serial Number"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblStatus",
+                  "visible": false
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 3,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 3,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "lg",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 30
+                },
+                "props": {
+                  "text": "Status"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "FromDateTimeInput"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "formattedValue": null
+                },
+                "type": "ia.input.date-time-input"
+              },
+              {
+                "meta": {
+                  "name": "drpSerialNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 2
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "areaId": "{../drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/TentativeReports/getRACode"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "drpStatus",
+                  "visible": false
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 3,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 3,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 1,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/TentativeReports/getStatus"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tarea \u003d self.getSibling(\"drpArea\").props.value\n\tline\u003d self.getSibling(\"drpLine\").props.value\n\tworkStation \u003d self.getSibling(\"drpStation\").props.value\n\trACode \u003d self.getSibling(\"drpRACode\").props.value\n\tstatus \u003d self.getSibling(\"drpStatus\").props.value\n\tfromDate \u003d system.perspective.print(self.getSibling(\"FromDateTimeInput\").props.value)\n\ttoDate \u003d system.perspective.print(self.getSibling(\"ToDateTimeInput\").props.value)\n\t\n\tsystem.perspective.print(area)\n\tsystem.perspective.print(line)\n\tsystem.perspective.print(workStation)\n\tsystem.perspective.print(rACode)\n\tsystem.perspective.print(status)\n\tsystem.perspective.print(fromDate)\n\tsystem.perspective.print(toDate)\n\t\n\t\n\tpath \u003d \u0027Project_VECV/TentativeReports/getGenericReport\u0027\n\tparams \u003d {\u0027area\u0027:area,\u0027line\u0027:line,\u0027workStation\u0027:workStation,\u0027rACode\u0027:rACode,\u0027status\u0027:status,\u0027fromDate\u0027:fromDate,\u0027toDate\u0027:toDate}\n\tdata \u003d system.db.runNamedQuery(path,params)\n\tsystem.perspective.print(data)\n\t\n\tself.parent.parent.getChild(\"cntTable\").getChild(\"Table\").props.data \u003d data\n\t\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnView",
+                  "visible": false
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 10,
+                      "name": "sm",
+                      "order": 4,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "md",
+                      "order": 4,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 11,
+                      "name": "lg",
+                      "order": 5,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "text": "View"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "ToDateTimeInput"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 8,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "lg",
+                      "order": 4,
+                      "rowIndex": 1,
+                      "span": 1
+                    }
+                  ],
+                  "height": 40
+                },
+                "props": {
+                  "formattedValue": null
+                },
+                "type": "ia.input.date-time-input"
+              },
+              {
+                "meta": {
+                  "name": "lblArea"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 30
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "fontWeight": "normal"
+                  },
+                  "text": "Area"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblLine"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 30
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "fontWeight": "normal"
+                  },
+                  "text": "Line"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblWorkStation"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 30
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "fontWeight": "normal"
+                  },
+                  "text": "Work Station"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0.5,
+                      "rowIndex": 1,
+                      "span": 2
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "{.../cntModel/drpModel.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getAreafromModel"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1"
+                    }
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1723635277018
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          23,
+                          26
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Titan Axle",
+                          "Legacy Axle"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Area..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 0.5,
+                      "rowIndex": 1,
+                      "span": 2
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{../drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1"
+                    }
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1723635277017
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Line..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "drpStation"
+                },
+                "position": {
+                  "basis": "50px",
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 2,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 0.5,
+                      "rowIndex": 1,
+                      "span": 2
+                    }
+                  ],
+                  "grow": 1,
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{../drpArea.props.value}",
+                          "DropdownType": "3",
+                          "LineID": "{../drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1723635277017
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Station..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 100
+            },
+            "props": {
+              "gutters": {
+                "vertical": 5
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Table"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 543
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "area": "{.../cntHeader/drpArea.props.value}",
+                          "from": "{.../cntHeader/FromDateTimeInput.props.value}",
+                          "line": "{.../cntHeader/drpLine.props.value}",
+                          "rACode": "{.../cntHeader/drpRACode.props.value}",
+                          "status": "{.../cntHeader/drpStatus.props.value}",
+                          "to": "{.../cntHeader/ToDateTimeInput.props.value}",
+                          "workStation": "{.../cntHeader/drpStation.props.value}"
+                        },
+                        "queryPath": "Project_VECV/TentativeReports/getGenericReport"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "SerialNumber",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkStationName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Description",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "OPStartTime",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "OPEndTime",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "OperatorID",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Status",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true
+                  }
+                },
+                "type": "ia.display.table"
+              },
+              {
+                "meta": {
+                  "name": "lblCount"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 1,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 1,
+                      "span": 2
+                    }
+                  ],
+                  "height": 50
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "area": "{.../cntHeader/drpArea.props.value}",
+                          "from": "{.../cntHeader/FromDateTimeInput.props.value}",
+                          "line": "{.../cntHeader/drpLine.props.value}",
+                          "rACode": "{.../cntHeader/drpRACode.props.value}",
+                          "status": "{.../cntHeader/drpStatus.props.value}",
+                          "to": "{.../cntHeader/ToDateTimeInput.props.value}",
+                          "workStation": "{.../cntHeader/drpStation.props.value}"
+                        },
+                        "queryPath": "Project_VECV/TentativeReports/getSerialCount"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value.getValueAt(0,0)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntTable"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 610
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.print(self.getChild(\"ColumnContainer\").getChild(\"cntHeader\").getChild(\"FromDateTimeInput\").props.value)\n\tsystem.perspective.print(self.getChild(\"ColumnContainer\").getChild(\"cntHeader\").getChild(\"ToDateTimeInput\").props.value)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 800,
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "vertical": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "Download",
+          "pageScope": true,
+          "script": "\tpass\n\t\n#\t# implement your handler here\n#\t\"\"\"\tPurpose:\t\t\t \n#\t\t\tTo export details \n#\t\t\t\t\t\n#\t\t\tCreated by: Piyush Sethiya\n#\t\t\tDate: 02/08/2024\t\t\"\"\"\t\n#\ttry:\n#\n#\t\tdata\u003dself.getChild(\"ColumnContainer\").getChild(\"cntTable\").getChild(\"Table\").props.data\n#\t\tcolumns\u003d[\"SerialNumber\",\"WorkStationName\",\"Description\",\"Status\"]\n#\t\tdata\u003dsystem.dataset.filterColumns(data, columns)\n#\t\tXLSFormat \u003d system.dataset.dataSetToExcel(True,[data])\n#\t\tsystem.perspective.download(\"ReportTable.xls\",XLSFormat)\t\t\t\t\n#\t#End of try block\t\n#\texcept: \n#\t#start of except block  \n#\t\tscreenName \u003d\u0027Generic Report Configuration\u0027   \n#\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Generic Report\u0027)  \n#\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntBody/TabContainer/cntTable/btnExport\u0027)  \n#\t\terrorType\u003dstr(\u0027Application\u0027)  \n#\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n#\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n#\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n#\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n#\t#End of except block\t\t\t\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,732 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "LblSOP"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#CCFFCC",
+                "classes": "Project_VECV/Common/Label"
+              },
+              "text": "SOP FOR OIL CALIBRATION",
+              "textStyle": {
+                "fontFamily": "Arial",
+                "fontWeight": "bolder",
+                "textAlign": "center",
+                "textTransform": "uppercase"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblSerialNumber"
+                },
+                "position": {
+                  "basis": "130px"
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  },
+                  "text": "Serial Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtSerialNumber"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tSerialNumber \u003d self.props.text\n\tif SerialNumber\u003d\u003d\u0027\u0027:\n\t\treturn \n\tsystem.perspective.print(\"serial num --\u003e %s\"%SerialNumber)\n\twsId\u003dself.session.custom.CurrentWorkStationId\n\twsName\u003dself.session.custom.CurrentWorkStation.upper()\n\twsName\u003d\u0027LAQG02\u0027\n\twsId\u003d331\n\tif (wsName.upper()!\u003d\u0027LAQG02\u0027.upper()):\n\t\tmessage \u003d \"OIL Calibration can only be done from LAQG02\"\n\t\tstate \u003d \"error\"\n\t\tself.props.text\u003d\u0027\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\treturn\n\tsystem.perspective.print(wsId)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/rePrint/qgOilSerialVal\",{\"SerialNumber\":SerialNumber})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"Either Serial Number is Invalid or AS per SOP oil filling calibration can only be done for Already oil filled Serial Number.\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.props.text\u003d\u0027\u0027\n\t\t\n\telse:\n\t\tmessage \u003d \"Serial Number Validated for Calibration. Select UserID and Password.\"\n\t\tstate \u003d \"success\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#F5F5DC",
+                    "classes": "Project_VECV/Reports/label"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center",
+              "wrap": "wrap"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblUserID"
+                },
+                "position": {
+                  "basis": "130px"
+                },
+                "props": {
+                  "text": "UserID: ",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtUser"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tUserName \u003d self.props.text\n\t#get GearRation and Fill the next Field\n\tsystem.perspective.print(\"UserName --\u003e %s\"%UserName)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/rePrint/authenticateUser\",{\"User\":UserName})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"You Dont have access for Oil Calibration, Kindly Contact MES Support Team\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.getSibling(\"txtPass\").props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"txtPass\").props.enabled \u003d False\n\t\tself.props.text\u003d\u0027\u0027\t\n\telse:\n\t\tself.getSibling(\"txtPass\").props.enabled\u003dTrue"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#F5F5DC",
+                    "classes": "Project_VECV/Reports/label",
+                    "marginLeft": 10
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblPassword"
+                },
+                "props": {
+                  "text": "Password: ",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtPass"
+                },
+                "position": {
+                  "basis": "180px",
+                  "shrink": "1 "
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tpassword\u003d\u0027Vecv123\u0027\n\tlblPass\u003dself.props.text\n\tif(lblPass!\u003dpassword):\n\t\tmessage \u003d \"Wrong Password , Please Enter correct Password\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"Button\").props.enabled\u003dFalse\n"
+                    }
+                  }
+                },
+                "props": {
+                  "enabled": false,
+                  "style": {
+                    "classes": "Project_VECV/Reports/label",
+                    "marginLeft": 10
+                  },
+                  "type": "password"
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer_0"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center",
+              "wrap": "wrap"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "TextArea"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "enabled": false,
+                  "style": {
+                    "backgroundClip": "border-box",
+                    "backgroundColor": "#FFFF8A",
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderStyle": "groove",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px",
+                    "borderWidth": "2px",
+                    "boxShadow": "2px",
+                    "color": "#000000",
+                    "fontFamily": "Arial",
+                    "fontWeight": "bold",
+                    "margin": "10px",
+                    "outlineStyle": "solid",
+                    "outlineWidth": "2px",
+                    "padding": "10px",
+                    "textAlign": "left"
+                  },
+                  "text": "1. Select a Serial Number which has already been oil filled \n2. Scan Serial Number over QG to see its status (OK) and Oil Quantity  \n3. If Status and Quantity is Ok as per RA-CODE Use this for calibration check  \n4. Scan serialNumber to below area \n5. add userID and password as provided by MES team  \n6. Click on Apply Button  \n7. Now refil Scan same serail number to oil filling machine. \n8. Measure the amout poured out and initiate calibration check. \n9. Put the oil despensed back into Oil drum.\n10. Calibration successful, Now scan the serial Number on Quality gate.  \n11. Over Quality Gate validate second Oil fill status and oil quamtity showing. "
+                },
+                "type": "ia.input.text-area"
+              },
+              {
+                "meta": {
+                  "name": "ToggleSwitch"
+                },
+                "props": {
+                  "label": {
+                    "text": "Agree?"
+                  }
+                },
+                "type": "ia.input.toggle-switch"
+              }
+            ],
+            "meta": {
+              "name": "SOPflex"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 230
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\t    Written By: Aniket Sagar\n\t\t    Written Date: 02/02/2025\n\t\t    Purpose: Oil Filling Reset \n\t\"\"\"\n\ttry:\n\t\tserialNumber \u003d self.parent.getChild(\"FlexContainer\").getChild(\"txtSerialNumber\").props.text\n\t\tsystem.perspective.print(\"serialNumber \u003d\u003d %s\" % serialNumber)\n\t\tUserName \u003d self.parent.getChild(\"FlexContainer_0\").getChild(\"txtUser\").props.text\n\t\tsystem.perspective.print(\"UserName \u003d\u003d %s\" % UserName)\n\t\t# Get User ID\n\t\tgetUserID \u003d system.db.runNamedQuery(\u0027Project_VECV/ITSupport/rePrint/getUsertoSave\u0027, {\u0027UserName\u0027: UserName})\n\t\tsystem.perspective.print(\"UserID \u003d\u003d %s\" % getUserID)\n\t\tcurrWs\u003dself.session.custom.CurrentWorkStationId\n\t\tif(currWs !\u003d 331):\n\t\t\tmessage \u003d \"Calibration Activity can be done only from LAQG02\"\n\t\t\tstate \u003d \"Error\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\telse:\n\t\t\tBOMNumber \u003d serialNumber.split(\u0027-\u0027)[1]\n\t\t\tStatus \u003d 3\n\t\t\tparams\u003d{\"WorkStationName\":324,\"SerialNumber\":serialNumber,\"BOMNumber\":BOMNumber,\"CreatedBy\":getUserID,\"Status\":Status}\n\t\t\tmessage \u003d \"Provided Serial Number set for Oil Calibration\"\n\t\t\tstate \u003d \"info\"\n\t\t\tsystem.db.runNamedQuery(\"Project_VECV/ITSupport/StationStatus\",{\"WorkStationName\":324,\"SerialNumber\":serialNumber,\"BOMNumber\":BOMNumber,\"CreatedBy\":1,\"Status\":int(Status)})\n\t\t\t\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.parent.getChild(\"FlexContainer\").getChild(\"txtSerialNumber\").props.text\u003d\u0027\u0027\n\t\tself.parent.getChild(\"FlexContainer_0\").getChild(\"txtUser\").props.text\u003d\u0027\u0027\n\t\tself.parent.getChild(\"FlexContainer_0\").getChild(\"txtPass\").props.text\u003d\u0027\u0027\n\texcept Exception as e:\n\t    # Log the error and show an error popup\n\t    system.perspective.print(\"Error: %s\" % str(e))\n\t    message \u003d \"An error occurred: %s\" % str(e)\n\t    state \u003d \"error\"\n\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t                                        \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t                                    \n\t\t\t\n\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 5,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 5,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 2
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../SOPflex/ToggleSwitch.props.selected}!\u003d False \u0026\r\n{../FlexContainer/txtSerialNumber.props.text}!\u003d \u0027\u0027 \u0026 \r\n{../FlexContainer_0/txtPass.props.text}!\u003d\u0027\u0027\r\n,ToBoolean(1),ToBoolean(0))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "text": "Apply"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "lblPrint"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Label"
+              },
+              "text": "RE-PRINT QUALITY GATE STICKERS",
+              "textStyle": {
+                "fontFamily": "Arial",
+                "fontWeight": "bolder",
+                "textAlign": "center",
+                "textTransform": "uppercase"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblSerialNumber"
+                },
+                "position": {
+                  "basis": "130px"
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  },
+                  "text": "Serial Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtSerialNumber"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tSerialNumber \u003d self.props.text\n\tif SerialNumber\u003d\u003d\u0027\u0027:\n\t\treturn \n\tsystem.perspective.print(\"serial num --\u003e %s\"%SerialNumber)\n\twsId\u003dself.session.custom.CurrentWorkStationId\n\tsystem.perspective.print(\"wsId\u003d %s\"%wsId)\n\twsName\u003dself.session.custom.CurrentWorkStation.upper()\n\tsystem.perspective.print(\"wsName\u003d %s\"%wsName)\n\t#wsId\u003d331\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/rePrint/qgReprintValidation\",{\"SerialNumber\":SerialNumber,\"WorkStationId\":wsId})\n\tif str(data) !\u003d \u00272\u0027:\n\t\tmessage \u003d \"Either Serial Number is Invalid or AS per SOP Reprint can be given for already completed serial Number.\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.props.text\u003d\u0027\u0027\n\t\t\n\telse:\n\t\tmessage \u003d \"Serial Number Validated for Reprint. Select UserID and Password.\"\n\t\tstate \u003d \"success\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#F5F5DC",
+                    "classes": "Project_VECV/Reports/label"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center",
+              "wrap": "wrap"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblUserID"
+                },
+                "position": {
+                  "basis": "130px"
+                },
+                "props": {
+                  "text": "UserID: ",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtUser"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tUserName \u003d self.props.text\n\t#get GearRation and Fill the next Field\n\tsystem.perspective.print(\"UserName --\u003e %s\"%UserName)\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/rePrint/authenticateUser\",{\"User\":UserName})\n\tif str(data) \u003d\u003d \u00270\u0027:\n\t\tmessage \u003d \"You Dont have access for Re-Print, Kindly Contact MES Support Team\"\n\t\tstate \u003d \"warning\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.getSibling(\"txtPass\").props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"txtPass\").props.enabled \u003d False\n\t\tself.props.text\u003d\u0027\u0027\t\n\telse:\n\t\tself.getSibling(\"txtPass\").props.enabled\u003dTrue"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#F5F5DC",
+                    "classes": "Project_VECV/Reports/label",
+                    "marginLeft": 10
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblPassword"
+                },
+                "props": {
+                  "text": "Password: ",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "marginLeft": 10,
+                    "marginRight": 5
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtPass"
+                },
+                "position": {
+                  "basis": "180px",
+                  "shrink": "1 "
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tpassword\u003d\u0027Vecv123\u0027\n\tlblPass\u003dself.props.text\n\tif(lblPass!\u003dpassword):\n\t\tmessage \u003d \"Wrong Password , Please Enter correct Password\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\tself.props.text \u003d \u0027\u0027\n\t\tself.getSibling(\"Button\").props.enabled\u003dFalse\n"
+                    }
+                  }
+                },
+                "props": {
+                  "enabled": false,
+                  "style": {
+                    "classes": "Project_VECV/Reports/label",
+                    "marginLeft": 10
+                  },
+                  "type": "password"
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer_0"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center",
+              "wrap": "wrap"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\t    Written By: Aniket Sagar\n\t\t    Written Date: 02/02/2025\n\t\t    Purpose: Oil Filling Reset \n\t\"\"\"\n\t\n\ttry:\n\t\t#from java.io import DataOutputStream\n\t\t\n\t\t#import sys \n\t\t#import datetime\n\t\tsystem.perspective.print(\"Inside Try at line 12\")\n\t\tserialNumber \u003d self.parent.getChild(\"FlexContainer\").getChild(\"txtSerialNumber\").props.text\n\t\tserialNumber\u003dserialNumber.upper()\n\t\tModel \u003d serialNumber.split(\u0027-\u0027)[1]\n\t\tsystem.perspective.print(\"serialNumber \u003d\u003d %s\" % serialNumber)\n\t\tUserName \u003d self.parent.getChild(\"FlexContainer_0\").getChild(\"txtUser\").props.text\n\t\tsystem.perspective.print(\"UserName \u003d\u003d %s\" % UserName)\n\t\t# Get User ID\n\t\tgetUserID \u003d system.db.runNamedQuery(\u0027Project_VECV/ITSupport/rePrint/getUsertoSave\u0027, {\u0027UserName\u0027: UserName})\n\t\tsystem.perspective.print(\"UserID \u003d\u003d %s\" % getUserID)\n\t\tcurrWs\u003dself.session.custom.CurrentWorkStationId\n\t\t#currWs\u003d332\n\t\tline \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getLine\",{\"MST_WorkStation_Id\":currWs})\n\t\tsystem.perspective.print(\"line \u003d\u003d %s\" %line)\n\t\t# Fetch printer details\n\t\tres \u003d system.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/GetPrinterDetails\", {\u0027WorkStation\u0027: currWs})\n\t\tpyres \u003d system.dataset.toPyDataSet(res)\n\t\t\t\t\n\t\tfor row in pyres:\n\t\t    IP \u003d row[\"IPAddress\"]\n\t\t    port \u003d row[\"Port\"]\n\t\t\n\t\tif(currWs \u003d\u003d 331):\n\t\t\tmessage \u003d \"Printer not available for LAQG02\"\n\t\t\tstate \u003d \"Error\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\telif(currWs \u003d\u003d 280):\n\t\t\tmessage \u003d \"Printer not available for LAQG01\"\n\t\t\tstate \u003d \"Error\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\telif(currWs \u003d\u003d 306 or currWs \u003d\u003d 349):  #this is for LAQG03 and TAQG03 \n\t\t\tProject_VECV.Printer.GetPrint.getPrintHub(IP,port,serialNumber,Model)\n\t\t\tmessage \u003d \"Re-Print Given to Respective Printer\"\n\t\t\tstate \u003d \"success\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\t\t\t\t\t\t\t                                    \n\t\telif(currWs in  [332,369]):  #this is for PDI\n\t\t\t#today \u003d system.date.now()\n\t\t\t#date\u003d system.date.format(today, \"ddMMyy\")\n\t\t\t\n\t\t\tProject_VECV.Printer.GetPrint.getPDIPrint(serialNumber,IP,port,line)\n\t\t\tmessage \u003d \"Re-Print Given to PDI Printer\"\n\t\t\tstate \u003d \"success\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\telif(currWs in  [291, 377,356]):  #this is for LAQG04 LAQG05 TAQG01 \n\t\t\tBOMId\u003dsystem.db.runNamedQuery(\"Project_VECV/Rework/getBOMId\",{\u0027SerialNumber\u0027:serialNumber})\n\t\t\tdata \u003d system.db.runNamedQuery(\"Project_VECV/Order/getPartNumber\",{\"MST_WorkStation_Id\":currWs,\"M_BOM_Id\":BOMId})\n\t\t\tpartNumber \u003d \u0027\u0027\n\t\t\tpartNumber\u003dModel\n#\t\t\tfor dt in data:    \n#\t\t\t\tpartNumber \u003d dt[\u0027M_MaterialNumber\u0027]\n\t\t\tif partNumber !\u003d \u0027\u0027:\n\t\t\t\tgearRatio \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getGearRatio\",{\"SerialNumber\":serialNumber})\n\t\t\t\tProject_VECV.Printer.GetPrint.getDHPrint(serialNumber,IP,port,partNumber,gearRatio)\n\t\t\t\tmessage \u003d \"Re-Print Given to PDI Printer\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\t\t\tsystem.perspective.print(\u0027Print Sent for-----------------\u003e Bom\u003d%s\u0027%partNumber)\n\t\t\telse:\n\t\t\t\tmessage \u003d \"Part-ID not configured, Contact ME Team\"\n\t\t\t\tstate \u003d \"error\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\n\t\telif(currWs in  [338]): \n\t\t\tBOMId\u003dsystem.db.runNamedQuery(\"Project_VECV/Rework/getBOMId\",{\u0027SerialNumber\u0027:serialNumber})\n\t\t\tdata \u003d system.db.runNamedQuery(\"Project_VECV/Order/getPartNumber\",{\"MST_WorkStation_Id\":currWs,\"M_BOM_Id\":BOMId})\n\t\t\tpartNumber \u003d \u0027\u0027\n\t\t\tfor dt in data:    \n\t\t\t\tpartNumber \u003d dt[\u0027M_MaterialNumber\u0027]\n\t\t\t\tif partNumber !\u003d \u0027\u0027:\n\t\t\t\t\tgearRatio \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getGearRatio\",{\"SerialNumber\":serialNumber})\n\t\t\t\t\tProject_VECV.Printer.GetPrint.getTAQG01Print(serialNumber,IP,port,partNumber,gearRatio)\n\t\t\t\t\tmessage \u003d \"Re-Print Given to PDI Printer\"\n\t\t\t\t\tstate \u003d \"success\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\t\t\telse:\n\t\t\t\t\tmessage \u003d \"Part-ID not configured, Contact ME Team\"\n\t\t\t\t\tstate \u003d \"error\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\t                                    \n\t\t\n\t\t\t\t\t\t\t\t                                    \n\t\t\n\t\telse:\n\t\t\tmessage \u003d \"Re-Print option Not provided by MES Team for this station.\"\n\t\t\tstate \u003d \"error\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t\t\t\t\t\t\t\t                                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t\tself.parent.getChild(\"FlexContainer\").getChild(\"txtSerialNumber\").props.text\u003d\u0027\u0027\n\t\tself.parent.getChild(\"FlexContainer_0\").getChild(\"txtUser\").props.text\u003d\u0027\u0027\n\t\tself.parent.getChild(\"FlexContainer_0\").getChild(\"txtPass\").props.text\u003d\u0027\u0027\n\texcept Exception as e:\n\t    # Log the error and show an error popup\n\t    system.perspective.print(\"Error: %s\" % str(e))\n\t    message \u003d \"An error occurred: %s\" % str(e)\n\t    state \u003d \"error\"\n\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \n\t                                        \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\")\n\t                                    \n\t\t\t\n\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 5,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 5,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 2
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 60
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../FlexContainer/txtSerialNumber.props.text}!\u003d \u0027\u0027 \u0026 \r\n{../FlexContainer_0/txtPass.props.text}!\u003d\u0027\u0027\r\n,ToBoolean(1),ToBoolean(0))"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "text": "Apply"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer_0"
+        },
+        "position": {
+          "tabIndex": 1
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "currentTabIndex": 1,
+      "menuStyle": {
+        "backgroundColor": "#FFFFFF",
+        "fontFamily": "Roboto",
+        "fontSize": "40px",
+        "fontWeight": "bolder",
+        "textDecoration": "underline",
+        "textShadow": "#000000",
+        "textTransform": "uppercase"
+      },
+      "menuType": "modern",
+      "style": {
+        "margin": ""
+      },
+      "tabSize": {
+        "width": 150
+      },
+      "tabs": [
+        "Oil Calibration",
+        "RE Print "
+      ]
+    },
+    "type": "ia.container.tab"
+  }
+}

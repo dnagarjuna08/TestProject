@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "0846ccfc0cae0a2ee61a74f39aacd9ed59cc2ab19f6ad64afa168b790fa2df75",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-12-15T05:08:30Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "FromDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ToDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineName",
+        "sqlType": 7
+      }
+    ]
+  }
+}

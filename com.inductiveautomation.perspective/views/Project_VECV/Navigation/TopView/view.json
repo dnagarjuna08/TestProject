@@ -1,0 +1,253 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 40,
+      "width": 1240
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "page": "/homepage"
+                  },
+                  "scope": "C",
+                  "type": "nav"
+                }
+              }
+            },
+            "meta": {
+              "name": "imgLogo"
+            },
+            "position": {
+              "basis": "300px"
+            },
+            "props": {
+              "fit": {
+                "mode": "fill"
+              },
+              "source": "/system/images/Logo/VECVLOGO.png",
+              "style": {
+                "cursor": "pointer",
+                "marginLeft": "25px"
+              },
+              "tint": {
+                "color": "#FFFFFF",
+                "enabled": true
+              }
+            },
+            "type": "ia.display.image"
+          }
+        ],
+        "meta": {
+          "name": "logoFlexContainer"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "lblScreen"
+            },
+            "position": {
+              "basis": "50px",
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.TopViewHeader"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Label_Header",
+                "color": "#FFFFFF",
+                "textAlign": "Center"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "screenNameFlexContainer"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "currentDateTime"
+            },
+            "propConfig": {
+              "custom.AutoLogout": {
+                "binding": {
+                  "config": {
+                    "aggregate": "MinMax",
+                    "avoidScanClassValidation": true,
+                    "dateRange": {
+                      "mostRecent": "1",
+                      "mostRecentUnits": "HOUR"
+                    },
+                    "enableValueCache": true,
+                    "ignoreBadQuality": false,
+                    "polling": {
+                      "enabled": true,
+                      "rate": "5"
+                    },
+                    "preventInterpolation": false,
+                    "returnFormat": "Wide",
+                    "returnSize": {
+                      "numRows": "100",
+                      "type": "FIXED"
+                    },
+                    "tags": [],
+                    "valueFormat": "DATASET"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\ttry:\n#\t\tloginUser\u003dself.session.props.auth.user.id\n\t\tcurrenttime\u003dsystem.date.now()\n\t\tlastactivit\u003dself.session.props.lastActivity\t\n\t\tminbet\u003dsystem.date.minutesBetween(currenttime, lastactivit)\n\t\tinactiveTime\u003dsystem.date.secondsBetween(lastactivit, currenttime)\n#\t\tsystem.perspective.print(\"inactiveTime:\"+str(inactiveTime))\n\t\tif inactiveTime\u003e\u003d216000:\t\t\t\n\t\t\tmessageType1 \u003d \u0027AutoLogout\u0027\n\t\t\tsystem.perspective.sendMessage(messageType1, payload \u003d {\"value\":0,\"SelctedRowIndex\":0}, scope \u003d \"page\")\n\t\telse:\n\t\t\tpass\n\n\t\treturn 0\n\texcept:\n\t\tsystem.perspective.print(\u0027Exception :: Auto Log Out\u0027)\n\t\texc_type, exc_obj,tb \u003d sys.exc_info()\n\t\terrorMessage \u003d \"Error:\"+ str(exc_obj)\n\t\tsystem.perspective.print(errorMessage)\n\t\tlineno \u003d tb.tb_lineno\n\t\tsystem.perspective.print(lineno) \n\t",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "tag-history"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "now(1000)"
+                  },
+                  "transforms": [
+                    {
+                      "formatType": "datetime",
+                      "formatValue": "dd-MM-yyyy HH:mm:ss",
+                      "type": "format"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "color": "#FFFFFF",
+                "fontSize": "14px",
+                "margin": "5px",
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "loginId",
+              "tooltip": {
+                "enabled": true,
+                "location": "bottom-right",
+                "style": {
+                  "classes": "Common/ToolTip"
+                },
+                "text": "User Details"
+              }
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "session.custom.loggedInUser"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "alignItems": "center",
+                "color": "#FFFFFF",
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 20/04/2024\n\t\tPurpose: Show datetime and login user symbol. \n\t\"\"\"\n\t\n\tself.session.custom.IsLoggedIn \u003d False\n\tself.session.custom.loggedInUserId \u003d None\n\tself.session.custom.loggedInUser \u003d None\t\n\tsystem.perspective.navigate(\u0027/\u0027)\n\tself.session.custom.IsPlantConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsDeviceConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsUserManagementAuthenticated \u003d 0\n\tself.session.custom.IsRoleManagementAuthenticated \u003d 0\n\tself.session.custom.IsRoleConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsShiftConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsSAPUploadAuthenticated \u003d 0\n\tself.session.custom.IsDashboardAuthenticated \u003d 0\n\tself.session.custom.IsProductTrackingAuthenticated \u003d 0\n\tself.session.custom.IsImageMasterConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsOPCodeConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsWorkInstructionConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsCycleTimeConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsLocationRoutingAuthenticated \u003d 0\n\tself.session.custom.IsMachineBuildDataAuthenticated \u003d 0\n\tself.session.custom.IsFirstShotOKAuthenticated \u003d 0\n\tself.session.custom.IsHourlyProductionReportAuthenticated \u003d 0\n\tself.session.custom.IsReworkAuthenticated \u003d 0\n\tself.session.custom.IsWIPReportAuthenticated \u003d 0\n\tself.session.custom.IsOrderManagementAuthenticated \u003d 0\n\tself.session.custom.IsWashingMachineAuthenticated \u003d 0\n\tself.session.custom.IsSAPDataUploadAuthenticated \u003d 0\n\tself.session.custom.IsMaterialGroupConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsErrorProofingConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsWorkStationAuthenticated \u003d 0\n\tself.session.custom.IsTorqueMarkingAuthenticated \u003d 0\n\tself.session.custom.IsModelConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsChecklistConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsQualityManagementAuthenticated \u003d 0\n\tself.session.custom.IsReworkStationAuthenticated \u003d 0\n\tself.session.custom.IsPaintingStationAuthenticated \u003d 0\n\tself.session.custom.IsNumberPunchingAuthenticated \u003d 0\n\tself.session.custom.IsLiveTagStatusAuthenticated \u003d 0\n\tself.session.custom.IsGetDashBoardSerialNoAuthenticated \u003d 0\n\tself.session.custom.IsBOMCopyAuthenticated \u003d 0\n\tself.session.custom.IsPaintingConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsLogNCAuthenticated \u003d 0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "ImgLogout",
+              "tooltip": {
+                "enabled": true,
+                "location": "bottom-left",
+                "style": {
+                  "classes": "Common/ToolTip"
+                },
+                "text": "Logout"
+              }
+            },
+            "props": {
+              "fit": {
+                "mode": "fill"
+              },
+              "source": "/system/images/Logo/userProfilelogo.png",
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "type": "ia.display.image"
+          }
+        ],
+        "meta": {
+          "name": "detailsFlexContainer"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "props": {
+          "justify": "flex-end"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "justify": "center",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/TopView"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

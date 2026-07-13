@@ -1,0 +1,80 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "ded9aca748a512c6d7d9513ed7171e3d0ff0bac21e49a01df7e083734aff604c",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "eventid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueval",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torquecount",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueangle",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueresult",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pressingval",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pressingdep",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "operatorid",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "stationeventid",
+        "sqlType": 3
+      }
+    ]
+  }
+}

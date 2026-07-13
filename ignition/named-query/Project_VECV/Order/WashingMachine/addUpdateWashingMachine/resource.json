@@ -1,0 +1,95 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "0c752121b6000098d5ddb052e4ac4a79d9108a873b41a8f936e6ae460e8f88e7",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Event_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOM_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Status_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ShiftId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOMNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "serialNumber",
+        "sqlType": 7
+      }
+    ]
+  }
+}

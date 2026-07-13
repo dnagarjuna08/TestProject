@@ -1,0 +1,107 @@
+{
+  "custom": {},
+  "params": {
+    "column": "",
+    "rowData": {},
+    "rowIndex": "",
+    "source": "",
+    "value": ""
+  },
+  "propConfig": {
+    "params.column": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.source": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 27,
+      "width": 158
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": [
+              {
+                "config": {
+                  "script": "\tsystem.perspective.print(self.view.params.value)\n\t#system.perspective.navigate( \"/PPCRport\", {\u0027SerialNumber\u0027:self.view.params.value})\n\t#system.perspective.openPopup(\"idLinkReport\", \"/Sadhana/hyLinkRport\",{\u0027serialNumber\u0027,self.view.params.value})"
+                },
+                "scope": "G",
+                "type": "script"
+              },
+              {
+                "config": {
+                  "draggable": true,
+                  "id": "XBLy0S1f",
+                  "modal": false,
+                  "overlayDismiss": false,
+                  "resizable": true,
+                  "showCloseIcon": true,
+                  "type": "open",
+                  "viewParams": {
+                    "serialNumber": "{view.params.value}"
+                  },
+                  "viewPath": "Project_VECV/Report/hyLinkRport",
+                  "viewportBound": false
+                },
+                "scope": "C",
+                "type": "popup"
+              }
+            ]
+          }
+        },
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 25,
+          "width": 153
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "type": "property"
+            },
+            "onChange": {
+              "enabled": false,
+              "script": "\tif origin !\u003d \"Binding\":\n\t\tif currentVaue.value !\u003d perviousvalue.value:\n\t\t\tpayload \u003d {\n\t\t\t\t\u0027newValue\u0027:currentValue.value,\n\t\t\t\t\u0027source\u0027:self.view.params.source,\n\t\t\t\t\u0027column\u0027:self.view.params.column,\n\t\t\t\t\u0027rowData\u0027:self.view.params.rowData,\n\t\t\t\t\u0027rowIndex\u0027:self.view.params.rowIndex,\n\t\t\t\t\u0027action\u0027:\u0027update\u0027\n\t\t\t}\n\t\t\tsystem.perspective.sendMessage(\"columnAction\", payload, \"page\")\n\t"
+            },
+            "persistent": true
+          }
+        },
+        "props": {
+          "textStyle": {
+            "textDecoration": "underline"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

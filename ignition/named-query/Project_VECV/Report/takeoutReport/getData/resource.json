@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "9c8561b79e45e1909d4da0cada6736ea12fbd1a2f9050d78db81a6010c8bce43",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Line",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "FromDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ToDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Area",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "TakeinStatus",
+        "sqlType": 7
+      }
+    ]
+  }
+}

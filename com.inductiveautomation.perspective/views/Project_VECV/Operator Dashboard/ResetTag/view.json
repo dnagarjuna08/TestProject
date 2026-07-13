@@ -1,0 +1,681 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "image": {
+            "style": {
+              "margin": "5px"
+            }
+          },
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML20"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML60\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_0"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML60"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML70\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_1"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML70"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML90\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_2"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 6,
+              "name": "sm",
+              "order": 4,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 6,
+              "name": "md",
+              "order": 4,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 6,
+              "name": "lg",
+              "order": 4,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML90"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML100\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_3"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML100"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML110\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_4"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 10,
+              "name": "sm",
+              "order": 6,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "md",
+              "order": 6,
+              "rowIndex": 0,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "lg",
+              "order": 6,
+              "rowIndex": 0,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML110"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML120\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_5"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML120"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML130\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_6"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 2,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML130"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML140\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_7"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 3,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 3,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 3,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML140"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML150\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_8"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 6,
+              "name": "sm",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 6,
+              "name": "md",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 6,
+              "name": "lg",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML150"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML160\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_9"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 5,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 5,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 5,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML160"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML170\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_10"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 10,
+              "name": "sm",
+              "order": 6,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "md",
+              "order": 6,
+              "rowIndex": 1,
+              "span": 2
+            },
+            {
+              "colIndex": 10,
+              "name": "lg",
+              "order": 6,
+              "rowIndex": 1,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML170"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\troute \u003d \u0027[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML175\u0027\n\tresults \u003d system.tag.browse(route)\n\t\n\ttagPath \u003d []\n\tfor i in results.getResults():\n\t    stringPath \u003d str(i[\u0027fullPath\u0027])\n\t    tagPath.append(stringPath)\n\t\n\tAllPath \u003d []\n\tvalues \u003d []\n\tfor path in tagPath:\n\t    results \u003d system.tag.browse(path)\n\t    for i in results.getResults():\n\t        stringPath \u003d str(i[\u0027fullPath\u0027])\n\t        AllPath.append(stringPath)\n\t        values.append(0)\n\t\n\tsystem.tag.writeBlocking(AllPath,values)\n\ttagPath \u003d route + \u0027/CommonTags/OPList\u0027\n\tsystem.tag.writeBlocking(tagPath, [[]])\n\ttagPath \u003d route + \u0027/CommonTags/StationInProgress\u0027\n\tsystem.tag.writeBlocking(tagPath, 0)\n\ttagPath \u003d route + \u0027/CommonTags/SerialNumber\u0027\n\tsystem.tag.writeBlocking(tagPath, \u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_11"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 2
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6,#8FD8D9)",
+            "color": "#000000",
+            "margin": "5px"
+          },
+          "text": "LAML175"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

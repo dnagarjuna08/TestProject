@@ -1,0 +1,1 @@
+Select BOM.[M_BOM_Id] as "value", BOM.[M_BOMNumber] as "label" From [dbo].[M_BOM] AS BOM

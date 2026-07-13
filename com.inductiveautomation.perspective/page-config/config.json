@@ -1,0 +1,3471 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Project_VECV/Login/LoginNew"
+    },
+    "/AuditReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/Audit"
+    },
+    "/BomCopy": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/BomCopy"
+    },
+    "/BomPartView": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/BomParts"
+    },
+    "/Chart": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/TagHistorian/Chart"
+    },
+    "/ClassificationData": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/ClassificationDataConfigPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ClassificationData"
+    },
+    "/DashBoardSerialNumber": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/GetDashBoardSerialNo"
+    },
+    "/DataCollectionReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/DataCollectionReport"
+    },
+    "/DefectStatus": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/LADefectStatus/LegacyAxleDefectStatusReport"
+    },
+    "/DefectStatus_SCV": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/LADefectStatus/SCVAxleDefectStatusReport"
+    },
+    "/DefectView": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/DefectsAddPanel"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "editDefectView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/DefectsEditPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/DefectMapping"
+    },
+    "/DeviceConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/DevicePanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/Device"
+    },
+    "/DownTime_Report": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/DownTime_Report"
+    },
+    "/ErrorProofingConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/ErrorProofPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ErrorProofing Configuration"
+    },
+    "/ErrorProofingConfigurationQG": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/ErrorProofPanelQG"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ErrorProofingConfigurationQG"
+    },
+    "/ExceededTimeReport": {
+      "title": "",
+      "viewPath": "Project_VECV/Tentative Reports/Exceeded Time Report"
+    },
+    "/FSOK-Report": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/FSOKReport"
+    },
+    "/GroupConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/GroupConfigurationPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/GroupConfiguration"
+    },
+    "/HPR": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/HPR Report"
+    },
+    "/ImageMasterConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/ImageConfigurationPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ImageConfiguration"
+    },
+    "/ImageMasterQG": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/ImageConfigurationPanel (1)"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ImageConfiguration (1)"
+    },
+    "/LaxleRework": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Rework/Rework"
+    },
+    "/LocationRouting": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 900,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/LocationRoutingConfigurationPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/LocationRouting"
+    },
+    "/LogNC": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/LogNCNew"
+    },
+    "/NumberPunching": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/NumberPunching/NumberPunching"
+    },
+    "/OPCodeConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/OPCodePanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/OPCode Configuration"
+    },
+    "/PPCReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/PPCReportNew"
+    },
+    "/Poka-Yoke": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 250,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Transmission/Poka-yoke/Poka-yoke"
+    },
+    "/ProductionStatus": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/ProductionStatus"
+    },
+    "/ProductionStatus_SCV": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/ProductionStatus_SCV"
+    },
+    "/Production_dashboard_report": {
+      "docks": {
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/ProductionDashboard"
+    },
+    "/QAchecksheetRAFinder": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Quality/QCFinder"
+    },
+    "/QualityManagement": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Quality/QualityManagement/Quality Management"
+    },
+    "/RA\u0026DH_Mapping": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/RA and DH Mapping"
+    },
+    "/RaCodeCountProductionReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/RAcodeCountDay"
+    },
+    "/Rework": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/Rework Station"
+    },
+    "/Rework-Report": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/ReworkReport"
+    },
+    "/RoleConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/RoleConfiguration"
+    },
+    "/RoleManagement": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/RolePanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/Role"
+    },
+    "/SAP-BackFlush": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Order/SAP_BackFlush"
+    },
+    "/SAPUpload": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/SAPUpload"
+    },
+    "/StationWiseReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/StationWiseStatusRpt_1"
+    },
+    "/StoreRunningSeq": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/StoreTrackerLatest"
+    },
+    "/TMQuality": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Transmission/Master/CheckList"
+    },
+    "/TrackingReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/trackingReport"
+    },
+    "/TransmissionType": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Transmission/Master/TransmissionType"
+    },
+    "/WIPStock-Report": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/WIPReport_1"
+    },
+    "/WI_test": {
+      "docks": {
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Master Configuration/WI_Test/WIGeneral"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/WI_Test/WorkInstruction Configuration"
+    },
+    "/WorkStation": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/WorkStation"
+    },
+    "/accessDenied": {
+      "docks": {
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Templates/AccessDenied"
+    },
+    "/addqualitychecklist": {
+      "title": "",
+      "viewPath": "Project_VECV/Transmission/Master/AddCheckList"
+    },
+    "/andonLA": {
+      "title": "",
+      "viewPath": "Project_VECV/Report/AndonLA"
+    },
+    "/andonTA": {
+      "title": "andonTA",
+      "viewPath": "Project_VECV/Report/AndonTA"
+    },
+    "/checklistconfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Quality/ChecklistPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Quality/Checklist Configuration"
+    },
+    "/concurrentLogin": {
+      "title": "",
+      "viewPath": "Project_VECV/Templates/ConcurrentLogin"
+    },
+    "/cycletimeconfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/CycleTimeConfiguration"
+    },
+    "/dashboard": {
+      "docks": {
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Tracking/Production Dashboard/Dashboard"
+    },
+    "/defectReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/defectReport"
+    },
+    "/drivehead_consumption_status": {
+      "title": "",
+      "viewPath": "Project_VECV/Report/DriveHead_Consumption_Status"
+    },
+    "/driveheadandaxlemapping": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/DriveHeadAndAxleMapping"
+    },
+    "/engineType": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Transmission/Master/EngineType"
+    },
+    "/generic-report": {
+      "docks": {
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": true
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Tentative Reports/Generic Report"
+    },
+    "/homepage": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Home/HomePage"
+    },
+    "/livetags": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/LiveTagStatus"
+    },
+    "/logncreport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/AxleBuildReport"
+    },
+    "/mainWashingMachine": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Order/MainLineWashingMachine"
+    },
+    "/modelConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/ModelPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/ModelConfiguration"
+    },
+    "/orderManagement": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Order/OrderManagement"
+    },
+    "/painting-station": {
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/Painting Station"
+    },
+    "/paintingconfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/Master/PaintingConfigurationPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/Painting"
+    },
+    "/planConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/PlanConfiguration"
+    },
+    "/plantConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": true
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/PlantPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/PlantConfiguration"
+    },
+    "/pokayokeReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/Pokayoke_Report"
+    },
+    "/resettag": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Operator Dashboard/ResetTag"
+    },
+    "/shiftConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/ShiftPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/Shift"
+    },
+    "/storeTracker": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/WashingMachineDashboard"
+    },
+    "/subAssemblyWashingMachine": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "Nav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Order/SubAssemblyWashingMachine"
+    },
+    "/support": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/IT Support/Support"
+    },
+    "/tagHistorian": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/TagHistorian/HistorianStatus"
+    },
+    "/take_in": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/TakeinConfigurationPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/Take-inConfiguration"
+    },
+    "/takeoutReport": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Report/takeOutReport"
+    },
+    "/torquemarking": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/TorqueMarkingConfiguration"
+    },
+    "/userManagement": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/UserPanel"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Admin/User"
+    },
+    "/workinstructionConfiguration": {
+      "docks": {
+        "left": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "show",
+            "iconUrl": "",
+            "id": "leftNav",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 200,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/Menu"
+          }
+        ],
+        "right": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightView",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 50,
+            "viewParams": {
+              "Downloadvisible": false
+            },
+            "viewPath": "Project_VECV/Navigation/RightView"
+          },
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "cover",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "rightp",
+            "modal": false,
+            "resizable": false,
+            "show": "onDemand",
+            "size": 300,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Pannel/WIGeneral"
+          }
+        ],
+        "top": [
+          {
+            "anchor": "fixed",
+            "autoBreakpoint": 480,
+            "content": "push",
+            "handle": "hide",
+            "iconUrl": "",
+            "id": "",
+            "modal": false,
+            "resizable": false,
+            "show": "visible",
+            "size": 40,
+            "viewParams": {},
+            "viewPath": "Project_VECV/Navigation/TopView"
+          }
+        ]
+      },
+      "title": "",
+      "viewPath": "Project_VECV/Master Configuration/WorkInstruction Configuration"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

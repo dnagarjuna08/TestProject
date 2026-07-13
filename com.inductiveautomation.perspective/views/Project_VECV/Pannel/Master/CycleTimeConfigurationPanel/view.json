@@ -1,0 +1,150 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 550,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "meta": {
+              "name": "CoordinateContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 1,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

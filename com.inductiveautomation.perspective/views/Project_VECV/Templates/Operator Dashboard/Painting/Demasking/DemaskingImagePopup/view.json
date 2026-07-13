@@ -1,0 +1,233 @@
+{
+  "custom": {
+    "currentCount": 0,
+    "dsPainting": {
+      "$": [
+        "ds",
+        192,
+        1722258134663
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "MST_PaintingTypeConf_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "MST_PaintingType_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "MST_Area_Id",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "ImageName",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "ImagePath",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "StepNo",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "IsActive",
+          "type": "Boolean"
+        },
+        {
+          "data": [],
+          "name": "CreatedBy",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "CreatedDate",
+          "type": "Date"
+        },
+        {
+          "data": [],
+          "name": "ModifiedBy",
+          "type": "Integer"
+        },
+        {
+          "data": [],
+          "name": "ModifiedDate",
+          "type": "Date"
+        },
+        {
+          "data": [],
+          "name": "IsDeleted",
+          "type": "Boolean"
+        }
+      ]
+    },
+    "imageCount": 0
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\tWritten By: Sagar Iparkar\n\tWritten Date: 25/07/2024\n\tPurpose:\t\t\t \n\t\t\tGet Painting Images Area Wise \n\t\"\"\"\n\t\n\tparams \u003d {\u0027MST_Area_Id\u0027:self.params.AreaId,\u0027MST_PaintingType_Id\u0027:self.params.MST_PaintingType_Id}\t\n\tsystem.perspective.print(\"DeMasking params \"+str(params))\n#\tparams \u003d {\u0027MST_Area_Id\u0027:26,\u0027MST_PaintingType_Id\u0027:2}\t\t\t\t\n\tdsResult \u003d system.db.runNamedQuery(\"Project_VECV/OperatorDashboard/Painting/getPaintingAreaWiswImages\",params)\n\t\n\tself.custom.imageCount\u003dlen(dsResult)\n\tself.getChild(\"root\").getChild(\"lblTotalNoOfStep\").props.text\u003d\"Total No Step \"+ str(self.custom.imageCount)\n\tself.custom.currentCount \u003d1\n\tself.custom.dsPainting\u003ddsResult\n\tif self.custom.imageCount \u003e 0:\n\t\tImageName\u003ddsResult[self.custom.currentCount-1][\u0027ImageName\u0027]\n\t\tImagePath\u003ddsResult[self.custom.currentCount-1][\u0027ImagePath\u0027]\n\t\tself.getChild(\"root\").getChild(\"imgMasking\").props.source\u003dImagePath\n\t#\tfor i in dsResult:\n\t#\t\tprint i[\u0027ImageName\u0027]\n\t#\t\tprint i[\u0027ImagePath\u0027]\n\telse:\n\t\tself.custom.imageCount\u003d0\n\t\tself.custom.currentCount \u003d0\n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "AreaId": 0,
+    "MST_PaintingType_Id": 0
+  },
+  "propConfig": {
+    "custom.currentCount": {
+      "persistent": true
+    },
+    "custom.dsPainting": {
+      "persistent": true
+    },
+    "custom.imageCount": {
+      "persistent": true
+    },
+    "params.AreaId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.MST_PaintingType_Id": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 600,
+      "width": 600
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "imgMasking"
+        },
+        "position": {
+          "height": 544,
+          "width": 599
+        },
+        "props": {
+          "fit": {
+            "mode": "fill"
+          },
+          "source": "http://srdwsmesqa01/Ignition/Painting/legacy axle/demasking//1722232472.png"
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\"\"\"\n\tWritten By: Sagar Iparkar\n\tWritten Date: 25/07/2024\n\tPurpose:\t\t\t \n\t\t\tComplete Image masking operation. \n\t\"\"\"\n\ttry:\n\t\tself.props.enabled\u003dFalse\n\t\tdsResult\u003dself.view.custom.dsPainting\n\t\tif self.view.custom.imageCount \u003e self.view.custom.currentCount:\n\t\t\tself.view.custom.currentCount \u003dself.view.custom.currentCount+1\t\n\t\t\tImageName\u003ddsResult[self.view.custom.currentCount-1][\u0027ImageName\u0027]\n\t\t\tImagePath\u003ddsResult[self.view.custom.currentCount-1][\u0027ImagePath\u0027]\n\t\t\tself.getSibling(\"imgMasking\").props.source\u003dImagePath\n\t\t\t\n\t\telse:\n\t\t\tsystem.perspective.closePopup(\u0027\u0027)\n\t\tfrom threading import Timer\n\t\tdef runThisLater():\n\t\t\tself.props.enabled\u003dTrue\n\t\tTimer(2.0, runThisLater).start()\n\texcept:\n\t\tscreenName \u003d\u0027PopUp Masking Painting\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/PopUp Masking Painting\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e Next Button\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\n\t\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          },
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttry:\n\t\tdsResult\u003dself.view.custom.dsPainting\n\t\tif self.view.custom.imageCount \u003e self.view.custom.currentCount\n\t\t\tself.view.custom.currentCount \u003dself.view.custom.currentCount+1\t\n\t\t\tImageName\u003ddsResult[self.view.custom.currentCount-1][\u0027ImageName\u0027]\n\t\t\tImagePath\u003ddsResult[self.view.custom.currentCount-1][\u0027ImagePath\u0027]\n\t\t\tself.getSibling(\"imgMasking\").props.source\u003dImagePath\n\n\t\telse:\n\t\t\tsystem.perspective.closePopup(\u0027\u0027)\n\texcept:\n\t\tscreenName \u003d\u0027PopUp Masking Painting\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/PopUp Masking Painting\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e Next Button\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\n\t\n\t"
+              },
+              "enabled": false,
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnclosed"
+        },
+        "position": {
+          "height": 30,
+          "width": 100,
+          "x": 466,
+          "y": 556
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "if({view.custom.imageCount}\u003d{view.custom.currentCount},\u0027Complete\u0027,\u0027Next\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+          },
+          "textStyle": {
+            "classes": "Project_VECV/Panel/Button"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "lblTotalNoOfStep"
+        },
+        "position": {
+          "height": 32,
+          "width": 203,
+          "x": 8,
+          "y": 554
+        },
+        "props": {
+          "text": "Total No Step 0"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "lblCurrentStep"
+        },
+        "position": {
+          "height": 32,
+          "width": 203,
+          "x": 211,
+          "y": 554
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.currentCount"
+              },
+              "transforms": [
+                {
+                  "code": "\tres\u003d\"Current Step \"+str(value)\n\treturn res",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "custom": {},
+  "params": {
+    "fromButton": "",
+    "id": "",
+    "message": ""
+  },
+  "propConfig": {
+    "params.fromButton": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.message": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 130,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Message"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Write your script here\t\n#\tsystem.perspective.sendMessage(\"deletePop\",payload \u003d {\"isVisible\":0}, scope \u003d \"page\")\t\n#\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n#\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n#\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\t\n\tsystem.perspective.closePopup(\"DeleteAsgnWI\")\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 1,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 25
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblContent"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.message"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/PopUp/Text",
+                    "fontSize": 12
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntContent"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                }
+              ],
+              "height": 40
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t# Write your script here\n\t\"\"\"\n\t\t\tWritten By: Niladri Banerjee\n\t\t\tWritten Date: 21/05/2024\n\t\t\tPurpose:\t\t\t \n\t\t\t\t\tTo delete assigned WorkInstruction\n\t\"\"\"\n\tsystem.perspective.closePopup(\"DeleteAsgnWI\")\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnNo"
+                },
+                "position": {
+                  "height": 25,
+                  "width": 90,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "No",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntNo"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 6
+                }
+              ],
+              "height": 45
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\t\tWritten By: Niladri Banerjee\n\t\t\tWritten Date: 21/05/2024\n\t\t\tPurpose:\t\t\t \n\t\t\t\t\tTo delete selected workinstruction\n\t\t\"\"\"\n\t# Write your script here\n\timport time\n\tfromButton\u003dself.view.params.fromButton\n\n\tif(fromButton\u003d\u003d\u0027delete\u0027):\n\t\tsystem.perspective.sendMessage(\"deleteAssignedWI\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027Up\u0027):\n  \t\tsystem.perspective.sendMessage(\"upAssignedWI\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027Down\u0027):\n\t\tsystem.perspective.sendMessage(\"downAssignedWI\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027ReworkUp\u0027):\n\t\tsystem.perspective.sendMessage(\"reworkUpStep\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027ReworkDown\u0027):\n\t\tsystem.perspective.sendMessage(\"reworkDownStep\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027ReworkDelete\u0027):\n\t\tsystem.perspective.sendMessage(\"reworkDeleteStep\",payload \u003d {}, scope \u003d \"page\")\t\t\n\n\telif(fromButton\u003d\u003d\u0027CompleteStep\u0027):\n\t\tsystem.perspective.closePopup(\"DeleteAsgnWI\")\t\n\t\tmessageType \u003d \u0027stepExecution\u0027  \n\t\tpayload \u003d {\u0027Parameters\u0027:\u0027\u0027} \n\n\t\tsystem.perspective.sendMessage(messageType,payload,scope \u003d \u0027page\u0027 )\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnYes"
+                },
+                "position": {
+                  "height": 25,
+                  "width": 90,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Yes",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntYes"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 6
+                }
+              ],
+              "height": 45
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          },
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/RightView"
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

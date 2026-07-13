@@ -1,0 +1,16 @@
+{
+  "scope": "G",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "data.bin"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "Aniket",
+      "timestamp": "2025-05-08T06:52:11Z"
+    },
+    "lastModificationSignature": "08111e8fd4c35202105b583668c4753c844104c063af2adb0c73a828d50ac0e8"
+  }
+}

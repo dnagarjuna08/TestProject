@@ -1,0 +1,151 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Dropdown"
+            },
+            "position": {
+              "height": 0.7308,
+              "width": 0.2725,
+              "x": 0.0075,
+              "y": 0.0577
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "queryPath": "Project_VECV/Quality/checksheet/DrpRAcode"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "margin": 5,
+                "padding": 5
+              },
+              "value": -1
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.parent.getChild(\"CoordinateContainer_0\").getChild(\"TextField\").props.text\u003d\"\"\n\tsystem.perspective.print(\"satrt---------\u003e\")\n\tM_Bom\u003dself.getSibling(\"Dropdown\").props.value\n\ttest2\u003dself.getSibling(\"Dropdown\").props.options\n\tsystem.perspective.print(M_Bom)\n\tsystem.perspective.print(test2)\n\tresult\u003dsystem.db.runNamedQuery(\"Project_VECV/Quality/checksheet/find_Fam\",{\u0027M_Bom_ID\u0027:M_Bom})\n\tmodel_name\u003d\"\"\n\tif result !\u003d\"\" and result !\u003d 0 :\n\t\tmodel_name \u003d result[0][\"ModelName\"]\n\tsystem.perspective.print(result)\n\tsystem.perspective.print(model_name)\n\tself.parent.parent.getChild(\"CoordinateContainer_0\").getChild(\"TextField\").props.text\u003dmodel_name"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 4,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 4,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 2
+                },
+                {
+                  "colIndex": 4,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                }
+              ],
+              "height": 0.8077,
+              "rotate": {
+                "anchor": "386% 50%"
+              },
+              "width": 0.21,
+              "x": 0.3049,
+              "y": 0.0313
+            },
+            "props": {
+              "style": {
+                "margin": 5,
+                "padding": 5
+              },
+              "text": "Find"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "CoordinateContainer"
+        },
+        "position": {
+          "basis": "52px"
+        },
+        "props": {
+          "mode": "percent"
+        },
+        "type": "ia.container.coord"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "height": 1,
+              "width": 1
+            },
+            "props": {
+              "spellcheck": false,
+              "style": {
+                "fontFamily": "Arial",
+                "fontWeight": "bolder",
+                "margin": 5
+              }
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "CoordinateContainer_0"
+        },
+        "position": {
+          "basis": "55px"
+        },
+        "props": {
+          "mode": "percent",
+          "style": {
+            "fontFamily": "Arial",
+            "fontSize": 1
+          }
+        },
+        "type": "ia.container.coord"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

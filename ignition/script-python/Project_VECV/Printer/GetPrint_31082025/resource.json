@@ -1,0 +1,17 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "code.py"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "Nagarjuna",
+      "timestamp": "2025-08-31T11:16:22Z"
+    },
+    "hintScope": 2,
+    "lastModificationSignature": "67899b4d4812c86fac79e06a664be071b8712d146f04bee36446bd08a8e83387"
+  }
+}

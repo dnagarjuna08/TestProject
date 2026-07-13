@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "fontFamily": "Cambria",
+      "fontSize": "16px",
+      "textAlign": "center"
+    }
+  }
+}

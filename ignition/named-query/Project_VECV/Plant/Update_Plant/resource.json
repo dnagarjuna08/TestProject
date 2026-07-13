@@ -1,0 +1,110 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "cb5d09a687f402334af8d448f1d03e071867862cdc18e9123de26a9f8a550b82",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LevelId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AttachedTo",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "UnitName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IPAddress",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "UnitId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStationTypeId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "areaid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "linetypeid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "plantid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "plantaddress",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "plantcode",
+        "sqlType": 7
+      }
+    ]
+  }
+}

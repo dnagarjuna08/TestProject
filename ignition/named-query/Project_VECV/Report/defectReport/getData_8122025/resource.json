@@ -1,0 +1,65 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "cf49bb38b4c790a202fb60ffcdbb7e1ca8f6b2544e5c4737e0829e9d4e60bac2",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2025-12-08T12:12:23Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Line",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "FromDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ToDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Area",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectCategory",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Status",
+        "sqlType": 7
+      }
+    ]
+  }
+}

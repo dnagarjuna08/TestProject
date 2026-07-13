@@ -1,0 +1,135 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "c175b131c6b8660b976928239bfee066dc35d44ae5d91a756f2aad5652f4aa1b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Event_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOM_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPDefinition_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Status_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_DELTA_SPIN",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_DIFF_VIBRATION",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_GEAR_RATIO",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_LH_RPM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_LH_VIBRATION",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_NOISE",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_RH_VIBRATION",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_TORQUE",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Process_RH_RPM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Status",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Operator_Id",
+        "sqlType": 7
+      }
+    ]
+  }
+}

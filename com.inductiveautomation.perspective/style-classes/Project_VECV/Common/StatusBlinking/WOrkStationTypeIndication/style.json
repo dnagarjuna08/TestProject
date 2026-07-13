@@ -1,0 +1,13 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FCFCFC",
+      "overflow": "hidden",
+      "overflowX": "hidden",
+      "overflowY": "hidden",
+      "paddingBottom": "25px",
+      "paddingLeft": "15px",
+      "paddingRight": "15px"
+    }
+  }
+}

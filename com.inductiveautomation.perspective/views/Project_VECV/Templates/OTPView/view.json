@@ -1,0 +1,272 @@
+{
+  "custom": {},
+  "params": {
+    "Email": ""
+  },
+  "propConfig": {
+    "params.Email": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 300,
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "lblVerify"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "style": {
+                "fontWeight": "bold",
+                "margin": "5px",
+                "textAlign": "center"
+              },
+              "text": "Verify"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblMessage"
+            },
+            "position": {
+              "basis": "30px"
+            },
+            "props": {
+              "style": {
+                "fontWeight": "lighter",
+                "margin": "5px",
+                "textAlign": "center"
+              },
+              "text": "Your code was sent to you via mail"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onKeyDown": {
+                  "config": {
+                    "script": "\t\"\"\"\n\tWritten By: Amitkuamr Ravat\n\tWritten Date: 25/08/2024\n\tPurpose:\t\t\t \n\t\t\tPerform OTP validation. \n\t\"\"\"\t\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\totp \u003d self.getSibling(\"TextField\").props.text\n\t\tif str(otp) \u003d\u003d \u0027\u0027:\n\t\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d True\n\t\t\tself.parent.getChild(\"FlexWarning\").getChild(\"lblmessage\").props.text \u003d \"Please Enter OTP\"\n\t\telif str(otp) !\u003d str(self.session.custom.OTP):\n\t\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d True\n\t\t\tself.parent.getChild(\"FlexWarning\").getChild(\"lblmessage\").props.text \u003d \"Invalid OTP\"\n\t\telse:\n\t\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d False\n\t\t\tsystem.perspective.closePopup(\"#OTP\")\n\t\t\tsystem.perspective.sendMessage(\"buttonClick\",payload \u003d {}, scope \u003d \"page\")\n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "placeholder": "Please enter OTP....",
+              "style": {
+                "margin": "5px"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "focus",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tself.focus()",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\tWritten By: AmitKumar ravat\n\tWritten Date: 25/08/2024\n\tPurpose:\t\t\t \n\t\t\tPerform OTP validation. \n\t\"\"\"\n\totp \u003d self.getSibling(\"TextField\").props.text\n\tif str(otp) \u003d\u003d \u0027\u0027:\n\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d True\n\t\tself.parent.getChild(\"FlexWarning\").getChild(\"lblmessage\").props.text \u003d \"Please Enter OTP\"\n\telif str(otp) !\u003d str(self.session.custom.OTP):\n\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d True\n\t\tself.parent.getChild(\"FlexWarning\").getChild(\"lblmessage\").props.text \u003d \"Invalid OTP\"\n\telse:\n\t\tself.getSibling(\"FlexWarning\").meta.visible \u003d False\n\t\tsystem.perspective.closePopup(\"#OTP\")\n\t\tsystem.perspective.sendMessage(\"buttonClick\",payload \u003d {}, scope \u003d \"page\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnVerify"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#474BEA",
+                "margin": "5px"
+              },
+              "text": "Verify"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblmessage"
+                },
+                "position": {
+                  "basis": "210px"
+                },
+                "props": {
+                  "style": {
+                    "textAlign": "right"
+                  },
+                  "text": "Didn\u0027t Receive OTP ?"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\tWritten By: AmitKumar ravat\n\tWritten Date: 25/08/2024\n\tPurpose:\t\t\t \n\t\t\tResend OTP. \n\t\"\"\"\n\tsystem.perspective.print(\"resend\")\n\tself.session.custom.OTP \u003d Project_VECV.ActiveDirectory.OTP.getOTP()\n\tbody \u003d \"\u003cHTML\u003e\u003cBODY\u003e\u003cH1\u003eMES OTP Authentication\u003c/H1\u003e\"\n\tbody +\u003d \"\u003cP\u003ePlease enter Below OTP to Complete MES Authentication.\u003c/P\u003e\u003c/br\u003e\u003cP\u003e\u003cB\u003e\"\n\tbody +\u003d str(self.session.custom.OTP)\n\tbody +\u003d \"\u003c/B\u003e\u003c/P\u003e\"\n\tbody+\u003d\"\u003c/br\u003e\u003cP\u003eIf you did not requested for this OTP, Please ignore the mail or contact support\u003c/P\u003e\u003c/BODY\u003e\u003c/HTML\u003e\"\n\t\n\trecipients \u003d [str(self.view.params.Email)]\n\tsystem.net.sendEmail(\"\",\"qdigitalization@vecvnet.com\", \"MES OTP Auth\", body, 1, recipients, smtpProfile \u003d \u0027SMTPEmail\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblResend"
+                },
+                "position": {
+                  "basis": "116px"
+                },
+                "props": {
+                  "style": {
+                    "color": "#0000FF",
+                    "cursor": "pointer",
+                    "margin": "1px",
+                    "textDecoration": "underline"
+                  },
+                  "text": "Request Again"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\n\t\"\"\"\n\tWritten By: AmitKumar ravat\n\tWritten Date: 25/08/2024\n\tPurpose:\t\t\t \n\t\t\tResent OTP. \n\t\"\"\"\n\tsystem.perspective.print(\"resend\")\n\tself.session.custom.OTP \u003d Project_VECV.ActiveDirectory.OTP.getOTP()\n\tbody \u003d \"\u003cHTML\u003e\u003cBODY\u003e\u003cH1\u003eMES OTP Authentication\u003c/H1\u003e\"\n\tbody +\u003d \"\u003cP\u003ePlease enter Below OTP to Complete MES Authentication.\u003c/P\u003e\u003c/br\u003e\u003cP\u003e\u003cB\u003e\"\n\tbody +\u003d str(self.session.custom.OTP)\n\tbody +\u003d \"\u003c/B\u003e\u003c/P\u003e\"\n\tbody+\u003d\"\u003c/br\u003e\u003cP\u003eIf you did not requested for this OTP, Please ignore the mail or contact support\u003c/P\u003e\u003c/BODY\u003e\u003c/HTML\u003e\"\n\t\n\trecipients \u003d [str(self.view.params.Email)]\n\tsystem.net.sendEmail(\"\",\"qdigitalization@vecvnet.com\", \"MES OTP Auth\", body, 1, recipients, smtpProfile \u003d \u0027SMTPEmail\u0027)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "Icon"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "color": "#0000FF",
+                  "path": "material/autorenew",
+                  "style": {
+                    "cursor": "pointer"
+                  }
+                },
+                "type": "ia.display.icon"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblmessage"
+                },
+                "position": {
+                  "grow": 1
+                },
+                "props": {
+                  "style": {
+                    "color": "#FF0000",
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  },
+                  "text": "Invalid OTP"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "FlexWarning",
+              "visible": false
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "200px",
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "backgroundColor": "#D5D5D5"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tsystem.perspective.sendMessage(\"focus\", payload\u003d{},scope\u003d\"page\")"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

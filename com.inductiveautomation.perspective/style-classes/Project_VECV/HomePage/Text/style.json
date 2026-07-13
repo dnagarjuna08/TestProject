@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "color": "#ffffff",
+      "fontFamily": "Cambria",
+      "fontSize": "12px",
+      "fontWeight": "normal",
+      "textAlign": "left",
+      "wordWrap": "break-word"
+    }
+  }
+}

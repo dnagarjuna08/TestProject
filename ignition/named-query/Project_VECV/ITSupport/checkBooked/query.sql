@@ -1,0 +1,1 @@
+select count(*) from TRN_ReleasedProductionOrder where SerialNumber =  :SerialNumber and  IsBooked = 1

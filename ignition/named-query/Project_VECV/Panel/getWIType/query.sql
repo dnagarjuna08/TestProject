@@ -1,0 +1,1 @@
+SELECT  MST_WIType_Id ,  WIType from  MST_WIType where  IsActive = 1

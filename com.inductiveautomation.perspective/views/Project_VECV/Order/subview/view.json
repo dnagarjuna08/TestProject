@@ -1,0 +1,139 @@
+{
+  "custom": {},
+  "params": {
+    "Id": "value",
+    "column": "",
+    "messageName": "value",
+    "rowData": "",
+    "rowIndex": "",
+    "value": false
+  },
+  "propConfig": {
+    "params.Id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.column": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.messageName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 53,
+      "width": 53
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\ttry:\n\n\t\tscriptName \u003d \u0027Location On Action Performed\u0027\n\t\t\t\t\t\n\t\tSelctedRow\u003dself.view.params.rowIndex\n\t\tcolumnName\u003dself.view.params.column\t\n\t\trowData\u003dself.view.params.rowData\n\t\tsystem.perspective.print(\"selected value %s\"%self.props.selected)\n\t\tif self.props.selected \u003d\u003d 1 or self.props.selected \u003d\u003d True:\n\t\t \tno\u003dTrue\n\t \telse:\n\t \t\tno\u003dFalse\n\t\tsystem.perspective.print(\"SelctedRow \"+str(SelctedRow))\n\t\tsystem.perspective.print(\"columnName \"+str(columnName))\n\t\tsystem.perspective.print(\"no \"+str(no))\n\t\tif self.view.params.messageName \u003d\u003d \u0027rowSelectionHolded\u0027:\n\t\t\tmessageType \u003d \u0027UpdateHeldOrders\u0027\n\t\telse:\n\t\t\tmessageType \u003d \u0027UpdateCreatedOrder\u0027\n\t\tsystem.perspective.sendMessage(messageType, payload \u003d {\"columnName\":columnName,\"No\":no,\"SelctedRow\":SelctedRow}, scope \u003d \"page\")\n\t\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Order Management\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Order/Subview\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Subview\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Checkbox"
+        },
+        "position": {
+          "height": 51,
+          "width": 50
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "session.custom.isOrderSelectedAll"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value\u003d\u003d1:\n\t\tdata \u003d False\n\telse:\n\t\tdata \u003d True\n\treturn data",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.selected": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "transforms": [
+                {
+                  "code": "\tval\u003dself.session.custom.isOrderSelectedAll\n\tif (value\u003d\u003d1 or value\u003d\u003dTrue or str(value).strip().lower()\u003d\u003d\u0027true\u0027 or str(value).strip()\u003d\u003d\u00271\u0027) :\n\t\tvalue\u003dTrue\n\telse:\n\t\tvalue\u003dFalse\n\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "checkedIcon": {
+            "color": {
+              "enabled": "#3888D7"
+            }
+          },
+          "text": "",
+          "uncheckedIcon": {
+            "color": {
+              "enabled": "#2B2B2B"
+            }
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "updateCheckBox",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.props.selected \u003d False",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.checkbox"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\tsystem.perspective.print(\"Checkbox in root of checkbox %s\"%self.getChild(\"Checkbox\").props.selected)\n\tif self.getChild(\"Checkbox\").props.selected:\n\t\tself.getChild(\"Checkbox\").props.selected \u003d False\n\telse:\n\t\tself.getChild(\"Checkbox\").props.selected \u003d True\n\tvalue \u003d self.getChild(\"Checkbox\").props.selected\n\tmessageType\u003dstr(self.view.params.messageName)\n\tpayload \u003d{\"value\":bool(value),\"id\":self.view.params.Id}\n\tsystem.perspective.sendMessage(messageType\u003dmessageType, payload \u003dpayload  ,scope\u003d\"page\")\n\tsystem.perspective.print(str(payload)+str(messageType))"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "custom": {},
+  "params": {
+    "AreaId": 0,
+    "LineId": 0,
+    "SerialNumber": "000002",
+    "StationName": "TAWE40"
+  },
+  "propConfig": {
+    "params.AreaId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.LineId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.SerialNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.StationName": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 600
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "Serial": "{view.params.SerialNumber}"
+                },
+                "queryPath": "Project_VECV/Quality/GetLogNC"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "headerStyle": {
+            "classes": "Project_VECV/Table/Header"
+          },
+          "pager": {
+            "initialOption": 10
+          },
+          "style": {
+            "classes": "Project_VECV/Table/Border"
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

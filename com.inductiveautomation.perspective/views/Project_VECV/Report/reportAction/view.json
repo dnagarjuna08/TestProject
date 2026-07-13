@@ -1,0 +1,517 @@
+{
+  "custom": {},
+  "params": {
+    "Area": "",
+    "AreaValue": "",
+    "EndDate": "",
+    "Line": "",
+    "RACode": "",
+    "SerialNumber": "",
+    "StartDate": "",
+    "WorkStation": ""
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.AreaValue": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.EndDate": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.Line": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.RACode": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.SerialNumber": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.StartDate": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.WorkStation": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 100,
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "StartDate :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "DateTimeInput"
+                    },
+                    "position": {
+                      "basis": "170px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tself.view.params.StartDate \u003d self.props.value"
+                        }
+                      }
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "pickerType": "date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStart"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "EndDate :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "DateTimeInput"
+                    },
+                    "position": {
+                      "basis": "170px"
+                    },
+                    "propConfig": {
+                      "props.minDate": {
+                        "binding": {
+                          "config": {
+                            "path": ".../cntStart/DateTimeInput.props.value"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\ttry:\n\t\treturn system.date.addDays(value, 1)\n\texcept:\n\t\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tself.view.params.EndDate \u003d self.props.value"
+                        }
+                      }
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "pickerType": "date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "cntEnd"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntDateFilter"
+            },
+            "position": {
+              "basis": "50px",
+              "grow": 1,
+              "shrink": 0
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "50px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Area :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "selectedAreaIDs": ""
+                    },
+                    "meta": {
+                      "name": "drpArea"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaID": "0",
+                              "DropdownType": "1",
+                              "LineID": "0"
+                            },
+                            "queryPath": "Project_VECV/Panel/getallDropdowns"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\treturn datalist",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "query"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tAreaID \u003d self.props.value\n\tself.view.params.AreaValue\u003dself.props.value\n\tif str(AreaID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tAreaID \u003d self.props.options\n\t\tAreaIds \u003d \u0027\u0027\n\t\tfor dt in AreaID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tAreaIds +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tAreaIds \u003d str(AreaID) + \u0027,\u0027\n\tself.view.params.Area \u003d AreaIds\n\tparams \u003d {\u0027DropdownType\u0027:2,\u0027AreaID\u0027:AreaIds,\u0027LineID\u0027:0}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getallDropdowns\",params)\n\t\n\tdataset \u003d system.dataset.toPyDataSet(dataset)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\t\t\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.options \u003d datalist\n\t\t\n\tparams \u003d {\u0027DropdownType\u0027:17,\u0027AreaID\u0027:AreaIds,\u0027LineID\u0027:0}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getallDropdowns\",params)\n\tdataset \u003d system.dataset.toPyDataSet(dataset)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\tself.parent.parent.getChild(\"cntRAcode\").getChild(\"drpRACode\").props.options \u003d datalist\n\tself.parent.parent.getChild(\"cntRAcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1"
+                        }
+                      }
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntArea"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "50px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Line :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpLine"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tLineID \u003d self.props.value\n\tif str(LineID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tLineID \u003d self.props.options\n\t\tLineIDs \u003d \u0027\u0027\n\t\tfor dt in LineID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tLineIDs +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tLineIDs \u003d str(LineID) + \u0027,\u0027\n\tself.view.params.Line \u003d LineIDs\n\tAreaID \u003d self.view.params.Area\n\tparams \u003d {\u0027DropdownType\u0027:3,\u0027AreaID\u0027:AreaID,\u0027LineID\u0027:LineIDs}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getallDropdowns\",params)\n\t\t\n\tdataset \u003d system.dataset.toPyDataSet(dataset)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\t\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.options \u003d datalist\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1"
+                        }
+                      }
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntLine"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "90px",
+                      "grow": 1,
+                      "shrink": 0
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "WorkStation :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpStation"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tWSID \u003d self.props.value\n\tif str(WSID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tWSID \u003d self.props.options\n\t\tWSIDs \u003d \u0027\u0027\n\t\tfor dt in WSID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tWSIDs +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tWSIDs \u003d str(WSID) + \u0027,\u0027\n\tself.view.params.WorkStation \u003d WSIDs"
+                        }
+                      }
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStation"
+                },
+                "position": {
+                  "basis": "290px"
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "10px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "90px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "RA Code :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpRACode"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tAreaID \u003d self.view.params.Area\n\tsystem.perspective.print(AreaID)\n\tBOMID \u003d self.props.value\n\tsystem.perspective.print(BOMID)\n\tif str(BOMID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tBOMID \u003d self.props.options\n\t\tBOMIDs \u003d \u0027\u0027\n\t\tfor dt in BOMID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tBOMIDs +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tBOMIDs \u003d str(BOMID) + \u0027,\u0027\n\t\n\tself.view.params.RACode \u003d BOMIDs\n\tparams \u003d {\u0027AreaId\u0027:AreaID,\u0027BOM_Id\u0027:BOMIDs}\n\tsystem.perspective.print(params)\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getAllSerialNumber\",params)\n\tsystem.perspective.print(dataset)\n\t\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\t\n\tself.parent.parent.getChild(\"cntSerialNumber\").getChild(\"drpSerialNumber\").props.options \u003d datalist\n\tself.parent.parent.getChild(\"cntSerialNumber\").getChild(\"drpSerialNumber\").props.value \u003d -1"
+                        }
+                      }
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntRAcode"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "10px",
+                    "marginLeft": "5px",
+                    "marginRight": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "150px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Serial Number :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpSerialNumber"
+                    },
+                    "position": {
+                      "basis": "256px"
+                    },
+                    "propConfig": {
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tSerialNumber \u003d self.props.value\n\tif str(SerialNumber).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tSerialNumber \u003d self.props.options\n\t\tSerialNumbers \u003d \u0027\u0027\n\t\tfor dt in SerialNumber:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tSerialNumbers +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tSerialNumbers \u003d str(SerialNumber) + \u0027,\u0027\n\t\n\tself.view.params.SerialNumber \u003d SerialNumbers"
+                        }
+                      }
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntSerialNumber"
+                },
+                "position": {
+                  "basis": "261px"
+                },
+                "props": {
+                  "justify": "flex-end",
+                  "style": {
+                    "margin": "10px",
+                    "marginLeft": "5px",
+                    "marginRight": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntSelectionFilter"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntFlex"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "justify": "space-around"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "clearFilter",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.getChild(\"cntDateFilter\").getChild(\"cntEnd\").getChild(\"DateTimeInput\").props.value \u003d None\n\tself.getChild(\"cntDateFilter\").getChild(\"cntStart\").getChild(\"DateTimeInput\").props.value \u003d None\n\tself.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d -1\n\tself.getChild(\"cntSelectionFilter\").getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.getChild(\"cntSelectionFilter\").getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1\n\tself.getChild(\"cntSelectionFilter\").getChild(\"cntRAcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.getChild(\"cntSelectionFilter\").getChild(\"cntSerialNumber\").getChild(\"drpSerialNumber\").props.value \u003d -1",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-evenly"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "06c3d82808651a64df223ff2d0f96049bdded46ed9b1d5c12667de7a2e9fff6a",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "modelId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "areaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "item",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "sequence",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "isActive",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "createdBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "workStationId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

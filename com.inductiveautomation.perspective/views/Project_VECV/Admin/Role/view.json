@@ -1,0 +1,494 @@
+{
+  "custom": {
+    "key": "value"
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tcheck whether user is authenticated if not return to login poge\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\tpreviousPage \u003d self.session.custom.IsRoleManagementAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Role Management\"\n\t\t\t#close neccessary view and open the required\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\t#refreshTable and remove selection when opening view\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\t\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Role\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup -\u003e Role\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "Role configuration"
+  },
+  "propConfig": {
+    "custom.key": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1920
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "cntHeader",
+              "visible": false
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 0
+            },
+            "props": {
+              "path": "Project_VECV/Templates/Header/Common"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\ttry:\n\t\t\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose:Sends data of row on which user have been clicked to the add/edit panel.\n\t\t\"\"\"\t\n\t#start of try block \n\t\tmessageType \u003d \u0027rolePanel\u0027   \n\t\theaderLabel \u003d \"Edit\"\n\t\tAction \u003d \"Update\"\n\t\tselectedRow \u003d self.props.selection.data\n\t\tfor data in\tselectedRow:\n\t\t\tRoleName \u003d data[\"Role name\"]\n\t\t\tDescription \u003d data[\"Description\"]\n\t\t\tIsActive \u003d data[\"IsActive\"]\n\t\t\tId \u003d data[\"MST_Role_Id\"]\n\t\t\tif IsActive:\n\t\t\t\tIsActive \u003d 1\n\t\t\telse:\n\t\t\t\tIsActive \u003d 0\n\t\t\t\n\t\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\u0027roleName\u0027:RoleName,\n\t\t\t\u0027description\u0027:Description,\n\t\t\t\u0027isActive\u0027:IsActive,\n\t\t\t\u0027Action\u0027:Action}\n\t\t\t\n\t\t# Description - Sends data of row on which user have been clicked to the add/edit panel.\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\u0027rightView\u0027)\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\t\t\n\t\tself.session.custom.selectedRoleID \u003d Id\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\tfolderName \u003d \u0027Project_VECV/Role\u0027\n\t\tcolName  \u003d \u0027Id\u0027\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1,\"RoleName\":RoleName,\"id\":int(Id),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\t\n\t\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Role\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup -\u003e cntBody/tblRole\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n\t\t\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblRole"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Role/Get_AllRoles"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Role name",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Description",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsActive",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "top",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Is Active"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_Role_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true
+                  },
+                  "pager": {
+                    "initialOption": 10
+                  },
+                  "rows": {
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    },
+                    "subview": {
+                      "viewPath": "Templates/EditDelete"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  },
+                  "virtualized": false
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRefresh",
+                      "pageScope": true,
+                      "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: RefreshTable and remove row selection.\n\t\t\"\"\"\t\n\t\tself.refreshBinding(\"props.data\")\n\t\tmessageType \u003d \u0027rolePanel\u0027   \n\t\theaderLabel \u003d \"Add\"\t\n\t\tAction \u003d \"Save\"\n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027roleName\u0027:\u0027\u0027,\u0027description\u0027:\u0027\u0027,\u0027isActive\u0027:1,\"Action\":Action}\t\t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\t#make delete and edit button visible on row selection\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Role\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:tableRefresh  -\u003e cntBody/tblRole\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\ttry:\n\t#start of try block\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose:\t\t\t \n\t\t\t\t\tSelect/deselect table selection row\n\t\t\"\"\"\t\n\t\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Role\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:tableRow  -\u003e cntBody/tblRole\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except ",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 580
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 650,
+          "width": "96%",
+          "x": 38.31,
+          "y": 53.78
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "lblView"
+        },
+        "position": {
+          "height": "5%",
+          "width": "80%",
+          "x": "1%",
+          "y": "1%"
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header"
+          },
+          "text": "Role Management"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Remove selection from table and open neccessary view and close.\n\t\"\"\"\t\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblRole\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblRole\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -85,
+      "y": 8
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

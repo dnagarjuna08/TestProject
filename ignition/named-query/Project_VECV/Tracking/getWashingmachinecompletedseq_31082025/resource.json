@@ -1,0 +1,40 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "995bd9f6fd8c1bcd513aa8868d6d92c23a51d51c70df92ce874ed1f83d5112c8",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Nagarjuna",
+      "timestamp": "2025-08-31T18:19:38Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Area",
+        "sqlType": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#000000",
+      "color": "#FFFFFF",
+      "fontFamily": "Cambria",
+      "fontSize": "12px"
+    }
+  }
+}

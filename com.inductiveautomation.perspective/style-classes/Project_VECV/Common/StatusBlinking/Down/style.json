@@ -1,0 +1,22 @@
+{
+  "base": {
+    "animation": {
+      "duration": "0.3s",
+      "timingFunction": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "keyframes": {
+        "0%": {
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#000000",
+          "borderStyle": "solid",
+          "borderWidth": "1px"
+        },
+        "100%": {
+          "backgroundColor": "#FF2500",
+          "borderColor": "#000000",
+          "borderStyle": "solid",
+          "borderWidth": "1px"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 60
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "cntCoordinate"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Header/Common"
+          }
+        },
+        "type": "ia.container.coord"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

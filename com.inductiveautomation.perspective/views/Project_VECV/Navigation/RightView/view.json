@@ -1,0 +1,368 @@
+{
+  "custom": {
+    "deleteId": "",
+    "deleteVisible": false,
+    "editVisible": false,
+    "excelUploadVisible": false,
+    "folder": "",
+    "isArea": "",
+    "isDevice": "",
+    "isLine": "",
+    "isWorkStation": "",
+    "wiIdCount": ""
+  },
+  "params": {
+    "Downloadvisible": false
+  },
+  "propConfig": {
+    "custom.deleteId": {
+      "persistent": true
+    },
+    "custom.deleteVisible": {
+      "persistent": true
+    },
+    "custom.editVisible": {
+      "persistent": true
+    },
+    "custom.excelUploadVisible": {
+      "binding": {
+        "config": {
+          "path": "session.custom.TopViewHeader"
+        },
+        "transforms": [
+          {
+            "code": "\tif value\u003d\u003d\u0027Checklist Configuration\u0027:\n\t\treturn True\n\telse:\n\t\treturn False",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.folder": {
+      "persistent": true
+    },
+    "custom.isArea": {
+      "persistent": true
+    },
+    "custom.isDevice": {
+      "persistent": true
+    },
+    "custom.isLine": {
+      "persistent": true
+    },
+    "custom.isWorkStation": {
+      "persistent": true
+    },
+    "custom.wiIdCount": {
+      "persistent": true
+    },
+    "params.Downloadvisible": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 50
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 20/04/2024\n\t\tPurpose: Open side panel navigation to add entries. \n\t\"\"\"\n\tsystem.perspective.openDock(\"rightp\")\n\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\tself.session.custom.type\u003d\u0027Add\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "imgPlus",
+              "tooltip": {
+                "text": "Add"
+              }
+            },
+            "position": {
+              "height": 32,
+              "width": 32,
+              "x": 8.5,
+              "y": 21
+            },
+            "props": {
+              "fit": {
+                "height": 32,
+                "mode": "fill",
+                "width": 32
+              },
+              "source": "/system/images/VECV/plus.png",
+              "style": {
+                "cursor": "pointer"
+              },
+              "tint": {
+                "enabled": true
+              }
+            },
+            "type": "ia.display.image"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 20/04/2024\n\t\tPurpose: Open side panel navigation to edit entries. \n\t\"\"\"\n\tsystem.perspective.openDock(\"rightp\")\n\tself.session.custom.type\u003d\u0027Edit\u0027"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "imgEdit",
+              "visible": false
+            },
+            "position": {
+              "height": 32,
+              "width": 32,
+              "x": 8.5,
+              "y": 81
+            },
+            "props": {
+              "fit": {
+                "height": 32,
+                "mode": "fill",
+                "width": 32
+              },
+              "source": "/system/images/VECV/edit.png",
+              "style": {
+                "cursor": "pointer"
+              },
+              "tint": {
+                "enabled": true
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "isEditDisplay",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tself.meta.visible \u003d payload[\u0027IsVisible\u0027]",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.image"
+          },
+          {
+            "custom": {
+              "LevelId": "",
+              "RoleName": "",
+              "StepCount": "",
+              "colName": "",
+              "folder": "",
+              "id": "",
+              "userName": ""
+            },
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 23/04/2024\n\t\tPurpose: Open popup to take confirmation before deletion. \n\t\"\"\"\n\t# Write your script here\n\ttry:\n\t#Start of try block\n#\t\tself.session.custom.type \u003d \u0027Delete\u0027\n\t\t#added by yogesh to delete popup\n\t\tid \u003d self.custom.id\n\t\tfolder \u003d self.custom.folder\n\t\tcolName \u003d self.custom.colName\n\t\tLevelId \u003d self.custom.LevelId\n\t\tMessagePopup\u003d0\n\t\t#split folder name to catch screen name deatils\n\t\tscreenName1 \u003d folder.split(\u0027/\u0027)\n\t\tscreenName \u003d screenName1[1]\n\t\t#system.perspective.print(screenName)\n\t\t#system.perspective.print(\"DeleteClickEvent:%s\"%screenName)\n\t\t#system.perspective.print(\"DeleteClickEventfolder:%s\"%folder)\n\t\t#system.perspective.print(\"DeleteClickEventscreenName1:%s\"%screenName1)\n\t\tif screenName \u003d\u003d \u0027User\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tuserName \u003d self.custom.userName\n\t\t\tmessage \u003d \u0027Are you sure you want to delete \u0027+ str(userName) +\u0027 ?\u0027\n\t\t\t\n\t\telif screenName \u003d\u003d \u0027Shift\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete Shift?\u0027\n\t\t\t\n\t\telif screenName \u003d\u003d \u0027Device\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete Device?\u0027\n\t\t\t\n\t\telif screenName \u003d\u003d \u0027Plant\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete Plant?\u0027\n\t\t\n\t\telif screenName \u003d\u003d \u0027ModelConfiguration\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete Configutaion?\u0027\n\t\t\n\t\telif screenName \u003d\u003d \u0027OPCode\u0027:\n\t\t\tparams \u003d {\"OPCode\":id}\n\t\t\tcntWI \u003d system.db.runNamedQuery(\"Project_VECV/Master/OPCodeConfiguration/Get_WICountbyOPCodeName\",params)\n\t\t\tpycntWI \u003d system.dataset.toPyDataSet(cntWI)\n\t\t\tfor i in pycntWI:\n\t\t\t\tcount\u003di[\u0027Count\u0027]\n\t\t\tif count\u003d\u003d0:\n\t\t\t\tstate \u003d \u0027info\u0027\n\t\t\t\tmessage \u003d \u0027Are you sure you want to delete selected OPCode?\u0027\n\t\t\telse:\n\t\t\t\tMessagePopup\u003d1\n\t\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\t\tmessage \u003d \"Can not delete this OPCode. It is assigned to work instruction.\"\n\t\t\t\n\t\telif screenName \u003d\u003d \u0027Role\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tRoleName \u003d self.custom.RoleName\n\t\t\tmessage \u003d \u0027Are you sure you want to delete \u0027+str(RoleName)+\u0027 ?\u0027\n\t\t\n\t\telif screenName \u003d\u003d \u0027Image\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete?\u0027\n\t\t\t\n\t\telif screenName \u003d\u003d \u0027ImageQG\u0027:\n\t\t\tstate\u003d\u0027info\u0027\n\t\t\tmessage\u003d\u0027Are you sure you want to delete?\u0027\n\t\t\t\n\t\t\n\t\telif screenName \u003d\u003d \u0027ErrorProof\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete?\u0027\n\t\telif screenName \u003d\u003d \u0027ErrorProofQG\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete?\u0027\n\t\telif screenName \u003d\u003d \u0027GroupConfiguration\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete?\u0027\n\t\telif screenName \u003d\u003d \u0027WI\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete selected Work Instruction?\u0027\n\t\telif screenName \u003d\u003d \u0027Checklist\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete selected Checklist?\u0027\n\t\telif screenName \u003d\u003d \u0027LocationRouting\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete selected Location Routing?\u0027\t\n\t\telif screenName \u003d\u003d \u0027Painting\u0027:\n\t\t\tstate \u003d \u0027info\u0027\n\t\t\tmessage \u003d \u0027Are you sure you want to delete selected Painting configuration ?\u0027\t\n\t\t\timagePath \u003d self.session.custom.paintingImageRemove\n\t\t\tProject_VECV.Master.ImageMasterConfiguration.Delete.deleteImage(imagePath)\n\t\t\t\t\n\t\tif \tMessagePopup \u003d\u003d 0:\t\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), \"Confirm\", str(message), \"true\", \"No\", \"Yes\", \"close\", \"check\", \"right\", \"closePopup\", \"deleteNewPop\", \"closePopup\", colName,folder,id,LevelId)\t\n\t\telse:\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t\tscreenName \u003d\u0027RightView\u0027  \n\t\tfilePath\u003dstr(\u0027Project_VECV/Navigation/RightView\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick  -\u003e imgDelete\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "imgDelete"
+            },
+            "position": {
+              "height": 32,
+              "width": 32,
+              "x": 8.5,
+              "y": 141
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.deleteVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "fit": {
+                "height": 32,
+                "mode": "fill",
+                "width": 32
+              },
+              "source": "/system/images/VECV/delete.png",
+              "style": {
+                "cursor": "pointer"
+              },
+              "tint": {
+                "enabled": true
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "deleteIsVisible",
+                  "pageScope": true,
+                  "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 20/04/2024\n\t\tPurpose: Open side panel navigation to delete entries. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tif \u0027IsVisible\u0027 in payload:\n\t\t\tself.meta.visible \u003d payload[\u0027IsVisible\u0027]\n\n\t\tif \u0027id\u0027 in payload:\n\t\t\tself.custom.id \u003d payload[\u0027id\u0027]\n\t\telse:\n\t\t\tsystem.perspective.print(\"\u0027id\u0027 key is missing in the payload.\")\n\n\t\tif \u0027folder\u0027 in payload:\n\t\t\tself.custom.folder \u003d payload[\u0027folder\u0027]\n\n\t\tif \u0027colName\u0027 in payload:\n\t\t\tself.custom.colName \u003d payload[\u0027colName\u0027]\n\n\t\t# Fix: Set LevelId if available, otherwise set a default\n\t\tself.custom.LevelId \u003d payload.get(\"LevelId\", 0)\n\n\t\tif \u0027userName\u0027 in payload:\n\t\t\tself.custom.userName \u003d payload[\"userName\"]\n\n\t\tif \u0027RoleName\u0027 in payload:\n\t\t\tself.custom.RoleName \u003d payload[\"RoleName\"]\n\n\t\tsystem.perspective.print(\"In deleteIsVisible msghandler: %s\" % (self.custom.id))\n\n\texcept:\n\t\tscreenName \u003d \u0027RightView\u0027\n\t\tfilePath \u003d \u0027Project_VECV/Navigation/RightView\u0027\n\t\terrorFunction \u003d \u0027Message Handler:deleteIsVisible -\u003e imgDelete\u0027\n\t\terrorType \u003d \u0027Application\u0027\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription \u003d str(sys.exc_info()[1])\n\t\tlineNumber \u003d str(sys.exc_info()[2].tb_lineno)\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(\n\t\t\tscreenName, filePath, errorFunction, errorType, errorCode, description, lineNumber\n\t\t)",
+                  "sessionScope": false,
+                  "viewScope": false
+                },
+                {
+                  "messageType": "plantDeleteDetails",
+                  "pageScope": true,
+                  "script": "\n\t# implement your handler here\n\ttry:\n\t#Start of try block\n\t\tself.custom.LevelId \u003d payload[\u0027LevelId\u0027]\n\t\tsystem.perspective.print(\"In DELETE Details msghandler:%s\"%self.custom.LevelId)\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t\tscreenName \u003d\u0027RightView\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Navigation/RightView\u0027)\n\t\terrorFunction \u003d str(\u0027Message Handler:plantDeleteDetails -\u003e imgDelete\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.image"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 25/04/2024\n\t\tPurpose: Call message handler to download data. \n\t\"\"\"\n\tmessageType \u003d \u0027Download\u0027    \t \t\t\t\n\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "imgdownload"
+            },
+            "position": {
+              "height": 32,
+              "width": 32,
+              "x": 8.5
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.Downloadvisible}"
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.y": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../imgEdit.meta.visible}\u003dtrue,201,81)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "fit": {
+                "height": 32,
+                "mode": "fill",
+                "width": 32
+              },
+              "source": "/system/images/VECV/download.png",
+              "style": {
+                "cursor": "pointer"
+              },
+              "tint": {
+                "enabled": true
+              }
+            },
+            "type": "ia.display.image"
+          },
+          {
+            "events": {
+              "component": {
+                "onFileReceived": {
+                  "config": {
+                    "script": "\t\n\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 20/04/2024\n\t\tPurpose: Upload excel for checklist configuration.\n\t\"\"\"\n\ttry:\n\t\t#get uploaded file\n\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\tuploaded_file \u003d event.file\n\t\tProject_VECV.Quality.Checklist.ExcelUpload1.ExcelToDataset(uploaded_file,createdBy)\t\n\texcept:\n\t\t#Start of except block\n\t\t\n\t\t\tscreenName \u003d\u0027RightView\u0027\n\t\t\tfilePath\u003dstr(\u0027Project_VECV/Navigation/RightView\u0027)\n\t\t\terrorFunction \u003d str(\u0027Event : excelUpload Event -\u003e excelUpload\u0027)\n\t\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\t\n\t\t\tmessage \u003d \u0027Something went wrong. Please contact MES administrator\u0027\n\t\t\t#warning\n\t\t\t#info\n\t\t\t#success\n\t\t\t#error\n\t\t\tstate \u003d \"error\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t#End of except block"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "excelUpload"
+            },
+            "position": {
+              "height": 32,
+              "width": 32,
+              "x": 8.5
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.custom.excelUploadVisible"
+                  },
+                  "type": "property"
+                }
+              },
+              "position.y": {
+                "binding": {
+                  "config": {
+                    "expression": "if(({../imgEdit.meta.visible})\u0026\u0026({../imgDelete.meta.visible}),toBoolean(1),toBoolean(0))"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d False:\n\t\treturn 81\n\telse:\n\t\treturn 200",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "maxUploads": 1,
+              "supportedFileTypes": [
+                "xlsx"
+              ]
+            },
+            "type": "ia.input.fileupload"
+          }
+        ],
+        "meta": {
+          "name": "cntCoordinate"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "type": "ia.container.coord"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RightView"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

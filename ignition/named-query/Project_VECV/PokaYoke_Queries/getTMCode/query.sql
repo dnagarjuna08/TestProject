@@ -1,0 +1,1 @@
+select m_bomNumber from  M_BOM where  m_bomNumber like '%TM%' and isActive =1 order by m_bomNumber

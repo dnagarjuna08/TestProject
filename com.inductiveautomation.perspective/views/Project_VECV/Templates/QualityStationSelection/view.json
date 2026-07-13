@@ -1,0 +1,79 @@
+{
+  "custom": {},
+  "params": {
+    "CurrentIndex": 0,
+    "SelectedStation": "QGQG01"
+  },
+  "propConfig": {
+    "params.CurrentIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.SelectedStation": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 39,
+      "width": 469
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "basis": "37px"
+        },
+        "propConfig": {
+          "props.currentTabIndex": {
+            "binding": {
+              "config": {
+                "path": "view.params.CurrentIndex"
+              },
+              "type": "property"
+            },
+            "onChange": {
+              "enabled": null,
+              "script": "\tsystem.perspective.print(\"Selected station:%s\"%self.view.params.SelectedStation)\n\tstation\u003dself.view.params.SelectedStation\n\tprefix\u003dstation[:2]\n\tif self.props.currentTabIndex\u003d\u003d0:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027QG01\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027QG01\u0027\n\tif self.props.currentTabIndex\u003d\u003d1:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027QG02\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027QG02\u0027\n\tif self.props.currentTabIndex\u003d\u003d2:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027QG03\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027QG03\u0027\n\tif self.props.currentTabIndex\u003d\u003d3:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027QG04\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027QG04\u0027\n#\t\tsystem.perspective.print(\u0027message passed\u0027)\n\tif self.props.currentTabIndex\u003d\u003d4:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027QG05\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027QG05\u0027\n\tif self.props.currentTabIndex\u003d\u003d5:\n\t\tpayload\u003d{\u0027Station\u0027:prefix+\u0027PDI\u0027}\n\t\tsystem.perspective.sendMessage(\u0027Station_Select\u0027,payload,scope \u003d \u0027page\u0027)\n\t\tself.view.params.SelectedStation\u003dprefix+\u0027PDI\u0027"
+            }
+          }
+        },
+        "props": {
+          "tabSize": {
+            "height": 39
+          },
+          "tabStyle": {
+            "active": {
+              "backgroundColor": "#64FF60",
+              "fontWeight": "bold"
+            }
+          },
+          "tabs": [
+            "QG1",
+            "QG2",
+            "QG3",
+            "QG4",
+            "QG5",
+            "PDI"
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

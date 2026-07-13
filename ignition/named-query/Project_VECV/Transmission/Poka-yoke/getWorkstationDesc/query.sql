@@ -1,0 +1,1 @@
+select Description from MST_WorkStation where WorkStationName= :name 

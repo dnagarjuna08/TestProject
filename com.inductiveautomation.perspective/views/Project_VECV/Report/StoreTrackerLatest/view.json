@@ -1,0 +1,1107 @@
+{
+  "custom": {},
+  "params": {
+    "Area": -1,
+    "AreaVisible": true,
+    "Line": -1,
+    "LineVisible": false,
+    "Model": -1,
+    "ModelVisible": false,
+    "Workstation": -1,
+    "WorkstationVisible": false
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.AreaVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Line": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.LineVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Model": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.ModelVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Workstation": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.WorkstationVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblArea"
+                },
+                "props": {
+                  "style": {
+                    "fontFamily": "Roboto",
+                    "fontSize": "2vw",
+                    "fontWeight": "bold",
+                    "marginRight": "0.5rem"
+                  },
+                  "text": "Area "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "areaDropdown"
+                },
+                "position": {
+                  "basis": "20vw"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Tracking/getArea"
+                      },
+                      "transforms": [
+                        {
+                          "code": "    # Check if value is a valid dataset\n    if value is not None and hasattr(value, \u0027rowCount\u0027) and hasattr(value, \u0027getValueAt\u0027):\n        # Create a list of dictionaries for dropdown options\n        options \u003d []\n        for row in range(value.rowCount):\n            options.append({\n                \u0027value\u0027: value.getValueAt(row, \u0027value\u0027),\n                \u0027label\u0027: value.getValueAt(row, \u0027label\u0027)\n            })\n        return options\n    else:\n        # Return an empty list if the dataset is invalid\n        return []",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "dropdownOptionStyle": {
+                    "fontSize": "1.2vw"
+                  },
+                  "placeholder": {
+                    "text": "Select Area.."
+                  },
+                  "style": {
+                    "fontSize": "1.2vw"
+                  },
+                  "value": 0
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntAreaDropDown"
+            },
+            "position": {
+              "basis": "403px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.AreaVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "alignContent": "center",
+              "alignItems": "center"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblModel"
+                },
+                "props": {
+                  "style": {
+                    "fontFamily": "Roboto",
+                    "fontSize": "1.3rem",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Model: "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "ModelDropdown"
+                },
+                "position": {
+                  "basis": "218px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "10",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Select Model.."
+                  },
+                  "style": {
+                    "height": "2rem"
+                  },
+                  "value": 39
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntModelDropDown"
+            },
+            "position": {
+              "basis": "296px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.ModelVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblLine"
+                },
+                "props": {
+                  "style": {
+                    "fontFamily": "Roboto",
+                    "fontSize": "1.3rem",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Line: "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "LineDropdown"
+                },
+                "position": {
+                  "basis": "218px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntAreaDropDown/areaDropdown.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Select Line.."
+                  },
+                  "style": {
+                    "height": "2rem"
+                  },
+                  "value": 63
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLineDropDown"
+            },
+            "position": {
+              "basis": "280px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.LineVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblWorkstation"
+                },
+                "props": {
+                  "style": {
+                    "fontFamily": "Roboto",
+                    "fontSize": "1.3rem",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Workstation: "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "WorkstationDropdown"
+                },
+                "position": {
+                  "basis": "171.9px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntAreaDropDown/areaDropdown.props.value}",
+                          "DropdownType": "3",
+                          "LineID": "{.../cntLineDropDown/LineDropdown.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "text": "Select Station.."
+                  },
+                  "style": {
+                    "height": "2rem"
+                  },
+                  "value": 280
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntWorkstationDropDown"
+            },
+            "position": {
+              "basis": "300px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.WorkstationVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "CntInputField",
+          "tooltip": {
+            "width": "AUTO"
+          }
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 54
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "paddingLeft": "1rem",
+            "paddingRight": "1rem"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblRunning"
+                    },
+                    "props": {
+                      "style": {
+                        "fontFamily": "Roboto",
+                        "fontSize": "2vw",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Running Sequence"
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntlabel"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Running"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaId": "{...../CntInputField/cntAreaDropDown/areaDropdown.props.value}"
+                            },
+                            "polling": {
+                              "enabled": true,
+                              "rate": "30"
+                            },
+                            "queryPath": "Project_VECV/Order/getWashingMachineData"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tProject_VECV.PopUp.loader.openLoader(False)\n\tdata \u003d system.dataset.toPyDataSet(value)\n\tdataset \u003d []\n\tcount \u003d 1\n\tfor i in data:\n\t\tsystem.perspective.print(\u0027Value of i in running seq\u003d%s\u0027%i)\n\t\tif count \u003e\u003d 60:\n\t\t\tbreak\n\t\tdt \u003d {}\n\t\tdt[\u0027Sr No\u0027] \u003d count\n\t\tdt[\u0027order_number\u0027] \u003d i[\u0027order_number\u0027]\n\t\tdt[\u0027BOM\u0027]  \u003d i[\u0027M_BOMNumber\u0027]\n\t\tdataset.append(dt)\n\t\tcount+\u003d1\n\tsystem.perspective.print(\"Length of running sequence \u003d %s\"%len(dataset))\n\treturn dataset",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "bodyStyle": {
+                        "border": "none"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Sr No",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": "",
+                              "padding-left": "0rem"
+                            },
+                            "title": "Sr No"
+                          },
+                          "justify": "left",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": "",
+                            "fontSize": "1VW",
+                            "padding-left": "1rem"
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 30
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "BOM",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": "",
+                              "padding-left": "0rem"
+                            },
+                            "title": "RA Code"
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": "",
+                            "fontSize": "2VW",
+                            "fontWeight": "bolder",
+                            "padding-left": "1rem"
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 50
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "order_number",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": "",
+                              "padding-left": "0rem"
+                            },
+                            "title": "Order Number"
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": "",
+                            "fontSize": "1VW",
+                            "paddingLeft": "1rem"
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 67
+                        }
+                      ],
+                      "footerStyle": {
+                        "border": "none"
+                      },
+                      "pager": {
+                        "initialOption": 10,
+                        "options": [
+                          10,
+                          20,
+                          50,
+                          100,
+                          100
+                        ]
+                      }
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "cntRunningTable"
+                },
+                "position": {
+                  "basis": "100%"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntRunningSequence"
+            },
+            "position": {
+              "basis": "64%"
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblComplete"
+                    },
+                    "props": {
+                      "style": {
+                        "fontFamily": "Roboto",
+                        "fontSize": "2vw",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Complete Sequence"
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntLabel"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Complete"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "Area": "{...../CntInputField/cntAreaDropDown/areaDropdown.props.value}"
+                            },
+                            "polling": {
+                              "enabled": true,
+                              "rate": "30"
+                            },
+                            "queryPath": "Project_VECV/Tracking/getWashingmachinecompletedseq"
+                          },
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Sr. No.",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": "",
+                              "padding-left": "0REM"
+                            },
+                            "title": "Sr.No."
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": "",
+                            "fontSize": "1.5VW",
+                            "paddingLeft": "1rem"
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 1.5
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Serial_Number",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": "",
+                              "padding-left": "0.5rem"
+                            },
+                            "title": "Serial Number"
+                          },
+                          "justify": "left",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": "",
+                            "fontSize": "1.5VW",
+                            "fontWeight": "bolder",
+                            "padding-left": "0.6rem"
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 5
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "cntCompleteTable"
+                },
+                "position": {
+                  "basis": "100%"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntCompleteSequence"
+            },
+            "position": {
+              "basis": "35%"
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "body"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 4,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": "81vh"
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "paddingLeft": "1rem",
+            "paddingRight": "1rem"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "refreshStoreTrackerTable",
+          "pageScope": false,
+          "script": "\t# implement your handler here\n\tsystem.perspective.print(\"Message reached store tracker Table\")\n\tself.getChild(\"Running\").refreshBindings()  # Refresh Running sequence table\n\tself.getChild(\"Complete\").refreshBindings()  # Refresh Complete sequence table",
+          "sessionScope": true,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.column"
+  }
+}

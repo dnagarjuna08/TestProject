@@ -1,0 +1,125 @@
+{
+  "custom": {},
+  "params": {
+    "value": "value"
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 25,
+      "width": 187
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tsystem.perspective.print(\u0027from start button value \u0027+str(self.view.params.value))"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnStart"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 5
+                }
+              ],
+              "height": 23
+            },
+            "props": {
+              "text": "Start"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "meta": {
+              "name": "btnComplete"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 5
+                }
+              ],
+              "height": 23
+            },
+            "props": {
+              "text": "Complete"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "cntAction"
+        },
+        "position": {
+          "height": 24,
+          "width": 186
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 0,
+            "vertical": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

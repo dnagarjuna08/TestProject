@@ -1,0 +1,1 @@
+select mst_defectName_id,DefectName from mst_defectName where mst_defect_id= :defectId and isactive=1

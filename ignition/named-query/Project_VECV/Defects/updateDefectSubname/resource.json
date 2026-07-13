@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "8740dc77ffc8cd4d8469fa26cf905724d6793ca6ebddb0c68b52371907a4cd95",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2026-04-03T04:09:42Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "DefectSubnameId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectSubname",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Demerit",
+        "sqlType": 7
+      }
+    ]
+  }
+}

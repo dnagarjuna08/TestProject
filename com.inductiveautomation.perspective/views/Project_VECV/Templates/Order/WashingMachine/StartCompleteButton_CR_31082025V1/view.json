@@ -1,0 +1,141 @@
+{
+  "custom": {},
+  "params": {
+    "columnIndex": "value",
+    "rowData": "value",
+    "value": 4
+  },
+  "propConfig": {
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 25,
+      "width": 116
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\ttry:\n\t\taction \u003d self.view.params.value\n\t\trowData \u003d self.view.params.rowData\n\t\tareaId  \u003d self.session.custom.CurrentAreaId\n\t\tlineId \u003d self.session.custom.CurrentLineId\n\t\tworkstationId \u003d self.session.custom.CurrentWorkStationId\n\t\tuserId \u003d self.session.custom.loggedInUserId\n\t\t\n\t\tshiftdetails \u003d str(Project_VECV.WashingMachine.Shift.getShiftName(lineId))\n\t\tshiftdetails \u003d shiftdetails.split(\u0027-\u0027)\n\t\tif len(shiftdetails) \u003d\u003d 0:\n\t\t\tstate \u003d \"success\"\n\t\t\tmessage \u003d \u0027Shift Not Configured\u0027\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\telse:\n\t\t\tshiftId \u003d shiftdetails[1]\n\t\t\tshiftCode \u003d shiftdetails[0]\n\t\t\n\t\t\tbomId \u003d rowData[\u0027m_BOM_id\u0027]\n\t\t\tM_BOMNumber \u003d rowData[\u0027M_BOMNumber\u0027]\n\t\t\torderNumber \u003d rowData[\u0027order_number\u0027]\n\t\t\tserialNumber\u003d rowData[\u0027serial_number\u0027]\n\t\t\torderStatusId \u003d 0\n\t\t\tclassificationcount \u003d system.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/getClassificationCount\",{\"BOM\":bomId})\n\t\t\tif int(classificationcount) \u003e 0:\n\t\t\t\n\t\t\t\t\n\t\t#\t\tshiftId \u003d 1\n\t\t\t\tif int(action) \u003d\u003d 1:\n\t\t\t\t\teventId \u003d 3\n\t\t\t\t\tmessage \u003d \u0027Order Started\u0027\n\t\t\t\t\torderStatusId \u003d 6\n\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\ttry:\n\t\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\t\tdata\u003d\"orderNumber Started %s \"%str(orderNumber)\n\t\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\t\texcept:\n\t\t\t\t\t\tpass\n\t\t\t\telse:\n\t\t\t\t\teventId \u003d 5\n\t\t\t\t\tmessage \u003d \u0027Order Completed\u0027\n\t\t\t\t\ttry:\n\t\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\t\tdata\u003d\"Serial Generated %s for ordernumber %s \"%(str(serialNumber),str(orderNumber))\n\t\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\t\texcept:\n\t\t\t\t\t\tpass\n\t\t\t\t\t\n\t\t\t\tparams \u003d {\u0027Area_Id\u0027:areaId,\u0027Line_Id\u0027:lineId,\u0027WorkStation_Id\u0027:workstationId,\u0027Event_Id\u0027:eventId,\u0027BOM_Id\u0027:bomId,\u0027Status_Id\u0027:orderStatusId,\u0027OperatorID\u0027:userId,\u0027CreatedBy\u0027:userId,\u0027ShiftId\u0027:shiftId,\u0027OrderNumber\u0027:orderNumber,\u0027M_BOMNumber\u0027:M_BOMNumber,\u0027serialNumber\u0027:serialNumber}\t\n\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/addUpdateWashingMachine\",params)\n\t\t\t\tif result[0][\u0027result\u0027] \u003d\u003d \u00271\u0027:\n\t\t\t\t\tresult\u003dstr(result)\n\t\t\t\t\tsystem.perspective.print(\"result \" +str(result))\n\t\t\t\t\tstate \u003d \"success\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\t\tsystem.perspective.sendMessage(\"WashineMachineTableRefresh\", scope \u003d \"page\")\n\t\t\t\t\tif eventId \u003d\u003d 5:\n\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\tparams \u003d {\u0027BomId\u0027:bomId}\t\n\t\t\t\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/getClassficationData\",params)\n\t\t\t\t\t\t\tGearRatio\u003dresult[0][0]\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\tsystem.perspective.sendMessage(\"OrderTableRefresh\", scope \u003d \"session\")\n\t\t\t\t\t\t\tsystem.perspective.print(\"In startcompletebtn of washingMachine\")\n\t\t\t\t\t\t\tproject\u003dsystem.util.getProjectName()\n\t\t\t\t\t\t\tmessageHandler \u003d \"OrderRefreshOrderMgmt\"\n\t\t\t\t\t\t\tsystem.util.sendMessage(project, messageHandler, scope\u003d\"S\")\n\t\t\t\t\t\t\t### get printer details\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\tres\u003dsystem.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/GetPrinterDetails\",{\u0027WorkStation\u0027:self.session.custom.CurrentWorkStationId})\n\t\t\t\t\t\t\tpyres\u003dsystem.dataset.toPyDataSet(res)\n\t\t\t\t\t\t\tfor row in pyres:\n\t\t\t\t\t\t\t\tIP \u003d row[\"IPAddress\"]\n\t\t\t\t\t\t\t\tport \u003d row[\"Port\"]\n\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\t\tLineName\u003dself.session.custom.CurrentLineName\n\t\t\t\t\t\t\t\t\tsystem.perspective.print(\"LineName at L81 ----\u003e%s\"%LineName)\n\t\t\t\t\t\t\t\t\tif LineName.upper()\u003d\u003d\u0027LD DIFF CARRIER SUB ASSY LINE A\u0027.upper():\n\t\t\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getPrint(serialNumber,GearRatio,shiftCode,IP,port,3)\n\t\t\t\t\t\t\t\t\telif LineName.upper()\u003d\u003d\u0027TITAN MAIN LINE\u0027.upper():\n\t\t\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getPrint(serialNumber,GearRatio,shiftCode,IP,port,5)\n\t\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getPrint(serialNumber,GearRatio,shiftCode,IP,port,1)\n\t\t\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\t\t\tsystem.perspective.print(\"error\")\n#\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getPrint(serialNumber,GearRatio,shiftCode,IP,port)\n\t\t\t\t\t\t\t\tdata \u003d system.db.runNamedQuery(\"Project_VECV/Order/getPartNumber\",{\"MST_WorkStation_Id\":self.session.custom.CurrentWorkStationId,\"M_BOM_Id\":bomId})\n\t\t\t\t\t\t\t\tpartNumber \u003d \u0027\u0027\n\t\t\t\t\t\t\t\tfor dt in data:    \n\t\t\t\t\t\t\t\t\tpartNumber \u003d dt[\u0027M_MaterialNumber\u0027]\n\t\t\t\t\t\t\t\tif partNumber !\u003d \u0027\u0027:\n\t\t\t\t\t\t\t\t\tgearRatio \u003d system.db.runNamedQuery(\"Project_VECV/ITSupport/getGearRatio\",{\"SerialNumber\":serialNumber})\n\t\t\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\t\t\tsystem.perspective.print(gearRatio)\n\t\t\t\t\t\t\t\t\t\tsystem.perspective.print(partNumber)\n\t\t\t\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\t\t\t\tpass\n\t\t\t\t\t\t\t\t\t##### Quality Gate4 print Quantity 1\n\t\t\t\t\t\t\t\t\tWorkStationName\u003d\u0027LAQG04\u0027\n\t\t\t\t\t\t\t\t\tparams \u003d {\"dropdowntype\":1,\"workStationName\":WorkStationName}\n\t\t\t\t\t\t\t\t\tqueryPath \u003d \u0027Project_VECV/LeakTest/getAllIDs\u0027\n\t\t\t\t\t\t\t\t\tdataset \u003d system.db.runNamedQuery(queryPath,params)\n\t\t\t\t\t\t\t\t\tfor data in dataset:\n\t\t\t\t\t\t\t\t\t\tLQG_WorkStation_Id\u003ddata[\u0027MST_WorkStation_Id\u0027]\n\t\t\t\t\t\t\t\t\tres\u003dsystem.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/GetPrinterDetails\",{\u0027WorkStation\u0027:LQG_WorkStation_Id})\n\t\t\t\t\t\t\t\t\tpyres\u003dsystem.dataset.toPyDataSet(res)\n\t\t\t\t\t\t\t\t\tfor row in pyres:\n\t\t\t\t\t\t\t\t\t\tLQIP \u003d row[\"IPAddress\"]\n\t\t\t\t\t\t\t\t\t\tLQport \u003d row[\"Port\"]\n\t\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getDHPrintExtra(serialNumber,LQIP,LQport,partNumber,GearRatio)\n\t\t\t\t\t\t\t\t\t##### Quality Gate5 print Quantity 1\n#\t\t\t\t\t\t\t\t\tWorkStationName\u003d\u0027LAQG05\u0027\n#\t\t\t\t\t\t\t\t\tparams \u003d {\"dropdowntype\":1,\"workStationName\":WorkStationName}\n#\t\t\t\t\t\t\t\t\tqueryPath \u003d \u0027Project_VECV/LeakTest/getAllIDs\u0027\n#\t\t\t\t\t\t\t\t\tdataset \u003d system.db.runNamedQuery(queryPath,params)\n#\t\t\t\t\t\t\t\t\tfor data in dataset:\n#\t\t\t\t\t\t\t\t\t\tLQG_WorkStation_Id\u003ddata[\u0027MST_WorkStation_Id\u0027]\n#\t\t\t\t\t\t\t\t\tres\u003dsystem.db.runNamedQuery(\"Project_VECV/Order/WashingMachine/GetPrinterDetails\",{\u0027WorkStation\u0027:LQG_WorkStation_Id})\n#\t\t\t\t\t\t\t\t\tpyres\u003dsystem.dataset.toPyDataSet(res)\n#\t\t\t\t\t\t\t\t\tfor row in pyres:\n#\t\t\t\t\t\t\t\t\t\tLQIP \u003d row[\"IPAddress\"]\n#\t\t\t\t\t\t\t\t\t\tLQport \u003d row[\"Port\"]\n#\t\t\t\t\t\t\t\t\tProject_VECV.Printer.GetPrint.getDHPrint(serialNumber,LQIP,LQport,partNumber,gearRatio)\n\t\t\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\t\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\t\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\t\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\t\t\t\t\t\tdata\u003d\"print for %s completed\"%(str(serialNumber))\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\t\t\t\tpass\n\t\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\t\tmessage \u003d \u0027Printer Failed.\u0027\n\t\t\t\t\t\t\t\tstate \u003d \"warning\"\n\t\t\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\t\t\t\t\tstate\u003d\u0027Error\u0027\n\t\t\t\t\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\t\t\t\t\tdata\u003d\"print Failed for %s\"%(str(serialNumber))\n\t\t\t\t\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\t\t\tpass\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t### Call message handler to refresh data on Hub and Main line washing machine\n\t\t\t\t\t\t\tif \u0027LAD10\u0027 in self.session.custom.CurrentWorkStation:\n\t\t\t\t\t\t\t\tproject\u003dsystem.util.getProjectName()\n\t\t\t\t\t\t\t\tmessageHandler \u003d \"LAWMTableRefresh\"\n\t\t\t\t\t\t\t\tsystem.util.sendMessage(project, messageHandler, scope\u003d\"S\")\n\t\t\t\t\t\texcept:\n\t\t\t\t\t\t\tscreenName \u003d\u0027StartButton print \u0027   \n\t\t\t\t\t\t\tfilePath\u003dstr(\u0027Project_VECV/Templates/Order/WashingMachine\u0027)  \n\t\t\t\t\t\t\terrorFunction \u003d str(\u0027Event:onAction  -\u003e StartCompleteButton\u0027)  \n\t\t\t\t\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\t\t\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\t\t\t\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\t\t\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\t\t\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t\t\t\n\t\t\t\telse:\n\t\t\t\t\tmessage \u003d \u0027failed\u0027\n\t\t\t\t\tstate \u003d \"warning\"\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\t\t\tsystem.perspective.sendMessage(\"WashineMachineTableRefresh\", scope \u003d \"page\")\n\t\t\t\tproject\u003dsystem.util.getProjectName()\n\t\t\t\tmessageHandler \u003d \"OrderRefresh\"\n\t\t\t\tsystem.util.sendMessage(project, messageHandler, scope\u003d\"S\")\n\t\t\telse:\n\t\t\t\tmessage \u003d \u0027No Classification Data for This BOM\u0027\n\t\t\t\tstate \u003d \"warning\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\t\t\t\t\t\t\t\n\t\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027StartButton\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Templates/Order/WashingMachine/StartCompleteButton\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onAction  -\u003e StartCompleteButton\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnStart"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 5
+                }
+              ],
+              "height": 23
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1 or str(value) \u003d\u003d \u00272\u0027 or str(value) \u003d\u003d \u00271\u0027:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 1:\n\t\treturn \u0027Start\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Complete\u0027\n\telse :\n\t\treturn \u0027Not Release\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "cntAction"
+        },
+        "position": {
+          "height": 24,
+          "width": 110
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 0,
+            "vertical": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "caed0f0d3fd2bc0ec6e528e5c6799a3e1d26041ab8c8868e48b5d6fb0f08c045",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Amit",
+      "timestamp": "2024-07-25T08:42:50Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "DropdownType",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaID",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineID",
+        "sqlType": 7
+      }
+    ]
+  }
+}

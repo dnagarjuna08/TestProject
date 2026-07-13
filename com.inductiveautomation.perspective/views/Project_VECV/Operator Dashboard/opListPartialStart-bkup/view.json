@@ -1,0 +1,252 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 18/06/2024\n\t\tPurpose: Form OPCode list of current operation. \n\t\"\"\"\n\tself.session.custom.selectedOPCode \u003d \u0027\u0027\n\tcurrentIndex \u003d self.params.currentIndex\n\tArea\u003dself.session.custom.CurrentAreaName\n\tLine\u003dself.session.custom.CurrentLineName\n\tWS\u003dself.session.custom.CurrentWorkStation\n\ttagPath\u003d\u0027[default]Dewas/%s/%s/%s/CommonTags/OPList\u0027%(Area,Line,WS)\n\tdata \u003d system.tag.readBlocking(tagPath)[0].value\n\topPartialStartList \u003d []\n\tsystem.perspective.print(\"data %s--\u003e\"%data)\n\tcurrentIndex \u003d self.params.currentIndex\n\tsystem.perspective.print(currentIndex)\n\tfor i in range(len(data)):\n\t\tmydata \u003d {}\n\t\tmydata[\u0027opcode\u0027] \u003d data[i][\u0027WorkInstruction\u0027].split(\u0027-\u0027)[0]\n\t\tmydata[\u0027opDefinition\u0027] \u003d data[i][\u0027WorkInstruction\u0027].split(\u0027-\u0027)[1]\n\t\tmydata[\u0027seqNo\u0027] \u003d data[i][\u0027Number\u0027].split(\u0027#\u0027)[1]\n\t\tmydata[\u0027Selected\u0027] \u003d False\n\t\tif i \u003d\u003d currentIndex:\n\t\t\tif str(data[i][\u0027Status\u0027]) \u003d\u003d \u0027\u0027:\n\t\t\t\tbreak\n\t\t\telse:\n\t\t\t\topPartialStartList.append(mydata)\n\t\t\t\tbreak\n\t\telse:\n\t\t\topPartialStartList.append(mydata)\n\tself.getChild(\"root\").getChild(\"FlexRepeater\").props.instances \u003d opPartialStartList"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "currentIndex": "",
+    "selectedOPCode": ""
+  },
+  "propConfig": {
+    "params.currentIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selectedOPCode": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 350,
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "session.custom.selectedOPCode"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"Selected OP Code: \" + str(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundColor": "#D5D5D5",
+            "color": "#0000FF",
+            "fontSize": "15px",
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "lblSeqNo"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/DWI/Labelheader",
+                "fontSize": "15px",
+                "textAlign": "center"
+              },
+              "text": "Seq No."
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblOpcode"
+            },
+            "position": {
+              "basis": "70px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/DWI/Labelheader",
+                "fontSize": "15px",
+                "textAlign": "center"
+              },
+              "text": "Opcodes"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblDesc"
+            },
+            "position": {
+              "basis": "50px",
+              "grow": 1
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/DWI/Labelheader",
+                "fontSize": "15px",
+                "textAlign": "center"
+              },
+              "text": "Op Description"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainerHeader"
+        },
+        "position": {
+          "basis": "60px"
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6, #8fd8d9)",
+            "borderBottomLeftRadius": "5px",
+            "borderBottomRightRadius": "5px",
+            "borderStyle": "double",
+            "borderTopLeftRadius": "5px",
+            "borderTopRightRadius": "5px",
+            "borderWidth": "1px",
+            "fontSize": "10px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "basis": "320px"
+        },
+        "props": {
+          "direction": "column",
+          "instances": [
+            {
+              "instancePosition": {},
+              "instanceStyle": {
+                "classes": ""
+              }
+            },
+            {
+              "instancePosition": {},
+              "instanceStyle": {
+                "classes": ""
+              }
+            }
+          ],
+          "path": "Project_VECV/Operator Dashboard/subViewPartialStart",
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Amit Ravat\n\t\tWritten Date: 18/06/2024\n\t\tPurpose: Initiate Partial new start logic. \n\t\"\"\"\n\tvalues \u003d self.session.custom.selectedOPCode\n\ttagPath \u003d \u0027[default]Dewas/%s/%s/%s/CommonTags/Partial_New_Start_OP_Code\u0027%(self.session.custom.CurrentAreaName,self.session.custom.CurrentLineName,self.session.custom.CurrentWorkStation)\n\tsystem.tag.writeBlocking(tagPath, values)\n\ttagPath \u003d \u0027[default]Dewas/%s/%s/%s/CommonTags/Partial_New_Start\u0027%(self.session.custom.CurrentAreaName,self.session.custom.CurrentLineName,self.session.custom.CurrentWorkStation)\n\tsystem.tag.writeBlocking(tagPath, 1)\n\tself.session.custom.selectedOPCode \u003d \u0027\u0027\n\tsystem.perspective.closePopup(\"#partialStart\")\n\tsystem.perspective.sendMessage(\u0027partialStart\u0027,scope\u003d\u0027page\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if({session.custom.selectedOPCode} !\u003d \u0027\u0027, toBoolean(1),toBoolean(0))"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "backgroundImage": "linear-gradient(#CAF6F6, #8fd8d9)",
+            "color": "#000000"
+          },
+          "text": "OK"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderBottomLeftRadius": "5px",
+        "borderBottomRightRadius": "5px",
+        "borderStyle": "ridge",
+        "borderTopLeftRadius": "5px",
+        "borderTopRightRadius": "5px",
+        "borderWidth": "2px"
+      }
+    },
+    "scripts": {
+      "customMethods": [
+        {
+          "name": "unselectedAllmenu",
+          "params": [],
+          "script": "\t# implement your method here\n\tfor menu in self.getChild(\"FlexRepeater\").props.instances:\n\t\tsystem.perspective.print(\"menu %s\"%menu)\n\t\tmenu[\u0027Selected\u0027] \u003d False"
+        }
+      ],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "select_op",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tself.unselectedAllmenu()\n\tinstances \u003d self.getChild(\"FlexRepeater\").props.instances\n\tOPCode \u003d payload[\u0027OPCode\u0027]\n\tfor menu in instances:\n\t\tif menu[\u0027opcode\u0027] \u003d\u003d OPCode:\n\t\t\tmenu[\u0027Selected\u0027]\u003dTrue",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "unselect_op",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tself.unselectedAllmenu()",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

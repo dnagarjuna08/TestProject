@@ -1,0 +1,1 @@
+Select area.MST_Area_Id as "value", area.AreaName as "label" From mst_area AS area where area.IsActive=1

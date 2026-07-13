@@ -1,0 +1,145 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "c9ec8a68d305ff15ff414826c009f4501643948922d088ba484dba40fe4f2d84",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkstationId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WITypeId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AttributeText",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ImagePath",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPDefinitionId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPCodeId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ToolId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ProgramId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsMinMaxReq",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MaxVal",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MinVal",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ImageName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModelId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BomId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PartId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Quantity",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MarriagePart",
+        "sqlType": 2
+      }
+    ]
+  }
+}

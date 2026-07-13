@@ -1,0 +1,76 @@
+{
+  "custom": {},
+  "params": {
+    "value": ""
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 30,
+      "width": 80
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tid \u003d  self.view.params.value\n\tfolder \u003d \"Project_VECV/Transmission\"\n\tcolName\u003d \"Id\"\n\tstate \u003d \u0027info\u0027\n\tmessage \u003d \u0027Are you sure want to Delete Engine Type Data?\u0027\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), \"Confirm\", str(message), \"true\", \"No\", \"Yes\", \"close\", \"check\", \"right\", \"closePopup\", \"deleteNewPop\", \"closePopup\", colName,folder,id,\u0027\u0027)\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "20px",
+          "shrink": 0
+        },
+        "props": {
+          "color": "#FFFFFF",
+          "path": "material/delete_forever",
+          "style": {
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "enabled": true,
+        "style": {
+          "backgroundColor": "#AAAAAA",
+          "color": "#FFFFFF"
+        },
+        "text": "Delete"
+      }
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-around",
+      "style": {
+        "backgroundColor": "#FF4747",
+        "borderBottomLeftRadius": "100%",
+        "borderBottomRightRadius": "100%",
+        "borderTopLeftRadius": "100%",
+        "borderTopRightRadius": "100%",
+        "height": "30px",
+        "marginLeft": 20,
+        "marginRight": 20
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

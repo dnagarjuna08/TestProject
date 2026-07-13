@@ -1,0 +1,435 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "drpArea"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "0",
+                  "DropdownType": "1",
+                  "LineID": "0"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "transforms": [
+                {
+                  "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tresult \u003d []\n\tfor data in dataset:\n\t\tdict \u003d {}\n\t\tif \u0027Transmission\u0027 in data[1]: \n\t\t\tdict[\"label\"] \u003d data[1]\n\t\t\tdict[\"value\"] \u003d data[0]\n\t\t\tresult.append(dict)\n\treturn result",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "dropdownOptionStyle": {
+            "fontSize": 15
+          },
+          "style": {
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "none",
+            "fontSize": 15,
+            "margin": 10
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "drpLine"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "{../drpArea.props.value}",
+                  "DropdownType": "2",
+                  "LineID": "0"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "dropdownOptionStyle": {
+            "fontSize": 15
+          },
+          "style": {
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "none",
+            "fontSize": 15,
+            "margin": 10
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "drpWorkStation"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 40
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "0",
+                  "DropdownType": "3",
+                  "LineID": "{../drpLine.props.value}"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "dropdownOptionStyle": {
+            "fontSize": 15
+          },
+          "style": {
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "none",
+            "fontSize": 15,
+            "margin": 10
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tself.getSibling(\"drpArea\").props.value \u003d -1\n\tself.getSibling(\"drpLine\").props.value \u003d -1\n\tself.getSibling(\"drpWorkStation\").props.value \u003d -1"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnClear"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 1,
+              "name": "sm",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 1
+            },
+            {
+              "colIndex": 1,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 1,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/StatusBlinking/tableHeader",
+            "marginLeft": 10,
+            "marginRight": 10
+          },
+          "text": "Clear"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "page": "/TMQuality"
+              },
+              "scope": "C",
+              "type": "nav"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnBack"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 2,
+              "name": "sm",
+              "order": 6,
+              "rowIndex": 0,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            }
+          ],
+          "height": 40
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/StatusBlinking/tableHeader",
+            "marginLeft": 10,
+            "marginRight": 10
+          },
+          "text": "Back"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onFileReceived": {
+                  "config": {
+                    "script": "\ttry:\n\t    # Get the uploaded file from the event\n\t    system.perspective.print(\"called on file received\")\n\t    uploaded_file \u003d event.file\n#\t    createdBy\u003dself.session.custom.loggedInUserId\n\t    createdBy\u003d52\n\t    Area \u003d self.parent.parent.getChild(\"drpArea\").props.value\n\t    Line \u003d self.parent.parent.getChild(\"drpLine\").props.value\n\t    WS \u003d self.parent.parent.getChild(\"drpWorkStation\").props.value\n\t    Project_VECV.Transmission.ChecklistUpload.upload.ExcelToDataset(uploaded_file,createdBy,Area, Line, WS)\n\texcept Exception as e:\n\t\tsystem.perspective.print(str(e))\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "FileUpload"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "maxUploads": 1,
+              "supportedFileTypes": [
+                "xlsx"
+              ]
+            },
+            "type": "ia.input.fileupload"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginLeft": 10,
+            "marginRight": 10
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onFileReceived": {
+                  "config": {
+                    "script": "\ttry:\n\t    # Get the uploaded file from the event\n\t    system.perspective.print(\"called on file received %s\" %event.file.name)\n\t    uploaded_file \u003d event.file\n#\t    createdBy\u003dself.session.custom.loggedInUserId\n\t    createdBy\u003d52\n\t    Area \u003d self.parent.parent.getChild(\"drpArea\").props.value\n\t    Line \u003d self.parent.parent.getChild(\"drpLine\").props.value\n\t    WS \u003d self.parent.parent.getChild(\"drpWorkStation\").props.value\n\t    Project_VECV.Transmission.ChecklistUpload.upload.ExcelToDataset(uploaded_file,createdBy,Area, Line, WS)\n\texcept Exception as e:\n\t\tsystem.perspective.print(str(e))\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "FileUpload"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "maxUploads": 1,
+              "supportedFileTypes": [
+                "xlsx"
+              ]
+            },
+            "type": "ia.input.fileupload"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "marginLeft": 10,
+            "marginRight": 10
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

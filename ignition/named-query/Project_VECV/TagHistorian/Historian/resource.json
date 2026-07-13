@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "MESHistorianAxle",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "bd260dd66935ab481f5502d0cc9904532051d9a821e39e4a67b2b68b263a0fd8",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Station",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GETDATE",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "EndDateTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "StartDateTime",
+        "sqlType": 8
+      }
+    ]
+  }
+}

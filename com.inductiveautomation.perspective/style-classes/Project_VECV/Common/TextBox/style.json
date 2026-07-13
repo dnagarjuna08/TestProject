@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "borderColor": "#AAAAAA",
+      "borderWidth": "1px",
+      "borderRadius": "3px",
+      "fontSize": "14px",
+      "outlineWidth": "0"
+    }
+  }
+}

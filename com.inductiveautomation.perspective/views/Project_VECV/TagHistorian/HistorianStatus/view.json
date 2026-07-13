@@ -1,0 +1,5136 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 13/03/2025\n\t\tPurpose:\t\t\t \n\t\t\t\tcheck whether user is authenticated if not return to login poge\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\tpreviousPage \u003d self.session.custom.IsTagHistorianAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Historian\"\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027HistorianStatus\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/TagHistorian/HistorianStatus\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup -\u003e HistorianStatus\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1.5,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": "auto"
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "TagName",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": true,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "always"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Tag Name"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "dataValues",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": true,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "always"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "Value"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "DD-MM-YYYY HH:mm:ss.SSS",
+              "editable": false,
+              "field": "Timestamp",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": true,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "always"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": "DateTime"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "tagid",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#0000AC",
+                  "classes": "",
+                  "textAlign": "center"
+                },
+                "title": ""
+              },
+              "justify": "left",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": false,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "tagpath",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#0000AC",
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "justify": "left",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": false,
+              "width": ""
+            }
+          ],
+          "data": {
+            "$": [
+              "ds",
+              192,
+              1733217057288
+            ],
+            "$columns": [
+              {
+                "data": [],
+                "name": "tagid",
+                "type": "Integer"
+              },
+              {
+                "data": [],
+                "name": "tagpath",
+                "type": "String"
+              },
+              {
+                "data": [],
+                "name": "dataValues",
+                "type": "String"
+              },
+              {
+                "data": [],
+                "name": "Timestamp",
+                "type": "Date"
+              },
+              {
+                "data": [],
+                "name": "TagName",
+                "type": "String"
+              }
+            ]
+          },
+          "filter": {
+            "enabled": true,
+            "style": {
+              "backgroundColor": "#4682B4"
+            }
+          },
+          "headerStyle": {
+            "alignContent": "center",
+            "backgroundColor": "#4682B4",
+            "borderColor": "#808080",
+            "color": "#FFFFFF",
+            "fontWeight": "bold"
+          },
+          "pager": {
+            "initialOption": 1000,
+            "options": [
+              10,
+              50,
+              100,
+              500,
+              1000
+            ]
+          },
+          "rows": {
+            "striped": {
+              "color": {
+                "even": "#FFFFFF",
+                "odd": "#C6E6F0"
+              }
+            }
+          },
+          "selection": {
+            "enableRowSelection": false
+          },
+          "style": {
+            "marginLeft": "5px",
+            "marginRight": "5px"
+          },
+          "virtualized": false
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/06/2024\n\t\tPurpose: Make Line value set to default. \n\t\"\"\"\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1"
+                    }
+                  }
+                },
+                "props": {
+                  "options": null,
+                  "placeholder": {
+                    "text": "Select Area..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "basis": "180px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/06/2024\n\t\tPurpose: Make Station value set to default. \n\t\"\"\"\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1"
+                    }
+                  }
+                },
+                "props": {
+                  "options": null,
+                  "placeholder": {
+                    "text": "Select Line..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "WorkStation:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpStation"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "3",
+                          "LineID": "{.../cntLine/drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": null,
+                  "placeholder": {
+                    "text": "Select Station..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntStation"
+            },
+            "position": {
+              "basis": "180px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Month Selection:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "drpmonth"
+                    },
+                    "position": {
+                      "basis": "150px"
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "Jan",
+                          "value": "00"
+                        },
+                        {
+                          "label": "Feb",
+                          "value": "01"
+                        },
+                        {
+                          "label": "Mar",
+                          "value": "02"
+                        },
+                        {
+                          "label": "Apr",
+                          "value": "03"
+                        },
+                        {
+                          "label": "May",
+                          "value": "04"
+                        },
+                        {
+                          "label": "Jun",
+                          "value": "05"
+                        },
+                        {
+                          "label": "Jul",
+                          "value": "06"
+                        },
+                        {
+                          "label": "Aug",
+                          "value": "07"
+                        },
+                        {
+                          "label": "Sep",
+                          "value": "08"
+                        },
+                        {
+                          "label": "Oct",
+                          "value": "09"
+                        },
+                        {
+                          "label": "Nov",
+                          "value": 10
+                        },
+                        {
+                          "label": "Dec",
+                          "value": 11
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select Month..."
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Panel/DropdownContent"
+                      },
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "drpyear"
+                    },
+                    "position": {
+                      "basis": "120px"
+                    },
+                    "props": {
+                      "options": [
+                        {
+                          "label": "2025",
+                          "value": 2025
+                        },
+                        {
+                          "label": "2026",
+                          "value": 2026
+                        },
+                        {
+                          "label": "2027",
+                          "value": 2027
+                        },
+                        {
+                          "label": "2028",
+                          "value": 2028
+                        },
+                        {
+                          "label": "2029",
+                          "value": 2029
+                        },
+                        {
+                          "label": "2030",
+                          "value": 2030
+                        },
+                        {
+                          "label": "2031",
+                          "value": 2031
+                        },
+                        {
+                          "label": "2032",
+                          "value": 2032
+                        },
+                        {
+                          "label": "2033",
+                          "value": 2033
+                        },
+                        {
+                          "label": "2034",
+                          "value": 2034
+                        },
+                        {
+                          "label": "2035",
+                          "value": 2035
+                        },
+                        {
+                          "label": "2036",
+                          "value": 2036
+                        },
+                        {
+                          "label": "2037",
+                          "value": 2037
+                        },
+                        {
+                          "label": "2038",
+                          "value": 2038
+                        },
+                        {
+                          "label": "2039",
+                          "value": 2039
+                        },
+                        {
+                          "label": "2040",
+                          "value": 2040
+                        },
+                        {
+                          "label": "2041",
+                          "value": 2041
+                        },
+                        {
+                          "label": "2042",
+                          "value": 2042
+                        },
+                        {
+                          "label": "2043",
+                          "value": 2043
+                        },
+                        {
+                          "label": "2044",
+                          "value": 2044
+                        },
+                        {
+                          "label": "2045",
+                          "value": 2045
+                        },
+                        {
+                          "label": "2046",
+                          "value": 2046
+                        },
+                        {
+                          "label": "2047",
+                          "value": 2047
+                        },
+                        {
+                          "label": "2048",
+                          "value": 2048
+                        },
+                        {
+                          "label": "2049",
+                          "value": 2049
+                        },
+                        {
+                          "label": "2050",
+                          "value": 2050
+                        },
+                        {
+                          "label": "2051",
+                          "value": 2051
+                        },
+                        {
+                          "label": "2052",
+                          "value": 2052
+                        },
+                        {
+                          "label": "2053",
+                          "value": 2053
+                        },
+                        {
+                          "label": "2054",
+                          "value": 2054
+                        },
+                        {
+                          "label": "2055",
+                          "value": 2055
+                        },
+                        {
+                          "label": "2056",
+                          "value": 2056
+                        },
+                        {
+                          "label": "2057",
+                          "value": 2057
+                        },
+                        {
+                          "label": "2058",
+                          "value": 2058
+                        },
+                        {
+                          "label": "2059",
+                          "value": 2059
+                        },
+                        {
+                          "label": "2060",
+                          "value": 2060
+                        },
+                        {
+                          "label": "2061",
+                          "value": 2061
+                        },
+                        {
+                          "label": "2062",
+                          "value": 2062
+                        },
+                        {
+                          "label": "2063",
+                          "value": 2063
+                        },
+                        {
+                          "label": "2064",
+                          "value": 2064
+                        },
+                        {
+                          "label": "2065",
+                          "value": 2065
+                        },
+                        {
+                          "label": "2066",
+                          "value": 2066
+                        },
+                        {
+                          "label": "2067",
+                          "value": 2067
+                        },
+                        {
+                          "label": "2068",
+                          "value": 2068
+                        },
+                        {
+                          "label": "2069",
+                          "value": 2069
+                        },
+                        {
+                          "label": "2070",
+                          "value": 2070
+                        },
+                        {
+                          "label": "2071",
+                          "value": 2071
+                        },
+                        {
+                          "label": "2072",
+                          "value": 2072
+                        },
+                        {
+                          "label": "2073",
+                          "value": 2073
+                        },
+                        {
+                          "label": "2074",
+                          "value": 2074
+                        },
+                        {
+                          "label": "2075",
+                          "value": 2075
+                        },
+                        {
+                          "label": "2076",
+                          "value": 2076
+                        },
+                        {
+                          "label": "2077",
+                          "value": 2077
+                        },
+                        {
+                          "label": "2078",
+                          "value": 2078
+                        },
+                        {
+                          "label": "2079",
+                          "value": 2079
+                        },
+                        {
+                          "label": "2080",
+                          "value": 2080
+                        },
+                        {
+                          "label": "2081",
+                          "value": 2081
+                        },
+                        {
+                          "label": "2082",
+                          "value": 2082
+                        },
+                        {
+                          "label": "2083",
+                          "value": 2083
+                        },
+                        {
+                          "label": "2084",
+                          "value": 2084
+                        },
+                        {
+                          "label": "2085",
+                          "value": 2085
+                        },
+                        {
+                          "label": "2086",
+                          "value": 2086
+                        },
+                        {
+                          "label": "2087",
+                          "value": 2087
+                        },
+                        {
+                          "label": "2088",
+                          "value": 2088
+                        },
+                        {
+                          "label": "2089",
+                          "value": 2089
+                        },
+                        {
+                          "label": "2090",
+                          "value": 2090
+                        },
+                        {
+                          "label": "2091",
+                          "value": 2091
+                        },
+                        {
+                          "label": "2092",
+                          "value": 2092
+                        },
+                        {
+                          "label": "2093",
+                          "value": 2093
+                        },
+                        {
+                          "label": "2094",
+                          "value": 2094
+                        },
+                        {
+                          "label": "2095",
+                          "value": 2095
+                        },
+                        {
+                          "label": "2096",
+                          "value": 2096
+                        },
+                        {
+                          "label": "2097",
+                          "value": 2097
+                        },
+                        {
+                          "label": "2098",
+                          "value": 2098
+                        },
+                        {
+                          "label": "2099",
+                          "value": 2099
+                        },
+                        {
+                          "label": "2100",
+                          "value": 2100
+                        },
+                        {
+                          "label": "2101",
+                          "value": 2101
+                        },
+                        {
+                          "label": "2102",
+                          "value": 2102
+                        },
+                        {
+                          "label": "2103",
+                          "value": 2103
+                        },
+                        {
+                          "label": "2104",
+                          "value": 2104
+                        },
+                        {
+                          "label": "2105",
+                          "value": 2105
+                        },
+                        {
+                          "label": "2106",
+                          "value": 2106
+                        },
+                        {
+                          "label": "2107",
+                          "value": 2107
+                        },
+                        {
+                          "label": "2108",
+                          "value": 2108
+                        },
+                        {
+                          "label": "2109",
+                          "value": 2109
+                        },
+                        {
+                          "label": "2110",
+                          "value": 2110
+                        },
+                        {
+                          "label": "2111",
+                          "value": 2111
+                        },
+                        {
+                          "label": "2112",
+                          "value": 2112
+                        },
+                        {
+                          "label": "2113",
+                          "value": 2113
+                        },
+                        {
+                          "label": "2114",
+                          "value": 2114
+                        },
+                        {
+                          "label": "2115",
+                          "value": 2115
+                        },
+                        {
+                          "label": "2116",
+                          "value": 2116
+                        },
+                        {
+                          "label": "2117",
+                          "value": 2117
+                        },
+                        {
+                          "label": "2118",
+                          "value": 2118
+                        },
+                        {
+                          "label": "2119",
+                          "value": 2119
+                        },
+                        {
+                          "label": "2120",
+                          "value": 2120
+                        },
+                        {
+                          "label": "2121",
+                          "value": 2121
+                        },
+                        {
+                          "label": "2122",
+                          "value": 2122
+                        },
+                        {
+                          "label": "2123",
+                          "value": 2123
+                        },
+                        {
+                          "label": "2124",
+                          "value": 2124
+                        },
+                        {
+                          "label": "2125",
+                          "value": 2125
+                        },
+                        {
+                          "label": "2126",
+                          "value": 2126
+                        },
+                        {
+                          "label": "2127",
+                          "value": 2127
+                        },
+                        {
+                          "label": "2128",
+                          "value": 2128
+                        },
+                        {
+                          "label": "2129",
+                          "value": 2129
+                        },
+                        {
+                          "label": "2130",
+                          "value": 2130
+                        },
+                        {
+                          "label": "2131",
+                          "value": 2131
+                        },
+                        {
+                          "label": "2132",
+                          "value": 2132
+                        },
+                        {
+                          "label": "2133",
+                          "value": 2133
+                        },
+                        {
+                          "label": "2134",
+                          "value": 2134
+                        },
+                        {
+                          "label": "2135",
+                          "value": 2135
+                        },
+                        {
+                          "label": "2136",
+                          "value": 2136
+                        },
+                        {
+                          "label": "2137",
+                          "value": 2137
+                        },
+                        {
+                          "label": "2138",
+                          "value": 2138
+                        },
+                        {
+                          "label": "2139",
+                          "value": 2139
+                        },
+                        {
+                          "label": "2140",
+                          "value": 2140
+                        },
+                        {
+                          "label": "2141",
+                          "value": 2141
+                        },
+                        {
+                          "label": "2142",
+                          "value": 2142
+                        },
+                        {
+                          "label": "2143",
+                          "value": 2143
+                        },
+                        {
+                          "label": "2144",
+                          "value": 2144
+                        },
+                        {
+                          "label": "2145",
+                          "value": 2145
+                        },
+                        {
+                          "label": "2146",
+                          "value": 2146
+                        },
+                        {
+                          "label": "2147",
+                          "value": 2147
+                        },
+                        {
+                          "label": "2148",
+                          "value": 2148
+                        },
+                        {
+                          "label": "2149",
+                          "value": 2149
+                        },
+                        {
+                          "label": "2150",
+                          "value": 2150
+                        },
+                        {
+                          "label": "2151",
+                          "value": 2151
+                        },
+                        {
+                          "label": "2152",
+                          "value": 2152
+                        },
+                        {
+                          "label": "2153",
+                          "value": 2153
+                        },
+                        {
+                          "label": "2154",
+                          "value": 2154
+                        },
+                        {
+                          "label": "2155",
+                          "value": 2155
+                        },
+                        {
+                          "label": "2156",
+                          "value": 2156
+                        },
+                        {
+                          "label": "2157",
+                          "value": 2157
+                        },
+                        {
+                          "label": "2158",
+                          "value": 2158
+                        },
+                        {
+                          "label": "2159",
+                          "value": 2159
+                        },
+                        {
+                          "label": "2160",
+                          "value": 2160
+                        },
+                        {
+                          "label": "2161",
+                          "value": 2161
+                        },
+                        {
+                          "label": "2162",
+                          "value": 2162
+                        },
+                        {
+                          "label": "2163",
+                          "value": 2163
+                        },
+                        {
+                          "label": "2164",
+                          "value": 2164
+                        },
+                        {
+                          "label": "2165",
+                          "value": 2165
+                        },
+                        {
+                          "label": "2166",
+                          "value": 2166
+                        },
+                        {
+                          "label": "2167",
+                          "value": 2167
+                        },
+                        {
+                          "label": "2168",
+                          "value": 2168
+                        },
+                        {
+                          "label": "2169",
+                          "value": 2169
+                        },
+                        {
+                          "label": "2170",
+                          "value": 2170
+                        },
+                        {
+                          "label": "2171",
+                          "value": 2171
+                        },
+                        {
+                          "label": "2172",
+                          "value": 2172
+                        },
+                        {
+                          "label": "2173",
+                          "value": 2173
+                        },
+                        {
+                          "label": "2174",
+                          "value": 2174
+                        },
+                        {
+                          "label": "2175",
+                          "value": 2175
+                        },
+                        {
+                          "label": "2176",
+                          "value": 2176
+                        },
+                        {
+                          "label": "2177",
+                          "value": 2177
+                        },
+                        {
+                          "label": "2178",
+                          "value": 2178
+                        },
+                        {
+                          "label": "2179",
+                          "value": 2179
+                        },
+                        {
+                          "label": "2180",
+                          "value": 2180
+                        },
+                        {
+                          "label": "2181",
+                          "value": 2181
+                        },
+                        {
+                          "label": "2182",
+                          "value": 2182
+                        },
+                        {
+                          "label": "2183",
+                          "value": 2183
+                        },
+                        {
+                          "label": "2184",
+                          "value": 2184
+                        },
+                        {
+                          "label": "2185",
+                          "value": 2185
+                        },
+                        {
+                          "label": "2186",
+                          "value": 2186
+                        },
+                        {
+                          "label": "2187",
+                          "value": 2187
+                        },
+                        {
+                          "label": "2188",
+                          "value": 2188
+                        },
+                        {
+                          "label": "2189",
+                          "value": 2189
+                        },
+                        {
+                          "label": "2190",
+                          "value": 2190
+                        },
+                        {
+                          "label": "2191",
+                          "value": 2191
+                        },
+                        {
+                          "label": "2192",
+                          "value": 2192
+                        },
+                        {
+                          "label": "2193",
+                          "value": 2193
+                        },
+                        {
+                          "label": "2194",
+                          "value": 2194
+                        },
+                        {
+                          "label": "2195",
+                          "value": 2195
+                        },
+                        {
+                          "label": "2196",
+                          "value": 2196
+                        },
+                        {
+                          "label": "2197",
+                          "value": 2197
+                        },
+                        {
+                          "label": "2198",
+                          "value": 2198
+                        },
+                        {
+                          "label": "2199",
+                          "value": 2199
+                        },
+                        {
+                          "label": "2200",
+                          "value": 2200
+                        },
+                        {
+                          "label": "2201",
+                          "value": 2201
+                        },
+                        {
+                          "label": "2202",
+                          "value": 2202
+                        },
+                        {
+                          "label": "2203",
+                          "value": 2203
+                        },
+                        {
+                          "label": "2204",
+                          "value": 2204
+                        },
+                        {
+                          "label": "2205",
+                          "value": 2205
+                        },
+                        {
+                          "label": "2206",
+                          "value": 2206
+                        },
+                        {
+                          "label": "2207",
+                          "value": 2207
+                        },
+                        {
+                          "label": "2208",
+                          "value": 2208
+                        },
+                        {
+                          "label": "2209",
+                          "value": 2209
+                        },
+                        {
+                          "label": "2210",
+                          "value": 2210
+                        },
+                        {
+                          "label": "2211",
+                          "value": 2211
+                        },
+                        {
+                          "label": "2212",
+                          "value": 2212
+                        },
+                        {
+                          "label": "2213",
+                          "value": 2213
+                        },
+                        {
+                          "label": "2214",
+                          "value": 2214
+                        },
+                        {
+                          "label": "2215",
+                          "value": 2215
+                        },
+                        {
+                          "label": "2216",
+                          "value": 2216
+                        },
+                        {
+                          "label": "2217",
+                          "value": 2217
+                        },
+                        {
+                          "label": "2218",
+                          "value": 2218
+                        },
+                        {
+                          "label": "2219",
+                          "value": 2219
+                        },
+                        {
+                          "label": "2220",
+                          "value": 2220
+                        },
+                        {
+                          "label": "2221",
+                          "value": 2221
+                        },
+                        {
+                          "label": "2222",
+                          "value": 2222
+                        },
+                        {
+                          "label": "2223",
+                          "value": 2223
+                        },
+                        {
+                          "label": "2224",
+                          "value": 2224
+                        },
+                        {
+                          "label": "2225",
+                          "value": 2225
+                        },
+                        {
+                          "label": "2226",
+                          "value": 2226
+                        },
+                        {
+                          "label": "2227",
+                          "value": 2227
+                        },
+                        {
+                          "label": "2228",
+                          "value": 2228
+                        },
+                        {
+                          "label": "2229",
+                          "value": 2229
+                        },
+                        {
+                          "label": "2230",
+                          "value": 2230
+                        },
+                        {
+                          "label": "2231",
+                          "value": 2231
+                        },
+                        {
+                          "label": "2232",
+                          "value": 2232
+                        },
+                        {
+                          "label": "2233",
+                          "value": 2233
+                        },
+                        {
+                          "label": "2234",
+                          "value": 2234
+                        },
+                        {
+                          "label": "2235",
+                          "value": 2235
+                        },
+                        {
+                          "label": "2236",
+                          "value": 2236
+                        },
+                        {
+                          "label": "2237",
+                          "value": 2237
+                        },
+                        {
+                          "label": "2238",
+                          "value": 2238
+                        },
+                        {
+                          "label": "2239",
+                          "value": 2239
+                        },
+                        {
+                          "label": "2240",
+                          "value": 2240
+                        },
+                        {
+                          "label": "2241",
+                          "value": 2241
+                        },
+                        {
+                          "label": "2242",
+                          "value": 2242
+                        },
+                        {
+                          "label": "2243",
+                          "value": 2243
+                        },
+                        {
+                          "label": "2244",
+                          "value": 2244
+                        },
+                        {
+                          "label": "2245",
+                          "value": 2245
+                        },
+                        {
+                          "label": "2246",
+                          "value": 2246
+                        },
+                        {
+                          "label": "2247",
+                          "value": 2247
+                        },
+                        {
+                          "label": "2248",
+                          "value": 2248
+                        },
+                        {
+                          "label": "2249",
+                          "value": 2249
+                        },
+                        {
+                          "label": "2250",
+                          "value": 2250
+                        },
+                        {
+                          "label": "2251",
+                          "value": 2251
+                        },
+                        {
+                          "label": "2252",
+                          "value": 2252
+                        },
+                        {
+                          "label": "2253",
+                          "value": 2253
+                        },
+                        {
+                          "label": "2254",
+                          "value": 2254
+                        },
+                        {
+                          "label": "2255",
+                          "value": 2255
+                        },
+                        {
+                          "label": "2256",
+                          "value": 2256
+                        },
+                        {
+                          "label": "2257",
+                          "value": 2257
+                        },
+                        {
+                          "label": "2258",
+                          "value": 2258
+                        },
+                        {
+                          "label": "2259",
+                          "value": 2259
+                        },
+                        {
+                          "label": "2260",
+                          "value": 2260
+                        },
+                        {
+                          "label": "2261",
+                          "value": 2261
+                        },
+                        {
+                          "label": "2262",
+                          "value": 2262
+                        },
+                        {
+                          "label": "2263",
+                          "value": 2263
+                        },
+                        {
+                          "label": "2264",
+                          "value": 2264
+                        },
+                        {
+                          "label": "2265",
+                          "value": 2265
+                        },
+                        {
+                          "label": "2266",
+                          "value": 2266
+                        },
+                        {
+                          "label": "2267",
+                          "value": 2267
+                        },
+                        {
+                          "label": "2268",
+                          "value": 2268
+                        },
+                        {
+                          "label": "2269",
+                          "value": 2269
+                        },
+                        {
+                          "label": "2270",
+                          "value": 2270
+                        },
+                        {
+                          "label": "2271",
+                          "value": 2271
+                        },
+                        {
+                          "label": "2272",
+                          "value": 2272
+                        },
+                        {
+                          "label": "2273",
+                          "value": 2273
+                        },
+                        {
+                          "label": "2274",
+                          "value": 2274
+                        },
+                        {
+                          "label": "2275",
+                          "value": 2275
+                        },
+                        {
+                          "label": "2276",
+                          "value": 2276
+                        },
+                        {
+                          "label": "2277",
+                          "value": 2277
+                        },
+                        {
+                          "label": "2278",
+                          "value": 2278
+                        },
+                        {
+                          "label": "2279",
+                          "value": 2279
+                        },
+                        {
+                          "label": "2280",
+                          "value": 2280
+                        },
+                        {
+                          "label": "2281",
+                          "value": 2281
+                        },
+                        {
+                          "label": "2282",
+                          "value": 2282
+                        },
+                        {
+                          "label": "2283",
+                          "value": 2283
+                        },
+                        {
+                          "label": "2284",
+                          "value": 2284
+                        },
+                        {
+                          "label": "2285",
+                          "value": 2285
+                        },
+                        {
+                          "label": "2286",
+                          "value": 2286
+                        },
+                        {
+                          "label": "2287",
+                          "value": 2287
+                        },
+                        {
+                          "label": "2288",
+                          "value": 2288
+                        },
+                        {
+                          "label": "2289",
+                          "value": 2289
+                        },
+                        {
+                          "label": "2290",
+                          "value": 2290
+                        },
+                        {
+                          "label": "2291",
+                          "value": 2291
+                        },
+                        {
+                          "label": "2292",
+                          "value": 2292
+                        },
+                        {
+                          "label": "2293",
+                          "value": 2293
+                        },
+                        {
+                          "label": "2294",
+                          "value": 2294
+                        },
+                        {
+                          "label": "2295",
+                          "value": 2295
+                        },
+                        {
+                          "label": "2296",
+                          "value": 2296
+                        },
+                        {
+                          "label": "2297",
+                          "value": 2297
+                        },
+                        {
+                          "label": "2298",
+                          "value": 2298
+                        },
+                        {
+                          "label": "2299",
+                          "value": 2299
+                        },
+                        {
+                          "label": "2300",
+                          "value": 2300
+                        },
+                        {
+                          "label": "2301",
+                          "value": 2301
+                        },
+                        {
+                          "label": "2302",
+                          "value": 2302
+                        },
+                        {
+                          "label": "2303",
+                          "value": 2303
+                        },
+                        {
+                          "label": "2304",
+                          "value": 2304
+                        },
+                        {
+                          "label": "2305",
+                          "value": 2305
+                        },
+                        {
+                          "label": "2306",
+                          "value": 2306
+                        },
+                        {
+                          "label": "2307",
+                          "value": 2307
+                        },
+                        {
+                          "label": "2308",
+                          "value": 2308
+                        },
+                        {
+                          "label": "2309",
+                          "value": 2309
+                        },
+                        {
+                          "label": "2310",
+                          "value": 2310
+                        },
+                        {
+                          "label": "2311",
+                          "value": 2311
+                        },
+                        {
+                          "label": "2312",
+                          "value": 2312
+                        },
+                        {
+                          "label": "2313",
+                          "value": 2313
+                        },
+                        {
+                          "label": "2314",
+                          "value": 2314
+                        },
+                        {
+                          "label": "2315",
+                          "value": 2315
+                        },
+                        {
+                          "label": "2316",
+                          "value": 2316
+                        },
+                        {
+                          "label": "2317",
+                          "value": 2317
+                        },
+                        {
+                          "label": "2318",
+                          "value": 2318
+                        },
+                        {
+                          "label": "2319",
+                          "value": 2319
+                        },
+                        {
+                          "label": "2320",
+                          "value": 2320
+                        },
+                        {
+                          "label": "2321",
+                          "value": 2321
+                        },
+                        {
+                          "label": "2322",
+                          "value": 2322
+                        },
+                        {
+                          "label": "2323",
+                          "value": 2323
+                        },
+                        {
+                          "label": "2324",
+                          "value": 2324
+                        },
+                        {
+                          "label": "2325",
+                          "value": 2325
+                        },
+                        {
+                          "label": "2326",
+                          "value": 2326
+                        },
+                        {
+                          "label": "2327",
+                          "value": 2327
+                        },
+                        {
+                          "label": "2328",
+                          "value": 2328
+                        },
+                        {
+                          "label": "2329",
+                          "value": 2329
+                        },
+                        {
+                          "label": "2330",
+                          "value": 2330
+                        },
+                        {
+                          "label": "2331",
+                          "value": 2331
+                        },
+                        {
+                          "label": "2332",
+                          "value": 2332
+                        },
+                        {
+                          "label": "2333",
+                          "value": 2333
+                        },
+                        {
+                          "label": "2334",
+                          "value": 2334
+                        },
+                        {
+                          "label": "2335",
+                          "value": 2335
+                        },
+                        {
+                          "label": "2336",
+                          "value": 2336
+                        },
+                        {
+                          "label": "2337",
+                          "value": 2337
+                        },
+                        {
+                          "label": "2338",
+                          "value": 2338
+                        },
+                        {
+                          "label": "2339",
+                          "value": 2339
+                        },
+                        {
+                          "label": "2340",
+                          "value": 2340
+                        },
+                        {
+                          "label": "2341",
+                          "value": 2341
+                        },
+                        {
+                          "label": "2342",
+                          "value": 2342
+                        },
+                        {
+                          "label": "2343",
+                          "value": 2343
+                        },
+                        {
+                          "label": "2344",
+                          "value": 2344
+                        },
+                        {
+                          "label": "2345",
+                          "value": 2345
+                        },
+                        {
+                          "label": "2346",
+                          "value": 2346
+                        },
+                        {
+                          "label": "2347",
+                          "value": 2347
+                        },
+                        {
+                          "label": "2348",
+                          "value": 2348
+                        },
+                        {
+                          "label": "2349",
+                          "value": 2349
+                        },
+                        {
+                          "label": "2350",
+                          "value": 2350
+                        },
+                        {
+                          "label": "2351",
+                          "value": 2351
+                        },
+                        {
+                          "label": "2352",
+                          "value": 2352
+                        },
+                        {
+                          "label": "2353",
+                          "value": 2353
+                        },
+                        {
+                          "label": "2354",
+                          "value": 2354
+                        },
+                        {
+                          "label": "2355",
+                          "value": 2355
+                        },
+                        {
+                          "label": "2356",
+                          "value": 2356
+                        },
+                        {
+                          "label": "2357",
+                          "value": 2357
+                        },
+                        {
+                          "label": "2358",
+                          "value": 2358
+                        },
+                        {
+                          "label": "2359",
+                          "value": 2359
+                        },
+                        {
+                          "label": "2360",
+                          "value": 2360
+                        },
+                        {
+                          "label": "2361",
+                          "value": 2361
+                        },
+                        {
+                          "label": "2362",
+                          "value": 2362
+                        },
+                        {
+                          "label": "2363",
+                          "value": 2363
+                        },
+                        {
+                          "label": "2364",
+                          "value": 2364
+                        },
+                        {
+                          "label": "2365",
+                          "value": 2365
+                        },
+                        {
+                          "label": "2366",
+                          "value": 2366
+                        },
+                        {
+                          "label": "2367",
+                          "value": 2367
+                        },
+                        {
+                          "label": "2368",
+                          "value": 2368
+                        },
+                        {
+                          "label": "2369",
+                          "value": 2369
+                        },
+                        {
+                          "label": "2370",
+                          "value": 2370
+                        },
+                        {
+                          "label": "2371",
+                          "value": 2371
+                        },
+                        {
+                          "label": "2372",
+                          "value": 2372
+                        },
+                        {
+                          "label": "2373",
+                          "value": 2373
+                        },
+                        {
+                          "label": "2374",
+                          "value": 2374
+                        },
+                        {
+                          "label": "2375",
+                          "value": 2375
+                        },
+                        {
+                          "label": "2376",
+                          "value": 2376
+                        },
+                        {
+                          "label": "2377",
+                          "value": 2377
+                        },
+                        {
+                          "label": "2378",
+                          "value": 2378
+                        },
+                        {
+                          "label": "2379",
+                          "value": 2379
+                        },
+                        {
+                          "label": "2380",
+                          "value": 2380
+                        },
+                        {
+                          "label": "2381",
+                          "value": 2381
+                        },
+                        {
+                          "label": "2382",
+                          "value": 2382
+                        },
+                        {
+                          "label": "2383",
+                          "value": 2383
+                        },
+                        {
+                          "label": "2384",
+                          "value": 2384
+                        },
+                        {
+                          "label": "2385",
+                          "value": 2385
+                        },
+                        {
+                          "label": "2386",
+                          "value": 2386
+                        },
+                        {
+                          "label": "2387",
+                          "value": 2387
+                        },
+                        {
+                          "label": "2388",
+                          "value": 2388
+                        },
+                        {
+                          "label": "2389",
+                          "value": 2389
+                        },
+                        {
+                          "label": "2390",
+                          "value": 2390
+                        },
+                        {
+                          "label": "2391",
+                          "value": 2391
+                        },
+                        {
+                          "label": "2392",
+                          "value": 2392
+                        },
+                        {
+                          "label": "2393",
+                          "value": 2393
+                        },
+                        {
+                          "label": "2394",
+                          "value": 2394
+                        },
+                        {
+                          "label": "2395",
+                          "value": 2395
+                        },
+                        {
+                          "label": "2396",
+                          "value": 2396
+                        },
+                        {
+                          "label": "2397",
+                          "value": 2397
+                        },
+                        {
+                          "label": "2398",
+                          "value": 2398
+                        },
+                        {
+                          "label": "2399",
+                          "value": 2399
+                        },
+                        {
+                          "label": "2400",
+                          "value": 2400
+                        },
+                        {
+                          "label": "2401",
+                          "value": 2401
+                        },
+                        {
+                          "label": "2402",
+                          "value": 2402
+                        },
+                        {
+                          "label": "2403",
+                          "value": 2403
+                        },
+                        {
+                          "label": "2404",
+                          "value": 2404
+                        },
+                        {
+                          "label": "2405",
+                          "value": 2405
+                        },
+                        {
+                          "label": "2406",
+                          "value": 2406
+                        },
+                        {
+                          "label": "2407",
+                          "value": 2407
+                        },
+                        {
+                          "label": "2408",
+                          "value": 2408
+                        },
+                        {
+                          "label": "2409",
+                          "value": 2409
+                        },
+                        {
+                          "label": "2410",
+                          "value": 2410
+                        },
+                        {
+                          "label": "2411",
+                          "value": 2411
+                        },
+                        {
+                          "label": "2412",
+                          "value": 2412
+                        },
+                        {
+                          "label": "2413",
+                          "value": 2413
+                        },
+                        {
+                          "label": "2414",
+                          "value": 2414
+                        },
+                        {
+                          "label": "2415",
+                          "value": 2415
+                        },
+                        {
+                          "label": "2416",
+                          "value": 2416
+                        },
+                        {
+                          "label": "2417",
+                          "value": 2417
+                        },
+                        {
+                          "label": "2418",
+                          "value": 2418
+                        },
+                        {
+                          "label": "2419",
+                          "value": 2419
+                        },
+                        {
+                          "label": "2420",
+                          "value": 2420
+                        },
+                        {
+                          "label": "2421",
+                          "value": 2421
+                        },
+                        {
+                          "label": "2422",
+                          "value": 2422
+                        },
+                        {
+                          "label": "2423",
+                          "value": 2423
+                        },
+                        {
+                          "label": "2424",
+                          "value": 2424
+                        },
+                        {
+                          "label": "2425",
+                          "value": 2425
+                        },
+                        {
+                          "label": "2426",
+                          "value": 2426
+                        },
+                        {
+                          "label": "2427",
+                          "value": 2427
+                        },
+                        {
+                          "label": "2428",
+                          "value": 2428
+                        },
+                        {
+                          "label": "2429",
+                          "value": 2429
+                        },
+                        {
+                          "label": "2430",
+                          "value": 2430
+                        },
+                        {
+                          "label": "2431",
+                          "value": 2431
+                        },
+                        {
+                          "label": "2432",
+                          "value": 2432
+                        },
+                        {
+                          "label": "2433",
+                          "value": 2433
+                        },
+                        {
+                          "label": "2434",
+                          "value": 2434
+                        },
+                        {
+                          "label": "2435",
+                          "value": 2435
+                        },
+                        {
+                          "label": "2436",
+                          "value": 2436
+                        },
+                        {
+                          "label": "2437",
+                          "value": 2437
+                        },
+                        {
+                          "label": "2438",
+                          "value": 2438
+                        },
+                        {
+                          "label": "2439",
+                          "value": 2439
+                        },
+                        {
+                          "label": "2440",
+                          "value": 2440
+                        },
+                        {
+                          "label": "2441",
+                          "value": 2441
+                        },
+                        {
+                          "label": "2442",
+                          "value": 2442
+                        },
+                        {
+                          "label": "2443",
+                          "value": 2443
+                        },
+                        {
+                          "label": "2444",
+                          "value": 2444
+                        },
+                        {
+                          "label": "2445",
+                          "value": 2445
+                        },
+                        {
+                          "label": "2446",
+                          "value": 2446
+                        },
+                        {
+                          "label": "2447",
+                          "value": 2447
+                        },
+                        {
+                          "label": "2448",
+                          "value": 2448
+                        },
+                        {
+                          "label": "2449",
+                          "value": 2449
+                        },
+                        {
+                          "label": "2450",
+                          "value": 2450
+                        },
+                        {
+                          "label": "2451",
+                          "value": 2451
+                        },
+                        {
+                          "label": "2452",
+                          "value": 2452
+                        },
+                        {
+                          "label": "2453",
+                          "value": 2453
+                        },
+                        {
+                          "label": "2454",
+                          "value": 2454
+                        },
+                        {
+                          "label": "2455",
+                          "value": 2455
+                        },
+                        {
+                          "label": "2456",
+                          "value": 2456
+                        },
+                        {
+                          "label": "2457",
+                          "value": 2457
+                        },
+                        {
+                          "label": "2458",
+                          "value": 2458
+                        },
+                        {
+                          "label": "2459",
+                          "value": 2459
+                        },
+                        {
+                          "label": "2460",
+                          "value": 2460
+                        },
+                        {
+                          "label": "2461",
+                          "value": 2461
+                        },
+                        {
+                          "label": "2462",
+                          "value": 2462
+                        },
+                        {
+                          "label": "2463",
+                          "value": 2463
+                        },
+                        {
+                          "label": "2464",
+                          "value": 2464
+                        },
+                        {
+                          "label": "2465",
+                          "value": 2465
+                        },
+                        {
+                          "label": "2466",
+                          "value": 2466
+                        },
+                        {
+                          "label": "2467",
+                          "value": 2467
+                        },
+                        {
+                          "label": "2468",
+                          "value": 2468
+                        },
+                        {
+                          "label": "2469",
+                          "value": 2469
+                        },
+                        {
+                          "label": "2470",
+                          "value": 2470
+                        },
+                        {
+                          "label": "2471",
+                          "value": 2471
+                        },
+                        {
+                          "label": "2472",
+                          "value": 2472
+                        },
+                        {
+                          "label": "2473",
+                          "value": 2473
+                        },
+                        {
+                          "label": "2474",
+                          "value": 2474
+                        },
+                        {
+                          "label": "2475",
+                          "value": 2475
+                        },
+                        {
+                          "label": "2476",
+                          "value": 2476
+                        },
+                        {
+                          "label": "2477",
+                          "value": 2477
+                        },
+                        {
+                          "label": "2478",
+                          "value": 2478
+                        },
+                        {
+                          "label": "2479",
+                          "value": 2479
+                        },
+                        {
+                          "label": "2480",
+                          "value": 2480
+                        },
+                        {
+                          "label": "2481",
+                          "value": 2481
+                        },
+                        {
+                          "label": "2482",
+                          "value": 2482
+                        },
+                        {
+                          "label": "2483",
+                          "value": 2483
+                        },
+                        {
+                          "label": "2484",
+                          "value": 2484
+                        },
+                        {
+                          "label": "2485",
+                          "value": 2485
+                        },
+                        {
+                          "label": "2486",
+                          "value": 2486
+                        },
+                        {
+                          "label": "2487",
+                          "value": 2487
+                        },
+                        {
+                          "label": "2488",
+                          "value": 2488
+                        },
+                        {
+                          "label": "2489",
+                          "value": 2489
+                        },
+                        {
+                          "label": "2490",
+                          "value": 2490
+                        },
+                        {
+                          "label": "2491",
+                          "value": 2491
+                        },
+                        {
+                          "label": "2492",
+                          "value": 2492
+                        },
+                        {
+                          "label": "2493",
+                          "value": 2493
+                        },
+                        {
+                          "label": "2494",
+                          "value": 2494
+                        },
+                        {
+                          "label": "2495",
+                          "value": 2495
+                        },
+                        {
+                          "label": "2496",
+                          "value": 2496
+                        },
+                        {
+                          "label": "2497",
+                          "value": 2497
+                        },
+                        {
+                          "label": "2498",
+                          "value": 2498
+                        },
+                        {
+                          "label": "2499",
+                          "value": 2499
+                        },
+                        {
+                          "label": "2500",
+                          "value": 2500
+                        },
+                        {
+                          "label": "2501",
+                          "value": 2501
+                        },
+                        {
+                          "label": "2502",
+                          "value": 2502
+                        },
+                        {
+                          "label": "2503",
+                          "value": 2503
+                        },
+                        {
+                          "label": "2504",
+                          "value": 2504
+                        },
+                        {
+                          "label": "2505",
+                          "value": 2505
+                        },
+                        {
+                          "label": "2506",
+                          "value": 2506
+                        },
+                        {
+                          "label": "2507",
+                          "value": 2507
+                        },
+                        {
+                          "label": "2508",
+                          "value": 2508
+                        },
+                        {
+                          "label": "2509",
+                          "value": 2509
+                        },
+                        {
+                          "label": "2510",
+                          "value": 2510
+                        },
+                        {
+                          "label": "2511",
+                          "value": 2511
+                        },
+                        {
+                          "label": "2512",
+                          "value": 2512
+                        },
+                        {
+                          "label": "2513",
+                          "value": 2513
+                        },
+                        {
+                          "label": "2514",
+                          "value": 2514
+                        },
+                        {
+                          "label": "2515",
+                          "value": 2515
+                        },
+                        {
+                          "label": "2516",
+                          "value": 2516
+                        },
+                        {
+                          "label": "2517",
+                          "value": 2517
+                        },
+                        {
+                          "label": "2518",
+                          "value": 2518
+                        },
+                        {
+                          "label": "2519",
+                          "value": 2519
+                        },
+                        {
+                          "label": "2520",
+                          "value": 2520
+                        },
+                        {
+                          "label": "2521",
+                          "value": 2521
+                        },
+                        {
+                          "label": "2522",
+                          "value": 2522
+                        },
+                        {
+                          "label": "2523",
+                          "value": 2523
+                        },
+                        {
+                          "label": "2524",
+                          "value": 2524
+                        },
+                        {
+                          "label": "2525",
+                          "value": 2525
+                        },
+                        {
+                          "label": "2526",
+                          "value": 2526
+                        },
+                        {
+                          "label": "2527",
+                          "value": 2527
+                        },
+                        {
+                          "label": "2528",
+                          "value": 2528
+                        },
+                        {
+                          "label": "2529",
+                          "value": 2529
+                        },
+                        {
+                          "label": "2530",
+                          "value": 2530
+                        },
+                        {
+                          "label": "2531",
+                          "value": 2531
+                        },
+                        {
+                          "label": "2532",
+                          "value": 2532
+                        },
+                        {
+                          "label": "2533",
+                          "value": 2533
+                        },
+                        {
+                          "label": "2534",
+                          "value": 2534
+                        },
+                        {
+                          "label": "2535",
+                          "value": 2535
+                        },
+                        {
+                          "label": "2536",
+                          "value": 2536
+                        },
+                        {
+                          "label": "2537",
+                          "value": 2537
+                        },
+                        {
+                          "label": "2538",
+                          "value": 2538
+                        },
+                        {
+                          "label": "2539",
+                          "value": 2539
+                        },
+                        {
+                          "label": "2540",
+                          "value": 2540
+                        },
+                        {
+                          "label": "2541",
+                          "value": 2541
+                        },
+                        {
+                          "label": "2542",
+                          "value": 2542
+                        },
+                        {
+                          "label": "2543",
+                          "value": 2543
+                        },
+                        {
+                          "label": "2544",
+                          "value": 2544
+                        },
+                        {
+                          "label": "2545",
+                          "value": 2545
+                        },
+                        {
+                          "label": "2546",
+                          "value": 2546
+                        },
+                        {
+                          "label": "2547",
+                          "value": 2547
+                        },
+                        {
+                          "label": "2548",
+                          "value": 2548
+                        },
+                        {
+                          "label": "2549",
+                          "value": 2549
+                        },
+                        {
+                          "label": "2550",
+                          "value": 2550
+                        },
+                        {
+                          "label": "2551",
+                          "value": 2551
+                        },
+                        {
+                          "label": "2552",
+                          "value": 2552
+                        },
+                        {
+                          "label": "2553",
+                          "value": 2553
+                        },
+                        {
+                          "label": "2554",
+                          "value": 2554
+                        },
+                        {
+                          "label": "2555",
+                          "value": 2555
+                        },
+                        {
+                          "label": "2556",
+                          "value": 2556
+                        },
+                        {
+                          "label": "2557",
+                          "value": 2557
+                        },
+                        {
+                          "label": "2558",
+                          "value": 2558
+                        },
+                        {
+                          "label": "2559",
+                          "value": 2559
+                        },
+                        {
+                          "label": "2560",
+                          "value": 2560
+                        },
+                        {
+                          "label": "2561",
+                          "value": 2561
+                        },
+                        {
+                          "label": "2562",
+                          "value": 2562
+                        },
+                        {
+                          "label": "2563",
+                          "value": 2563
+                        },
+                        {
+                          "label": "2564",
+                          "value": 2564
+                        },
+                        {
+                          "label": "2565",
+                          "value": 2565
+                        },
+                        {
+                          "label": "2566",
+                          "value": 2566
+                        },
+                        {
+                          "label": "2567",
+                          "value": 2567
+                        },
+                        {
+                          "label": "2568",
+                          "value": 2568
+                        },
+                        {
+                          "label": "2569",
+                          "value": 2569
+                        },
+                        {
+                          "label": "2570",
+                          "value": 2570
+                        },
+                        {
+                          "label": "2571",
+                          "value": 2571
+                        },
+                        {
+                          "label": "2572",
+                          "value": 2572
+                        },
+                        {
+                          "label": "2573",
+                          "value": 2573
+                        },
+                        {
+                          "label": "2574",
+                          "value": 2574
+                        },
+                        {
+                          "label": "2575",
+                          "value": 2575
+                        },
+                        {
+                          "label": "2576",
+                          "value": 2576
+                        },
+                        {
+                          "label": "2577",
+                          "value": 2577
+                        },
+                        {
+                          "label": "2578",
+                          "value": 2578
+                        },
+                        {
+                          "label": "2579",
+                          "value": 2579
+                        },
+                        {
+                          "label": "2580",
+                          "value": 2580
+                        },
+                        {
+                          "label": "2581",
+                          "value": 2581
+                        },
+                        {
+                          "label": "2582",
+                          "value": 2582
+                        },
+                        {
+                          "label": "2583",
+                          "value": 2583
+                        },
+                        {
+                          "label": "2584",
+                          "value": 2584
+                        },
+                        {
+                          "label": "2585",
+                          "value": 2585
+                        },
+                        {
+                          "label": "2586",
+                          "value": 2586
+                        },
+                        {
+                          "label": "2587",
+                          "value": 2587
+                        },
+                        {
+                          "label": "2588",
+                          "value": 2588
+                        },
+                        {
+                          "label": "2589",
+                          "value": 2589
+                        },
+                        {
+                          "label": "2590",
+                          "value": 2590
+                        },
+                        {
+                          "label": "2591",
+                          "value": 2591
+                        },
+                        {
+                          "label": "2592",
+                          "value": 2592
+                        },
+                        {
+                          "label": "2593",
+                          "value": 2593
+                        },
+                        {
+                          "label": "2594",
+                          "value": 2594
+                        },
+                        {
+                          "label": "2595",
+                          "value": 2595
+                        },
+                        {
+                          "label": "2596",
+                          "value": 2596
+                        },
+                        {
+                          "label": "2597",
+                          "value": 2597
+                        },
+                        {
+                          "label": "2598",
+                          "value": 2598
+                        },
+                        {
+                          "label": "2599",
+                          "value": 2599
+                        },
+                        {
+                          "label": "2600",
+                          "value": 2600
+                        },
+                        {
+                          "label": "2601",
+                          "value": 2601
+                        },
+                        {
+                          "label": "2602",
+                          "value": 2602
+                        },
+                        {
+                          "label": "2603",
+                          "value": 2603
+                        },
+                        {
+                          "label": "2604",
+                          "value": 2604
+                        },
+                        {
+                          "label": "2605",
+                          "value": 2605
+                        },
+                        {
+                          "label": "2606",
+                          "value": 2606
+                        },
+                        {
+                          "label": "2607",
+                          "value": 2607
+                        },
+                        {
+                          "label": "2608",
+                          "value": 2608
+                        },
+                        {
+                          "label": "2609",
+                          "value": 2609
+                        },
+                        {
+                          "label": "2610",
+                          "value": 2610
+                        },
+                        {
+                          "label": "2611",
+                          "value": 2611
+                        },
+                        {
+                          "label": "2612",
+                          "value": 2612
+                        },
+                        {
+                          "label": "2613",
+                          "value": 2613
+                        },
+                        {
+                          "label": "2614",
+                          "value": 2614
+                        },
+                        {
+                          "label": "2615",
+                          "value": 2615
+                        },
+                        {
+                          "label": "2616",
+                          "value": 2616
+                        },
+                        {
+                          "label": "2617",
+                          "value": 2617
+                        },
+                        {
+                          "label": "2618",
+                          "value": 2618
+                        },
+                        {
+                          "label": "2619",
+                          "value": 2619
+                        },
+                        {
+                          "label": "2620",
+                          "value": 2620
+                        },
+                        {
+                          "label": "2621",
+                          "value": 2621
+                        },
+                        {
+                          "label": "2622",
+                          "value": 2622
+                        },
+                        {
+                          "label": "2623",
+                          "value": 2623
+                        },
+                        {
+                          "label": "2624",
+                          "value": 2624
+                        },
+                        {
+                          "label": "2625",
+                          "value": 2625
+                        },
+                        {
+                          "label": "2626",
+                          "value": 2626
+                        },
+                        {
+                          "label": "2627",
+                          "value": 2627
+                        },
+                        {
+                          "label": "2628",
+                          "value": 2628
+                        },
+                        {
+                          "label": "2629",
+                          "value": 2629
+                        },
+                        {
+                          "label": "2630",
+                          "value": 2630
+                        },
+                        {
+                          "label": "2631",
+                          "value": 2631
+                        },
+                        {
+                          "label": "2632",
+                          "value": 2632
+                        },
+                        {
+                          "label": "2633",
+                          "value": 2633
+                        },
+                        {
+                          "label": "2634",
+                          "value": 2634
+                        },
+                        {
+                          "label": "2635",
+                          "value": 2635
+                        },
+                        {
+                          "label": "2636",
+                          "value": 2636
+                        },
+                        {
+                          "label": "2637",
+                          "value": 2637
+                        },
+                        {
+                          "label": "2638",
+                          "value": 2638
+                        },
+                        {
+                          "label": "2639",
+                          "value": 2639
+                        },
+                        {
+                          "label": "2640",
+                          "value": 2640
+                        },
+                        {
+                          "label": "2641",
+                          "value": 2641
+                        },
+                        {
+                          "label": "2642",
+                          "value": 2642
+                        },
+                        {
+                          "label": "2643",
+                          "value": 2643
+                        },
+                        {
+                          "label": "2644",
+                          "value": 2644
+                        },
+                        {
+                          "label": "2645",
+                          "value": 2645
+                        },
+                        {
+                          "label": "2646",
+                          "value": 2646
+                        },
+                        {
+                          "label": "2647",
+                          "value": 2647
+                        },
+                        {
+                          "label": "2648",
+                          "value": 2648
+                        },
+                        {
+                          "label": "2649",
+                          "value": 2649
+                        },
+                        {
+                          "label": "2650",
+                          "value": 2650
+                        },
+                        {
+                          "label": "2651",
+                          "value": 2651
+                        },
+                        {
+                          "label": "2652",
+                          "value": 2652
+                        },
+                        {
+                          "label": "2653",
+                          "value": 2653
+                        },
+                        {
+                          "label": "2654",
+                          "value": 2654
+                        },
+                        {
+                          "label": "2655",
+                          "value": 2655
+                        },
+                        {
+                          "label": "2656",
+                          "value": 2656
+                        },
+                        {
+                          "label": "2657",
+                          "value": 2657
+                        },
+                        {
+                          "label": "2658",
+                          "value": 2658
+                        },
+                        {
+                          "label": "2659",
+                          "value": 2659
+                        },
+                        {
+                          "label": "2660",
+                          "value": 2660
+                        },
+                        {
+                          "label": "2661",
+                          "value": 2661
+                        },
+                        {
+                          "label": "2662",
+                          "value": 2662
+                        },
+                        {
+                          "label": "2663",
+                          "value": 2663
+                        },
+                        {
+                          "label": "2664",
+                          "value": 2664
+                        },
+                        {
+                          "label": "2665",
+                          "value": 2665
+                        },
+                        {
+                          "label": "2666",
+                          "value": 2666
+                        },
+                        {
+                          "label": "2667",
+                          "value": 2667
+                        },
+                        {
+                          "label": "2668",
+                          "value": 2668
+                        },
+                        {
+                          "label": "2669",
+                          "value": 2669
+                        },
+                        {
+                          "label": "2670",
+                          "value": 2670
+                        },
+                        {
+                          "label": "2671",
+                          "value": 2671
+                        },
+                        {
+                          "label": "2672",
+                          "value": 2672
+                        },
+                        {
+                          "label": "2673",
+                          "value": 2673
+                        },
+                        {
+                          "label": "2674",
+                          "value": 2674
+                        },
+                        {
+                          "label": "2675",
+                          "value": 2675
+                        },
+                        {
+                          "label": "2676",
+                          "value": 2676
+                        },
+                        {
+                          "label": "2677",
+                          "value": 2677
+                        },
+                        {
+                          "label": "2678",
+                          "value": 2678
+                        },
+                        {
+                          "label": "2679",
+                          "value": 2679
+                        },
+                        {
+                          "label": "2680",
+                          "value": 2680
+                        },
+                        {
+                          "label": "2681",
+                          "value": 2681
+                        },
+                        {
+                          "label": "2682",
+                          "value": 2682
+                        },
+                        {
+                          "label": "2683",
+                          "value": 2683
+                        },
+                        {
+                          "label": "2684",
+                          "value": 2684
+                        },
+                        {
+                          "label": "2685",
+                          "value": 2685
+                        },
+                        {
+                          "label": "2686",
+                          "value": 2686
+                        },
+                        {
+                          "label": "2687",
+                          "value": 2687
+                        },
+                        {
+                          "label": "2688",
+                          "value": 2688
+                        },
+                        {
+                          "label": "2689",
+                          "value": 2689
+                        },
+                        {
+                          "label": "2690",
+                          "value": 2690
+                        },
+                        {
+                          "label": "2691",
+                          "value": 2691
+                        },
+                        {
+                          "label": "2692",
+                          "value": 2692
+                        },
+                        {
+                          "label": "2693",
+                          "value": 2693
+                        },
+                        {
+                          "label": "2694",
+                          "value": 2694
+                        },
+                        {
+                          "label": "2695",
+                          "value": 2695
+                        },
+                        {
+                          "label": "2696",
+                          "value": 2696
+                        },
+                        {
+                          "label": "2697",
+                          "value": 2697
+                        },
+                        {
+                          "label": "2698",
+                          "value": 2698
+                        },
+                        {
+                          "label": "2699",
+                          "value": 2699
+                        },
+                        {
+                          "label": "2700",
+                          "value": 2700
+                        },
+                        {
+                          "label": "2701",
+                          "value": 2701
+                        },
+                        {
+                          "label": "2702",
+                          "value": 2702
+                        },
+                        {
+                          "label": "2703",
+                          "value": 2703
+                        },
+                        {
+                          "label": "2704",
+                          "value": 2704
+                        },
+                        {
+                          "label": "2705",
+                          "value": 2705
+                        },
+                        {
+                          "label": "2706",
+                          "value": 2706
+                        },
+                        {
+                          "label": "2707",
+                          "value": 2707
+                        },
+                        {
+                          "label": "2708",
+                          "value": 2708
+                        },
+                        {
+                          "label": "2709",
+                          "value": 2709
+                        },
+                        {
+                          "label": "2710",
+                          "value": 2710
+                        },
+                        {
+                          "label": "2711",
+                          "value": 2711
+                        },
+                        {
+                          "label": "2712",
+                          "value": 2712
+                        },
+                        {
+                          "label": "2713",
+                          "value": 2713
+                        },
+                        {
+                          "label": "2714",
+                          "value": 2714
+                        },
+                        {
+                          "label": "2715",
+                          "value": 2715
+                        },
+                        {
+                          "label": "2716",
+                          "value": 2716
+                        },
+                        {
+                          "label": "2717",
+                          "value": 2717
+                        },
+                        {
+                          "label": "2718",
+                          "value": 2718
+                        },
+                        {
+                          "label": "2719",
+                          "value": 2719
+                        },
+                        {
+                          "label": "2720",
+                          "value": 2720
+                        },
+                        {
+                          "label": "2721",
+                          "value": 2721
+                        },
+                        {
+                          "label": "2722",
+                          "value": 2722
+                        },
+                        {
+                          "label": "2723",
+                          "value": 2723
+                        },
+                        {
+                          "label": "2724",
+                          "value": 2724
+                        },
+                        {
+                          "label": "2725",
+                          "value": 2725
+                        },
+                        {
+                          "label": "2726",
+                          "value": 2726
+                        },
+                        {
+                          "label": "2727",
+                          "value": 2727
+                        },
+                        {
+                          "label": "2728",
+                          "value": 2728
+                        },
+                        {
+                          "label": "2729",
+                          "value": 2729
+                        },
+                        {
+                          "label": "2730",
+                          "value": 2730
+                        },
+                        {
+                          "label": "2731",
+                          "value": 2731
+                        },
+                        {
+                          "label": "2732",
+                          "value": 2732
+                        },
+                        {
+                          "label": "2733",
+                          "value": 2733
+                        },
+                        {
+                          "label": "2734",
+                          "value": 2734
+                        },
+                        {
+                          "label": "2735",
+                          "value": 2735
+                        },
+                        {
+                          "label": "2736",
+                          "value": 2736
+                        },
+                        {
+                          "label": "2737",
+                          "value": 2737
+                        },
+                        {
+                          "label": "2738",
+                          "value": 2738
+                        },
+                        {
+                          "label": "2739",
+                          "value": 2739
+                        },
+                        {
+                          "label": "2740",
+                          "value": 2740
+                        },
+                        {
+                          "label": "2741",
+                          "value": 2741
+                        },
+                        {
+                          "label": "2742",
+                          "value": 2742
+                        },
+                        {
+                          "label": "2743",
+                          "value": 2743
+                        },
+                        {
+                          "label": "2744",
+                          "value": 2744
+                        },
+                        {
+                          "label": "2745",
+                          "value": 2745
+                        },
+                        {
+                          "label": "2746",
+                          "value": 2746
+                        },
+                        {
+                          "label": "2747",
+                          "value": 2747
+                        },
+                        {
+                          "label": "2748",
+                          "value": 2748
+                        },
+                        {
+                          "label": "2749",
+                          "value": 2749
+                        },
+                        {
+                          "label": "2750",
+                          "value": 2750
+                        },
+                        {
+                          "label": "2751",
+                          "value": 2751
+                        },
+                        {
+                          "label": "2752",
+                          "value": 2752
+                        },
+                        {
+                          "label": "2753",
+                          "value": 2753
+                        },
+                        {
+                          "label": "2754",
+                          "value": 2754
+                        },
+                        {
+                          "label": "2755",
+                          "value": 2755
+                        },
+                        {
+                          "label": "2756",
+                          "value": 2756
+                        },
+                        {
+                          "label": "2757",
+                          "value": 2757
+                        },
+                        {
+                          "label": "2758",
+                          "value": 2758
+                        },
+                        {
+                          "label": "2759",
+                          "value": 2759
+                        },
+                        {
+                          "label": "2760",
+                          "value": 2760
+                        },
+                        {
+                          "label": "2761",
+                          "value": 2761
+                        },
+                        {
+                          "label": "2762",
+                          "value": 2762
+                        },
+                        {
+                          "label": "2763",
+                          "value": 2763
+                        },
+                        {
+                          "label": "2764",
+                          "value": 2764
+                        },
+                        {
+                          "label": "2765",
+                          "value": 2765
+                        },
+                        {
+                          "label": "2766",
+                          "value": 2766
+                        },
+                        {
+                          "label": "2767",
+                          "value": 2767
+                        },
+                        {
+                          "label": "2768",
+                          "value": 2768
+                        },
+                        {
+                          "label": "2769",
+                          "value": 2769
+                        },
+                        {
+                          "label": "2770",
+                          "value": 2770
+                        },
+                        {
+                          "label": "2771",
+                          "value": 2771
+                        },
+                        {
+                          "label": "2772",
+                          "value": 2772
+                        },
+                        {
+                          "label": "2773",
+                          "value": 2773
+                        },
+                        {
+                          "label": "2774",
+                          "value": 2774
+                        },
+                        {
+                          "label": "2775",
+                          "value": 2775
+                        },
+                        {
+                          "label": "2776",
+                          "value": 2776
+                        },
+                        {
+                          "label": "2777",
+                          "value": 2777
+                        },
+                        {
+                          "label": "2778",
+                          "value": 2778
+                        },
+                        {
+                          "label": "2779",
+                          "value": 2779
+                        },
+                        {
+                          "label": "2780",
+                          "value": 2780
+                        },
+                        {
+                          "label": "2781",
+                          "value": 2781
+                        },
+                        {
+                          "label": "2782",
+                          "value": 2782
+                        },
+                        {
+                          "label": "2783",
+                          "value": 2783
+                        },
+                        {
+                          "label": "2784",
+                          "value": 2784
+                        },
+                        {
+                          "label": "2785",
+                          "value": 2785
+                        },
+                        {
+                          "label": "2786",
+                          "value": 2786
+                        },
+                        {
+                          "label": "2787",
+                          "value": 2787
+                        },
+                        {
+                          "label": "2788",
+                          "value": 2788
+                        },
+                        {
+                          "label": "2789",
+                          "value": 2789
+                        },
+                        {
+                          "label": "2790",
+                          "value": 2790
+                        },
+                        {
+                          "label": "2791",
+                          "value": 2791
+                        },
+                        {
+                          "label": "2792",
+                          "value": 2792
+                        },
+                        {
+                          "label": "2793",
+                          "value": 2793
+                        },
+                        {
+                          "label": "2794",
+                          "value": 2794
+                        },
+                        {
+                          "label": "2795",
+                          "value": 2795
+                        },
+                        {
+                          "label": "2796",
+                          "value": 2796
+                        },
+                        {
+                          "label": "2797",
+                          "value": 2797
+                        },
+                        {
+                          "label": "2798",
+                          "value": 2798
+                        },
+                        {
+                          "label": "2799",
+                          "value": 2799
+                        },
+                        {
+                          "label": "2800",
+                          "value": 2800
+                        },
+                        {
+                          "label": "2801",
+                          "value": 2801
+                        },
+                        {
+                          "label": "2802",
+                          "value": 2802
+                        },
+                        {
+                          "label": "2803",
+                          "value": 2803
+                        },
+                        {
+                          "label": "2804",
+                          "value": 2804
+                        },
+                        {
+                          "label": "2805",
+                          "value": 2805
+                        },
+                        {
+                          "label": "2806",
+                          "value": 2806
+                        },
+                        {
+                          "label": "2807",
+                          "value": 2807
+                        },
+                        {
+                          "label": "2808",
+                          "value": 2808
+                        },
+                        {
+                          "label": "2809",
+                          "value": 2809
+                        },
+                        {
+                          "label": "2810",
+                          "value": 2810
+                        },
+                        {
+                          "label": "2811",
+                          "value": 2811
+                        },
+                        {
+                          "label": "2812",
+                          "value": 2812
+                        },
+                        {
+                          "label": "2813",
+                          "value": 2813
+                        },
+                        {
+                          "label": "2814",
+                          "value": 2814
+                        },
+                        {
+                          "label": "2815",
+                          "value": 2815
+                        },
+                        {
+                          "label": "2816",
+                          "value": 2816
+                        },
+                        {
+                          "label": "2817",
+                          "value": 2817
+                        },
+                        {
+                          "label": "2818",
+                          "value": 2818
+                        },
+                        {
+                          "label": "2819",
+                          "value": 2819
+                        },
+                        {
+                          "label": "2820",
+                          "value": 2820
+                        },
+                        {
+                          "label": "2821",
+                          "value": 2821
+                        },
+                        {
+                          "label": "2822",
+                          "value": 2822
+                        },
+                        {
+                          "label": "2823",
+                          "value": 2823
+                        },
+                        {
+                          "label": "2824",
+                          "value": 2824
+                        },
+                        {
+                          "label": "2825",
+                          "value": 2825
+                        },
+                        {
+                          "label": "2826",
+                          "value": 2826
+                        },
+                        {
+                          "label": "2827",
+                          "value": 2827
+                        },
+                        {
+                          "label": "2828",
+                          "value": 2828
+                        },
+                        {
+                          "label": "2829",
+                          "value": 2829
+                        },
+                        {
+                          "label": "2830",
+                          "value": 2830
+                        },
+                        {
+                          "label": "2831",
+                          "value": 2831
+                        },
+                        {
+                          "label": "2832",
+                          "value": 2832
+                        },
+                        {
+                          "label": "2833",
+                          "value": 2833
+                        },
+                        {
+                          "label": "2834",
+                          "value": 2834
+                        },
+                        {
+                          "label": "2835",
+                          "value": 2835
+                        },
+                        {
+                          "label": "2836",
+                          "value": 2836
+                        },
+                        {
+                          "label": "2837",
+                          "value": 2837
+                        },
+                        {
+                          "label": "2838",
+                          "value": 2838
+                        },
+                        {
+                          "label": "2839",
+                          "value": 2839
+                        },
+                        {
+                          "label": "2840",
+                          "value": 2840
+                        },
+                        {
+                          "label": "2841",
+                          "value": 2841
+                        },
+                        {
+                          "label": "2842",
+                          "value": 2842
+                        },
+                        {
+                          "label": "2843",
+                          "value": 2843
+                        },
+                        {
+                          "label": "2844",
+                          "value": 2844
+                        },
+                        {
+                          "label": "2845",
+                          "value": 2845
+                        },
+                        {
+                          "label": "2846",
+                          "value": 2846
+                        },
+                        {
+                          "label": "2847",
+                          "value": 2847
+                        },
+                        {
+                          "label": "2848",
+                          "value": 2848
+                        },
+                        {
+                          "label": "2849",
+                          "value": 2849
+                        },
+                        {
+                          "label": "2850",
+                          "value": 2850
+                        },
+                        {
+                          "label": "2851",
+                          "value": 2851
+                        },
+                        {
+                          "label": "2852",
+                          "value": 2852
+                        },
+                        {
+                          "label": "2853",
+                          "value": 2853
+                        },
+                        {
+                          "label": "2854",
+                          "value": 2854
+                        },
+                        {
+                          "label": "2855",
+                          "value": 2855
+                        },
+                        {
+                          "label": "2856",
+                          "value": 2856
+                        },
+                        {
+                          "label": "2857",
+                          "value": 2857
+                        },
+                        {
+                          "label": "2858",
+                          "value": 2858
+                        },
+                        {
+                          "label": "2859",
+                          "value": 2859
+                        },
+                        {
+                          "label": "2860",
+                          "value": 2860
+                        },
+                        {
+                          "label": "2861",
+                          "value": 2861
+                        },
+                        {
+                          "label": "2862",
+                          "value": 2862
+                        },
+                        {
+                          "label": "2863",
+                          "value": 2863
+                        },
+                        {
+                          "label": "2864",
+                          "value": 2864
+                        },
+                        {
+                          "label": "2865",
+                          "value": 2865
+                        },
+                        {
+                          "label": "2866",
+                          "value": 2866
+                        },
+                        {
+                          "label": "2867",
+                          "value": 2867
+                        },
+                        {
+                          "label": "2868",
+                          "value": 2868
+                        },
+                        {
+                          "label": "2869",
+                          "value": 2869
+                        },
+                        {
+                          "label": "2870",
+                          "value": 2870
+                        },
+                        {
+                          "label": "2871",
+                          "value": 2871
+                        },
+                        {
+                          "label": "2872",
+                          "value": 2872
+                        },
+                        {
+                          "label": "2873",
+                          "value": 2873
+                        },
+                        {
+                          "label": "2874",
+                          "value": 2874
+                        },
+                        {
+                          "label": "2875",
+                          "value": 2875
+                        },
+                        {
+                          "label": "2876",
+                          "value": 2876
+                        },
+                        {
+                          "label": "2877",
+                          "value": 2877
+                        },
+                        {
+                          "label": "2878",
+                          "value": 2878
+                        },
+                        {
+                          "label": "2879",
+                          "value": 2879
+                        },
+                        {
+                          "label": "2880",
+                          "value": 2880
+                        },
+                        {
+                          "label": "2881",
+                          "value": 2881
+                        },
+                        {
+                          "label": "2882",
+                          "value": 2882
+                        },
+                        {
+                          "label": "2883",
+                          "value": 2883
+                        },
+                        {
+                          "label": "2884",
+                          "value": 2884
+                        },
+                        {
+                          "label": "2885",
+                          "value": 2885
+                        },
+                        {
+                          "label": "2886",
+                          "value": 2886
+                        },
+                        {
+                          "label": "2887",
+                          "value": 2887
+                        },
+                        {
+                          "label": "2888",
+                          "value": 2888
+                        },
+                        {
+                          "label": "2889",
+                          "value": 2889
+                        },
+                        {
+                          "label": "2890",
+                          "value": 2890
+                        },
+                        {
+                          "label": "2891",
+                          "value": 2891
+                        },
+                        {
+                          "label": "2892",
+                          "value": 2892
+                        },
+                        {
+                          "label": "2893",
+                          "value": 2893
+                        },
+                        {
+                          "label": "2894",
+                          "value": 2894
+                        },
+                        {
+                          "label": "2895",
+                          "value": 2895
+                        },
+                        {
+                          "label": "2896",
+                          "value": 2896
+                        },
+                        {
+                          "label": "2897",
+                          "value": 2897
+                        },
+                        {
+                          "label": "2898",
+                          "value": 2898
+                        },
+                        {
+                          "label": "2899",
+                          "value": 2899
+                        },
+                        {
+                          "label": "2900",
+                          "value": 2900
+                        },
+                        {
+                          "label": "2901",
+                          "value": 2901
+                        },
+                        {
+                          "label": "2902",
+                          "value": 2902
+                        },
+                        {
+                          "label": "2903",
+                          "value": 2903
+                        },
+                        {
+                          "label": "2904",
+                          "value": 2904
+                        },
+                        {
+                          "label": "2905",
+                          "value": 2905
+                        },
+                        {
+                          "label": "2906",
+                          "value": 2906
+                        },
+                        {
+                          "label": "2907",
+                          "value": 2907
+                        },
+                        {
+                          "label": "2908",
+                          "value": 2908
+                        },
+                        {
+                          "label": "2909",
+                          "value": 2909
+                        },
+                        {
+                          "label": "2910",
+                          "value": 2910
+                        },
+                        {
+                          "label": "2911",
+                          "value": 2911
+                        },
+                        {
+                          "label": "2912",
+                          "value": 2912
+                        },
+                        {
+                          "label": "2913",
+                          "value": 2913
+                        },
+                        {
+                          "label": "2914",
+                          "value": 2914
+                        },
+                        {
+                          "label": "2915",
+                          "value": 2915
+                        },
+                        {
+                          "label": "2916",
+                          "value": 2916
+                        },
+                        {
+                          "label": "2917",
+                          "value": 2917
+                        },
+                        {
+                          "label": "2918",
+                          "value": 2918
+                        },
+                        {
+                          "label": "2919",
+                          "value": 2919
+                        },
+                        {
+                          "label": "2920",
+                          "value": 2920
+                        },
+                        {
+                          "label": "2921",
+                          "value": 2921
+                        },
+                        {
+                          "label": "2922",
+                          "value": 2922
+                        },
+                        {
+                          "label": "2923",
+                          "value": 2923
+                        },
+                        {
+                          "label": "2924",
+                          "value": 2924
+                        },
+                        {
+                          "label": "2925",
+                          "value": 2925
+                        },
+                        {
+                          "label": "2926",
+                          "value": 2926
+                        },
+                        {
+                          "label": "2927",
+                          "value": 2927
+                        },
+                        {
+                          "label": "2928",
+                          "value": 2928
+                        },
+                        {
+                          "label": "2929",
+                          "value": 2929
+                        },
+                        {
+                          "label": "2930",
+                          "value": 2930
+                        },
+                        {
+                          "label": "2931",
+                          "value": 2931
+                        },
+                        {
+                          "label": "2932",
+                          "value": 2932
+                        },
+                        {
+                          "label": "2933",
+                          "value": 2933
+                        },
+                        {
+                          "label": "2934",
+                          "value": 2934
+                        },
+                        {
+                          "label": "2935",
+                          "value": 2935
+                        },
+                        {
+                          "label": "2936",
+                          "value": 2936
+                        },
+                        {
+                          "label": "2937",
+                          "value": 2937
+                        },
+                        {
+                          "label": "2938",
+                          "value": 2938
+                        },
+                        {
+                          "label": "2939",
+                          "value": 2939
+                        },
+                        {
+                          "label": "2940",
+                          "value": 2940
+                        },
+                        {
+                          "label": "2941",
+                          "value": 2941
+                        },
+                        {
+                          "label": "2942",
+                          "value": 2942
+                        },
+                        {
+                          "label": "2943",
+                          "value": 2943
+                        },
+                        {
+                          "label": "2944",
+                          "value": 2944
+                        },
+                        {
+                          "label": "2945",
+                          "value": 2945
+                        },
+                        {
+                          "label": "2946",
+                          "value": 2946
+                        },
+                        {
+                          "label": "2947",
+                          "value": 2947
+                        },
+                        {
+                          "label": "2948",
+                          "value": 2948
+                        },
+                        {
+                          "label": "2949",
+                          "value": 2949
+                        },
+                        {
+                          "label": "2950",
+                          "value": 2950
+                        },
+                        {
+                          "label": "2951",
+                          "value": 2951
+                        },
+                        {
+                          "label": "2952",
+                          "value": 2952
+                        },
+                        {
+                          "label": "2953",
+                          "value": 2953
+                        },
+                        {
+                          "label": "2954",
+                          "value": 2954
+                        },
+                        {
+                          "label": "2955",
+                          "value": 2955
+                        },
+                        {
+                          "label": "2956",
+                          "value": 2956
+                        },
+                        {
+                          "label": "2957",
+                          "value": 2957
+                        },
+                        {
+                          "label": "2958",
+                          "value": 2958
+                        },
+                        {
+                          "label": "2959",
+                          "value": 2959
+                        },
+                        {
+                          "label": "2960",
+                          "value": 2960
+                        },
+                        {
+                          "label": "2961",
+                          "value": 2961
+                        },
+                        {
+                          "label": "2962",
+                          "value": 2962
+                        },
+                        {
+                          "label": "2963",
+                          "value": 2963
+                        },
+                        {
+                          "label": "2964",
+                          "value": 2964
+                        },
+                        {
+                          "label": "2965",
+                          "value": 2965
+                        },
+                        {
+                          "label": "2966",
+                          "value": 2966
+                        },
+                        {
+                          "label": "2967",
+                          "value": 2967
+                        },
+                        {
+                          "label": "2968",
+                          "value": 2968
+                        },
+                        {
+                          "label": "2969",
+                          "value": 2969
+                        },
+                        {
+                          "label": "2970",
+                          "value": 2970
+                        },
+                        {
+                          "label": "2971",
+                          "value": 2971
+                        },
+                        {
+                          "label": "2972",
+                          "value": 2972
+                        },
+                        {
+                          "label": "2973",
+                          "value": 2973
+                        },
+                        {
+                          "label": "2974",
+                          "value": 2974
+                        },
+                        {
+                          "label": "2975",
+                          "value": 2975
+                        },
+                        {
+                          "label": "2976",
+                          "value": 2976
+                        },
+                        {
+                          "label": "2977",
+                          "value": 2977
+                        },
+                        {
+                          "label": "2978",
+                          "value": 2978
+                        },
+                        {
+                          "label": "2979",
+                          "value": 2979
+                        },
+                        {
+                          "label": "2980",
+                          "value": 2980
+                        },
+                        {
+                          "label": "2981",
+                          "value": 2981
+                        },
+                        {
+                          "label": "2982",
+                          "value": 2982
+                        },
+                        {
+                          "label": "2983",
+                          "value": 2983
+                        },
+                        {
+                          "label": "2984",
+                          "value": 2984
+                        },
+                        {
+                          "label": "2985",
+                          "value": 2985
+                        },
+                        {
+                          "label": "2986",
+                          "value": 2986
+                        },
+                        {
+                          "label": "2987",
+                          "value": 2987
+                        },
+                        {
+                          "label": "2988",
+                          "value": 2988
+                        },
+                        {
+                          "label": "2989",
+                          "value": 2989
+                        },
+                        {
+                          "label": "2990",
+                          "value": 2990
+                        },
+                        {
+                          "label": "2991",
+                          "value": 2991
+                        },
+                        {
+                          "label": "2992",
+                          "value": 2992
+                        },
+                        {
+                          "label": "2993",
+                          "value": 2993
+                        },
+                        {
+                          "label": "2994",
+                          "value": 2994
+                        },
+                        {
+                          "label": "2995",
+                          "value": 2995
+                        },
+                        {
+                          "label": "2996",
+                          "value": 2996
+                        },
+                        {
+                          "label": "2997",
+                          "value": 2997
+                        },
+                        {
+                          "label": "2998",
+                          "value": 2998
+                        }
+                      ],
+                      "placeholder": {
+                        "text": "Select year..."
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Panel/DropdownContent"
+                      },
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  },
+                  {
+                    "meta": {
+                      "name": "StartDate"
+                    },
+                    "position": {
+                      "basis": "170px"
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "placeholder": "Start date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  },
+                  {
+                    "meta": {
+                      "name": "EndDate"
+                    },
+                    "position": {
+                      "basis": "170px"
+                    },
+                    "props": {
+                      "formattedValue": null,
+                      "placeholder": "End date"
+                    },
+                    "type": "ia.input.date-time-input"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "40px"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntDate"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tProject_VECV.PopUp.loader.openLoader(True)\n\tPlant\u003d\u0027Dewas\u0027\n\tAreaVal\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\tLineVal\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\n\tWorkstationVal\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntStation\").getChild(\"drpStation\").props.value\n\tif AreaVal!\u003d-1 and LineVal!\u003d-1 and WorkstationVal!\u003d-1:\n\t\tAreadtset\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpArea\").props.options\n\t\tAreadtset1\u003dsystem.dataset.toPyDataSet(Areadtset)\n\t\tfor i in Areadtset1:\n\t\t\tif i[0]\u003d\u003dAreaVal:\n\t\t\t\tArea\u003di[1]\n\t\t\t\t\n\t\tLinedtset\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntLine\").getChild(\"drpLine\").props.options\n\t\tLinedtset1\u003dsystem.dataset.toPyDataSet(Linedtset)\n\t\tfor i in Linedtset1:\n\t\t\tif i[0]\u003d\u003dLineVal:\n\t\t\t\tLine\u003di[1]\n\t\t\t\t\n\t\tWorkstationdtset\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntStation\").getChild(\"drpStation\").props.options\n\t\tWorkstationdtset1\u003dsystem.dataset.toPyDataSet(Workstationdtset)\n\t\tfor i in Workstationdtset1:\n\t\t\tif i[0]\u003d\u003dWorkstationVal:\n\t\t\t\tWorkstation\u003di[1]\n\n\t\ttagName\u003dPlant+\u0027/\u0027+Area+\u0027/\u0027+Line+\u0027/\u0027+Workstation\n\t\tsystem.perspective.print(tagName)\n\t\tself.view.params.TagName\u003dtagName\n\t\tmonth \u003d self.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"drpmonth\").props.value\n\t\tyear \u003d self.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"drpyear\").props.value\n\t\tStartDateTime \u003d self.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"StartDate\").props.value\n\t\tEndDateTime \u003d self.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"EndDate\").props.value\n\t\tif month \u003d\u003d -1 or year \u003d\u003d -1:\n\t\t\tGETDATE \u003d system.date.now()\n\t\telse:\n\t\t\tGETDATE \u003d system.date.getDate(int(year), int(month), 15)\n\t\tsystem.perspective.print({\"Station\":Workstation, \"GETDATE\" : GETDATE,\u0027StartDateTime\u0027:StartDateTime,\u0027EndDateTime\u0027:EndDateTime})\n\t\tdata\u003dsystem.db.runNamedQuery(\"Project_VECV/TagHistorian/Historian\",{\"Station\":Workstation, \"GETDATE\" : GETDATE,\u0027StartDateTime\u0027:StartDateTime,\u0027EndDateTime\u0027:EndDateTime})\n\t\tself.parent.parent.parent.getChild(\"Table\").props.data\u003ddata\n\telse:\n\t\tself.parent.parent.parent.getChild(\"Table\").props.data\u003d[]\n\tProject_VECV.PopUp.loader.openLoader(False)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  },
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/06/2024\n\t\tPurpose: Passing dropdown values to Parameteres. \n\t\"\"\"\n\t\n#\tif self.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModel\").getChild(\"drpModel\").props.value\u003d\u003dNone:\n#\t\tself.view.params.Model\u003d-1\n#\telse:\n#\t\tself.view.params.Model\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModel\").getChild(\"drpModel\").props.value\n\tif self.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d\u003dNone:\n\t\tself.view.params.Area\u003d-1\n\telse:\n\t\tself.view.params.Area\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\tif self.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003d\u003dNone:\n\t\tself.view.params.Line\u003d-1\n\telse:\n\t\tself.view.params.Line\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\n\tif self.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntStation\").getChild(\"drpStation\").props.value\u003d\u003dNone:\n\t\tself.view.params.Workstation\u003d-1\n\telse:\n\t\tself.view.params.Workstation\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntStation\").getChild(\"drpStation\").props.value"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "BtnApply"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#4169E1",
+                    "borderStyle": "ridge",
+                    "borderWidth": "1px",
+                    "height": "40px"
+                  },
+                  "text": "View",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "flexApply"
+            },
+            "position": {
+              "basis": "100px"
+            },
+            "props": {
+              "alignItems": "flex-end",
+              "justify": "space-around",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/06/2024\n\t\tPurpose: CLEAR ALL FILTER SELECTION. \n\t\"\"\"\n\t#CLEAR ALL FILTER SELECTION\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d -1\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1\n\tself.view.params.Area\u003d-1\n\tself.view.params.Line\u003d-1\n\tself.view.params.Workstation\u003d-1\n\tself.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"drpmonth\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"drpyear\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"StartDate\").props.value \u003d None\n\tself.parent.parent.getChild(\"cntDate\").getChild(\"FlexContainer\").getChild(\"EndDate\").props.value \u003d None\n\tself.parent.parent.parent.getChild(\"Table\").props.data\u003d[]"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "BtnClear"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "backgroundColor": "#708090",
+                    "borderStyle": "ridge",
+                    "borderWidth": "1px",
+                    "height": "40px"
+                  },
+                  "text": "Clear",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "flexClear"
+            },
+            "position": {
+              "basis": "100px"
+            },
+            "props": {
+              "alignItems": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sanket Landge\n\t\tWritten Date: 16/10/2025\n\t\tPurpose:\t\t\t \n\t\t\t\tExport Tag History Table Data to Excel with Headers\n\t\"\"\"\t\n\ttry:\n\t\timport datetime\n\t\t \n\t\ttable \u003d self.parent.parent.parent.getChild(\"Table\")\n\t\t \n\t\theaders \u003d [\"TagId\", \"TagPath\", \"TagName\", \"Value\", \"DateTime\"]\n\t\tfields \u003d [\"tagid\", \"tagpath\", \"TagName\", \"dataValues\", \"Timestamp\"]\n\t\t \n\t\tdata \u003d table.props.data\n\t\t \n\t\trows \u003d []\n\t\t \n\t\t# Case 1: data is a list of dicts (typical Perspective Table)\n\t\tif isinstance(data, list) and len(data) \u003e 0 and isinstance(data[0], dict):\n\t\t    for row in data:\n\t\t        rows.append([row.get(field, \"\") for field in fields])\n\t\t \n\t\t# Case 2: data is a PyDataset object (from DB/query), access by column index\n\t\telif hasattr(data, \"getValueAt\"):\n\t\t    col_names \u003d [data.getColumnName(i) for i in range(data.getColumnCount())]\n\t\t    field_indices \u003d [col_names.index(field) if field in col_names else -1 for field in fields]\n\t\t    for row_idx in range(data.getRowCount()):\n\t\t        row_out \u003d []\n\t\t        for idx in field_indices:\n\t\t            if idx \u003e\u003d 0:\n\t\t                row_out.append(data.getValueAt(row_idx, idx))\n\t\t            else:\n\t\t                row_out.append(\"\")\n\t\t        rows.append(row_out)\n\t\t \n\t\t# If empty, do nothing (optional)\n\t\t \n\t\tdataset \u003d system.dataset.toDataSet(headers, rows)\n\t\tsheetNames \u003d [\"TagHistory\"]\n\t\texcelBytes \u003d system.dataset.toExcel(True, [dataset], sheetNames)\n\t\ttimestamp \u003d datetime.datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n\t\tfileName \u003d \"TagHistoryExport_{}.xlsx\".format(timestamp)\n\t\tsystem.perspective.download(fileName, excelBytes)\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027HistorianStatus\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/TagHistorian/HistorianStatus\u0027)  \n\t\terrorFunction \u003d str(\u0027imgDownload -\u003e OnClick\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "imgdownload"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "fit": {
+                    "height": 32,
+                    "mode": "fill",
+                    "width": 32
+                  },
+                  "source": "/system/images/VECV/download.png",
+                  "style": {
+                    "cursor": "pointer",
+                    "height": "40px"
+                  },
+                  "tint": {
+                    "enabled": true
+                  }
+                },
+                "type": "ia.display.image"
+              }
+            ],
+            "meta": {
+              "name": "flexDownload"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "alignItems": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntFlex"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 100
+        },
+        "props": {
+          "alignItems": "flex-end",
+          "style": {
+            "backgroundColor": "#D1D5DB",
+            "borderBottomLeftRadius": "8px",
+            "borderBottomRightRadius": "8px",
+            "borderStyle": "ridge",
+            "borderTopLeftRadius": "8px",
+            "borderTopRightRadius": "8px",
+            "marginBottom": 0,
+            "marginLeft": "5px",
+            "marginRight": "5px",
+            "marginTop": 0
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "lblview"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header",
+            "color": "#000000",
+            "fontWeight": "bold"
+          },
+          "text": "Tag Historian Monitoring"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

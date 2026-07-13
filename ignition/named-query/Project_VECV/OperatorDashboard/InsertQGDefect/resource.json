@@ -1,0 +1,100 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "ab1496f432b133efc69edaf804b9eb5e81ec019453c0e5591f322671de837342",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2025-12-08T11:02:39Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStationId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOMId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OpId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Comments",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectName",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectSubname",
+        "sqlType": 2
+      }
+    ]
+  }
+}

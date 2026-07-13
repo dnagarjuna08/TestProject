@@ -1,0 +1,2 @@
+INSERT INTO I_Material (MaterialNumber, MaterialType, MaterialVersion, Plant_Code, UOM, IsActive, IsMBomRecord, CreatedBy, CreatedOn, Mst_Area_Id)
+values (:MaterialNumber, :MaterialType, :MaterialVersion, :Plant_Code, :UOM, 1, :IsMBomRecord, 0, GETDATE(), :Mst_Area_Id)

@@ -1,0 +1,175 @@
+{
+  "custom": {},
+  "params": {
+    "ImagePath": "value",
+    "Number": "value",
+    "OPType": "value",
+    "Status": "value",
+    "Text": "value",
+    "WorkInstruction": "value"
+  },
+  "propConfig": {
+    "params.ImagePath": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Number": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.OPType": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Status": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Text": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WorkInstruction": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 51,
+      "width": 293
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "propConfig": {
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.Status"
+              },
+              "transforms": [
+                {
+                  "fallback": "material/not_started",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "Completed",
+                      "output": "material/done_outline"
+                    },
+                    {
+                      "input": "InProgress",
+                      "output": "material/pause_circle_filled"
+                    },
+                    {
+                      "input": "ByPass",
+                      "output": "material/call_split"
+                    },
+                    {
+                      "input": "Faulted",
+                      "output": "material/cancel"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "#FF4747"
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Number"
+        },
+        "position": {
+          "basis": "55px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.Number"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "WorkInstruction"
+        },
+        "position": {
+          "basis": "215px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.WorkInstruction"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.backgroundColor": {
+        "binding": {
+          "config": {
+            "path": "view.params.Status"
+          },
+          "transforms": [
+            {
+              "code": "\ttry:\n\t\tif value \u003d\u003d \"InProgress\":\n\t\t\tcolor \u003d \"#FFFF47\"  ### Yellow\n\t\t\tmessageType \u003d \u0027OPCodeValues\u0027\n\t\t\tpayload\u003d{\u0027OPType\u0027:self.view.params.OPType, \u0027Text\u0027:self.view.params.Text, \u0027ImagePath\u0027:self.view.params.ImagePath}\t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027)\n\t\telif value \u003d\u003d \"Completed\":\n\t\t\tcolor\u003d \"#47FF47\"  ### Green\n\t\telif value \u003d\u003d \"ByPass\":\n\t\t\tcolor\u003d \"#D5D5D5\" ### Grey\n\t\telif value \u003d\u003d \"Faulted\":\n\t\t\tcolor\u003d \"#FF8A8A\" ### red\n\t\telse:\n\t\t\tcolor \u003d \"#FFFFFF\"  ### white\n\t\treturn color\n\texcept:\n\t\tscreenName \u003d\u0027WorkInstruction Template\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/OPerator Dashboard/WorkInstruction\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onMsgHandler -\u003e WorkInstruction\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(str(description) + \u0027  \u0027 + str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t#End of except block",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "style": {
+        "borderBottomLeftRadius": 10,
+        "borderBottomRightRadius": 10,
+        "borderColor": "#000000",
+        "borderStyle": "groove",
+        "borderTopLeftRadius": 10,
+        "borderTopRightRadius": 10,
+        "borderWidth": 1
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

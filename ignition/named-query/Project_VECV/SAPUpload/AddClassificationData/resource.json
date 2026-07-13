@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "3fc9bf30eaf23f752f5db5b6ff9cffcb5e3b58a769cdcb532df2e39010a6134a",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MODEL_RANGE",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MFG_PLANT_CODE",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GEAR_RATIO",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOMNumber",
+        "sqlType": 7
+      }
+    ]
+  }
+}

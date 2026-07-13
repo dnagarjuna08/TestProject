@@ -1,0 +1,567 @@
+{
+  "custom": {
+    "slctImageId": -1
+  },
+  "params": {
+    "WorkStationId": "",
+    "header": "",
+    "imageName": "",
+    "imageType": "",
+    "imageTypeId": "",
+    "imageURL": "value"
+  },
+  "propConfig": {
+    "custom.slctImageId": {
+      "persistent": true
+    },
+    "params.WorkStationId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.header": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imageName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imageType": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imageTypeId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.imageURL": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 550,
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.header"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn \u0027Image | \u0027+value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\n\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 12/05/2024\n\tPurpose:\t\t\t \n\t\t\tclose popup and assignd image source value into cutom imageURL paramater.\t\t\t\n\t\"\"\"\t\n\t# Write your script here\t\n\ttry:\n\t#Start of try block\n#\t\tmessageType \u003d \u0027cntAddImage\u0027   \n#\t\tpayload \u003d {\"isVisible\":0,\u0027imageTypeId\u0027:\u0027\u0027,\u0027imageURL\u0027:\u0027\u0027,\u0027header\u0027:\u0027\u0027}\t\t\t  \t\t\t\n#\t\tsystem.perspective.sendMessage(messageType,payload ,scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.closePopup(id\u003d\u0027addImage\u0027)\t\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\timageURL \u003d self.parent.parent.getChild(\"cntImage\").getChild(\"img\").props.source\n\t\tself.parent.parent.getChild(\"cntImage\").getChild(\"btnYes\").props.enabled \u003d 0\n\t\t\n#\t\tsystem.perspective.closePopup(\"FixtureAddImage\")\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t        screenName \u003d\u0027Add Image\u0027  \n\t        filePath\u003dstr(\u0027Project_VECV/PopUp/AddImage\u0027)\n\t        errorFunction \u003d str(\u0027Event:onClick  -\u003e lblClose\u0027)\n\t        errorType\u003dstr(\u0027Application\u0027)\n\t        errorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t        description\u003dstr(sys.exc_info()[1]) #error description\n\t        lineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t        Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block\n\n\t\n\t\n\t\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "x": 25,
+                  "y": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 12/05/2024\n\tPurpose:\t\t\t \n\t\t\tShow images on table against parrticular workstation.\t\t\n\t\"\"\"\t\n\t#\t# Write your script here\n\ttry:\n\t#Start of try block\n\t\tselectedRow \u003d self.props.selection.selectedRow\n\t\tpydata \u003d system.dataset.toPyDataSet(self.props.data)\n\t\tif(len(pydata) \u003e 0):\t\t\n\t\t\tid \u003d pydata[selectedRow][\u0027MST_ImageMaster_Id\u0027]\n\t\t\timageURL \u003d pydata[selectedRow][\u0027ImagePath\u0027]\n\t\t\timageName \u003d pydata[selectedRow][\u0027ImageName\u0027]\n\t\t\tself.parent.parent.getChild(\"cntImage\").getChild(\"btnYes\").props.enabled \u003d 1\n\t\t\t\t\t\n\t\tself.parent.parent.getChild(\"cntImage\").getChild(\"img\").props.source \u003d imageURL\n\t\tself.parent.parent.getChild(\"cntImage\").custom.imageName \u003d imageName\n\t\tsystem.perspective.print(\"imageURL:%s\"%imageURL)\n\t\tself.view.custom.slctImageId \u003d int(id)\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t        screenName \u003d\u0027Add Image\u0027  \n\t        filePath\u003dstr(\u0027Project_VECV/PopUp/AddImage\u0027)\n\t        errorFunction \u003d str(\u0027Event:onRowClick  -\u003e tblImageDetails\u0027)\n\t        errorType\u003dstr(\u0027Application\u0027)\n\t        errorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t        description\u003dstr(sys.exc_info()[1]) #error description\n\t        lineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t        Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block\n\t\n\t\n#\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblImageDetails"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "WorkStaion": "{view.params.WorkStationId}"
+                        },
+                        "queryPath": "Project_VECV/Master/OPCodeConfiguration/GetImage"
+                      },
+                      "type": "query"
+                    }
+                  },
+                  "props.headerGroups[0][0].title": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027Total records: \u0027 + len({this.props.data})"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ImageType",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ImageName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": 150
+                    }
+                  ],
+                  "enableHeaderGroups": true,
+                  "filter": {
+                    "enabled": true
+                  },
+                  "headerGroups": [
+                    [
+                      {
+                        "align": "center",
+                        "justify": "left",
+                        "span": 1,
+                        "style": {
+                          "classes": "Project_VECV/Panel/TextContent"
+                        }
+                      }
+                    ]
+                  ],
+                  "pager": {
+                    "initialOption": 10
+                  },
+                  "rows": {
+                    "highlight": {
+                      "enabled": false
+                    },
+                    "striped": {
+                      "enabled": false
+                    },
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    }
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\ttry:\n\t#Start of try block\n\t\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t        screenName \u003d\u0027Add Image\u0027  \n\t        filePath\u003dstr(\u0027Project_VECV/PopUp/AddImage\u0027)\n\t        errorFunction \u003d str(\u0027Message Handler:tableRow -\u003e cntTable/tblImageDetails\u0027) \n\t        errorType\u003dstr(\u0027Application\u0027)\n\t        errorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t        description\u003dstr(sys.exc_info()[1]) #error description\n\t        lineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t        Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block\n\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntTable"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 8
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 8
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 8
+                }
+              ],
+              "height": 500
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "img"
+                },
+                "position": {
+                  "height": 335,
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.source": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.imageURL"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "fit": {
+                    "mode": "cover"
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  }
+                },
+                "type": "ia.display.image"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 12/05/2024\n\tPurpose:\t\t\t \n\t\t\tclose popup and assignd image source value into cutom imageURL paramater.\t\t\t\n\t\"\"\"\t\n\ttry:\n\t#Start of try block\n#\t\tmessageType \u003d \u0027cntAddImage\u0027   \n#\t\tpayload \u003d {\"isVisible\":0,\u0027imageTypeId\u0027:\u0027\u0027,\u0027imageURL\u0027:\u0027\u0027,\u0027header\u0027:\u0027\u0027}\n#\t\tsystem.perspective.sendMessage(messageType,payload ,scope \u003d \u0027page\u0027 )\t\n\t\tsystem.perspective.closePopup(id\u003d\u0027addImage\u0027)\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\timageURL \u003d self.parent.parent.getChild(\"cntImage\").getChild(\"img\").props.source\n\t\timagename \u003d self.parent.custom.imageName\n\t\tif(\u0027icon_User-profile\u0027 in str(imageURL)):\n\t\t\timageId \u003d 0\n\t\telse:\t\n\t\t\timageId \u003d self.view.custom.slctImageId\n\t\t\n\t\t#Change implemented\t\n\t\tself.getSibling(\"btnYes\").props.enabled \u003d 0\t\n\t\tsystem.perspective.sendMessage(\"getSelectedImageId\",payload \u003d {\"selectedImageId\":imageId,\"imageURL\":imageURL,\"imagename\":imagename}, scope \u003d \"page\")\n#\t\tsystem.perspective.closePopup(\"FixtureAddImage\")\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t        screenName \u003d\u0027Add Image\u0027  \n\t        filePath\u003dstr(\u0027Project_VECV/PopUp/AddImage\u0027)\n\t        errorFunction \u003d str(\u0027Event:onActionPerformed  -\u003e btnYes\u0027)\n\t        errorType\u003dstr(\u0027Application\u0027)\n\t        errorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t        description\u003dstr(sys.exc_info()[1]) #error description\n\t        lineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t        Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnYes"
+                },
+                "position": {
+                  "height": 35,
+                  "width": 80,
+                  "x": 144,
+                  "y": 350
+                },
+                "props": {
+                  "enabled": false,
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Add image",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 12/05/2024\n\tPurpose:\t\t\t \n\t\t\tclose popup and assignd image source value into cutom imageURL paramater.\t\t\t\n\t\"\"\"\t\n\t# Write your script here\n\ttry:\n\t#Start of try block\n#\t\tmessageType \u003d \u0027cntAddImage\u0027   \n#\t\tpayload \u003d {\"isVisible\":0,\u0027imageTypeId\u0027:\u0027\u0027,\u0027imageURL\u0027:\u0027\u0027,\u0027header\u0027:\u0027\u0027}\t\t\t  \t\t\t\n#\t\tsystem.perspective.sendMessage(messageType,payload ,scope \u003d \u0027page\u0027 )\t\n\t\tsystem.perspective.closePopup(id\u003d\u0027addImage\u0027)\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\timageURL \u003d self.parent.parent.getChild(\"cntImage\").getChild(\"img\").props.source\n\t\tself.parent.parent.getChild(\"cntTable\").getChild(\"tblImageDetails\").props.selection.selectedRow \u003d -1\n\t\tself.getSibling(\"btnYes\").props.enabled \u003d 0\n\t\n\t#End of try block\n\texcept:\n\t#Start of except block\n\t\t\tscreenName \u003d\u0027Add Image\u0027  \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddImage\u0027)\n\t\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003e btnCancle\u0027)\n\t\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t#End of except block\n\n\t\n\t\n\t\t\t\n\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 35,
+                  "width": 80,
+                  "x": 233,
+                  "y": 350
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "custom": {
+              "imageName": ""
+            },
+            "meta": {
+              "name": "cntImage"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 8,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 4
+                },
+                {
+                  "colIndex": 8,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 4
+                },
+                {
+                  "colIndex": 8,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 4
+                }
+              ],
+              "height": 419
+            },
+            "props": {
+              "style": {
+                "marginRight": "10px",
+                "marginTop": "80px"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 2
+          },
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/RightView"
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

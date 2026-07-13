@@ -1,0 +1,1 @@
+update TransmissionType set IsDeleted=1,ModifiedBy=:ModifiedBy ,ModifiedDate=GETDATE() where TransmissionType_Id=:Id 

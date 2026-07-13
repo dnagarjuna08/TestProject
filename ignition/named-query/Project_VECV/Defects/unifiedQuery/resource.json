@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "80faeca29094f1e3be25f2a1377e5624538211e0be7c58ad59632ed419bce62b",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2026-04-03T04:06:37Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "level",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectLevel1",
+        "sqlType": 2
+      }
+    ]
+  }
+}

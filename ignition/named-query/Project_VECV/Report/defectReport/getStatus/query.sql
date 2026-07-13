@@ -1,0 +1,1 @@
+select status from MST_DefectStatus where IsActive=1 and IsDeleted=0

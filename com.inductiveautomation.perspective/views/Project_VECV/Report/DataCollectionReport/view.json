@@ -1,0 +1,481 @@
+{
+  "custom": {},
+  "params": {
+    "Area": "-1,",
+    "AreaValue": -1,
+    "AreaVisible": true,
+    "SerialNumber": "",
+    "SerialVisible": true
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.AreaValue": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.AreaVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.SerialNumber": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.SerialVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 648,
+      "width": 993
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "39px",
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Area :"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "basis": "11px"
+                    },
+                    "props": {
+                      "alignVertical": "top",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "selectedAreaIDs": ""
+                    },
+                    "meta": {
+                      "name": "drpArea"
+                    },
+                    "position": {
+                      "basis": "150px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.options": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaID": "0",
+                              "DropdownType": "1",
+                              "LineID": "0"
+                            },
+                            "queryPath": "Project_VECV/Panel/getallDropdowns"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\treturn datalist",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "query"
+                        }
+                      },
+                      "props.value": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tAreaID \u003d self.props.value\n\tAreaOptions \u003d self.props.options\n\tfor dt in AreaOptions:\n\t\tif AreaID\u003d\u003ddt[\u0027value\u0027]:\n\t\t\tself.view.params.AreaValue\u003ddt[\u0027label\u0027]\n\tif str(AreaID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tAreaID \u003d self.props.options\n\t\tAreaIds \u003d \u0027\u0027\n\t\tfor dt in AreaID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tAreaIds +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tAreaIds \u003d str(AreaID) + \u0027,\u0027\n\tself.view.params.Area \u003d AreaIds\n\tparams \u003d {\u0027Area\u0027:AreaIds}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Panel/getSerialNumberfromArea\",params)\n\tself.parent.parent.getChild(\"cntSerialNumber\").getChild(\"drpSerial\").props.options\u003ddataset"
+                        }
+                      }
+                    },
+                    "props": {
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntArea"
+                },
+                "position": {
+                  "basis": "191px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.AreaVisible"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lbl"
+                    },
+                    "position": {
+                      "basis": "85px"
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "fontWeight": "bold"
+                      },
+                      "text": "Serial Number:"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblasterik"
+                    },
+                    "position": {
+                      "basis": "10px"
+                    },
+                    "props": {
+                      "alignVertical": "top",
+                      "style": {
+                        "classes": "Project_VECV/Panel/LabelContent",
+                        "color": "#FF0000"
+                      },
+                      "text": "*"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "custom": {
+                      "selectedAreaIDs": ""
+                    },
+                    "meta": {
+                      "name": "drpSerial"
+                    },
+                    "position": {
+                      "basis": "227px"
+                    },
+                    "props": {
+                      "options": {
+                        "$": [
+                          "ds",
+                          192,
+                          1724756383935
+                        ],
+                        "$columns": [
+                          {
+                            "data": [],
+                            "name": "SerialNumber",
+                            "type": "String"
+                          }
+                        ]
+                      },
+                      "value": -1
+                    },
+                    "type": "ia.input.dropdown"
+                  }
+                ],
+                "meta": {
+                  "name": "cntSerialNumber"
+                },
+                "position": {
+                  "basis": "318px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.SerialVisible"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntSelectionFilter"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\n\t\"\"\"Created By : Gaurav Amrutkar\n\t\tDate : 05.07.2024\n\t\tPurpose : Passing values to Parameters\"\"\" \n\t\t\n\tif self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d\u003d-1:\n\t\tself.view.params.Area\u003d-1\n\t\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.Area \u003d -1\n\telse:\n\t\tself.view.params.Area\u003dself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\t\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.Area \u003d self.view.params.Area\n\tif self.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntSerialNumber\").getChild(\"drpSerial\").props.value\u003d\u003d-1:\n\t\tself.view.params.SerialNumber\u003d-1\n\t\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.SerialNumber \u003d \u0027\u0027\n\telse:\n\t\tself.view.params.SerialNumber\u003dself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntSerialNumber\").getChild(\"drpSerial\").props.value\n\t\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.SerialNumber \u003d self.view.params.SerialNumber\n\tself.parent.parent.parent.getChild(\"ReportViewer\").meta.visible \u003d True"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnApply"
+                    },
+                    "position": {
+                      "basis": "50px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(({..../cntSelectionFilter/cntArea/drpArea.props.value} !\u003d -1 \u0026\u0026{..../cntSelectionFilter/cntSerialNumber/drpSerial.props.value}!\u003d -1),toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "View",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexApply"
+                },
+                "position": {
+                  "basis": "98px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t#CLEAR ALL FILTER SELECTION\n\tself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"cntSelectionFilter\").getChild(\"cntSerialNumber\").getChild(\"drpSerial\").props.value\u003d-1\n\tself.view.params.Area\u003d-1\n\tself.view.params.AreaValue\u003d-1\n\tself.view.params.SerialNumber\u003d-1\n\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.Area \u003d -1\n\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.SerialNumber \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"ReportViewer\").meta.visible \u003d False"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnClear"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "Clear",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexClear"
+                },
+                "position": {
+                  "basis": "95px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntAction"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "props": {
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "ReportViewer",
+              "visible": false
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": "100%"
+            },
+            "propConfig": {
+              "props.downloadFilename": {
+                "binding": {
+                  "config": {
+                    "expression": "{this.props.params.Title}+\"-\"+{this.props.params.SerialNumber}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "page": 1,
+              "pageCount": 1,
+              "params": {
+                "Area": "-1,",
+                "SerialNumber": "",
+                "Title": "Data Collection Report"
+              },
+              "source": "DataCollectionReport"
+            },
+            "type": "ia.reporting.report-viewer"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 0.9842,
+          "width": 0.9924,
+          "x": 0.0021,
+          "y": 0.0011
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "type": "ia.container.coord"
+  }
+}

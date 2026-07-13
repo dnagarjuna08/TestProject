@@ -1,0 +1,893 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 753,
+      "width": 1301
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "LAML Andon"
+            },
+            "props": {
+              "style": {
+                "color": "#FFFFFF",
+                "fontFamily": "Roboto",
+                "fontSize": "3.2rem",
+                "fontWeight": "bolder",
+                "marginLeft": "4REM"
+              },
+              "text": "LEGACY ANDON"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Image"
+            },
+            "position": {
+              "basis": "656px"
+            },
+            "props": {
+              "fit": {
+                "mode": "fill"
+              },
+              "source": "/system/images/Logo/VECV Logo (for light background).png"
+            },
+            "type": "ia.display.image"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 107,
+          "width": "100%"
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "backgroundColor": "#BF0D24",
+            "box-shadow": "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+            "width": "100%"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblDate"
+                },
+                "position": {
+                  "basis": "126px"
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "3rem",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Date:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblCurrDate"
+                },
+                "position": {
+                  "basis": "298px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "\u0027\u0027"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdate \u003d system.date.now()\n\tdate \u003d system.date.format(date,\u0027yyyy-MM-dd\u0027)\n\treturn date",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "3rem"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "DateContainer"
+            },
+            "position": {
+              "basis": "447px"
+            },
+            "props": {
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblTime"
+                },
+                "position": {
+                  "basis": "94px"
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "3rem",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Time:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblCurrTime"
+                },
+                "position": {
+                  "basis": "211px"
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "now()"
+                      },
+                      "transforms": [
+                        {
+                          "formatType": "datetime",
+                          "formatValue": {
+                            "time": "short"
+                          },
+                          "type": "format"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "fontSize": "3rem"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "TimeContainer"
+            },
+            "position": {
+              "basis": "361px"
+            },
+            "props": {
+              "justify": "space-between"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "DateTimeSection"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 80
+        },
+        "props": {
+          "justify": "space-between",
+          "style": {
+            "boxSizing": "border-box",
+            "padding": "0 4rem"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lblA"
+                        },
+                        "position": {
+                          "basis": "103px"
+                        },
+                        "props": {
+                          "text": "A",
+                          "textStyle": {
+                            "fontSize": "8rem",
+                            "fontWeight": "bolder"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "ActualACount"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "curDate": "{......./DateTimeSection/DateContainer/lblCurrDate.props.text}"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "30"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getProductionCount",
+                                    "returnFormat": "json"
+                                  },
+                                  "transforms": [
+                                    {
+                                      "code": "\ta_shift_count \u003d next((item[\u0027SerialCount\u0027] for item in value if item[\u0027Shift\u0027] \u003d\u003d \u0027A\u0027), 0)\n\treturn a_shift_count",
+                                      "type": "script"
+                                    }
+                                  ],
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "7.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblslash"
+                            },
+                            "position": {
+                              "basis": "40px"
+                            },
+                            "props": {
+                              "text": "/",
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "ActualATarget"
+                            },
+                            "position": {
+                              "basis": "168px"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "shiftId": "1"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "600"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getShiftTarget",
+                                    "returnFormat": "scalar"
+                                  },
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          }
+                        ],
+                        "meta": {
+                          "name": "FlexContainer"
+                        },
+                        "position": {
+                          "basis": "430px"
+                        },
+                        "props": {
+                          "alignItems": "flex-end"
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "lblAshiftContainer"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "props": {
+                      "alignItems": "baseline",
+                      "justify": "space-between",
+                      "style": {
+                        "overflow": "hidden",
+                        "width": "100%"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lblB"
+                        },
+                        "position": {
+                          "basis": "103px"
+                        },
+                        "props": {
+                          "text": "B",
+                          "textStyle": {
+                            "fontSize": "8rem",
+                            "fontWeight": "bolder"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "ActualBCount"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "curDate": "{......./DateTimeSection/DateContainer/lblCurrDate.props.text}"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "30"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getProductionCount",
+                                    "returnFormat": "json"
+                                  },
+                                  "transforms": [
+                                    {
+                                      "code": "\tb_shift_count \u003d next((item[\u0027SerialCount\u0027] for item in value if item[\u0027Shift\u0027] \u003d\u003d \u0027B\u0027), 0)\n\treturn b_shift_count\n\t",
+                                      "type": "script"
+                                    }
+                                  ],
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "7.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblslash"
+                            },
+                            "position": {
+                              "basis": "40px"
+                            },
+                            "props": {
+                              "text": "/",
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "ActualBTarget"
+                            },
+                            "position": {
+                              "basis": "168px"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "shiftId": "2"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "600"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getShiftTarget",
+                                    "returnFormat": "scalar"
+                                  },
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          }
+                        ],
+                        "meta": {
+                          "name": "FlexContainer"
+                        },
+                        "position": {
+                          "basis": "430px"
+                        },
+                        "props": {
+                          "alignItems": "flex-end"
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "lblBshiftContainer"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "props": {
+                      "alignItems": "baseline",
+                      "justify": "space-between",
+                      "style": {
+                        "overflow": "hidden",
+                        "width": "100%"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lblC"
+                        },
+                        "position": {
+                          "basis": "103px"
+                        },
+                        "props": {
+                          "text": "C",
+                          "textStyle": {
+                            "fontSize": "8rem",
+                            "fontWeight": "bolder"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "ActualCCount"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "curDate": "{......./DateTimeSection/DateContainer/lblCurrDate.props.text}"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "30"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getProductionCount",
+                                    "returnFormat": "json"
+                                  },
+                                  "transforms": [
+                                    {
+                                      "code": "\tc_shift_count \u003d next((item[\u0027SerialCount\u0027] for item in value if item[\u0027Shift\u0027] \u003d\u003d \u0027C\u0027), 0)\n\treturn c_shift_count",
+                                      "type": "script"
+                                    }
+                                  ],
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "7.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblslash"
+                            },
+                            "position": {
+                              "basis": "40px"
+                            },
+                            "props": {
+                              "text": "/",
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "ActualCTarget"
+                            },
+                            "position": {
+                              "basis": "168px"
+                            },
+                            "propConfig": {
+                              "props.text": {
+                                "binding": {
+                                  "config": {
+                                    "parameters": {
+                                      "shiftId": "3"
+                                    },
+                                    "polling": {
+                                      "enabled": true,
+                                      "rate": "600"
+                                    },
+                                    "queryPath": "Project_VECV/Report/Andon/getShiftTarget",
+                                    "returnFormat": "scalar"
+                                  },
+                                  "type": "query"
+                                }
+                              }
+                            },
+                            "props": {
+                              "textStyle": {
+                                "fontFamily": "Roboto",
+                                "fontSize": "5.5rem",
+                                "fontWeight": "bolder"
+                              }
+                            },
+                            "type": "ia.display.label"
+                          }
+                        ],
+                        "meta": {
+                          "name": "FlexContainer"
+                        },
+                        "position": {
+                          "basis": "430px"
+                        },
+                        "props": {
+                          "alignItems": "flex-end"
+                        },
+                        "type": "ia.container.flex"
+                      }
+                    ],
+                    "meta": {
+                      "name": "lblCshiftContainer"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "props": {
+                      "alignItems": "baseline",
+                      "justify": "space-between",
+                      "style": {
+                        "overflow": "hidden",
+                        "width": "100%"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "550px"
+                },
+                "props": {
+                  "alignItems": "center",
+                  "direction": "column",
+                  "justify": "space-between",
+                  "style": {
+                    "fontFamily": "sans-serif",
+                    "height": "90%",
+                    "marginLeft": "5rem",
+                    "width": "100%"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "ShiftWiseDataContainer"
+            },
+            "position": {
+              "basis": "55%"
+            },
+            "props": {
+              "alignItems": "flex-start",
+              "style": {
+                "height": "98%"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "TotalCountGauge"
+                    },
+                    "position": {
+                      "height": 744,
+                      "rotate": {
+                        "anchor": "50% 55%"
+                      },
+                      "width": 657,
+                      "x": -50.5,
+                      "y": -130.74
+                    },
+                    "propConfig": {
+                      "props.maxValue": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "aTarget": "{..../ShiftWiseDataContainer/FlexContainer/lblAshiftContainer/FlexContainer/ActualATarget.props.text}",
+                              "bTarget": "{..../ShiftWiseDataContainer/FlexContainer/lblBshiftContainer/FlexContainer/ActualBTarget.props.text}",
+                              "cTarget": "{..../ShiftWiseDataContainer/FlexContainer/lblCshiftContainer/FlexContainer/ActualCTarget.props.text}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "overlayOptOut": true,
+                          "transforms": [
+                            {
+                              "code": "\tvalue\u003d(value.aTarget+value.bTarget+value.cTarget)\n\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      },
+                      "props.value": {
+                        "binding": {
+                          "config": {
+                            "struct": {
+                              "aActual": "{..../ShiftWiseDataContainer/FlexContainer/lblAshiftContainer/FlexContainer/ActualACount.props.text}",
+                              "bActual": "{..../ShiftWiseDataContainer/FlexContainer/lblBshiftContainer/FlexContainer/ActualBCount.props.text}",
+                              "cActual": "{..../ShiftWiseDataContainer/FlexContainer/lblCshiftContainer/FlexContainer/ActualCCount.props.text}"
+                            },
+                            "waitOnAll": true
+                          },
+                          "overlayOptOut": true,
+                          "transforms": [
+                            {
+                              "code": "\tvalue\u003d(value.aActual+value.bActual+value.cActual)\n\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr-struct"
+                        }
+                      }
+                    },
+                    "props": {
+                      "arc": {
+                        "color": "#03AC49",
+                        "width": 50
+                      },
+                      "endAngle": 405,
+                      "label": {
+                        "color": "#FCFAFC",
+                        "offsetY": 90,
+                        "size": "130rem"
+                      },
+                      "startAngle": 135,
+                      "style": {
+                        "classes": []
+                      }
+                    },
+                    "type": "ia.chart.simple-gauge"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblTotal"
+                    },
+                    "position": {
+                      "height": 84,
+                      "width": 228,
+                      "x": 164,
+                      "y": 402
+                    },
+                    "props": {
+                      "text": "Total",
+                      "textStyle": {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Roboto",
+                        "fontSize": "6.38rem",
+                        "fontWeight": "bolder"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "CoordinateContainer"
+                },
+                "position": {
+                  "basis": "99.3%"
+                },
+                "props": {
+                  "style": {
+                    "height": "98%",
+                    "overflow": "hidden"
+                  }
+                },
+                "type": "ia.container.coord"
+              }
+            ],
+            "meta": {
+              "name": "TotalCountContainer"
+            },
+            "position": {
+              "basis": "45%"
+            },
+            "props": {
+              "alignItems": "flex-start",
+              "style": {
+                "height": "100%"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Body"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1.5,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1.5,
+              "rowIndex": 2,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 12
+            }
+          ],
+          "height": "96%"
+        },
+        "props": {
+          "alignItems": "center"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "breakpoints": [
+        {
+          "minWidth": 0,
+          "name": "sm"
+        },
+        {
+          "minWidth": 450,
+          "name": "md"
+        },
+        {
+          "minWidth": 996,
+          "name": "lg"
+        }
+      ],
+      "style": {
+        "backgroundColor": "#002868",
+        "color": "#FFFFFF",
+        "overflow": "hidden",
+        "width": "100%"
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

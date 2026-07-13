@@ -1,0 +1,28 @@
+{
+  "base": {
+    "animation": {
+      "duration": "500ms",
+      "delay": "5s",
+      "direction": "alternate-reverse",
+      "keyframes": {
+        "0%": {
+          "backgroundColor": "#FF8A8A",
+          "borderColor": "#2B2B2B",
+          "borderStyle": "solid",
+          "borderTopLeftRadius": "70%",
+          "borderTopRightRadius": "70%",
+          "borderBottomLeftRadius": "70%",
+          "borderBottomRightRadius": "70%",
+          "boxShadow": "10%",
+          "margin": "20px",
+          "marginBottom": "20px",
+          "marginLeft": "20px",
+          "marginRight": "20px",
+          "marginTop": "20px",
+          "padding": "20Px"
+        },
+        "100%": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "6663c737c5f45142c3f587ce8e5cacea3b0531f593d545836e2a1b460e8e21f7",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "BOM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Model",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Design",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PunchingCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PunchingGroup",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WormSpeedoRatio",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 1
+      }
+    ]
+  }
+}

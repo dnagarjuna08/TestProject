@@ -1,0 +1,1676 @@
+{
+  "custom": {
+    "Old_Password": "value",
+    "imageId": -1,
+    "imageTypeId": 2,
+    "imageURL": "/system/images/Stryker/icon_User-profile.png",
+    "key": "value",
+    "skillsCount": 0,
+    "skillsData": "",
+    "trainedCount": 0,
+    "trainedWIData": "",
+    "userId": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.Old_Password": {
+      "persistent": true
+    },
+    "custom.imageId": {
+      "persistent": true
+    },
+    "custom.imageTypeId": {
+      "persistent": true
+    },
+    "custom.imageURL": {
+      "persistent": true
+    },
+    "custom.key": {
+      "persistent": true
+    },
+    "custom.skillsCount": {
+      "persistent": true
+    },
+    "custom.skillsData": {
+      "persistent": true
+    },
+    "custom.trainedCount": {
+      "persistent": true
+    },
+    "custom.trainedWIData": {
+      "persistent": true
+    },
+    "custom.userId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 550,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027devicePanel\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027UnitName\u0027:\u0027\u0027,\u0027UnitDescription\u0027:\u0027\u0027,\u0027UnitLabelTo\u0027:-1,\u0027WorkStationType\u0027:-1,\u0027IPAddress\u0027:\u0027\u0027,\u0027AssetNumber\u0027:\u0027\u0027,\u0027DeviceSerialNumber\u0027:\u0027\u0027,\u0027AttachedTo\u0027: -1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": " Unit Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 66,
+                  "y": -2.00001
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntUnitName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Unit Description:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 100,
+                  "y": -0.015657648315425376
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 45,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntUnitDesciption"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 80
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Workstation:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpAttachedTo"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntIsWSChange/drpIsWSChange.props.value}\u003d 0)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "12",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "multiSelect": true,
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1725953941562
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          267,
+                          268,
+                          269,
+                          270,
+                          271,
+                          272,
+                          273,
+                          274,
+                          275,
+                          278,
+                          279,
+                          280,
+                          281,
+                          282,
+                          283,
+                          284,
+                          285,
+                          286,
+                          287,
+                          288,
+                          289,
+                          290,
+                          291,
+                          296,
+                          297,
+                          298,
+                          299,
+                          300,
+                          301,
+                          302,
+                          303,
+                          304,
+                          305,
+                          306,
+                          308,
+                          312,
+                          313,
+                          315,
+                          316,
+                          317,
+                          318,
+                          319,
+                          320,
+                          321,
+                          322,
+                          323,
+                          324,
+                          330,
+                          331,
+                          332,
+                          333,
+                          334,
+                          338,
+                          340,
+                          344,
+                          345,
+                          346,
+                          347,
+                          348,
+                          349,
+                          350,
+                          352,
+                          353,
+                          354,
+                          355,
+                          356,
+                          357,
+                          359,
+                          360,
+                          362,
+                          364,
+                          369,
+                          372,
+                          374,
+                          375
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "LAH10",
+                          "LAH20",
+                          "LAH30",
+                          "LAH40",
+                          "LAH50",
+                          "LAH60",
+                          "LAH70",
+                          "LAH80",
+                          "LAH90",
+                          "LAD10",
+                          "LAD20",
+                          "LAQG01",
+                          "LADL10",
+                          "LADL20",
+                          "LADL30",
+                          "LADL40",
+                          "LADL50",
+                          "LADL60",
+                          "LADL70",
+                          "LADL80",
+                          "LADL90",
+                          "LADL100",
+                          "LAQG04",
+                          "LADH10",
+                          "LADH20",
+                          "LADH30",
+                          "LADH40",
+                          "LADH50",
+                          "LADH60",
+                          "LADH70",
+                          "LADH80",
+                          "LADH90",
+                          "LADH100",
+                          "LAQG03",
+                          "LAML20",
+                          "LAML60",
+                          "LAML70",
+                          "LAML90",
+                          "LAML100",
+                          "LAML110",
+                          "LAML120",
+                          "LAML130",
+                          "LAML140",
+                          "LAML150",
+                          "LAML160",
+                          "LAML170",
+                          "LAML180",
+                          "LAPS010",
+                          "LAQG02",
+                          "LAPDI",
+                          "TAWE10",
+                          "TAML60",
+                          "TAQG01",
+                          "TAEV10",
+                          "TAEV50",
+                          "TADS10",
+                          "TADS20",
+                          "TADS30",
+                          "TADS40",
+                          "TAQG03",
+                          "TAWM02",
+                          "TADC20",
+                          "TADC30",
+                          "TADC40",
+                          "TADC50",
+                          "TAQG02",
+                          "TAWM03",
+                          "TAML20",
+                          "TAML30",
+                          "TAML50",
+                          "TAQG04",
+                          "TAPDI",
+                          "LAH100",
+                          "LAML10",
+                          "LAML175"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1,
+                  "wrapMultiSelectValues": false
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 74,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntAttachedTo"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 7,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 7,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027devicePanel\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027UnitName\u0027:\u0027\u0027,\u0027UnitDescription\u0027:\u0027\u0027,\u0027UnitLabelTo\u0027:-1,\u0027WorkStationType\u0027:-1,\u0027IPAddress\u0027:\u0027\u0027,\u0027AssetNumber\u0027:\u0027\u0027,\u0027DeviceSerialNumber\u0027:\u0027\u0027,\u0027AttachedTo\u0027: -1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 8,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Add/Update values into DB. \n\t\"\"\"\n\ttry:\n\t\tAssetNumber \u003d self.parent.parent.getChild(\"cntAssetNumber\").getChild(\"txt\").props.text\n\t\tDeviceSerialNumber \u003d self.parent.parent.getChild(\"cntDeviceSerialNumber\").getChild(\"txt\").props.text\n\t\tDescription \u003d self.parent.parent.getChild(\"cntUnitDesciption\").getChild(\"txt\").props.text\n\t\tDeviceName \u003d self.parent.parent.getChild(\"cntUnitName\").getChild(\"txt\").props.text\n\t\tIPAddress \u003d self.parent.parent.getChild(\"cntIPAddress\").getChild(\"txt\").props.text\n\t\tMST_DeviceType_Id \u003d self.parent.parent.getChild(\"cntDeviceType\").getChild(\"drpDeviceType\").props.value\n\t\tMST_WorkStation_Id \u003d self.parent.parent.getChild(\"cntAttachedTo\").getChild(\"drpAttachedTo\").props.value\n\t\tPort \u003d self.parent.parent.getChild(\"cntPort\").getChild(\"txt\").props.text\n\t\tisActive\u003dself.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tworkStationtation\u003dself.parent.parent.getChild(\"cntAttachedTo\").getChild(\"drpAttachedTo\").props.value\n\t\tworkStationChange\u003dself.parent.parent.getChild(\"cntIsWSChange\").getChild(\"drpIsWSChange\").props.value\n\t\t\n\t\tsystem.perspective.print(\"Workstation in Save buton:%s\"%MST_WorkStation_Id)\n\t\tWS \u003d 0\n\t\tmessage \u003d \u0027\u0027\n\t\t#### Check data in table\n\t\tfor i in MST_WorkStation_Id:\n\t\t\tparams\u003d{\u0027WorkStation\u0027:i,\u0027DeviceName\u0027:DeviceName}\n\t\t\tresult\u003dsystem.db.runNamedQuery(\"Project_VECV/Device/CheckData\",params)\n\t\t\tres \u003d result.getRowCount()\n\t\t\tsystem.perspective.print(\"Result from query:%s\"%res)\n\t\t\tif res !\u003d 0:\n\t\t\t\tfor val in result:\n\t\t\t\t\tId \u003d val[\u0027MST_WorkStation_Id\u0027]\n\t\t\t\t\tif Id \u003d\u003d i:\n\t\t\t\t\t\tWorkStationName \u003d val[\u0027WorkStation\u0027]\n\t\t\t\t\t\tWS \u003d 1\n\t\t\t\tmessage \u003d \"Device is already present against selected workstation \u0027%s\u0027\"%WorkStationName\n\t\t\t\tstate \u003d \"error\"\n\t\t\t\tbreak\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Add\u0027 and res\u003d\u003d0 :\n\t\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\tIsActive \u003d 1\n\t\t\tId \u003d 0\n\t\t\tDeviceMapId \u003d 0\n\t\t\tsystem.perspective.print(\"DevicemApId in Add:%s\"%str(DeviceMapId))\n\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Device.InsertUpdateDevice.InsertUpdateDevice( AssetNumber, DeviceSerialNumber,CreatedBy, Description, DeviceName, IPAddress, MST_DeviceType_Id,  MST_WorkStation_Id, Port, Id,IsActive,DeviceMapId,WS)\n\t\t\tsystem.util.getLogger(\"insert\").info(str(result))\n\t\t\tif(result\u003e0):\n\t\t\t\tmessage \u003d \"Device details added successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dstr(DeviceName) + message\n\t\t\t\t\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Edit\u0027:\n\t\t\t\n\t\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\t\t\n\t\t\tsystem.perspective.print(\"In Save ID before:%s\"%self.session.custom.selectedDeviceId)\n\t\t\tId \u003d self.session.custom.selectedDeviceId\n\t\t\tsystem.perspective.print(\"In save Id after:%s\"%Id)\n\t\t\tDeviceMapId \u003d self.session.custom.DeviceMapId\n\t\t\tIsActive \u003d self.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\t\tif MST_DeviceType_Id !\u003d 3: ## other than Printer device type\n\t\t\t\tPort \u003d \"\"\n\t\t\tif self.parent.parent.getChild(\"cntIsWSChange\").getChild(\"drpIsWSChange\").props.value \u003d\u003d 0:\n\t\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Device.InsertUpdateDevice.InsertUpdateDevice( AssetNumber,DeviceSerialNumber, ModifiedBy, Description, DeviceName, IPAddress, MST_DeviceType_Id,  MST_WorkStation_Id, Port, Id,IsActive,DeviceMapId,WS)\n\t\t\t\tsystem.perspective.print(\"In Else of Device Save:%s\"%result)\n\t\t\t\tif(result\u003e0):\n\t\t\t\t\tmessage \u003d \"Device details Updated successfully.\"\n\t\t\t\t\tstate \u003d \"success\"\n\t\t\t\t\tauditMsg\u003dstr(DeviceName) + message\n\t\t\telse:\n\t\t\t\tif WS \u003d\u003d 1:\n\t\t\t\t\tmessage \u003d \"Device is already present against selected workstation \u0027%s\u0027\"%WorkStationName\n\t\t\t\t\tstate \u003d \"warning\"\n\t\t\t\telse:\n\t\t\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Device.InsertUpdateDevice.InsertUpdateDevice( AssetNumber,DeviceSerialNumber, ModifiedBy, Description, DeviceName, IPAddress, MST_DeviceType_Id,  MST_WorkStation_Id, Port, Id,IsActive,DeviceMapId,WS)\n\t\t\t\t\tif(result\u003e0):\n\t\t\t\t\t\tmessage \u003d \"Device details Updated successfully.\"\n\t\t\t\t\t\tstate \u003d \"success\"\n\t\t\t\t\t\tauditMsg\u003dstr(DeviceName) + message\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\tmessageType \u003d \u0027tableRefresh\u0027  \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t#addToAuditLogStart\n\t\tsystem.perspective.print(auditMsg)\n\t\tcategory\u003d\u0027Adminstation\u0027\n\t\tsubCategory\u003d\u0027Device Configuration\u0027\n\t\tif(Id!\u003d0):\n\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n\t\t\t#curDesc\u003d{\"linetypecode\":LineTypeCode, \"mode\":mode, \"isActive\":isActive, \"Code\":bomId }\n\t\t\tcurDesc \u003d {\n\t\t\t    \"AssetNumber\":AssetNumber,\n\t\t\t    \"DeviceSerialNumber\":DeviceSerialNumber,\n\t\t\t    \"Description\":Description,\n\t\t\t    \"DeviceName\":DeviceName,\n\t\t\t    \"IPAddress\":IPAddress,\n\t\t\t    \"MST_DeviceType_Id\":MST_DeviceType_Id,\n\t\t\t    \"MST_WorkStation_Id\":MST_WorkStation_Id,\n\t\t\t    \"Port\":Port,\n\t\t\t    \"isActive\":isActive,\n\t\t\t    \"workStationtation\":workStationtation,\n\t\t\t    \"workStationChange\":workStationChange\n\t\t\t}\n\t\t\tsystem.perspective.print(prevDesc)\n\t\t\tsystem.perspective.print(curDesc)\n\t\t\tdescription\u003dstr(auditMsg)+\"Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n\t\telse:\n\t\t\tdescription\u003dstr(auditMsg)\n\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t\n\t\t#addAuditLogEnd\n\texcept:\n\t\tmessage \u003d \"Something went wrong.Please contact system Adminstration.\"\n\t\tstate \u003d \"error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\tscreenName \u003d\u0027DevicePanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/devicePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(\"errorFunction: \"+str(errorFunction)+\" description: \"+str(description)+\" lineno: \"+str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntUnitName/txt.props.text}!\u003d\u0027\u0027) \u0026\u0026\r\n({.../cntUnitDesciption/txt.props.text} !\u003d \u0027\u0027) \u0026\u0026\r\n({.../cntAttachedTo/drpAttachedTo.props.value} \u003e-1 ) \u0026\u0026\r\n({.../cntDeviceType/drpDeviceType.props.value} \u003e -1) \u0026\u0026\r\n({.../cntIPAddress/txt.props.text} !\u003d \u0027\u0027)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value:\n\t\tif self.parent.parent.getChild(\"cntDeviceType\").getChild(\"drpDeviceType\").props.value \u003d\u003d 3 and self.parent.parent.getChild(\"cntPort\").getChild(\"txt\").props.text \u003d\u003d \u0027\u0027:\n\t\t\tsystem.perspective.print(\"line 4\")\n\t\t\treturn False\n\t\telse:\n\t\t\tsystem.perspective.print(\"line 7\")\n\t\t\treturn value\n\treturn value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshBinding",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.enabled\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "devicePanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\tsystem.perspective.print(payload)\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3.5,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 9,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Device Serial Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntDeviceSerialNumber"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Unit Level:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpAttachedTo"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "enabled": false,
+                  "options": [
+                    {
+                      "label": "Device",
+                      "value": 1
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 74,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntUnitLevel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Device Type:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpDeviceType"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "8",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1725953941562
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          1,
+                          2,
+                          3
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "PLC",
+                          "Torque Controller",
+                          "Printer"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 74,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntDeviceType"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "IP Address:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 66,
+                  "y": -2.00001
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^0-9.]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]\t"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntIPAddress"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 6,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 5,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Port:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 39,
+                  "y": -0.05286644531247475
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tsystem.perspective.sendMessage(messageType\u003d\u0027refreshBinding\u0027, payload\u003d{},scope\u003d\u0027page\u0027)"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntPort"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 6.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 6,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ]
+            },
+            "propConfig": {
+              "position.height": {
+                "binding": {
+                  "config": {
+                    "expression": "if({../cntDeviceType/drpDeviceType.props.value} \u003d 3,60,0)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Asset Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntAssetNumber"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "WorkStation Change:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsWSChange"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Edit\u0027)\r\n,0,1\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsWSChange"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 7,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 7,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "activeDirectoryData": "",
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": -84
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "devicePanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Insert row values into panel. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntUnitName\").getChild(\"txt\").props.text \u003d payload[\u0027UnitName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntUnitDesciption\").getChild(\"txt\").props.text \u003d payload[\u0027UnitDescription\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntAttachedTo\").getChild(\"drpAttachedTo\").props.value \u003d payload[\u0027AttachedTo\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntDeviceType\").getChild(\"drpDeviceType\").props.value \u003d payload[\u0027DeviceType\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntAssetNumber\").getChild(\"txt\").props.text \u003d payload[\u0027AssetNumber\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIPAddress\").getChild(\"txt\").props.text \u003d payload[\u0027IPAddress\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntPort\").getChild(\"txt\").props.text \u003d payload[\u0027Port\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d payload[\u0027IsActive\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d payload[\"Action\"]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntDeviceSerialNumber\").getChild(\"txt\").props.text \u003d payload[\"DeviceSerialNumber\"]\n\texcept:\n\t#start of except block  \n\t\tscreenName \u003d\u0027devicePanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/DevicePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027messageHandler/devicePanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

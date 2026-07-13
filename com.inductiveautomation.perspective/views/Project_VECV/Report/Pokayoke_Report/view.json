@@ -1,0 +1,1210 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 662,
+      "width": 1360
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 4
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 4
+                    }
+                  ],
+                  "height": 32
+                },
+                "props": {
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Poka-Yoke Report",
+                  "textStyle": {
+                    "fontSize": 22,
+                    "fontWeight": "bold",
+                    "textAlign": "center"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "ColumnContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 4,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 10
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 44
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Label"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "props": {
+                  "text": "*",
+                  "textStyle": {
+                    "color": "#F40B0B",
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_0"
+                },
+                "position": {
+                  "basis": "39px"
+                },
+                "props": {
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tAreaName\u003dself.props.value\n\tresult\u003dsystem.db.runNamedQuery(\"Sadhana/PokaYoke_Queries/lineQuery\",{\u0027AreaName\u0027:AreaName})\n\tself.getSibling(\"ddline\").props.options \u003d result\n\tresult1\u003dsystem.db.runNamedQuery(\"Sadhana/PokaYoke_Queries/ETCodeQuery\",{\u0027AreaName\u0027:AreaName})\n\tself.getSibling(\"ddetcode\").props.options \u003d result1\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "ddarea"
+                },
+                "position": {
+                  "basis": "196px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/PokaYoke_Queries/areaQuery"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": false
+                  },
+                  "props.value": {
+                    "persistent": false
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Label_1"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "props": {
+                  "text": "*",
+                  "textStyle": {
+                    "color": "#F40B0B",
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_2"
+                },
+                "position": {
+                  "basis": "35px"
+                },
+                "props": {
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tLineName\u003dself.props.value\n\tetresult\u003dsystem.db.runNamedQuery(\"Sadhana/PokaYoke_Queries/workStationQuery\",{\u0027LineName\u0027:LineName})\n\tself.getSibling(\"ddworkstation\").props.options \u003d etresult\n\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "ddline"
+                },
+                "position": {
+                  "basis": "255px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "persistent": false
+                  },
+                  "props.value": {
+                    "persistent": false
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Label_3"
+                },
+                "position": {
+                  "basis": "12px"
+                },
+                "props": {
+                  "text": "*",
+                  "textStyle": {
+                    "color": "#F40B0B",
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_4"
+                },
+                "position": {
+                  "basis": "105px"
+                },
+                "props": {
+                  "text": "WorkStation:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "ddworkstation"
+                },
+                "position": {
+                  "basis": "162px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "persistent": false
+                  },
+                  "props.value": {
+                    "persistent": false
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Label_5"
+                },
+                "position": {
+                  "basis": "15px"
+                },
+                "props": {
+                  "text": "*",
+                  "textStyle": {
+                    "color": "#F40B0B",
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_6"
+                },
+                "position": {
+                  "basis": "77px"
+                },
+                "props": {
+                  "text": "ET Code:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tModelName\u003dself.props.value\n\ttmresult\u003dsystem.db.runNamedQuery(\"Sadhana/PokaYoke_Queries/TMCodeQuery\",{\u0027ModelName\u0027:ModelName})\n\tsystem.perspective.print(tmresult)\n\tself.getSibling(\"ddtmcode\").props.options \u003d tmresult\n\t\t\t\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "ddetcode"
+                },
+                "position": {
+                  "basis": "150.1px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "persistent": false
+                  },
+                  "props.value": {
+                    "persistent": false
+                  }
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "Label_7"
+                },
+                "position": {
+                  "basis": "11px"
+                },
+                "props": {
+                  "text": "*",
+                  "textStyle": {
+                    "color": "#F40B0B",
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "Label_8"
+                },
+                "position": {
+                  "basis": "83px"
+                },
+                "props": {
+                  "text": "TM Code:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "ddtmcode"
+                },
+                "position": {
+                  "basis": "179px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Sadhana/PokaYoke_Queries/getTMCode"
+                      },
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "persistent": false
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 10,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 32
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "msgStrip"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 10,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 32
+            },
+            "propConfig": {
+              "props.style.backgroundColor": {
+                "persistent": false
+              },
+              "props.style.color": {
+                "persistent": false
+              },
+              "props.text": {
+                "persistent": false
+              }
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Table"
+                },
+                "position": {
+                  "height": 392
+                },
+                "propConfig": {
+                  "props.data": {
+                    "persistent": false
+                  }
+                },
+                "props": {
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "AreaName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "Area Name"
+                      },
+                      "justify": "center",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 60
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "LineName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "Line Name"
+                      },
+                      "justify": "left",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 90
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkStationName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "Workstation Name"
+                      },
+                      "justify": "center",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 70
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ModelName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "ET Code"
+                      },
+                      "justify": "center",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 40
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "M_BOMNumber",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "TM Code"
+                      },
+                      "justify": "center",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 40
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "POKAYOKE_Attribute",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "table_header"
+                        },
+                        "title": "PokaYoke"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    }
+                  ],
+                  "headerStyle": {
+                    "backgroundColor": "#5FC5F0"
+                  }
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "table_container"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 7,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3.5,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 401
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "  # Get the selected options from the dropdowns\n  AreaName \u003d self.parent.getChild(\"FlexContainer\").getChild(\"ddarea\").props.value\n  LineName \u003d self.parent.getChild(\"FlexContainer\").getChild(\"ddline\").props.value\n  WorkStation \u003d self.parent.getChild(\"FlexContainer\").getChild(\"ddworkstation\").props.value\n  ETCode \u003d self.parent.getChild(\"FlexContainer\").getChild(\"ddetcode\").props.value\n  TMCode \u003d self.parent.getChild(\"FlexContainer\").getChild(\"ddtmcode\").props.value\n  \n  # Check if Area is selected\n  if AreaName \u003d\u003d \"\":\n      self.getSibling(\"msgStrip\").props.text \u003d \"Please Select Area\"\n      self.getSibling(\"msgStrip\").props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n      self.getSibling(\"msgStrip\").props.style.color \u003d \"Black\"\n      return  # Exit if Area is not selected\n  \n  # Check if either BOM (TMCode) or Model (ETCode) is selected\n  if ETCode \u003d\u003d \"\" and TMCode \u003d\u003d \"\":\n      self.getSibling(\"msgStrip\").props.text \u003d \"Please Select either BOM or Model\"\n      self.getSibling(\"msgStrip\").props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n      self.getSibling(\"msgStrip\").props.style.color \u003d \"Black\"\n      return  # Exit if neither BOM nor Model is selected\n  if TMCode!\u003d\"\":\n  \tETCode\u003d\"\"\n  # Prepare parameters\n  params \u003d {\u0027AreaName\u0027: AreaName, \u0027ETCode\u0027: ETCode, \u0027TMCode\u0027: TMCode}\n  \n  # Check valid combinations and set parameters accordingly\n  valid_combination \u003d False\n  \n  # Valid combinations based on selections\n  if LineName !\u003d \"\" and WorkStation !\u003d \"\":\n      valid_combination \u003d True\n      params.update({\u0027LineName\u0027: LineName, \u0027WorkStation\u0027: WorkStation})\n  elif LineName !\u003d \"\" and WorkStation \u003d\u003d \"\":\n      valid_combination \u003d True\n      params.update({\u0027LineName\u0027: LineName})\n  elif WorkStation !\u003d \"\" and LineName \u003d\u003d \"\":\n      valid_combination \u003d True\n      params.update({\u0027WorkStation\u0027: WorkStation})\n  elif ETCode !\u003d \"\" and TMCode !\u003d \"\":\n      valid_combination \u003d True\n      params.update({\u0027ETCode\u0027: ETCode, \u0027TMCode\u0027: TMCode})\n  elif AreaName !\u003d \"\":\n      valid_combination \u003d True\n      params.update({\u0027AreaName\u0027: AreaName})\n  \n  # Log the parameters to check if they are set correctly\n  system.perspective.print(\"Running Named Query with Parameters: {params}\")\n  \n  # If a valid combination is found, proceed with the query\n  if valid_combination:\n      # Show success message\n      self.getSibling(\"msgStrip\").props.text \u003d \"Report is Ready to View\"\n      self.getSibling(\"msgStrip\").props.style.backgroundColor \u003d \"#2ECB11FA\"  # Green background for success\n      self.getSibling(\"msgStrip\").props.style.color \u003d \"Black\"\n  \n      # Run the Named Query with the parameters\n      result \u003d system.db.runNamedQuery(\"Sadhana/PokaYoke_Queries/query_getAllData\", params)\n  \n      # Check if result is not empty\n      if result:\n          # Set the result into the table container\n          self.parent.getChild(\"table_container\").getChild(\"Table\").props.data \u003d result\n      else:\n          # If no data is returned, show a message\n          self.parent.getChild(\"table_container\").getChild(\"Table\").props.data \u003d \u0027\u0027\n          self.getSibling(\"msgStrip\").props.text \u003d \"No Data Found for the Selected Criteria\"\n          self.getSibling(\"msgStrip\").props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n          self.getSibling(\"msgStrip\").props.style.color \u003d \"Black\"\n  else:\n      # If no valid combination is made, show error message\n      self.getSibling(\"msgStrip\").props.text \u003d \"Please Select a Valid Combination\"\n      self.getSibling(\"msgStrip\").props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n      self.getSibling(\"msgStrip\").props.style.color \u003d \"Black\""
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 9,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 9,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 9,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 1
+                }
+              ],
+              "height": 32
+            },
+            "props": {
+              "text": "View"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.getChild(\"FlexContainer\").getChild(\"ddarea\").props.value\u003d\u0027\u0027\n\tself.parent.getChild(\"FlexContainer\").getChild(\"ddline\").props.value\u003d\u0027\u0027\n\tself.parent.getChild(\"FlexContainer\").getChild(\"ddworkstation\").props.value\u003d\u0027\u0027\n\tself.parent.getChild(\"FlexContainer\").getChild(\"ddetcode\").props.value\u003d\u0027\u0027\n\tself.parent.getChild(\"FlexContainer\").getChild(\"ddtmcode\").props.value\u003d\u0027\u0027\n\tself.getSibling(\"msgStrip\").props.text\u003d\"\"\n\tself.parent.getChild(\"table_container\").getChild(\"Table\").props.data\u003d\u0027\u0027\n\tself.getSibling(\"msgStrip\").props.style.backgroundColor\u003d\"White\"\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_0"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 10,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 10,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 10,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 1
+                }
+              ],
+              "height": 32
+            },
+            "props": {
+              "text": "Clear"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t\n    # Get the table data\n    table_data \u003d self.parent.getChild(\"table_container\").getChild(\"Table\").props.data\n\n    # Get reference to the message area (for success or failure messages)\n    displayMsgArea \u003d self.parent.getChild(\"msgStrip\")\n    message_text \u003d \"\"\n\n    # Check if the table contains data\n    if table_data is not None and len(table_data) \u003e 0:\n        # If data is available, export it to Excel and trigger download\n        try:\n            # Convert the data to Excel format\n            excel_data \u003d system.dataset.toExcel(True, [table_data])  # True flag means to include headers\n            \n            # Trigger the download\n            system.perspective.download(fileName\u003d\"PokaYoke_Report.xlsx\", data\u003dexcel_data)\n\n            # Success message\n            displayMsgArea.props.text \u003d \"Successfully Downloaded The Report\"\n            displayMsgArea.props.style.backgroundColor \u003d \"#2ECB11FA\"  # Green background for success\n            displayMsgArea.props.style.color \u003d \"Black\"\n\n        except Exception as e:\n            # Handle any exceptions during the download or conversion\n            displayMsgArea.props.text \u003d \"Error: {str(e)}\"\n            displayMsgArea.props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n            displayMsgArea.props.style.color \u003d \"Black\"\n    else:\n        # If no data is available, show a message\n        displayMsgArea.props.text \u003d \"No Data To Download\"\n        displayMsgArea.props.style.backgroundColor \u003d \"#FF4747\"  # Red background for error\n        displayMsgArea.props.style.color \u003d \"Black\"\n\n"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_1"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 8,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 11,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 1
+                },
+                {
+                  "colIndex": 11,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 1
+                }
+              ],
+              "height": 32
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "path": "material/cloud_download"
+                }
+              },
+              "text": ""
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 589,
+          "width": 1340,
+          "x": 1,
+          "y": 1
+        },
+        "props": {
+          "style": {
+            "marginLeft": 10
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

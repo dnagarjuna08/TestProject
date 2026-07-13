@@ -1,0 +1,1515 @@
+{
+  "custom": {
+    "UnitId": "value",
+    "imageNameTextField": "",
+    "imageURL": "",
+    "imagename": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.UnitId": {
+      "persistent": true
+    },
+    "custom.imageNameTextField": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/lblHeader.props.text"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d \u0027Add\u0027:\n\t\treturn \u0027\u0027\n\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.imageURL": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/lblHeader.props.text"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d \u0027Add\u0027:\n\t\treturn \u0027\u0027\n\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.imagename": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/lblHeader.props.text"
+        },
+        "transforms": [
+          {
+            "code": "\tif value \u003d\u003d \u0027Add\u0027:\n\t\treturn \u0027\u0027\n\treturn value",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 720,
+      "width": 251
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027ImageConfigurationPanel\u0027\n\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027areaId\u0027:-1,\u0027lineId\u0027:-1,\n\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027imageName\u0027:\u0027\u0027,\u0027imageDescription\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\u0027imageTypeId\u0027:-1,\u0027url\u0027:\u0027\u0027}\t \n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Model:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset area, line and workstation values on model value change. \n\t\"\"\"\n\tself.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.value \u003d -1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpModel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "10",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 46,
+                  "y": -6
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntModel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003d-1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "ModelId": "{.../cntModel/drpModel.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getAreafromModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 39,
+                  "y": -4
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 37,
+                  "y": -4
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Image Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "isSelectedImageName": ""
+                },
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 79,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntImageName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Image Description:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]\t"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 4,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 4,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 4,
+                      "span": 1
+                    }
+                  ],
+                  "height": 17,
+                  "width": 11,
+                  "x": 107,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntImageDescription"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Image Type:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpImageType"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "7",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\treturn value\n#\tpyData \u003d system.dataset.toPyDataSet(value)\n#\toptionList \u003d []\n#\tfor data in pyData:\n#\t\tdict \u003d {}\n#\t\tdict[\"value\"] \u003d data[\u0027MST_ImageType_Id\u0027]\n#\t\tdict[\"label\"] \u003d data[\u0027ImageType\u0027]\n#\t\toptionList.append(dict)\n#\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 73,
+                  "y": -5
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntImageType"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "custom": {
+                  "url": ""
+                },
+                "events": {
+                  "component": {
+                    "onFileReceived": {
+                      "config": {
+                        "script": "\n\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Upload image to file respository location. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\tname \u003d self.parent.parent.getChild(\"cntImageName\").getChild(\"txt\").props.text\n\t\tif len(name) \u003e 0:\n\t\t\timport os\n\t\t\tfixedDirectory \u003d\"//10.109.1.15/Ignition/MasterImage\"\n\t\t\t\n\t\t\t# accessing model dropdown \n\t\t\tmodel\u003dself.parent.parent.getChild(\"cntModel\").getChild(\"drpModel\").props.value#.lower()\n\t\t\toptionsModel\u003dself.parent.parent.getChild(\"cntModel\").getChild(\"drpModel\").props.options\n\t\t\toptionsModel\u003dsystem.dataset.toPyDataSet(optionsModel)\n\t\t\tsystem.perspective.print(optionsModel)\n\t\t\tfor opt in optionsModel:\n\t\t\t    if opt[\u0027value\u0027] \u003d\u003d model:\n\t\t\t        model \u003d opt[\u0027label\u0027].lower()\n\t\t\t        break\n\t\t\tsystem.perspective.print(model)\n\t\t\t\n\t\t\t# accessing area dropdown\n\t\t\tarea\u003dself.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\t\t\toptionsArea\u003dself.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.options\n\t\t\toptionsArea\u003dsystem.dataset.toPyDataSet(optionsArea)\n\t\t\tsystem.perspective.print(optionsArea)\n\t\t\tfor opt in optionsArea:\n\t\t\t    if opt[\u0027value\u0027] \u003d\u003d area:\n\t\t\t        area \u003d opt[\u0027label\u0027].lower()\n\t\t\t        break\n\t\t\tsystem.perspective.print(area)\n\t\t\t\n\t\t\t# accessing line dropdown\n\t\t\tline\u003dself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\n\t\t\toptionsline\u003dself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.options\n\t\t\toptionsline\u003dsystem.dataset.toPyDataSet(optionsline)\n\t\t\tsystem.perspective.print(optionsline)\n\t\t\tfor opt in optionsline:\n\t\t\t    if opt[\u0027value\u0027] \u003d\u003d line:\n\t\t\t        line \u003d opt[\u0027label\u0027].lower()\n\t\t\t        break\n\t\t\tsystem.perspective.print(line)\n\t\t\t\n\t\t\t# accessing worksatation dropdown\n\t\t\tworkstation\u003dself.parent.parent.getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.value\n\t\t\toptionsWorkstation\u003dself.parent.parent.getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.options\n\t\t\toptionsWorkstation\u003dsystem.dataset.toPyDataSet(optionsWorkstation)\n\t\t\tsystem.perspective.print(optionsWorkstation)\n\t\t\tfor opt in optionsWorkstation:\n\t\t\t    if opt[\u0027value\u0027] \u003d\u003d workstation:\n\t\t\t        workstation \u003d opt[\u0027label\u0027].lower()\n\t\t\t        break\n\t\t\tsystem.perspective.print(workstation)\n\t\t\t\n\t\t\t\n\t\t\tdrpSelection\u003d\"/\"+model+\"/\"+area+\"/\"+line+\"/\"+workstation\n\t\t\tdirectory\u003dfixedDirectory+drpSelection\n\t\t\t\n\t\t\t#creating directory if not exist\n\t\t\tif not os.path.exists(directory):\n\t\t\t    # Create the directory\n\t\t\t    system.perspective.print(os.makedirs(directory))\n\t\t\t    #print(os.path.exists(directory))\n\t\t\t    system.perspective.print(\"Directory created successfully!\")\n\t\t\telse:\n\t\t\t    system.perspective.print(\"Directory already exists!\")\n\t\t\t\n\t\t\t#getting timestamp\n\t\t\timport time\n\t\t\ttimeStamp \u003d (str(time.time()).split(\".\"))[0]\n\t\t\t\n#\t\t\t######\n\t\t\t#filePath \u003d \"C:\\Program Files\\Inductive Automation\\Ignition\\webserver\\webapps\\main\\ImageMaster\\\\\"\n#\t\t\tfilePath \u003d fixedDirectory+\"/\"+model+\"/\"+area+\"/\"+line+\"/\"+workstation+\"//\"\n\n\t\t\t#generating final image path\n\t\t\timageNameTextField\u003dname+timeStamp\n#\t\t\tself.view.custom.imageNameTextField \u003d imageNameTextField\n\t\t\tself.view.custom.imageNameTextField \u003d name\n\t\t\timageName \u003d \"//\"+ imageNameTextField + \u0027.\u0027 + str(event.file.name).split(\u0027.\u0027)[-1]\n\t\t\timagePath \u003d directory + imageName\n\t\t\t\n\t\t\t#putting image to directory\n\t\t\tevent.file.copyTo(imagePath)\n\t\t\turl \u003d \"http:\"+imagePath.strip()\n#\t\t\turl \u003d \"http:\"+imagePath+imageName\n\t\t\tsystem.perspective.print(\"URL \u003d %s\"%url)\n\t\t\tself.getSibling(\"Image\").props.source \u003d url\n\t\t\tself.custom.url \u003d url #drpSelection\n\t\t\t\n\t\telse:\n\t\t\tstate \u003d \u0027warning\u0027\n\t\t\tmessage \u003d \u0027Please Enter Image Name before uploading Image.\u0027\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027ImageConfigurationPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/ImageConfigurationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onFileReceived  -\u003e cntImageUpload/ImageUpload\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "ImageUpload"
+                },
+                "position": {
+                  "height": 37,
+                  "width": 152,
+                  "x": 68.65499961853027,
+                  "y": 130.5
+                },
+                "propConfig": {
+                  "custom.url": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tsystem.perspective.print(\"self.custom.url\")\n\tsystem.perspective.print(self.custom.url)"
+                    }
+                  }
+                },
+                "props": {
+                  "maxUploads": 1,
+                  "supportedFileTypes": [
+                    "png",
+                    "jpeg",
+                    "jpg"
+                  ]
+                },
+                "type": "ia.input.fileupload"
+              },
+              {
+                "meta": {
+                  "name": "Image"
+                },
+                "position": {
+                  "height": 116,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": 269,
+                  "x": 10.280000000000001,
+                  "y": 8.5
+                },
+                "props": {
+                  "fit": {
+                    "mode": "fill"
+                  },
+                  "source": "/system/images/VECV/no-image-available.png"
+                },
+                "type": "ia.display.image"
+              }
+            ],
+            "custom": {
+              "imageToRemove": ""
+            },
+            "meta": {
+              "name": "cntImageUpload"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ]
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "expression": "if(({../cntModel/drpModel.props.value} \u003e -1) \u0026\u0026\r\n({../cntArea/drpArea.props.value} \u003e -1) \u0026\u0026\r\n({../cntLine/drpLine.props.value} \u003e -1) \u0026\u0026\r\n({../cntWorkStation/drpWorkStation.props.value} \u003e -1) \u0026\u0026\r\n({../cntImageName/txt.props.text} !\u003d \u0027\u0027),\r\ntoBoolean(1),toBoolean(0)\r\n)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "position.height": {
+                "binding": {
+                  "config": {
+                    "expression": "if(({../cntModel/drpModel.props.value} \u003e -1) \u0026\u0026\r\n({../cntArea/drpArea.props.value} \u003e -1) \u0026\u0026\r\n({../cntLine/drpLine.props.value} \u003e -1) \u0026\u0026\r\n({../cntWorkStation/drpWorkStation.props.value} \u003e -1) \u0026\u0026\r\n({../cntImageName/txt.props.text} !\u003d \u0027\u0027),\r\ntoBoolean(1),toBoolean(0)\r\n)"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d True :\n\t\treturn 180\n\treturn 0",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntHeader/lblHeader.props.text}\u003d\u0027Add\u0027\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 45,
+                  "y": -6
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values on panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027ImageConfigurationPanel\u0027\n\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027areaId\u0027:-1,\u0027lineId\u0027:-1,\n\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027imageName\u0027:\u0027\u0027,\u0027imageDescription\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\u0027imageTypeId\u0027:-1}\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\ttry:\n\t\turl \u003d \"C:\\Program Files\\Inductive Automation\\Ignition\\webserver\\webapps\\main\"+ self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url\n\t\tsystem.perspective.print(\"url\")\n\t\tsystem.perspective.print(url)\n\t\tProject_VECV.Master.ImageMasterConfiguration.Delete.deleteImage(url)\n\texcept:\n\t\tpass"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "61% 25%"
+                  },
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "        \"\"\"\n                    Written By: Gaurav Amrutkar\n                    Written Date: 27/05/2024\n                    Purpose: Add/update image data in db.\n        \"\"\"\n        \n        auditMsg \u003d \"\"\n        \n        try:\n            headerlabel \u003d self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\n            model_id \u003d self.parent.parent.getChild(\"cntModel\").getChild(\"drpModel\").props.value\n            area_id \u003d self.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n            bom_id \u003d self.parent.parent.getChild(\"cntBOM\").getChild(\"drpBOM\").props.value\n            line_id \u003d self.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\n            workstation_id \u003d self.parent.parent.getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.value\n            imagename \u003d self.parent.parent.getChild(\"cntImageName\").getChild(\"txt\").props.text\n            description \u003d self.parent.parent.getChild(\"cntImageDescription\").getChild(\"txt\").props.text\n            imagetype_id \u003d self.parent.parent.getChild(\"cntImageType\").getChild(\"drpImageType\").props.value\n            active \u003d self.parent.parent.getChild(\"cntActive\").getChild(\"drpActive\").props.value\n            createdBy \u003d self.session.custom.loggedInUserId\n        \n            # --- Function to check if a field is invalid ---\n            def isInvalid(value):\n                return value is None or str(value).strip() \u003d\u003d \"\" or str(value) in [\"-1\", \"0\"]\n        \n            # --- Mandatory Fields Validation (Only for Add) ---\n            if headerlabel \u003d\u003d \"Add\":\n                mandatoryFields \u003d {\n                    \"Model\": model_id,\n                    \"Area\": area_id,\n                    \"BOM\": bom_id,\n                    \"Line\": line_id,\n                    \"Workstation\": workstation_id,\n                    \"Image Name\": imagename,\n                    \"Description\": description,\n                    \"Image Type\": imagetype_id,\n                    \"Active\": active\n                }\n        \n                missingFields \u003d [key for key, value in mandatoryFields.items() if isInvalid(value)]\n        \n                if missingFields:\n                    missingFieldsList \u003d \", \".join(missingFields)\n                    Project_VECV.PopUp.Alerts.showAlert(\n                        \"warning\",\n                        \"Missing Required Fields\",\n                        \"Please fill all the fields: \" + missingFieldsList,\n                        \"true\",\n                        \"Okay\", \"\", \"\", \"\", \"\",\n                        \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\"\n                    )\n                    return\n        \n            fixedDirectory \u003d \"http:\" + \"//10.109.1.15/Ignition/MasterImage\"\n            name \u003d self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url\n            system.perspective.print(name)\n        \n            if headerlabel \u003d\u003d \"Add\":\n                Id \u003d 0\n                result \u003d Project_VECV.NamedQuery.Master.ImageMasterConfiguration.ImageMasterConfigurationQG.insertImage(\n                    Id, model_id, area_id, line_id, workstation_id, imagename, description,\n                    imagetype_id, active, createdBy, name, bom_id\n                )\n            else:\n                Id \u003d self.view.custom.UnitId\n                if str(self.parent.parent.getChild(\"cntImageUpload\").custom.imageToRemove) !\u003d str(name):\n                    system.perspective.print(\"line 20\")\n        \n                result \u003d Project_VECV.NamedQuery.Master.ImageMasterConfiguration.ImageMasterConfigurationQG.insertImage(\n                    Id, model_id, area_id, line_id, workstation_id, imagename, description,\n                    imagetype_id, active, createdBy, name, bom_id\n                )\n        \n            if result \u003d\u003d 1:\n                if headerlabel \u003d\u003d \"Add\":\n                    message \u003d \"Image details added successfully.\"\n                    auditMsg \u003d str(imagename) + \" Image details added successfully.\"\n                else:\n                    message \u003d \"Image details updated successfully.\"\n                    auditMsg \u003d str(imagename) + \" Image details updated successfully\"\n        \n                state \u003d \"success\"\n        \n                Project_VECV.PopUp.Alerts.showAlert(\n                    str(state), str(state.capitalize()), str(message),\n                    \"true\", \"Okay\", \"\", \"\", \"\", \"\",\n                    \"closePopup\", \"closePopup\", \"closePopup\", \"\", \"\", \"\", \"\"\n                )\n                system.perspective.closeDock(\"rightp\")\n        \n                messageType \u003d \u0027tableRefresh\u0027\n                system.perspective.sendMessage(messageType, scope\u003d\u0027page\u0027)\n                system.perspective.print(auditMsg)\n        \n                category \u003d \u0027Master Configuration\u0027\n                subCategory \u003d \u0027ImageMaster Configuration\u0027\n        \n                if Id !\u003d 0:\n                    prevDesc \u003d self.view.getChild(\"root\").custom.payload\n                    curDesc \u003d {\n                        \"modelId\": model_id,\n                        \"areaId\": area_id,\n                        \"bomId\": bom_id,\n                        \"lineId\": line_id,\n                        \"workStationId\": workstation_id,\n                        \"imageName\": imagename,\n                        \"imageDescription\": description,\n                        \"imageTypeId\": imagetype_id,\n                        \"isActive\": active\n                    }\n        \n                    system.perspective.print(prevDesc)\n                    system.perspective.print(curDesc)\n        \n                    description \u003d str(auditMsg) + \" Where ID\u003d\" + str(Id) + \\\n                                  \" With Previous Data-\u003e\" + str(prevDesc) + \\\n                                  \" and Updated Data-\u003e\" + str(curDesc)\n                else:\n                    description \u003d str(auditMsg)\n        \n                Project_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(\n                    category, subCategory, description, createdBy\n                )\n        \n        except Exception as e:\n            screenName \u003d \u0027ImageMaster ConfigurationQG\u0027\n            filePath \u003d str(\u0027Project_VECV/Pannel/ImageMaster Pannel\u0027)\n            errorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)\n            errorType \u003d str(\u0027Application\u0027)\n            errorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n            description \u003d str(sys.exc_info()[1])\n            lineNumber \u003d str(sys.exc_info()[2].tb_lineno)\n        \n            Project_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(\n                screenName, filePath, errorFunction, errorType,\n                errorCode, description, lineNumber\n            )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntModel/drpModel.props.value} \u003e -1) \u0026\u0026\r\n({.../cntArea/drpArea.props.value} \u003e -1) \u0026\u0026\r\n({.../cntLine/drpLine.props.value} \u003e -1) \u0026\u0026\r\n({.../cntWorkStation/drpWorkStation.props.value} \u003e -1) \u0026\u0026\r\n({.../cntImageName/txt.props.text} !\u003d\u0027\u0027) \u0026\u0026\r\n({.../cntImageType/drpImageType.props.value} \u003e -1) \u0026\u0026\r\n({.../cntActive/drpActive.props.value} \u003e -1) \u0026\u0026\r\n({.../cntImageUpload/Image.props.source} !\u003d \u0027/system/images/VECV/no-image-available.png\u0027)\r\n,toBoolean(1),toBoolean(0))\r\n\r\n"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "ImageConfigurationPanel",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: store image data in json format. \n\t\"\"\"\n\t# implement your handler here\n\tload\u003dpayload.copy()\n\tsystem.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\tsystem.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tsystem.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\tsystem.perspective.print(\"msg handler2-----------\u003e\")\n\tsystem.perspective.print(\"payload msghandler3-------------\u003e\")\n\tsystem.perspective.print(self.view.getChild(\"root\").custom.payload)\n\tsystem.perspective.print(\"Exit ImageConfigurationPanel\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "WorkStation:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpWorkStation"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "3",
+                          "LineID": "{.../cntLine/drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 314
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 79,
+                  "y": -5
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntWorkStation"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "BOMNumber:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003d-1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpBOM"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "{.../cntModel/drpModel.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Checklist/getBOMfromModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 22,
+                  "width": 10,
+                  "x": 79,
+                  "y": -9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntBOM"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1,
+          "x": -0.04,
+          "y": -0.0389
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "ImageChanged": false,
+      "payload": "{\"imageName\": \"\", \"WorkStationId\": -1, \"lineId\": -1, \"isActive\": 1, \"areaId\": -1, \"imageTypeId\": -1, \"UnitId\": \"\", \"imageDescription\": \"\"}"
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.selectedImagePath": {
+        "binding": {
+          "config": {
+            "path": "./cntColumn/cntHeader/lblHeader.props.text"
+          },
+          "transforms": [
+            {
+              "code": "\tif value \u003d\u003d \u0027Add\u0027:\n\t\treturn \u0027\u0027\n\treturn value",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "ImageConfigurationPanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Insert row values into respective fields. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.view.custom.UnitId \u003d payload[\u0027Id\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\u003dpayload[\u0027headerLabel\u0027]\n\t\tif payload[\u0027headerLabel\u0027] !\u003d \u0027Add\u0027:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url \u003d payload[\u0027url\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").custom.imageToRemove \u003d  payload[\u0027url\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"Image\").props.source \u003d payload[\u0027url\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageName\").getChild(\"txt\").custom.isSelectedImageName \u003d payload[\u0027imageName\u0027]\n\t\telse:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"Image\").props.source\u003d\u0027/system/images/VECV/no-image-available.png\u0027\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url \u003d \u0027/system/images/VECV/no-image-available.png\u0027\n\t\tself.getChild(\"cntColumn\").getChild(\"cntModel\").getChild(\"drpModel\").props.value\u003dpayload[\u0027modelId\u0027]\n\n\t\tself.getChild(\"cntColumn\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003dpayload[\u0027areaId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003dpayload[\u0027lineId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.value\u003dpayload[\u0027workStationId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntImageName\").getChild(\"txt\").props.text\u003dpayload[\u0027imageName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntImageDescription\").getChild(\"txt\").props.text\u003dpayload[\u0027imageDescription\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntImageType\").getChild(\"drpImageType\").props.value\u003dpayload[\u0027imageTypeId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntActive\").getChild(\"drpActive\").props.value\u003dpayload[\u0027isActive\u0027]\n\texcept:\n\t\tscreenName \u003d\u0027Image Master Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/ImageConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eImageConfigurationPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

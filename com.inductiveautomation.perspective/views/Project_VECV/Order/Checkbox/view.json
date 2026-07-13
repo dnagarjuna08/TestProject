@@ -1,0 +1,115 @@
+{
+  "custom": {
+    "enabled": true
+  },
+  "params": {
+    "column": "",
+    "columnIndex": "",
+    "rowData": {},
+    "rowIndex": "",
+    "source": "",
+    "value": "material/search"
+  },
+  "propConfig": {
+    "custom.enabled": {
+      "binding": {
+        "config": {
+          "expression": "try(jsonGet(try({view.params.value}[\"value\"],{view.params.value}),\"enabled\"),true)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.column": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.source": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 23,
+      "width": 35
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "15px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.path": {
+            "binding": {
+              "config": {
+                "expression": "try(jsonGet(try({view.params.value}[\"value\"],{view.params.value}),\"path\"),\"\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "expression": "try(jsonGet(jsonGet(try({view.params.value}[\"value\"],{view.params.value}),\"style\"),\"backgroundColor\"),\"\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.color": {
+            "binding": {
+              "config": {
+                "expression": "try(jsonGet(jsonGet(try({view.params.value}[\"value\"],{view.params.value}),\"style\"),\"color\"),\"\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.cursor": {
+            "binding": {
+              "config": {
+                "expression": "try(jsonGet(jsonGet(try({view.params.value}[\"value\"],{view.params.value}),\"style\"),\"cursor\"),\"default\")"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "paddingBottom": 1,
+            "paddingTop": 1
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

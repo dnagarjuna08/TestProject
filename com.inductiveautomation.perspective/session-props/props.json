@@ -1,0 +1,338 @@
+{
+  "custom": {
+    "BOM": "",
+    "BOMDesc": 0,
+    "BOMId": "",
+    "CurrentAreaId": "",
+    "CurrentAreaName": "",
+    "CurrentLineId": "",
+    "CurrentLineName": "",
+    "CurrentWorkStation": "",
+    "CurrentWorkStationId": "",
+    "DashBoardSerialNumber": "",
+    "DeviceMapId": "",
+    "ExceedEndTime": "",
+    "Flash": false,
+    "ImageName": "",
+    "IsBOMCopyAuthenticated": 0,
+    "IsByPassed": false,
+    "IsChartHistorianAuthenticated": 0,
+    "IsChecklistConfigurationAuthenticated": 0,
+    "IsCycleTimeConfigurationAuthenticated": 0,
+    "IsDashboardAuthenticated": 0,
+    "IsDefectMappingAunthenticated": 0,
+    "IsDeviceConfigurationAuthenticated": 0,
+    "IsErrorProofingConfigurationAuthenticated": 0,
+    "IsErrorProofingConfigurationQGAuthenticated": "0",
+    "IsFaultedTorque": false,
+    "IsFirstShotOKAuthenticated": 0,
+    "IsGetDashBoardSerialNoAuthenticated": 0,
+    "IsHourlyProductionReportAuthenticated": 0,
+    "IsImageMasterConfigurationAuthenticated": 0,
+    "IsImageMasterConfigurationAuthenticatedQG": 0,
+    "IsLiveTagStatusAuthenticated": 0,
+    "IsLocationRoutingAuthenticated": 0,
+    "IsLogNCAuthenticated": 0,
+    "IsLoggedIn": false,
+    "IsMachineBuildDataAuthenticated": 0,
+    "IsMaterialGroupConfigurationAuthenticated": 0,
+    "IsMinMaxReq": false,
+    "IsModelConfigurationAuthenticated": 0,
+    "IsNumberPunchingAuthenticated": 0,
+    "IsOPCodeConfigurationAuthenticated": 0,
+    "IsOrderManagementAuthenticated": 0,
+    "IsPaintingConfigurationAuthenticated": 0,
+    "IsPaintingStationAuthenticated": 0,
+    "IsPlantConfigurationAuthenticated": 0,
+    "IsProductTrackingAuthenticated": 0,
+    "IsQualityManagementAuthenticated": 0,
+    "IsReworkAuthenticated": 0,
+    "IsReworkStationAuthenticated": 0,
+    "IsRoleConfigurationAuthenticated": 0,
+    "IsRoleManagementAuthenticated": 0,
+    "IsSAPDataUploadAuthenticated": 0,
+    "IsSAPUploadAuthenticated": 0,
+    "IsShiftConfigurationAuthenticated": 0,
+    "IsTagHistorianAuthenticated": 0,
+    "IsTimeExceed": false,
+    "IsTorqueMarkingAuthenticated": 0,
+    "IsUserManagementAuthenticated": 0,
+    "IsWIPReportAuthenticated": 0,
+    "IsWashingMachineAuthenticated": 0,
+    "IsWorkInstructionConfigurationAuthenticated": 0,
+    "IsWorkStationAuthenticated": 0,
+    "MaxVal": "",
+    "MinVal": "",
+    "Model": "",
+    "ModelId": "",
+    "OPCodeId": "",
+    "OPDefinitionId": "",
+    "OPFinishRefresh": false,
+    "OPReadyRefresh": false,
+    "OTP": "",
+    "SelectedImageName": "",
+    "SelectedImageURL": "C:\\Program Files\\Inductive Automation\\Ignition\\webserver\\webapps\\main\\ImageMaster\\Sample 1.png",
+    "StartDate": "value",
+    "Test": "value",
+    "Text": "",
+    "TopViewHeader": "SAP Upload",
+    "TorqueCount": 1,
+    "TorqueQuantity": "",
+    "UserRoleID": "",
+    "WITypeId": "",
+    "WONumber": "",
+    "WorkInstructionId": "",
+    "count": 23,
+    "currentIpAddress": "",
+    "cycleTime": 0,
+    "demoInstances": [],
+    "dsCycleTime": null,
+    "dsHoldedOrder": {
+      "$": [
+        "ds",
+        192,
+        1753426017887
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "id",
+          "type": "Long"
+        },
+        {
+          "data": [],
+          "name": "Order Number",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "TM Serial Number",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "TM Code",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Description",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Status",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Order Type",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Special Instruction",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "psn",
+          "type": "Long"
+        },
+        {
+          "data": [],
+          "name": "Selection",
+          "type": "String"
+        }
+      ]
+    },
+    "dsLocationRout": "None",
+    "dsOrderManagement": {
+      "$": [
+        "ds",
+        192,
+        1758867867097
+      ],
+      "$columns": [
+        {
+          "data": [],
+          "name": "SrNo",
+          "type": "Long"
+        },
+        {
+          "data": [],
+          "name": "id",
+          "type": "Long"
+        },
+        {
+          "data": [],
+          "name": "Order Number",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "TM Serial Number",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "TM Code",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Description",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Status",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Order Type",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "Special Instruction",
+          "type": "String"
+        },
+        {
+          "data": [],
+          "name": "StartTime",
+          "type": "Date"
+        },
+        {
+          "data": [],
+          "name": "psn",
+          "type": "Long"
+        },
+        {
+          "data": [],
+          "name": "Selection",
+          "type": "String"
+        }
+      ]
+    },
+    "dsOrderSelected": "",
+    "exceedStartTime": "",
+    "exceedTime": 0,
+    "instanceCanvas": [],
+    "isOrderSelectedAll": "",
+    "loggedInUser": "value",
+    "loggedInUserId": 1,
+    "menu": [],
+    "operatorID": "",
+    "paintingImageRemove": "",
+    "processEndTime": "",
+    "processStartTime": "",
+    "processTime": 0,
+    "qualityLoginID": "",
+    "selectedDefectCategory": "",
+    "selectedDefectId": "",
+    "selectedDefectName": "",
+    "selectedDefectSubName": "",
+    "selectedDeviceId": "value",
+    "selectedImageId": "",
+    "selectedMSTGroupConfigID": 0,
+    "selectedMSTLocationRouteID": 0,
+    "selectedOPCode": "",
+    "selectedRoleID": "value",
+    "selectedTRNShiftID": "value",
+    "selectedUserId": "value",
+    "seqNo": "",
+    "showMenu": true,
+    "showSingleView": false,
+    "tempModelMode": {
+      "RA": [
+        "Legacy LD",
+        "Legacy HD",
+        "Legacy EV",
+        "Titan EV Carrier",
+        "Titan Diesel Carrier",
+        "Legacy UD"
+      ],
+      "TM": [
+        "Vertical",
+        "Horizontal"
+      ]
+    },
+    "test1": "value",
+    "type": "value",
+    "userdata": [],
+    "ws": ""
+  },
+  "propConfig": {
+    "props.auth": {
+      "access": "PRIVATE",
+      "persistent": false
+    },
+    "props.device.accelerometer": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.identifier": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.timezone": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.type": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.device.userAgent": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.gateway": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.gateway.timezone": {
+      "binding": {
+        "config": {
+          "fallbackDelay": 2.5,
+          "mode": "direct",
+          "publishInitial": false,
+          "tagPath": "[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML70/Torque 2/Torque_Angle_15"
+        },
+        "type": "tag"
+      }
+    },
+    "props.geolocation.data": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.geolocation.permissionGranted": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.host": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.id": {
+      "access": "SYSTEM",
+      "persistent": false
+    },
+    "props.lastActivity": {
+      "access": "SYSTEM",
+      "persistent": false
+    }
+  },
+  "props": {
+    "address": "10.109.1.18",
+    "appBar": {
+      "togglePosition": "hidden"
+    },
+    "device": {},
+    "geolocation": {},
+    "locale": "en-US",
+    "timeZoneId": "Asia/Calcutta"
+  }
+}

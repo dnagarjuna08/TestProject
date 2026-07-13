@@ -1,0 +1,1986 @@
+{
+  "custom": {
+    "AsignStepListFlag": 0,
+    "seqNumber": 2,
+    "stepId": ""
+  },
+  "params": {
+    "AsignedStepList": [],
+    "AssignedFixtureList": "",
+    "BOMId": "",
+    "ModelId": "",
+    "header": "",
+    "wiId": "",
+    "wiName": "",
+    "workStationId": ""
+  },
+  "propConfig": {
+    "custom.AsignStepListFlag": {
+      "persistent": true
+    },
+    "custom.seqNumber": {
+      "persistent": true
+    },
+    "custom.stepId": {
+      "persistent": true
+    },
+    "params.AsignedStepList": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.AssignedFixtureList": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.BOMId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ModelId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.header": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.wiId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.wiName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.workStationId": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 559
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 0.65,
+                  "width": 0.625,
+                  "x": 0.011,
+                  "y": 0.12
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.header"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": [
+                      {
+                        "config": {
+                          "script": "\tsystem.perspective.closePopup(\u0027100\u0027)\n\tsystem.perspective.openDock(\u0027rightp\u0027)"
+                        },
+                        "scope": "G",
+                        "type": "script"
+                      },
+                      {
+                        "config": {
+                          "script": "\tpayload \u003d {\u0027IsVisible\u0027:int(0)}\n\tsystem.perspective.sendMessage(\u0027addEditWorkInstruction\u0027, payload, scope \u003d \u0027page\u0027 )\n\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\n\theader\u003dself.getSibling(\"lblHeader\").props.text\n\theader\u003dheader[:3]\n\tif(header\u003d\u003d\u0027Add\u0027):\n\t\tsystem.perspective.sendMessage(\"getIdList\",payload \u003d {\"FixtureList\":[],\"StepList\":[],\"FixtureCount\":0,\"StepCount\":0}, scope \u003d \"page\")\n\t\n\t#Reset\t\n\tself.view.params.AsignedStepList\u003d[]\n\tself.view.params.AssignedFixtureList\u003d[]\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").props.currentTabIndex\u003d0\n\tself.parent.parent.getChild(\"cntSave\").getChild(\"btnSave\").props.enabled\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"chkSelectAll\").props.selected \u003d bool(0)\n\t\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgUp\").meta.visible\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgDown\").meta.visible\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgRemove\").meta.visible\u003d0\n"
+                        },
+                        "enabled": false,
+                        "scope": "G",
+                        "type": "script"
+                      }
+                    ]
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 0.4201,
+                  "width": 0.0125,
+                  "x": 0.0428,
+                  "y": 0.24
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 50
+            },
+            "props": {
+              "mode": "percent",
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": [
+                      {
+                        "config": {
+                          "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Update assigned OPCodes. \n\t\"\"\"\n\tOPData\u003dself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"tblAssinedSteps\").props.data \n\tmessageType\u003d\u0027update_assignedop\u0027\n\tsystem.perspective.closePopup(\u0027100\u0027)\n\tsystem.perspective.openDock(\u0027rightp\u0027)\n\tsystem.perspective.sendMessage(messageType,{\u0027assignedop\u0027:OPData},scope \u003d \u0027page\u0027 )"
+                        },
+                        "scope": "G",
+                        "type": "script"
+                      },
+                      {
+                        "config": {
+                          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 22/05/2024\n\tView Name: AddEditWorkInsruction\n\tControl Name: btnSave\n\tEvent: onClick\n\tPurpose: To save record\t\t\t \n\t\t\t\t\t\n\t\"\"\"\n\t\n\ttry:\t\n\t# Start code to save step details\n\t\tstepData\u003dself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"tblAssinedSteps\").props.data \n\t\tsystem.perspective.print(stepData)\n\t\tfor rows in range(len(stepData)):\n\t\t\tworkstationid\u003dself.view.params.workStationId\n\t\t\twiStepId\u003dstepData[rows][\u0027WIStepId\u0027]\n\t\t\topcodeid\u003dstepData[rows][\u0027ID\u0027]\n\t\t\topdefinitionid\u003dstepData[rows][\u0027OP Definition ID\u0027]\n\t\t\tsequence\u003dstepData[rows][\u0027Sequence\u0027]\n\t\t\tparams \u003d {\"wiStepId\":wiStepId,\"workstationid\":workstationid,\"opcodeid\":opcodeid,\"opdefinitionid\":opdefinitionid,\"sequence\":sequence} \n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/Master/WorkInstructionConfiguration/AddAssignedStep\",params)\t\t\n\t\t\t#system.perspective.print(\u0027Insert result\u0027+str(result))\n\t\t\t# End code to save step details\n\t\t\t\n\t\t\n\t\t# pass stepList to the WI_GeneralPanel\t\t\n\t\tpayload \u003d {\u0027IsVisible\u0027:int(0)}\n\t\tsystem.perspective.sendMessage(\u0027addEditWorkInstruction\u0027, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\tsystem.perspective.sendMessage(\u0027getAssignedStepFixCount\u0027,scope \u003d \u0027page\u0027)\n\t\t#Reset\t\n\t\tself.view.params.AsignedStepList\u003d[]\n\t\t#self.view.params.AssignedFixtureList\u003d[]\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").props.currentTabIndex\u003d0\n\t\tself.props.enabled\u003d0\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"chkSelectAll\").props.selected \u003d bool(0)\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"cntAdd\").getChild(\"btnAdd\").props.enabled \u003d 0\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgUp\").meta.visible\u003d0\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgDown\").meta.visible\u003d0\n\t\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgRemove\").meta.visible\u003d0\n\t\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick - cntSave/btnSave\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\n\t\n\t\n\n\t\n\t\n\t\n\t"
+                        },
+                        "enabled": false,
+                        "scope": "G",
+                        "type": "script"
+                      }
+                    ]
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "height": 0.75,
+                  "width": 0.72
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(len({.../cntTab/cntTab/cntAssigedStep/tblAssinedSteps.props.data})\u003e0,True,False)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "classes": "MAKO_4/Panel/Button"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 4,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 4
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 2
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 40
+            },
+            "props": {
+              "mode": "percent"
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": [
+                      {
+                        "config": {
+                          "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Cancel selection and reset back to original values.\t\t \n\t\t\t\t\t\t\t\n\t\"\"\"\n\tpayload \u003d {\u0027IsVisible\u0027:int(0)}\n\tsystem.perspective.sendMessage(\u0027addEditWorkInstruction\u0027, payload, scope \u003d \u0027page\u0027 )\n\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\n\theader\u003dself.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\n\theader\u003dheader[:3]\n\tsystem.perspective.print(\u0027Header\u0027+str(header))\n\tif(header\u003d\u003d\u0027Add\u0027):\n\t\tsystem.perspective.sendMessage(\"getIdList\",payload \u003d {\"FixtureList\":[],\"StepList\":[],\"FixtureCount\":0,\"StepCount\":0}, scope \u003d \"page\")\n\t\n\t#Reset\t\n\t#self.view.params.AsignedStepList\u003d\u0027\u0027\n\tself.view.params.AssignedFixtureList\u003d\u0027\u0027\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").props.currentTabIndex\u003d0\n\tself.parent.parent.getChild(\"cntSave\").getChild(\"btnSave\").props.enabled\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"chkSelectAll\").props.selected \u003d bool(0)\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgUp\").meta.visible\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgDown\").meta.visible\u003d0\n\tself.parent.parent.getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntAssigedStep\").getChild(\"cntUpDown\").getChild(\"imgRemove\").meta.visible\u003d0"
+                        },
+                        "enabled": false,
+                        "scope": "G",
+                        "type": "script"
+                      },
+                      {
+                        "config": {
+                          "script": "\tsystem.perspective.closePopup(\u0027100\u0027)\n\tsystem.perspective.openDock(\u0027rightp\u0027)"
+                        },
+                        "scope": "G",
+                        "type": "script"
+                      }
+                    ]
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 0.75,
+                  "width": 0.72
+                },
+                "props": {
+                  "image": {
+                    "source": "system/images/Builtin/icons/32/delete2.png",
+                    "style": {
+                      "classes": "MAKO_4/Panel/Button"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 4,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 4
+                },
+                {
+                  "colIndex": 4,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 2
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 40
+            },
+            "props": {
+              "mode": "percent"
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onEditCellCommit": {
+                              "config": {
+                                "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 30/05/2024\n\tPurpose:\n\t\t\tThis Script is written to add selection against OPCode.\n\t\"\"\"\t\n\ttry:\t\t\t\n\t\tvalueToSet \u003d event.value\n\t\tself.props.data[event.row][event.column] \u003d valueToSet\n\t\tcurrentData \u003d self.props.data\n\t\t\n\t\tlength \u003d len(currentData)\n\t\tmatch \u003d 0\n\t\tfor row in range(length):\n\t\t\tisSelect \u003d self.props.data[row][\u0027Select\u0027]\n\t\t\tif(str(isSelect) \u003d\u003d \u0027True\u0027):\n\t\t\t\tmatch \u003d 1\n\t\t\t\tself.parent.getChild(\"cntAdd\").getChild(\"btnAdd\").props.enabled \u003d 1\n\t\t\t\tbreak\n\t\t\t\n\t\t\t\t\n\t\t\t\n\texcept: \n\t\t#Start of except block  \n\t\t\tscreenName \u003d\u0027AddEditWorkInstruction\u0027   \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)  \n\t\t\terrorFunction \u003d str(\u0027Event:onEditCellCommit  -\u003e tblStep\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t#End of except block\t\t"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            },
+                            "onRowClick": {
+                              "config": {
+                                "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 30/05/2024\n\tPurpose:\n\t\t\tThis Script is written to assigned selected row id to\n\t\t\tstepId custom property .\n\t\"\"\"\t\n\t\n\tpydata \u003d self.props.data\n\tif(len(pydata) \u003e 0):\n\t\tself.parent.getChild(\"cntAdd\").getChild(\"btnAdd\").props.enabled\u003d1\n\t\t\n\t\t    \t\n\t"
+                              },
+                              "enabled": false,
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "tblStep"
+                        },
+                        "position": {
+                          "breakpoints": [
+                            {
+                              "colIndex": 0,
+                              "name": "sm",
+                              "order": 0,
+                              "rowIndex": 1,
+                              "span": 12
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "md",
+                              "order": 0,
+                              "rowIndex": 1,
+                              "span": 12
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "lg",
+                              "order": 0,
+                              "rowIndex": 1,
+                              "span": 12
+                            }
+                          ],
+                          "height": 350
+                        },
+                        "propConfig": {
+                          "props.data": {
+                            "binding": {
+                              "config": {
+                                "parameters": {
+                                  "BOMId": "{view.params.BOMId}",
+                                  "ModelId": "{view.params.ModelId}",
+                                  "WorkstationID": "{view.params.workStationId}"
+                                },
+                                "queryPath": "Project_VECV/Master/WorkInstructionConfiguration/GetWI_Step",
+                                "returnFormat": "json"
+                              },
+                              "overlayOptOut": true,
+                              "type": "query"
+                            }
+                          }
+                        },
+                        "props": {
+                          "cells": {
+                            "allowEditOn": "single-click"
+                          },
+                          "columns": [
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "ID",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": true,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": "MAKO_4/Table/Header"
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OP Code",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "Description",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OP Definition",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "Model",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": "MAKO_4/Table/Header"
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OP Definition ID",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": true,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": true,
+                              "field": "Select",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "boolean",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": ""
+                            }
+                          ],
+                          "filter": {
+                            "enabled": true,
+                            "results": {
+                              "enabled": true
+                            }
+                          },
+                          "headerGroups": [
+                            [
+                              {
+                                "align": "center",
+                                "justify": "left",
+                                "span": 1,
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              }
+                            ]
+                          ],
+                          "pager": {
+                            "initialOption": 10
+                          },
+                          "rows": {
+                            "highlight": {
+                              "enabled": false
+                            },
+                            "striped": {
+                              "enabled": false
+                            },
+                            "style": {
+                              "classes": "Project_VECV/Table/RowsBorder"
+                            }
+                          },
+                          "style": {
+                            "classes": "Project_VECV/Table/Border"
+                          }
+                        },
+                        "type": "ia.display.table"
+                      },
+                      {
+                        "children": [
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 21/05/2024\n\tPurpose:\t\t\t \n\t\t\tGet step deatils from the datatabase by step Id and create\n\t\t\t  AsignedStepList\t\t\t\n\t\"\"\"\t\n\t\n\tstepID\u003dself.view.custom.stepId\t\n\tassignedList \u003d []\n\t#assignedFixtureList \u003d []\n\tsequenceNo\u003d1\n\ttry: \n\t\t# Check AsignedStepList contails data if yes then seq no is len(assignedList)+1\n\t\t# else sequenceNo\u003d1\n\t\tif(len(self.view.params.AsignedStepList)\u003e0):\n\t\t\tassignedList\u003dself.view.params.AsignedStepList\n\t\t\tsequenceNo\u003dint(len(assignedList))+1\t\n\t\t\t#system.perspective.print(\"Loop1\")\t\n\t\t# Get step details from the available step by selected row\n\t\tselectedRow \u003dself.parent.parent.getChild(\"tblStep\").props.selection.selectedRow\n\t\tselectedStepdata \u003d self.parent.parent.getChild(\"tblStep\").props.data\n\t\t#system.perspective.print(selectedStepdata)\n\t\tstepclassId \u003d 0\n\t\tif(len(selectedStepdata) \u003e 0):\n\t\t\t#system.perspective.print(\"Loop2\")\t\n\t\t\tfor row in range(len(selectedStepdata)):\n\t\t\t\tisSelect \u003d selectedStepdata[row][\u0027Select\u0027]\n\t\t\t\t#system.perspective.print(\"Loop3\")\t\n\t\t\t\tif(str(isSelect) \u003d\u003d \u0027True\u0027 or str(isSelect) \u003d\u003d \u00271\u0027):\n\t\t\t\t\tstepId\u003d selectedStepdata[row][\u0027ID\u0027]\n\t\t\t\t\tstepName\u003d selectedStepdata[row][\u0027OP Code\u0027]\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\tstepclassId\u003d selectedStepdata[row][\u0027OP Definition ID\u0027]\n\t\t\t\t\tdescription\u003d selectedStepdata[row][\u0027Description\u0027] \n\t\t\t\t\tModel\u003dselectedStepdata[row][\u0027Model\u0027] \n\t\t\t\t\t#system.perspective.print(stepId)\t\n#\t\t\t\t\tsystem.perspective.print(stepName)\t\n#\t\t\t\t\tsystem.perspective.print(stepclassId)\t\n#\t\t\t\t\tsystem.perspective.print(description)\t\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\t#reworkSplI\u003d selectedStepdata[row][\u0027Rework special instruction\u0027]\n\t\t\t\t\t#rework\u003dselectedStepdata[row][\u0027Rework\u0027]\t\t\t\n\t\t\t\t\t#eDHR \u003d selectedStepdata[row][\u0027eDHR\u0027]\t\n\t\t\t\t\tstepClass \u003d selectedStepdata[row][\u0027OP Definition\u0027]\t#RA 07-07-2023 \t\n\t\t\t\t\t#system.perspective.print(stepClass)\n\t\t\t\t\tassignedList.append({\"WIOPID\":None,\"ID\":stepId,\"Sequence\":int(sequenceNo),\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\n\t\t\t\t\tsequenceNo\u003dint(sequenceNo)+1\t\n\t\t\t\t\t#system.perspective.print(sequenceNo)\t\n\t\t\t\t\tself.view.params.AsignedStepList \u003d assignedList\n\t\t\t\t\tself.parent.parent.getChild(\"tblStep\").props.selection.selectedRow\u003d-1\n\n\t\t\t#Add fixture in list\n#\t\t\tif(stepclassId\u003d\u003d3):\n#\t\t\t\tif(len(self.view.params.AssignedFixtureList)\u003e0):\n#\t\t\t\t\tassignedFixtureList\u003dself.view.params.AssignedFixtureList\n#\t\t\t\t\t#Fuction call to fixture list\t\t\t\t\t\t\t\t\n#\t\t\t\tself.view.params.AssignedFixtureList\u003dProject_VECV.Configuration.WorkInstuction.AddEditWorkInstruction.GetWIFixtureList(assignedFixtureList,stepId)\n\t\t\t#End if Step class is 3 then add fixture in assignedFixtureList\n\t\t\n\t\t# chnage current tab index to 2-assigned step list and save button is enabled\n\t\tif(len(assignedList)\u003e0):\n\t\t\tself.parent.parent.parent.parent.getChild(\"cntTab\").props.currentTabIndex\u003d1\n\t\t\tself.props.enabled\u003d0\n\t\t\t#-----\n\t\t\timport math\t\t\n\t\t\tpage\u003dfloat(sequenceNo)/10\n\t\t\tpage\u003dmath.ceil(page)\n\t\t\tself.parent.parent.parent.getChild(\"cntAssigedStep\").getChild(\"tblAssinedSteps\").props.pager.activePage\u003dpage\n\n\t\t\t#----\n\t\t\tself.parent.parent.getChild(\"chkSelectAll\").props.selected \u003d bool(0)\n\t\t\tselectedStepdata \u003d self.parent.parent.getChild(\"tblStep\").props.data\n\t\t\tavailableList \u003d []\n\t\t\tif(len(selectedStepdata) \u003e 0):\n\t\t\t\tfor row in range(len(selectedStepdata)):\n\t\t\t\t\tstepId\u003d selectedStepdata[row][\u0027ID\u0027]\n\t\t\t\t\tstepName\u003d selectedStepdata[row][\u0027OP Code\u0027]\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\tstepclassId\u003d selectedStepdata[row][\u0027OP Definition ID\u0027]\n\t\t\t\t\tdescription\u003d selectedStepdata[row][\u0027Description\u0027]\n\t\t\t\t\tModel\u003dselectedStepdata[row][\u0027Model\u0027]  \n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n#\t\t\t\t\treworkSplI\u003d selectedStepdata[row][\u0027Rework special instruction\u0027]\n#\t\t\t\t\trework\u003dselectedStepdata[row][\u0027Rework\u0027]\n#\t\t\t\t\teDHR \u003d \tselectedStepdata[row][\u0027eDHR\u0027]\n\t\t\t\t\tstepClass \u003d selectedStepdata[row][\u0027OP Definition\u0027]\t\t\n\t\t\t\t\tavailableList.append({\"ID\":stepId,\"OP Code\":stepName,\"Description\":description,\"OP Definition\":stepClass,\"OP Definition ID\":stepclassId,\"Model\":Model,\"Select\":0})\n\t\t\t\t\tself.parent.parent.getChild(\"tblStep\").props.selection.selectedRow\u003d-1\n\t\t\t\t\t\t\t\n\t\t\t\tself.parent.parent.getChild(\"tblStep\").props.data \u003d availableList\n\t\t\t\tself.parent.parent.getChild(\"tblStep\").props.filter.text\u003d\u0027\u0027\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick- cntStep/btnAdd\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\t"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "btnAdd"
+                            },
+                            "position": {
+                              "height": 37.5,
+                              "width": 72.73,
+                              "y": 6.25
+                            },
+                            "props": {
+                              "enabled": 0,
+                              "image": {
+                                "position": "right"
+                              },
+                              "style": {
+                                "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button",
+                                "padding": 5
+                              },
+                              "text": "Add",
+                              "textStyle": {
+                                "classes": "Project_VECV/Panel/Button"
+                              }
+                            },
+                            "type": "ia.input.button"
+                          }
+                        ],
+                        "meta": {
+                          "name": "cntAdd"
+                        },
+                        "position": {
+                          "breakpoints": [
+                            {
+                              "colIndex": 7,
+                              "name": "sm",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 4
+                            },
+                            {
+                              "colIndex": 10,
+                              "name": "md",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 2
+                            },
+                            {
+                              "colIndex": 11,
+                              "name": "lg",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 1
+                            }
+                          ],
+                          "height": 50
+                        },
+                        "type": "ia.container.coord"
+                      },
+                      {
+                        "events": {
+                          "dom": {
+                            "onClick": {
+                              "config": {
+                                "script": "\t\n\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 21/05/2024\n\tPurpose:\n\t\t\tThis Script is written to assigned selection to all OPCodes\n\t\"\"\"\t\n\ttry:\n\t\tchecked \u003d self.props.selected\n\t\t\n\t\t#system.perspective.print(\u0027not moving forword \u0027+str(type(checked)))\n\t\t#system.perspective.print(\u0027checked_\u0027+ str(checked))\n\t\t#system.perspective.print(\u0027not moving forword\u0027+str(type(self.props.selected)))\n\t\t\n\t\tif str(self.props.selected)\u003d\u003d\u0027True\u0027:\n\t\t\tvalue\u003d1\n\t\t\t#system.perspective.print(\u0027value \u0027+str(value) + \u0027value_type \u0027+str(type(value)))\n\t\telse:\n\t\t\tvalue\u003d0\n\t\t\t#system.perspective.print(\u0027value \u0027+str(value) + \u0027value_type \u0027+str(type(value)))\n\t\t\t\n\t\tfilteredData \u003d self.getSibling(\"tblStep\").props.filter.results.data\n\t\tsystem.perspective.print(\u0027filteredData__\u0027+str(filteredData))\n\t\tactualData \u003d self.getSibling(\"tblStep\").props.data\n\t\tselectedStepdata \u003d \tactualData\n\t\tavailableList \u003d []\n\t\t\u0027\u0027\u0027\n\t\tsystem.perspective.print(\u0027filteredData \u0027+str(filteredData))\n\t\tsystem.perspective.print(\u0027actualData \u0027+str(actualData))\n\t\tsystem.perspective.print(\u0027selectedStepdata \u0027+str(selectedStepdata))\n\t\tsystem.perspective.print(\u0027availableList \u0027+str(availableList))\n\t\t\u0027\u0027\u0027\n\t\tfor row in range(len(actualData)):\n\t\t\tid\u003dstr(actualData[row][\"ID\"])\n\t\t\tsystem.perspective.print(\u0027id_\u0027+str(id))\n#\t\t\tselect \u003d int(0)\n\t\t\tif(len(filteredData) !\u003d 0):\n\t\t\t\tfor rows in range(len(filteredData)):\n\t\t\t\t\tvalue \u003d int(0)\n\t\t\t\t\tfilteredId \u003d str(filteredData[rows][\"ID\"])\n\t\t\t\t\tsystem.perspective.print(\u0027filteredId\u0027+str(filteredId))\n\t\t\t\t\t#system.perspective.print(\u0027only_ID\u0027+str(id))\n\n\t\t\t\t\tif(id \u003d\u003d filteredId):\n#\t\t\t\t\t\tif(int(value)\u003d\u003d1):\n\t\t\t\t\t\tselect \u003d int(1)\n\t\t\t\t\t\tif not self.props.selected:\n\t\t\t\t\t\t\tselect \u003d int(0)\n\t\t\t\t\t\t#system.perspective.print(\u0027select_\u0027+str(select))\n\t\t\t\t\t\tbreak\n\t\t\t\t\telse:\n\t\t\t\t\t\tselect \u003d int(0)\n\t\n\t\t\telif(len(filteredData) \u003d\u003d 0):\t\n\t\t\t\tif value \u003d\u003d 1:\n\t\t\t\t\tselect \u003d int(1)\n\t\t\t\telif value \u003d\u003d 0:\n\t\t\t\t\tselect \u003d int(0)\n\t\t\t#system.perspective.print(\u0027select \u0027+str(select) + \u0027select_type\u0027+str(type(select))\t)\n\t\t\tstepId\u003d selectedStepdata[row][\u0027ID\u0027]\n\t\t\tstepName\u003d selectedStepdata[row][\u0027Step name\u0027]\n\t\t\t###############SD 11/1/2023\n\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t####end\n\t\t\tstepclassId\u003d selectedStepdata[row][\u0027StepClassId\u0027]\n\t\t\tdescription\u003d selectedStepdata[row][\u0027Description\u0027] \n\t\t\t###############SD 11/1/2023\n\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t####end\n\t\t\treworkSplI\u003d selectedStepdata[row][\u0027Rework special instruction\u0027]\n\t\t\trework\u003dselectedStepdata[row][\u0027Rework\u0027]\n\t\t\teDHR \u003d \tselectedStepdata[row][\u0027eDHR\u0027]\n\t\t\tstepClass \u003d selectedStepdata[row][\u0027Step class\u0027]\t\t\n\t\t\tavailableList.append({\"ID\":stepId,\"Step name\":stepName,\"Description\":description,\"eDHR\":eDHR,\"Step class\":stepClass,\"StepClassId\":stepclassId,\"Rework special instruction\":reworkSplI,\"Rework\":rework,\"Select\":select})\n\t\t\t#self.getSibling(\"tblStep\").props.selection.selectedRow\u003d-1\n\t\t#system.perspective.print(\u0027select availableList:\u0027+str(availableList))\t\t\t\t\n\t\tself.getSibling(\"tblStep\").props.data \u003d availableList\n#\t\t\tself.getSibling(\"tblStep\").props.filter.results.data \u003d availableList\n\t\tself.parent.getChild(\"cntAdd\").getChild(\"btnAdd\").props.enabled \u003d 1\n\t\t\n\n\t\t\t\n\texcept: \n\t#Start of except block  \n\t\tscreenName \u003d\u0027AddEditWorkInstruction\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onCLick  -\u003e chkSelectAll\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\n\t\t"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "chkSelectAll",
+                          "visible": false
+                        },
+                        "position": {
+                          "breakpoints": [
+                            {
+                              "colIndex": 0,
+                              "name": "sm",
+                              "order": 1,
+                              "rowIndex": 1,
+                              "span": 2
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "md",
+                              "order": 1,
+                              "rowIndex": 2,
+                              "span": 2
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "lg",
+                              "order": 1,
+                              "rowIndex": 1,
+                              "span": 2
+                            }
+                          ],
+                          "height": 30
+                        },
+                        "props": {
+                          "enabled": false,
+                          "style": {
+                            "classes": "Project_VECV/Panel/TextContent"
+                          },
+                          "text": "Select all"
+                        },
+                        "type": "ia.input.checkbox"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntStep"
+                    },
+                    "type": "ia.container.column"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onEditCellCommit": {
+                              "config": {
+                                "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 21/05/2024\n\tPurpose:\t\t\t \n\t\t\tAdd edited ID value into assigned list\t\t\t\n\t\"\"\"\t\n\tvalueToSet \u003d event.value\t\n\tself.props.data[event.row][event.column] \u003d valueToSet\n\tself.view.params.AsignedStepList[event.row][event.column]\u003dbool(valueToSet)"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            },
+                            "onRowClick": {
+                              "config": {
+                                "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 21/05/2024\n\tPurpose:\t\t\t \n\t\t\tchange property visible to true and false of button up down and remove\n\t\t\tas per condition.\t\t\t\n\t\"\"\"\t\n\tselectedRow \u003d self.props.selection.selectedRow\n\tpydata \u003d self.props.data\n\tself.parent.getChild(\"cntUpDown\").getChild(\"imgRemove\").meta.visible\u003dbool(1)\n\tif(selectedRow!\u003d0):\n\t\tself.parent.getChild(\"cntUpDown\").getChild(\"imgUp\").meta.visible\u003dbool(1)\n\telse:\n\t\tself.parent.getChild(\"cntUpDown\").getChild(\"imgUp\").meta.visible\u003d0\n\t\t\n\tif(selectedRow!\u003d (len(pydata)-1)):\n\t\tself.parent.getChild(\"cntUpDown\").getChild(\"imgDown\").meta.visible\u003d1\n\telse:\n\t\tself.parent.getChild(\"cntUpDown\").getChild(\"imgDown\").meta.visible\u003d0\n\t\t\n\tif(len(pydata) \u003e 0):\n\t\tfor rows in range(len(pydata)):\n\t\t\tif(selectedRow \u003d\u003d rows):\n\t\t\t\tself.view.custom.seqNumber\u003d pydata[rows][\u0027Sequence\u0027]"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "tblAssinedSteps"
+                        },
+                        "position": {
+                          "breakpoints": [
+                            {
+                              "colIndex": 0,
+                              "name": "sm",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 10
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "md",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 11
+                            },
+                            {
+                              "colIndex": 0,
+                              "name": "lg",
+                              "order": 1,
+                              "rowIndex": 0,
+                              "span": 11
+                            }
+                          ],
+                          "height": 400
+                        },
+                        "propConfig": {
+                          "props.data": {
+                            "binding": {
+                              "config": {
+                                "path": "view.params.AsignedStepList"
+                              },
+                              "type": "property"
+                            }
+                          }
+                        },
+                        "props": {
+                          "columns": [
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "WIOPID",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": true,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OP Code ID",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "MAKO_4/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": true,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "Sequence",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": false,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": 150
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OPCode",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": false,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": 150
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "Description",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": false,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": 150
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OPDefinition",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": false,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": true,
+                              "width": 150
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "Model",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": "Project_VECV/Table/Header"
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": false,
+                              "sort": "none",
+                              "sortable": false,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": 150
+                            },
+                            {
+                              "align": "center",
+                              "boolean": "checkbox",
+                              "dateFormat": "MM/DD/YYYY",
+                              "editable": false,
+                              "field": "OP Definition ID",
+                              "footer": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "header": {
+                                "align": "center",
+                                "justify": "left",
+                                "style": {
+                                  "classes": ""
+                                },
+                                "title": ""
+                              },
+                              "justify": "auto",
+                              "number": "value",
+                              "numberFormat": "0,0.##",
+                              "progressBar": {
+                                "bar": {
+                                  "color": "#62A3F6",
+                                  "linecap": "round",
+                                  "width": 5
+                                },
+                                "max": 100,
+                                "track": {
+                                  "color": "#DADADA",
+                                  "linecap": "round",
+                                  "width": 2
+                                },
+                                "value": {
+                                  "color": "#7D7D7D",
+                                  "show": true
+                                }
+                              },
+                              "render": "auto",
+                              "resizable": true,
+                              "sort": "none",
+                              "sortable": true,
+                              "strictWidth": false,
+                              "style": {
+                                "classes": ""
+                              },
+                              "toggleSwitch": {
+                                "color": {
+                                  "selected": "#2196F3",
+                                  "unselected": "#FFFFFF"
+                                }
+                              },
+                              "viewParams": {},
+                              "viewPath": "",
+                              "visible": false,
+                              "width": ""
+                            }
+                          ],
+                          "pager": {
+                            "initialOption": 10
+                          },
+                          "rows": {
+                            "highlight": {
+                              "enabled": false
+                            },
+                            "striped": {
+                              "enabled": false
+                            },
+                            "style": {
+                              "classes": "Project_VECV/Table/RowsBorder"
+                            }
+                          },
+                          "style": {
+                            "classes": "Project_VECV/Table/Border",
+                            "padding": 5
+                          }
+                        },
+                        "type": "ia.display.table"
+                      },
+                      {
+                        "children": [
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 21/05/2024\n\tView Name: AddEditWorkInsruction\n\tPurpose:\t\t\t \n\t\t\tchange selected row index up\t\t\t\n\t\"\"\"\t\n\t#Up button code\n\tseqNumber\u003dself.view.custom.seqNumber\n\ttry:\n\t\tselectedRow\u003dint(self.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow)\n\t\tif(selectedRow!\u003d-1):\t\t\n\t\t\ttableData\u003dself.parent.parent.getChild(\"tblAssinedSteps\").props.data\n\t\t\tfor rows in range(len(tableData)):\n\t\t\t\tif(rows\u003d\u003dselectedRow):\t\t\t\t\n\t\t\t\t\tseqNumber\u003dint(tableData[rows][\u0027Sequence\u0027])\t\t\t\t\t\n\t\t\t\t\t\n\n\t\tbeforeSeqNumber \u003d (seqNumber -1)\t\n\t\tnewAsignedStepList\u003d[]\n\t\tsortedNewAsignedStepList \u003d []\n\t\tasignedStepList \u003d self.view.params.AsignedStepList\n\t\t\n\t\t#new list with updated seq no\n\t\t#updated seq no are \t\n\t\tif(len(asignedStepList)\u003e0):\t\t\n\t\t\tfor rows in range(len(asignedStepList)):\n\t\t\t\twiStepId\u003dasignedStepList[rows][\u0027WIOPID\u0027]\n\t\t\t\tstepId\u003dint(asignedStepList[rows][\u0027ID\u0027])\n\t\t\t\tsequenceNo \u003d int(asignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\tstepName \u003d str(asignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t###############SD 11/1/2023\n\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t####end\n\t\t\t\tstepclassId\u003d asignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\tdescription \u003d str(asignedStepList[rows][\u0027Description\u0027])\n\t\t\t\tModel\u003d str(asignedStepList[rows][\u0027Model\u0027]) \n\t\t\t\t###############SD 11/1/2023\n\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t####end\n#\t\t\t\treworkWPrev \u003d bool(asignedStepList[rows][\u0027Rework with previous\u0027])\n#\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])  \n#\t\t\t\tisMandatory \u003d bool(asignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\treworkSplI\u003d asignedStepList[rows][\u0027Rework special instruction\u0027]\n#\t\t\t\trework\u003d asignedStepList[rows][\u0027Rework\u0027]\t\n#\t\t\t\teDHR \u003d asignedStepList[rows][\u0027eDHR\u0027]\t\n\t\t\t\tstepClass \u003d asignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023 \t\t\n\t\t\t\tif(seqNumber\u003d\u003dasignedStepList[rows][\u0027Sequence\u0027]):\n\t\t\t\t\tsequenceNo \u003d beforeSeqNumber\n\t\t\t\telif(beforeSeqNumber \u003d\u003d asignedStepList[rows][\u0027Sequence\u0027]):\t\n\t\t\t\t\t\tsequenceNo \u003d seqNumber\n\t\t\t\tnewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\n\t\t#Script for sort list by seq no\t\n\t\tif(len(newAsignedStepList)\u003e0):\t\n\t\t\tLength \u003d  len(newAsignedStepList)\n\t\t\tfor row in range(Length):\t\t\t\n\t\t\t\tfor rows in range(len(newAsignedStepList)):\n\t\t\t\t\twiStepId\u003dnewAsignedStepList[rows][\u0027WIOPID\u0027]\n\t\t\t\t\tstepId\u003dint(newAsignedStepList[rows][\u0027ID\u0027])\n\t\t\t\t\tstepclassId\u003d newAsignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\t\tsequenceNo \u003d int(newAsignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\t\tstepName \u003d str(newAsignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\tdescription \u003d str(newAsignedStepList[rows][\u0027Description\u0027]) \n\t\t\t\t\tModel\u003d str(newAsignedStepList[rows][\u0027Model\u0027]) \n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n#\t\t\t\t\treworkWPrev \u003d bool(newAsignedStepList[rows][\u0027Rework with previous\u0027])\n#\t\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])  \n#\t\t\t\t\tisMandatory \u003d bool(newAsignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\t\treworkSplI\u003d newAsignedStepList[rows][\u0027Rework special instruction\u0027]\n#\t\t\t\t\trework\u003d newAsignedStepList[rows][\u0027Rework\u0027]\t\t\t\n#\t\t\t\t\teDHR \u003d asignedStepList[rows][\u0027eDHR\u0027]\n\t\t\t\t\tstepClass \u003d newAsignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023 \t\t\n\t\t\t\t\tif(int(row + 1) \u003d\u003d int(newAsignedStepList[rows][\u0027Sequence\u0027])):\n\t\t\t\t\t\tsortedNewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\t\n\t\t\n\t\t#assign sorted list to custom property AsignedStepList\t\n\t\tselectedRow\u003dselectedRow-1\n\t\tself.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow\u003dselectedRow\n\t\tself.view.params.AsignedStepList\u003dsortedNewAsignedStepList\n\t\t\n\t\t#-----\n\t\ttotalRecord\u003dlen(asignedStepList)\n\t\timport math\t\t\n\t\tpage\u003dfloat(selectedRow+1)/10\n\t\tpage\u003dmath.ceil(page)\n\t\tself.parent.parent.getChild(\"tblAssinedSteps\").props.pager.activePage\u003dpage\n\t\t#----\n\t\t\n\t\t#Up Down Button visible check\n\t\tself.getSibling(\"imgRemove\").meta.visible\u003dbool(1)\n\t\tif(selectedRow\u003d\u003d0):\n\t\t\tself.meta.visible\u003dbool(0)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d1\n\t\telif(selectedRow\u003d\u003d (len(tableData)-1)):\n\t\t\tself.meta.visible\u003dbool(1)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d0\n\t\telse:\n\t\t\tself.meta.visible\u003dbool(1)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d1\n\t\t#End Up Down Button visible check\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Event:OnClick - cntUpDown/imgUp\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\t\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                },
+                                "onMouseEnter": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipUp\").meta.visible\u003d1"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                },
+                                "onMouseOut": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipUp\").meta.visible\u003d0"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "imgUp",
+                              "visible": false
+                            },
+                            "position": {
+                              "height": 30,
+                              "width": 35,
+                              "y": 40
+                            },
+                            "props": {
+                              "fit": {
+                                "height": 27,
+                                "mode": "fill",
+                                "width": 27
+                              },
+                              "source": "/system/images/Builtin/icons/32/arrow_up_green.png",
+                              "style": {
+                                "margin": 0
+                              }
+                            },
+                            "type": "ia.display.image"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 21/05/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tchange selected row index Down\t\t\t\n\t\"\"\"\t\n\t#Down Button\n\tseqNumber\u003dself.view.custom.seqNumber\n\ttry:\n\t\n\t\tselectedRow\u003dint(self.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow)\n\t\tif(selectedRow!\u003d -1):\n\t\t\ttableData\u003dself.parent.parent.getChild(\"tblAssinedSteps\").props.data\n\t\t\tfor rows in range(len(tableData)):\n\t\t\t\tif(rows\u003d\u003dselectedRow):\t\t\t\t\n\t\t\t\t\tseqNumber\u003dint(tableData[rows][\u0027Sequence\u0027])\t\t\t\n\t\tafterSeqNumber \u003d (seqNumber +1)\t\n\t\tnewAsignedStepList\u003d[]\n\t\tsortedNewAsignedStepList \u003d []\n\t\tasignedStepList \u003d self.view.params.AsignedStepList\n\t\t\t\n\t\t#new list with updated seq no\n\t\t#updated seq no are \t\n\t\tif(len(asignedStepList)\u003e0):\t\t\n\t\t\tfor rows in range(len(asignedStepList)):\n\t\t\t\twiStepId\u003dasignedStepList[rows][\u0027WIOPID\u0027]\n\t\t\t\tstepId\u003dint(asignedStepList[rows][\u0027ID\u0027])\n\t\t\t\tsequenceNo \u003d int(asignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\tstepName \u003d str(asignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t###############SD 11/1/2023\n\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t####end\n\t\t\t\tstepclassId\u003d asignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\tdescription \u003d str(asignedStepList[rows][\u0027Description\u0027])\n\t\t\t\t###############SD 11/1/2023\n\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t####end\n#\t\t\t\treworkWPrev \u003d bool(asignedStepList[rows][\u0027Rework with previous\u0027])\n#\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])                                           \n#\t\t\t\tisMandatory \u003d bool(asignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\treworkSplI\u003d asignedStepList[rows][\u0027Rework special instruction\u0027]\n#\t\t\t\trework\u003d asignedStepList[rows][\u0027Rework\u0027]\t\t\n\t\t\t\tModel \u003d asignedStepList[rows][\u0027Model\u0027]\n\t\t\t\tstepClass \u003d asignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023\t\n\t\t\t\tif(seqNumber\u003d\u003dasignedStepList[rows][\u0027Sequence\u0027]):\n\t\t\t\t\tsequenceNo \u003d afterSeqNumber\n\t\t\t\telif(afterSeqNumber \u003d\u003d asignedStepList[rows][\u0027Sequence\u0027]):\t\n\t\t\t\t\t\tsequenceNo \u003d seqNumber\n\t\t\t\tnewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\n\t\t\n\t\t#Script for sort list by seq no\t\n\t\tif(len(newAsignedStepList)\u003e0):\t\n\t\t\tLength \u003d  len(newAsignedStepList)\n\t\t\tfor row in range(Length):\t\t\t\n\t\t\t\tfor rows in range(len(newAsignedStepList)):\n\t\t\t\t\twiStepId\u003dnewAsignedStepList[rows][\u0027WIOPID\u0027]\n\t\t\t\t\tstepId\u003dint(newAsignedStepList[rows][\u0027ID\u0027])\n\t\t\t\t\tsequenceNo \u003d int(newAsignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\t\tstepName \u003d str(newAsignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\tstepclassId\u003d newAsignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\t\tdescription \u003d str(newAsignedStepList[rows][\u0027Description\u0027]) \n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n#\t\t\t\t\treworkWPrev \u003d bool(newAsignedStepList[rows][\u0027Rework with previous\u0027])\n#\t\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])  \n#\t\t\t\t\tisMandatory \u003d bool(newAsignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\t\treworkSplI\u003d newAsignedStepList[rows][\u0027Rework special instruction\u0027]\n#\t\t\t\t\trework\u003d newAsignedStepList[rows][\u0027Rework\u0027]\t\t\t\n\t\t\t\t\tModel \u003d asignedStepList[rows][\u0027Model\u0027]\n\t\t\t\t\tstepClass \u003d newAsignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023\t\t\t\n\t\t\t\t\tif(int(row + 1) \u003d\u003d int(newAsignedStepList[rows][\u0027Sequence\u0027])):\n\t\t\t\t\t\tsortedNewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\t\n\t\t\n\t\t#assign sorted list to custom property AsignedStepList\n\t\t#selectedRow\u003dseqNumber\n\t\tselectedRow\u003dselectedRow+1\n\t\tself.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow\u003dselectedRow\n\t\tself.view.params.AsignedStepList\u003dsortedNewAsignedStepList\n\t\t#Up Down Button visible check\n\t\tself.getSibling(\"imgRemove\").meta.visible\u003dbool(1)\n\t\tif(selectedRow\u003d\u003d0):\n\t\t\tself.meta.visible\u003dbool(1)\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003d0\n\t\telif(selectedRow\u003d\u003d (len(tableData)-1)):\n\t\t\tself.meta.visible\u003d0\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003d1\n\t\telse:\t\t\n\t\t\tself.meta.visible\u003d1\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003d1\n\t\t#End Up Down Button visible check\t\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick - cntUpDown/imgDown\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                },
+                                "onMouseEnter": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipDown\").meta.visible\u003d1"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                },
+                                "onMouseOut": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipDown\").meta.visible\u003d0"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "imgDown",
+                              "visible": 0
+                            },
+                            "position": {
+                              "height": 30,
+                              "width": 35,
+                              "y": 81
+                            },
+                            "props": {
+                              "fit": {
+                                "height": 27,
+                                "width": 27
+                              },
+                              "source": "/system/images/Builtin/icons/32/arrow_down_green.png"
+                            },
+                            "type": "ia.display.image"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "draggable": false,
+                                    "id": "DeleteAsgnStep",
+                                    "modal": false,
+                                    "overlayDismiss": false,
+                                    "resizable": false,
+                                    "showCloseIcon": false,
+                                    "type": "open",
+                                    "viewParams": {
+                                      "id": ""
+                                    },
+                                    "viewPath": "Project_VECV/PopUp/DeleteAssignedStep",
+                                    "viewportBound": false
+                                  },
+                                  "scope": "C",
+                                  "type": "popup"
+                                },
+                                "onMouseEnter": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipDelete\").meta.visible\u003d1"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                },
+                                "onMouseOut": {
+                                  "config": {
+                                    "script": "\tself.parent.parent.parent.parent.parent.parent.getChild(\"cntToolTipDelete\").meta.visible\u003d0"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "imgRemove",
+                              "visible": false
+                            },
+                            "position": {
+                              "height": 34,
+                              "width": 35,
+                              "y": 128.5
+                            },
+                            "props": {
+                              "fit": {
+                                "height": 27,
+                                "mode": "fill",
+                                "width": 27
+                              },
+                              "source": "/system/images/VECV/delete.png"
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "deleteAssignedStep",
+                                  "pageScope": true,
+                                  "script": "\t\"\"\"\n\t\t\tWritten By: Niladri Banerjee\n\t\t\tWritten Date: 22/05/2024\n\t\t\tPurpose:\t\t\t \n\t\t\t\t\tRemove selected row from table\t\t\t\n\t\"\"\"\n\tseqNumber\u003dself.view.custom.seqNumber\n\ttry:\n\t\tselectedRow\u003dint(self.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow)\n\t\tif(selectedRow!\u003d-1):\t\t\n\t\t\ttableData\u003dself.parent.parent.getChild(\"tblAssinedSteps\").props.data\n\t\t\tfor rows in range(len(tableData)):\n\t\t\t\tif(rows\u003d\u003dselectedRow):\t\t\t\t\n\t\t\t\t\tseqNumber\u003dint(tableData[rows][\u0027Sequence\u0027])\n\t\t\t\t\tselectedStepId\u003dint(tableData[rows][\u0027ID\u0027])\n\t\t\t\t\tselectedStepClassId\u003dint(tableData[rows][\u0027OP Definition ID\u0027])\n\t\t\t\t\t\n\t\tbeforeSeqNumber \u003d (seqNumber -1)\n\t\tnewAsignedStepList\u003d[]\n\t\tnewAssignedFixtureList\u003d[]\n\t\tsortedNewAsignedStepList \u003d []\n\t\tasignedStepList \u003d self.view.params.AsignedStepList\n\t\ti\u003d1\n\t\t#removing selected seq in the list\t\n\t\tif(len(asignedStepList)\u003e0):\t\t\n\t\t\tfor rows in range(len(asignedStepList)):\n\t\t\t\tif(int(i) \u003c int(seqNumber)):\n\t\t\t\t\twiStepId\u003dasignedStepList[rows][\u0027WIOPID\u0027]\t\n\t\t\t\t\tstepId\u003dint(asignedStepList[rows][\u0027ID\u0027])\t\t\t\t\n\t\t\t\t\tsequenceNo \u003d int(asignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\t\tstepName \u003d str(asignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n\t\t\t\t\tstepclassId\u003d asignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\t\tdescription \u003d str(asignedStepList[rows][\u0027Description\u0027])\n\t\t\t\t\tModel\u003dstr(asignedStepList[rows][\u0027Model\u0027])\n\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t####end\n#\t\t\t\t\trework \u003d bool(asignedStepList[rows][\u0027Rework with previous\u0027])\t\n#\t\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])  \t\t\n\t\t\t\t\tsequenceNo\u003d\u003dint(asignedStepList[rows][\u0027Sequence\u0027])\n#\t\t\t\t\tisMandatory \u003d bool(asignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\t\treworkSplI\u003d asignedStepList[rows][\u0027Rework special instruction\u0027]\n#\t\t\t\t\trework\u003d asignedStepList[rows][\u0027Rework\u0027]\n#\t\t\t\t\teDHR \u003d asignedStepList[rows][\u0027eDHR\u0027]\t\n\t\t\t\t\tstepClass \u003d asignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023\t\n\t\t\t\t\ti\u003di+1\t\t\t\t\t\n\t\t\t\t\tnewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\n\t\t\t\telse:\n\t\t\t\t\tif(seqNumber!\u003dasignedStepList[rows][\u0027Sequence\u0027]):\n\t\t\t\t\t\twiStepId\u003dasignedStepList[rows][\u0027WIOPID\u0027]\t\n\t\t\t\t\t\tstepId\u003dint(asignedStepList[rows][\u0027ID\u0027])\n\t\t\t\t\t\tsequenceNo \u003d int(asignedStepList[rows][\u0027Sequence\u0027])\n\t\t\t\t\t\tstepName \u003d str(asignedStepList[rows][\u0027OPCode\u0027])\n\t\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n\t\t\t\t\t\t####end\n\t\t\t\t\t\tstepclassId\u003d asignedStepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\t\t\tdescription \u003d str(asignedStepList[rows][\u0027Description\u0027])\n\t\t\t\t\t\tModel\u003dstr(asignedStepList[rows][\u0027Model\u0027]) \n\t\t\t\t\t\t###############SD 11/1/2023\n\t\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n\t\t\t\t\t\t####end\n#\t\t\t\t\t\trework \u003d bool(asignedStepList[rows][\u0027Rework with previous\u0027])\n#\t\t\t\t\t\tcompleteWPrev \u003d bool(asignedStepList[rows][\u0027Complete with previous\u0027])  \n#\t\t\t\t\t\tisMandatory \u003d bool(asignedStepList[rows][\u0027Mandatory\u0027])\n#\t\t\t\t\t\treworkSplI\u003d asignedStepList[rows][\u0027Rework special instruction\u0027]\t\t\t\n\t\t\t\t\t\tseqNumber\u003dint(asignedStepList[rows][\u0027Sequence\u0027])\n#\t\t\t\t\t\trework\u003d asignedStepList[rows][\u0027Rework\u0027]\n#\t\t\t\t\t\teDHR \u003d asignedStepList[rows][\u0027eDHR\u0027]\t\n\t\t\t\t\t\tstepClass \u003d asignedStepList[rows][\u0027OPDefinition\u0027]\t#RA 07-07-2023\t\n\t\t\t\t\t\tsequenceNo \u003d seqNumber-1\n\t\t\t\t\t\ti\u003di+1\n\t\t\t\t\t\tnewAsignedStepList.append({\"WIOPID\":wiStepId,\"ID\":stepId,\"Sequence\":sequenceNo,\"OPCode\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OPDefinition\":stepClass,\"Model\":Model})\n\t\t\t\n\t\t#assign sorted list to custom property AsignedStepList\n\t\tself.view.params.AsignedStepList\u003dnewAsignedStepList\n\t\t\n#\t\tif(selectedStepClassId\u003d\u003d3):\n#\t\t\t#check step fixture data available if yes then delete fixture data\n#\t\t\tassignedFixtureList\u003dself.view.params.AssignedFixtureList\n#\t\t\tasignedStepList\u003dself.view.params.AsignedStepList\n#\t\t\tisStepExist\u003d0\n#\t\t\tif(len(newAsignedStepList)\u003e0):\n#\t\t\t\tfor row in range(len(newAsignedStepList)):\n#\t\t\t\t\tstepId\u003dint(newAsignedStepList[row][\u0027StepId\u0027])\n#\t\t\t\t\tif(selectedStepId\u003d\u003dstepId):\n#\t\t\t\t\t\tisStepExist\u003d1\n#\t\t\t\t\t\tbreak\n#\t\t\t\t\t\n#\t\t\tif(isStepExist\u003d\u003d0):\n#\t\t\t\tif(len(assignedFixtureList)\u003e0):\n#\t\t\t\t\t#Deleted step is in the fixture list\n#\t\t\t\t\tfor row in range(len(assignedFixtureList)):\n#\t\t\t\t\t\tfixtureStepId\u003d assignedFixtureList[row][\u0027StepId\u0027] \n#\t\t\t\t\t\tif(selectedStepId!\u003dfixtureStepId):\n#\t\t\t\t\t\t\tfixtureId\u003d assignedFixtureList[row][\u0027fixtureId\u0027]\n#\t\t\t\t\t\t\tfixtureName\u003d assignedFixtureList[row][\u0027Fixture name\u0027]\n#\t\t\t\t\t\t\t###############SD 11/1/2023\n#\t\t\t\t\t\t\tfixtureName \u003d unicode(fixtureName,\u0027utf-8\u0027)\n#\t\t\t\t\t\t\t####end\n#\t\t\t\t\t\t\tdescription\u003d assignedFixtureList[row][\u0027Description\u0027]\n#\t\t\t\t\t\t\t###############SD 11/1/2023\n#\t\t\t\t\t\t\tdescription \u003d unicode(description,\u0027utf-8\u0027)\n#\t\t\t\t\t\t\t####end\n#\t\t\t\t\t\t\tstepId\u003d assignedFixtureList[row][\u0027StepId\u0027]\n#\t\t\t\t\t\t\tstepName\u003d assignedFixtureList[row][\u0027Step name\u0027]\n#\t\t\t\t\t\t\t###############SD 11/1/2023\n#\t\t\t\t\t\t\tstepName \u003d unicode(stepName,\u0027utf-8\u0027)\n#\t\t\t\t\t\t\t####end\n#\t\t\t\t\t\t\tnewAssignedFixtureList.append({\"fixtureId\":fixtureId,\"Fixture name\":fixtureName,\"StepId\":int(stepId),\"Step name\":stepName,\"Description\":str(description)})\n#\t\t\t\t\t\t\tself.view.params.AssignedFixtureList \u003d \tnewAssignedFixtureList\n#\t\t\t\t\t\telse:\n#\t\t\t\t\t\t\tif(len(assignedFixtureList)\u003d\u003d1):\n#\t\t\t\t\t\t\t\tself.view.params.AssignedFixtureList \u003d []\n\t\t\t\n\t\tif(selectedRow\u003d\u003d0 and len(newAsignedStepList)\u003e0):\n\t\t\tselectedRow\u003d0\n\t\telse:\n\t\t\tselectedRow\u003dselectedRow-1\n\t\t\t\t\n\t\tself.parent.parent.getChild(\"tblAssinedSteps\").props.selection.selectedRow\u003dselectedRow\t\n\t\t\n\t\tif(selectedRow\u003d\u003d0):\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003dbool(0)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d0\n\t\telif(selectedRow\u003d\u003d (len(newAsignedStepList)-1)):\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003dbool(1)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d0\n\t\telse:\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003dbool(1)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d1\n\t\t\t\n\t\tif(selectedRow\u003d\u003d -1):\n\t\t\tself.meta.visible\u003dbool(0)\n\t\t\tself.getSibling(\"imgUp\").meta.visible\u003dbool(0)\n\t\t\tself.getSibling(\"imgDown\").meta.visible\u003d0\n\t\t\tself.parent.parent.parent.parent.parent.getChild(\"cntSave\").getChild(\"btnSave\").props.enabled\u003d0\n\t\t\t\t\n\t\tsystem.perspective.closePopup(\"DeleteAsgnStep\")\n\texcept:\t\n\t\t#start of except block\n\t\tsystem.perspective.print(\u0027Exception\u0027)\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Message Handler: cntUpDown/imgRemove - deleteAssignedStep\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.image"
+                          }
+                        ],
+                        "meta": {
+                          "name": "cntUpDown"
+                        },
+                        "position": {
+                          "breakpoints": [
+                            {
+                              "colIndex": 10,
+                              "name": "sm",
+                              "order": 2,
+                              "rowIndex": 0,
+                              "span": 2
+                            },
+                            {
+                              "colIndex": 11,
+                              "name": "md",
+                              "order": 2,
+                              "rowIndex": 0,
+                              "span": 1
+                            },
+                            {
+                              "colIndex": 11,
+                              "name": "lg",
+                              "order": 2,
+                              "rowIndex": 0,
+                              "span": 1
+                            }
+                          ],
+                          "height": 200
+                        },
+                        "props": {
+                          "style": {
+                            "padding": 0
+                          }
+                        },
+                        "type": "ia.container.coord"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntAssigedStep"
+                    },
+                    "position": {
+                      "tabIndex": 1
+                    },
+                    "type": "ia.container.column"
+                  }
+                ],
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\ttry:\n\t\n\t\tif(self.props.currentTabIndex \u003d\u003d 0):\n\t\t\tpass\n\n\t\tif(self.props.currentTabIndex \u003d\u003d 1):\n\n\t\t\tsystem.perspective.print(\u0027Assigned List in table\u0027+str(self.view.params.AsignedStepList))\n\texcept: \n\t\t#Start of except block  \n\t\t\tscreenName \u003d\u0027AddEditWorkInstruction\u0027   \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027)  \n\t\t\terrorFunction \u003d str(\u0027Event:onCLick  -\u003e cntTab\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t#End of except block\t\t\t\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "cntTab"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "props": {
+                  "currentTabIndex": 1,
+                  "menuType": "modern",
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+                  },
+                  "tabSize": {
+                    "height": 30,
+                    "width": 110
+                  },
+                  "tabStyle": {
+                    "active": {
+                      "backgroundColor": "#1D1D97",
+                      "color": "#FFFFFF",
+                      "fontFamily": "Cambria",
+                      "key": 0,
+                      "marginRight": "10px"
+                    },
+                    "inactive": {
+                      "backgroundColor": "#D5D5D5",
+                      "fontFamily": "Cambria",
+                      "key": 1,
+                      "marginRight": "10px"
+                    }
+                  },
+                  "tabs": [
+                    "Available steps",
+                    "Assigned steps"
+                  ]
+                },
+                "type": "ia.container.tab"
+              }
+            ],
+            "meta": {
+              "name": "cntTab"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 485
+            },
+            "props": {
+              "currentTabIndex": 0
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 0.9702,
+          "width": 1
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "cntToolTipDelete",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1002,
+          "width": 0.0625,
+          "x": 1.5,
+          "y": 0.3757
+        },
+        "props": {
+          "params": {
+            "height": 32,
+            "lblText": "Delete",
+            "width": 50
+          },
+          "path": "Project_VECV/PopUp/ToolTip",
+          "useDefaultViewHeight": true,
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "cntToolTipDown",
+          "visible": false
+        },
+        "position": {
+          "height": 0.0572,
+          "width": 0.0625,
+          "x": 1.5,
+          "y": 0.2684
+        },
+        "props": {
+          "params": {
+            "height": 32,
+            "lblText": "Down",
+            "width": 50
+          },
+          "path": "Project_VECV/PopUp/ToolTip",
+          "useDefaultViewHeight": true,
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "cntToolTipUp",
+          "visible": false
+        },
+        "position": {
+          "height": 0.0572,
+          "width": 0.0625,
+          "x": 1.5,
+          "y": 0.2147
+        },
+        "props": {
+          "params": {
+            "height": 32,
+            "lblText": "Up",
+            "width": 50
+          },
+          "path": "Project_VECV/PopUp/ToolTip",
+          "useDefaultViewHeight": true,
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Set to default on page startup. \n\t\"\"\"\n\tself.getChild(\"cntColumn\").getChild(\"cntTab\").getChild(\"cntTab\").props.currentTabIndex\u003d0\n\tself.getChild(\"cntColumn\").getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"cntAdd\").getChild(\"btnAdd\").props.enabled \u003d 0\n\tself.getChild(\"cntColumn\").getChild(\"cntTab\").getChild(\"cntTab\").getChild(\"cntStep\").getChild(\"chkSelectAll\").props.selected \u003d bool(0)\n\t"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/PopUp/BackgroundColor"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

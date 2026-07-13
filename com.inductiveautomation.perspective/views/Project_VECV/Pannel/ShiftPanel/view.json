@@ -1,0 +1,1266 @@
+{
+  "custom": {
+    "Old_Password": "value",
+    "imageId": -1,
+    "imageTypeId": 2,
+    "imageURL": "/system/images/Stryker/icon_User-profile.png",
+    "key": "value",
+    "skillsCount": 0,
+    "skillsData": "",
+    "trainedCount": 0,
+    "trainedWIData": "",
+    "userId": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.Old_Password": {
+      "persistent": true
+    },
+    "custom.imageId": {
+      "persistent": true
+    },
+    "custom.imageTypeId": {
+      "persistent": true
+    },
+    "custom.imageURL": {
+      "persistent": true
+    },
+    "custom.key": {
+      "persistent": true
+    },
+    "custom.skillsCount": {
+      "persistent": true
+    },
+    "custom.skillsData": {
+      "persistent": true
+    },
+    "custom.trainedCount": {
+      "persistent": true
+    },
+    "custom.trainedWIData": {
+      "persistent": true
+    },
+    "custom.userId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 550,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Write your script here\t\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Close Panel Event.\n\t\"\"\"\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027shiftPanel\u0027\n\tToDateTime \u003d \u00272024-1-1 0:00:00\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027AreaName\u0027:-1,\u0027LineName\u0027:-1,\u0027ShiftName\u0027:-1,\u0027ShiftNumber\u0027:-1,\u0027ToDateTime\u0027:ToDateTime}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 40,
+                  "y": -2.00001
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Reset Shiftname, number and description to default value..\n\t\"\"\"\n\tself.parent.parent.getChild(\"cntShiftName\").getChild(\"drpShiftName\").props.value\u003d-1\n\tself.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\u003d0\n\tself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text\u003d\u0027\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpAreaName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1725550079924
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          23,
+                          26
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Titan Axle",
+                          "Legacy Axle"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntAreaName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 36,
+                  "y": -2.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntShiftName\").getChild(\"drpShiftName\").props.value\u003d-1\n\tself.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\u003d0\n\tself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text\u003d\u0027\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpLineName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntAreaName/drpAreaName.props.value} \u003e -1\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "MST_Area_Id": "{.../cntAreaName/drpAreaName.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getLine"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027MST_Line_Id\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027LineName\u0027]\n\t\toptionList.append(dict)\n\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLineName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Shift Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpShiftName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntLineName/drpLineName.props.value} \u003e -1\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Shift/getShiftName"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027MST_Shift_Id\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027ShiftName\u0027]\n\t\toptionList.append(dict)\n\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Get shift number and description.\n\t\"\"\"\n\tif self.props.value \u003e -1:\n\t\tdescription \u003d \u0027\u0027\n\t\tshiftNumber\u003d0\n\t\t#NamedQueryPath\n\t\tqueryPath \u003d \u0027Project_VECV/Shift/getShiftDescription\u0027\n\t\t#NamedQuery Params\n\t\tqueryParams \u003d {\"MST_Shift_Id\": self.props.value}\n\t\tresult \u003d system.db.runNamedQuery(queryPath,queryParams)\n\t\tpyData \u003d system.dataset.toPyDataSet(result)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdescription \u003d data[\u0027Description\u0027]\n\t\t\tshiftNumber \u003d data[\u0027ShiftNumber\u0027]\n\t\t\tbreak\n\t\tself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text \u003d description\n\t\tself.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\u003dshiftNumber"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Shift A",
+                      "value": 1
+                    },
+                    {
+                      "label": "Shift B",
+                      "value": 2
+                    },
+                    {
+                      "label": "Shift C",
+                      "value": 3
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 70,
+                  "y": -2.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntShiftName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Shift Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 81
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 20
+                },
+                "props": {
+                  "align": "left",
+                  "enabled": false,
+                  "format": "none",
+                  "spinner": {
+                    "enabled": false
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              }
+            ],
+            "meta": {
+              "name": "cntShiftNumber"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 4,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Reset all parameters.\n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027shiftPanel\u0027\n\tToDateTime \u003d \u00272024-1-1 0:00:00\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027AreaName\u0027:-1,\u0027LineName\u0027:-1,\u0027ShiftName\u0027:-1,\u0027ShiftNumber\u0027:-1,\u0027ToDateTime\u0027:ToDateTime}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 5,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 5,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/04/2024\n\t\t\tPurpose: Save data to Table on Add/Edit Even.\n\t\t\"\"\"\n\t\tself.props.enabled\u003d0\n\t\tArea_Id\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\n\t\tDescription\u003dself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text\n\t\tShiftNumber \u003d self.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\n\t\tMST_Line_Id \u003d self.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t\tMST_Shift_Id \u003d self.parent.parent.getChild(\"cntShiftName\").getChild(\"drpShiftName\").props.value\n\t\tShiftEndTime \u003d self.parent.parent.getChild(\"cntShiftEndTime\").getChild(\"FromDateTimeInput\").props.value\n\t\tShiftStartTime \u003d self.parent.parent.getChild(\"cntShiftStartTime\").getChild(\"ToDateTimeInput\").props.value\n\t\tIsActive \u003d self.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tsystem.perspective.print(\"ShiftStartTime \"+ str(ShiftStartTime))\n\t\tsystem.perspective.print(\"ShiftEndTime \"+ str(ShiftEndTime))\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Add\u0027:\n\t\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\tId\u003d0\n\t\t\tTRN_Shift_Id \u003d 0\n\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Shift.InsertUpdateShift.InsertUpdateShift(CreatedBy, IsActive ,MST_Line_Id, MST_Shift_Id, ShiftEndTime,  ShiftStartTime,  ShiftNumber,TRN_Shift_Id)\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d \"Shift Details Overlapped!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003d \"Shift details added successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dmessage + \" AreaId\u003d\" + str(Area_Id) + \",LineId\u003d\" + str(MST_Line_Id) + \",ShiftNumber\u003d\"+ str(ShiftNumber)\n\t\telse:\n\t\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\t\tTRN_Shift_Id \u003d self.session.custom.selectedTRNShiftID\n\t\t\tId\u003dTRN_Shift_Id\n\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Shift.InsertUpdateShift.InsertUpdateShift(ModifiedBy, IsActive, MST_Line_Id, MST_Shift_Id, ShiftEndTime, ShiftStartTime, ShiftNumber, TRN_Shift_Id)\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d \"Shift Details Overlapped!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003d \"Shift details Updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dmessage\n#\t\tif result\u003d\u003d1:\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t\n\t\t#addToAuditLogStrat\n\t\tsystem.perspective.print(auditMsg)\n\t\tcategory\u003d\u0027Adminstration\u0027\n\t\tsubCategory\u003d\u0027Shift Configuration\u0027\n\t\t#Audit Log\n\t\tif(Id!\u003d0):\n\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n\t\t\t#curDesc\u003d{\"linetypecode\":LineTypeCode, \"mode\":mode, \"isActive\":isActive, \"Code\":bomId }\n\t\t\tcurDesc \u003d {\n\t\t\t\t\"ShiftNumber\":ShiftNumber,\n\t\t\t\t\"LineName\":MST_Line_Id,\n\t\t\t\t\"ShiftName\":MST_Shift_Id,\n\t\t\t\t\"EndTime\":ShiftEndTime,\n\t\t\t\t\"StartTime\":ShiftStartTime ,\n\t\t\t\t\"IsActive\":IsActive,\n\t\t\t\t\"AreaName\":Area_Id,\n\t\t\t\t\"Description\":Description\n\t\t\t}\n\t\t\timport json\n\t\t\tcurDesc_json \u003d json.dumps(load)\n\t\t\tcurDesc\u003dcurDesc_json\n\t\t\tsystem.perspective.print(prevDesc)\n\t\t\tsystem.perspective.print(curDesc)\n\t\t\tdescription\u003dstr(auditMsg)+\"Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n\t\telse:\n\t\t\tdescription\u003dstr(auditMsg)\n\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t#addAuditLogEnd\n\t\t\n\texcept:\n\t\tscreenName \u003d\u0027ShiftPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/ShiftPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(\"errorFunction: \"+str(errorFunction)+\" description: \"+str(description)+\" lineno: \"+str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntAreaName/drpAreaName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntLineName/drpLineName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntShiftName/drpShiftName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntShiftNumber/txt.props.value} !\u003d \u0027\u0027) \u0026\u0026\r\n({.../cntShiftDescription/txt.props.text} !\u003d \u0027\u0027)\u0026\u0026\r\n({.../cntShiftStartTime/ToDateTimeInput.props.value}!\u003d None) \u0026\u0026\r\n({.../cntShiftEndTime/FromDateTimeInput.props.value}!\u003d None)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "shiftPanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\t#system.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\t#system.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027Action\u0027)\n\t#system.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\t#system.perspective.print(\"msg handler2-----------\u003e\")\n\t#system.perspective.print(\"payload msghandler3-------------\u003e\")\n\t#system.perspective.print(self.view.getChild(\"root\").custom.payload)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 5,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0.5,
+                  "rowIndex": 5,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblShiftStart"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "92%",
+                  "x": 11.7853,
+                  "y": 3.92952
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Shift Start Time:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "ToDateTimeInput"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 10.9552,
+                  "y": 36
+                },
+                "props": {
+                  "formattedValue": "Jan 1, 2024 7:00 AM",
+                  "pickerType": "time",
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": {
+                    "$": [
+                      "ts",
+                      0,
+                      1714469202257
+                    ],
+                    "$ts": 1704072600000
+                  }
+                },
+                "type": "ia.input.date-time-input"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 96,
+                  "y": -0.13293
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntShiftStartTime"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 4,
+                  "span": 12
+                }
+              ],
+              "height": 95
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblShiftEnd"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "92%",
+                  "x": 11.7853,
+                  "y": 3.92952
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Shift End Time:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "FromDateTimeInput"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 11.9552,
+                  "y": 35
+                },
+                "propConfig": {
+                  "props.minDate": {
+                    "binding": {
+                      "config": {
+                        "expression": "addHours({.../cntShiftStartTime/ToDateTimeInput.props.value},1)"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "expression": "addMinutes(addHours({.../cntShiftStartTime/ToDateTimeInput.props.value}, 7),45)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "formattedValue": "Jan 1, 2024 2:45 PM",
+                  "pickerType": "time",
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  }
+                },
+                "type": "ia.input.date-time-input"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 90,
+                  "y": -2.13293
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntShiftEndTime"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 4,
+                  "span": 12
+                }
+              ],
+              "height": 95
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Shift Description:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9 -_]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "enabled": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 96
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntShiftDescription"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "activeDirectoryData": "",
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": -84
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "shiftPanel",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/04/2024\n\t\t\tPurpose: Passing data to Panel for Add/Edit.\n\t\t\"\"\"\n\t\tsystem.perspective.print(\"Payload%s\"%payload)\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value \u003d payload[\u0027AreaName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.value \u003d payload[\u0027LineName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftName\").getChild(\"drpShiftName\").props.value \u003d payload[\u0027ShiftName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftNumber\").getChild(\"txt\").props.value \u003d payload[\u0027ShiftNumber\u0027]\n\t\tif payload[\u0027headerLabel\u0027] \u003d\u003d \u0027Add\u0027:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftStartTime\").getChild(\"ToDateTimeInput\").props.value \u003d payload[\u0027StartTime\u0027]\n\t\telse:\n\t\t\t#parsing datetime format for start and end time\n\t\t\tdt \u003d str(payload[\u0027StartTime\u0027])\n\t\t\tyear \u003d int(dt.split(\" \")[0].split(\"-\")[0])\n\t\t\tmonth \u003d int(dt.split(\" \")[0].split(\"-\")[1])\n\t\t\tdate \u003d int(dt.split(\" \")[0].split(\"-\")[2])\n\t\t\tnewDate \u003d system.date.getDate(int(year), month, date)\n\t\t\t\n\t\t\thours \u003d int(dt.split(\" \")[1].split(\":\")[0])\n\t\t\tmins \u003d int(dt.split(\" \")[1].split(\":\")[1])\n\t\t\t\n\t\t\tStartTime \u003d system.date.setTime(newDate, hours, mins, 0)\n\t\t\tsystem.perspective.print(\"StartTime%s\"%StartTime)\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftStartTime\").getChild(\"ToDateTimeInput\").props.value \u003d StartTime\n\t\t\t\n\t\t\tdt \u003d str(payload[\u0027EndTime\u0027])\n\t\t\tmonth \u003d int(dt.split(\" \")[0].split(\"-\")[1])\n\t\t\tdate \u003d int(dt.split(\" \")[0].split(\"-\")[2])\n\t\t\t\n\t\t\tnewDate \u003d system.date.getDate(int(2024), month, date)\n\t\t\t\n\t\t\thours \u003d int(dt.split(\" \")[1].split(\":\")[0])\n\t\t\tmins \u003d int(dt.split(\" \")[1].split(\":\")[1])\n\t\t\t\n\t\t\tEndTime \u003d system.date.setTime(newDate, hours, mins, 0)\n\t\t\tsystem.perspective.print(\"EndTime%s\"%EndTime)\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftEndTime\").getChild(\"FromDateTimeInput\").props.value \u003d EndTime\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d payload[\u0027IsActive\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntShiftDescription\").getChild(\"txt\").props.text \u003d payload[\u0027Description\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d payload[\u0027Action\u0027]\n\t\tsystem.perspective.print(\"ShiftPanel Script Ended.\")\n\texcept:\n\t\tscreenName \u003d\u0027ShiftPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/ShiftPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027messageHandler/shiftPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

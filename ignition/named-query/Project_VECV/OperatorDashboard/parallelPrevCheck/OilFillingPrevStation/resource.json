@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "ScalarQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e97c8bad433d7d93303c31132f02be2d0c8cac917e65053631e82a3391278cad",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "prevWS",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "prevWSParallel",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "currentWS",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "currentWSParallel",
+        "sqlType": 7
+      }
+    ]
+  }
+}

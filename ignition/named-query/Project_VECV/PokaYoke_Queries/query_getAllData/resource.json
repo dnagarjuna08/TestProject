@@ -1,0 +1,60 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "fc5f3577659f69b23aa24e9903206c24011ddc4e365f570b7662730f6dc36702",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "AreaName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ETCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "TMCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStation",
+        "sqlType": 7
+      }
+    ]
+  }
+}

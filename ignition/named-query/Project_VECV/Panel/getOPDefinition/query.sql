@@ -1,0 +1,1 @@
+Select  MST_OPDefinition_Id,  OPDefinition from  MST_OPDefinition where  IsActive = 1

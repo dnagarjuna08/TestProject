@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {}
+  },
+  "variants": [
+    {
+      "pseudo": "focus",
+      "style": {
+        "borderColor": "#FFFFFF",
+        "cursor": "none",
+        "outlineStyle": "none"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "be22e93cc15a41a9ba10b1249a7e88474059c56b0210863d63706d2bd1c0cccd",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-09-12T18:06:28Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "OrderStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "isDHBOM",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "isElection",
+        "sqlType": 7
+      }
+    ]
+  }
+}

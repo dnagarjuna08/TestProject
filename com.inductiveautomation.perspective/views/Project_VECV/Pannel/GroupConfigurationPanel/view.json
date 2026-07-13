@@ -1,0 +1,953 @@
+{
+  "custom": {
+    "Old_Password": "value",
+    "imageId": -1,
+    "imageTypeId": 2,
+    "imageURL": "/system/images/Stryker/icon_User-profile.png",
+    "key": "value",
+    "skillsCount": 0,
+    "skillsData": "",
+    "trainedCount": 0,
+    "trainedWIData": "",
+    "userId": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.Old_Password": {
+      "persistent": true
+    },
+    "custom.imageId": {
+      "persistent": true
+    },
+    "custom.imageTypeId": {
+      "persistent": true
+    },
+    "custom.imageURL": {
+      "persistent": true
+    },
+    "custom.key": {
+      "persistent": true
+    },
+    "custom.skillsCount": {
+      "persistent": true
+    },
+    "custom.skillsData": {
+      "persistent": true
+    },
+    "custom.trainedCount": {
+      "persistent": true
+    },
+    "custom.trainedWIData": {
+      "persistent": true
+    },
+    "custom.userId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 550,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\t\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027shiftPanel\u0027\n\tToDateTime \u003d \u00272024-1-1 0:00:00\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027AreaName\u0027:-1,\u0027LineName\u0027:-1,\u0027ShiftName\u0027:-1,\u0027ShiftNumber\u0027:-1,\u0027ToDateTime\u0027:ToDateTime}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 40,
+                  "y": -2.00001
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: Reset values on Area value change. \n\t\"\"\"\n\tself.parent.parent.getChild(\"cntShiftName\").getChild(\"drpShiftName\").props.value\u003d-1\n\tself.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\u003d0\n\tself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text\u003d\u0027\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpAreaName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getAreafromModel"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1725538423854
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          23,
+                          26
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Titan Axle",
+                          "Legacy Axle"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 23
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntAreaName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "BOM Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpBOMName"
+                },
+                "position": {
+                  "height": 105,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntAreaName/drpAreaName.props.value} \u003e -1\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "MST_Area_Id": "{.../cntAreaName/drpAreaName.props.value}"
+                        },
+                        "queryPath": "Project_VECV/GroupConfiguration/GetProductCodeByAreaId"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027M_BOM_Id\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027M_BOMNumber\u0027]\n\t\toptionList.append(dict)\n\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tif self.props.value \u003e -1:\n\t\tdescription \u003d \u0027\u0027\n\t\tshiftNumber\u003d0\n\t\t#NamedQueryPath\n\t\tqueryPath \u003d \u0027Project_VECV/Shift/getShiftDescription\u0027\n\t\t#NamedQuery Params\n\t\tqueryParams \u003d {\"MST_Shift_Id\": self.props.value}\n\t\tresult \u003d system.db.runNamedQuery(queryPath,queryParams)\n\t\tpyData \u003d system.dataset.toPyDataSet(result)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdescription \u003d data[\u0027Description\u0027]\n\t\t\tshiftNumber \u003d data[\u0027ShiftNumber\u0027]\n\t\t\tbreak\n\t\tself.parent.parent.getChild(\"cntShiftDescription\").getChild(\"txt\").props.text \u003d description\n\t\tself.parent.parent.getChild(\"cntShiftNumber\").getChild(\"txt\").props.value\u003dshiftNumber"
+                    }
+                  }
+                },
+                "props": {
+                  "multiSelect": true,
+                  "options": [
+                    {
+                      "label": "TM574",
+                      "value": 9
+                    },
+                    {
+                      "label": "RA1002",
+                      "value": 18
+                    },
+                    {
+                      "label": "RA1001",
+                      "value": 19
+                    },
+                    {
+                      "label": "RA1099",
+                      "value": 20
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": null
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 70,
+                  "y": -2.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntBomName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 133
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Group Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 81
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtGroupName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntBomName/drpBOMName.props.value"
+                      },
+                      "overlayOptOut": true,
+                      "transforms": [
+                        {
+                          "code": "\tif value \u003e 0:\n\t\tvalue\u003dTrue\n\telse:\n\t\tvalue\u003dFalse\n\treturn value\t",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: enable/disable group description field based on group name value. \n\t\"\"\"\n\tgroupDesc\u003dself.props.text.strip()\n\tif groupDesc!\u003d\u0027\u0027 and groupDesc!\u003dNone:\n\t\tself.parent.parent.getChild(\"cntGroupDescription\").getChild(\"txtGroupDesc\").props.enabled\u003dTrue\n\telse:\n\t\tself.parent.parent.getChild(\"cntGroupDescription\").getChild(\"txtGroupDesc\").props.enabled\u003dFalse\t\n\t"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntGroupName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": -0.5,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\t\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027groupPanel\u0027\n\t\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027AreaName\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027LineName\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027BOMName\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027GroupName\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027GroupDesc\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027IsActive\u0027:1,\n\t\t\t\t\t\t\t\t\u0027Action\u0027:Action}\t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 4,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: Add/Update values into db. \n\t\"\"\"\n\ttry:\n\t\tself.props.enabled\u003d0\n\t\tMST_Area_Id\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\n#\t\tMST_Line_Id\u003dself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t\tbomList\u003dself.parent.parent.getChild(\"cntBomName\").getChild(\"drpBOMName\").props.value\n\t\tds\u003dself.parent.parent.getChild(\"cntBomName\").getChild(\"drpBOMName\").props.options\n#\t\tds\u003dsystem.dataset.t\n#\t\tblist\u003d[]\n#\t\tfor bm in bomList:\n#\t\t\tfor i in ds:\n#\t\t\t\tif bm\u003d\u003di[0]:\n#\t\t\t\t\tblist.append(i[1])\n#\t\t\t\t\tbreak\n\t\t\t\t\n#\t\tbomList\u003dblist\n\t\tif type(bomList)!\u003dint:\n\t\t\tvalues \u003d \u0027,\u0027.join(map(str, bomList))\n\t\t\tBOM_Id \u003d values\n#\t\t\tBOM_Id \u003d \"(\"+values+\")\"\n\t\telse:\n\t\t\tBOM_Id\u003dbomList\n\t\tgroupName\u003dself.parent.parent.getChild(\"cntGroupName\").getChild(\"txtGroupName\").props.text\n\t\tgroupDesc\u003dself.parent.parent.getChild(\"cntGroupDescription\").getChild(\"txtGroupDesc\").props.text\n\t\tIsActive \u003d self.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tgroupName\u003dstr(groupName).strip()\n\t\tgroupDesc\u003dstr(groupDesc).strip()\n\t\t\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Add\u0027:\n\t\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\tgroupConfigurationID\u003d0\n\t\t\tId\u003d0\n\t\n\t\t\tparams \u003d {\"MST_Area_Id\":MST_Area_Id,\"ModifiedBy\":CreatedBy,\"M_BOM_Id\":BOM_Id,\"GroupName\":groupName,\"GroupDescription\":groupDesc,\"IsActive\":IsActive,\"MST_GroupConfId\":groupConfigurationID}\n\t\t\tsystem.perspective.print(\"params \"+str(params))\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/GroupConfiguration/AddUpdateGroupConfiguration\",params)\n\t\t\t\n\t\t\tresult\u003dstr(result[0][0]).strip()\n\t\t\tif(result!\u003d\u00271\u0027):\n\t\t\t\tmessage \u003d str(result)\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d\u00271\u0027):\n\t\t\t\tmessage \u003d \"Group details added successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dstr(groupName) + \" \" + message \n\t\telse:\n\t\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\t\tgroupConfigurationID \u003d self.session.custom.selectedMSTGroupConfigID\n\t\t\tId\u003dgroupConfigurationID\n\t\t\tparams \u003d {\"MST_Area_Id\":MST_Area_Id,\"ModifiedBy\":ModifiedBy,\"M_BOM_Id\":BOM_Id,\"GroupName\":groupName,\"GroupDescription\":groupDesc,\"IsActive\":IsActive,\"MST_GroupConfId\":groupConfigurationID}\n\t\t\tsystem.perspective.print(\"params \"+str(params))\t\t\t\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/GroupConfiguration/AddUpdateGroupConfiguration\",params)\n\n\t\t\tresult\u003dresult[0][0]\n\t\t\tresult\u003dstr(result)\n\t\t\tif(result!\u003d\u00271\u0027):\n\t\t\t\tmessage \u003d str(result)\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d\u00271\u0027):\n\t\t\t\tmessage \u003d \"Group details Updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dstr(groupName) + \" \" + message \n\t\t\t\t\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\t\n\t\tif str(message).strip().lower()!\u003d\u0027Please select valid BOM\u0027.strip().lower():\t\t\n\t\t\t\t\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t\tself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\u003d-1\n\t#\t\tself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\u003d-1\n\t\t\tself.parent.parent.getChild(\"cntBomName\").getChild(\"drpBOMName\").props.value\u003d-1\n\t\t\tself.parent.parent.getChild(\"cntGroupName\").getChild(\"txtGroupName\").props.text\u003d\u0027\u0027\n\t\t\tself.parent.parent.getChild(\"cntGroupDescription\").getChild(\"txtGroupDesc\").props.text\u003d\u0027\u0027\n\t\t\t#addToAuditLogStrat\n\t\t\tsystem.perspective.print(auditMsg)\n\t\t\tcategory\u003d\u0027Master Configuration\u0027\n\t\t\tsubCategory\u003d\u0027Group Configuration\u0027\n\t\t\tif(Id!\u003d0):\n\t\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n\t\t\t\tcurDesc \u003d {\n\t\t\t\t\t\"AreaName\":MST_Area_Id,\n\t\t\t\t\t\"GroupName\":groupName,\n\t\t\t\t\t\"GroupDesc\":groupDesc,\n\t\t\t\t\t\"IsActive\":IsActive,\n\t\t\t\t\t\"BOMName\":BOM_Id\n\t\t\t\t}\n\t\t\t\timport json\n\t\t\t\tcurDesc_json \u003d json.dumps(curDesc)\n\t\t\t\tcurDesc\u003dcurDesc_json\n\t\t\t\tsystem.perspective.print(prevDesc)\n\t\t\t\tsystem.perspective.print(curDesc)\n\t\t\t\tdescription\u003dstr(auditMsg)+\"Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n\t\t\telse:\n\t\t\t\tdescription\u003dstr(auditMsg)\n\t\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t\t#addAuditLogEnd\n\t\t\n\texcept:\n\t\tscreenName \u003d\u0027GorupConfigurationPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/GroupConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(\"errorFunction: \"+str(errorFunction)+\" description: \"+str(description)+\" lineno: \"+str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntAreaName/drpAreaName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntBomName/drpBOMName.props.value} !\u003d\u0027\u0027) \u0026\u0026\r\n({.../cntBomName/drpBOMName.props.value} !\u003d\u0027-1\u0027) \u0026\u0026\r\n({.../cntBomName/drpBOMName.props.value} !\u003d \u0027null\u0027) \u0026\u0026\r\n({.../cntBomName/drpBOMName.props.value} !\u003d\u0027None\u0027) \u0026\u0026\r\n( {.../cntGroupName/txtGroupName.props.text}!\u003d \u0027\u0027 )\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif value\u003d\u003dTrue or value\u003d\u003d1:\n\t\tGroupName\u003dself.parent.parent.getChild(\"cntGroupName\").getChild(\"txtGroupName\").props.text\n\t\tGroupName\u003dstr(GroupName).strip()\n\t\tif GroupName\u003d\u003d\u0027\u0027 or GroupName\u003d\u003dNone:\n\t\t\tvalue\u003dFalse\n\t\telse:\n\t\t\tvalue\u003dTrue\n\treturn value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "groupPanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\t#system.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\t#system.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027Action\u0027)\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\t#system.perspective.print(\"msg handler2-----------\u003e\")\n\t#system.perspective.print(\"payload msghandler3-------------\u003e\")\n\t#system.perspective.print(self.view.getChild(\"root\").custom.payload)\n\t#system.perspective.print(\"messageHandler End here-------------\u003e\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 4,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0.5,
+                  "rowIndex": 4,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Group Description:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtGroupDesc"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntGroupName/txtGroupName.props.text"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tgroupDesc\u003dstr(value).strip()\n\tif groupDesc!\u003d\u0027\u0027 and groupDesc!\u003dNone:\n\t\tvalue\u003dTrue\n\telse:\n\t\tvalue\u003dFalse\n\treturn value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntGroupDescription"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2.5,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "activeDirectoryData": "",
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": -84
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "groupPanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 15/05/2024\n\t\tPurpose: Insert row values into db. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value \u003d payload[\u0027AreaName\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.value \u003d payload[\u0027LineName\u0027]\n#\u003d payload[\u0027LineName\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntBomName\").getChild(\"drpBOMName\").props.value \u003dpayload[\u0027BOMName\u0027]\n\t\tBOMName\u003dpayload[\u0027BOMName\u0027]\n\t\tsystem.perspective.print(\"payload[BOMName] \u003d \"+str(payload[\u0027BOMName\u0027]))\n\t\tself.getChild(\"cntColumn\").getChild(\"cntBomName\").getChild(\"drpBOMName\").props.value \u003dBOMName\n\t\tself.getChild(\"cntColumn\").getChild(\"cntGroupName\").getChild(\"txtGroupName\").props.text \u003d payload[\u0027GroupName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntGroupDescription\").getChild(\"txtGroupDesc\").props.text \u003d payload[\u0027GroupDesc\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d payload[\u0027IsActive\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d payload[\u0027Action\u0027]\n\texcept:\n\t\tscreenName \u003d\u0027groupPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/groupPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027messageHandler/groupPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

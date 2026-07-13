@@ -1,0 +1,22 @@
+{
+  "base": {
+    "style": {
+      "borderColor": "ffffff",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "color": "#F15461",
+      "fontSize": "32px",
+      "fontWeight": "bolder",
+      "outlineColor": "ffffff",
+      "outlineStyle": "solid",
+      "outlineWidth": "1",
+      "overflowWrap": "break-word",
+      "textOverflow": "ellipsis",
+      "textTransform": "uppercase"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "custom": {},
+  "params": {
+    "ImageId": "",
+    "ImageName": "",
+    "TorqueMarking": [],
+    "TorqueQuantity": "",
+    "url": ""
+  },
+  "propConfig": {
+    "params.ImageId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ImageName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.TorqueMarking": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.TorqueQuantity": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.url": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 100,
+      "width": 330
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: call message handler to show image. \n\t\"\"\"\n\t\n\tpayload \u003d {\u0027url\u0027:self.view.params.url,\u0027ImageId\u0027:self.view.params.ImageId,\n\t\u0027ImageName\u0027:self.view.params.ImageName,\u0027TorqueMarking\u0027:self.view.params.TorqueMarking,\"TorqueQuantity\":self.view.params.TorqueQuantity}\n\tsystem.perspective.sendMessage(messageType\u003d\u0027ImageSelect\u0027, payload\u003dpayload,scope\u003d\u0027page\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "viewPath"
+        },
+        "position": {
+          "height": 90,
+          "width": 320
+        },
+        "propConfig": {
+          "props.source": {
+            "binding": {
+              "config": {
+                "path": "view.params.url"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "fit": {
+            "mode": "fill"
+          },
+          "style": {
+            "margin": "5px"
+          }
+        },
+        "type": "ia.display.image"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

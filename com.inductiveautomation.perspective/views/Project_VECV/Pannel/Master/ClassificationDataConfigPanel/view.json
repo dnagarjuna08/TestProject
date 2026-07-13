@@ -1,0 +1,966 @@
+{
+  "custom": {
+    "UnitId": "",
+    "imageId": -1,
+    "imageTypeId": 2,
+    "imageURL": "",
+    "selectedImageId": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.UnitId": {
+      "persistent": true
+    },
+    "custom.imageId": {
+      "persistent": true
+    },
+    "custom.imageTypeId": {
+      "persistent": true
+    },
+    "custom.imageURL": {
+      "persistent": true
+    },
+    "custom.selectedImageId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 900,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 20/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027plantPanel\u0027\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027UnitName\u0027:\u0027\u0027,\u0027UnitDescription\u0027:\u0027\u0027,\u0027UnitLabelTo\u0027:-1,\u0027WorkStationType\u0027:-1,\u0027IPAddress\u0027:\u0027\u0027,\u0027AssetNumber\u0027:\u0027\u0027,\u0027AttachedTo\u0027: -1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\t\"\"\"\n\t\t\tWritten By: Aniket Sagar\n\t\t\tWritten Date: 27/10/2024\n\t\t\tPurpose: reset all values.\n\t\t\"\"\"\n\t\t# Write your script here\n\t\tself.parent.parent.getChild(\"cntModelRange\").getChild(\"drpMode\").props.value\u003d-1\n\t\tself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpModel\").props.value\u003d-1\n\t\tself.parent.parent.getChild(\"cntCode\").getChild(\"drpCode\").props.value\u003d-1\n\t\tself.parent.parent.getChild(\"cntGearRatio\").getChild(\"txt\").props.text\u003d\u0027\u0027\n\t\tself.parent.parent.getChild(\"cntPlant\").getChild(\"drpMode\").props.value\u003d-1\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 5,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 5,
+                  "rowIndex": 2,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 14/11/2024\n\t\tPurpose: Add/Update values in db. \n\t\"\"\"\t\n\ttry:\n\t\tsystem.perspective.print(\u0027Lime8\u0027)\n\t\theader\u003dself.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\n\t\tisActive\u003dself.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tmodelRange\u003dself.parent.parent.getChild(\"cntModelRange\").getChild(\"drpMode\").props.value\n\t\tareaName\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpModel\").props.value\n\t\tareaName \u003d int(areaName[0])\n\t\tsystem.perspective.print(areaName)\n\t\tbomId\u003dself.parent.parent.getChild(\"cntCode\").getChild(\"drpCode\").props.value\n\t\tplant\u003dself.parent.parent.getChild(\"cntPlant\").getChild(\"drpMode\").props.value\n\t\tgearRatio\u003dself.parent.parent.getChild(\"cntGearRatio\").getChild(\"txt\").props.text\n\t\t#classificationId\u003dself.session.custom.classificationId\n\t\tcategory\u003d\u0027Classification Data\u0027\n\t\tsubCategory\u003d\u0027Classification Data Save Button\u0027\n\t\tsystem.perspective.print(\u0027Line 19\u0027)\n\t\t\n\t\t\n\t\t#currentUserId\u003dself.session.custom.loggedInUserId\n\t\tcurrentUserId\u003d50\n\t\t\n\t\tif(self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\u003d\u003d\"Add\"):\n\t\t\tId\u003d0\n\t\t\tparams \u003d {\"modelRange\":modelRange,\"areaName\":areaName,\"IsActive\":isActive,\"createdBy\":currentUserId,\"bomId\":bomId,\"Id\":Id,\"plant\":plant,\"gearRatio\":gearRatio}\n\t\t\tsystem.perspective.print(\"Params db add--------\u003e\")\n\t\t\tsystem.perspective.print(params)\n\t\t\tqueryPath\u003d\"Project_VECV/Master/ClassificationData/insertUpdateData\"\n\t\t\t\n\t\t\tdataset\u003dsystem.db.runNamedQuery(queryPath,params)\n\t\t\tsystem.perspective.print(\"After DB\")\n\t\t\tfor data in dataset:\n\t\t\t\tresult \u003d data[\u0027Result\u0027]\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d str(bomId) +\" Configuration Already Exists!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003d str(bomId) +\" Configuration details added successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\t#auditMsg\u003dstr(code) +\" Configuration details added successfully.\"\n\t\telse:\n\t\t\tId\u003dself.session.custom.classificationId\n\t\t\t#Id\u003d50\n\t\t\tparams \u003d {\"modelRange\":modelRange,\"areaName\":areaName,\"IsActive\":isActive,\"createdBy\":currentUserId,\"bomId\":bomId,\"Id\":Id,\"plant\":plant,\"gearRatio\":gearRatio}\n\t\t\tsystem.perspective.print(\"params edit block-----------\u003e\")\n\t\t\tsystem.perspective.print(params)\n\t\t\t\n\t\t\tqueryPath\u003d\"Project_VECV/Master/ClassificationData/insertUpdateData\"\n\t\t\tdataset\u003dsystem.db.runNamedQuery(queryPath,params)\n\t\t\tfor data in dataset:\n\t\t\t\tresult \u003d data[\u0027Result\u0027]\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d str(bomId) +\" Configuration Already Exists!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003dstr(bomId) +\" Configuration details updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\t#auditMsg\u003dstr(code) +\" Configuration details updated successfully.\"\n\t\t\t\t\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\t\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\t#Project_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\n\t\t\n\texcept:\n\t\tscreenName \u003d\u0027Classification Data Configuration for database\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/Classification Data Configuration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntAreaName/drpModel.props.value} !\u003d \u0027\u0027) \u0026\u0026 \r\n({.../cntCode/drpCode.props.value} !\u003d \u0027\u0027) \u0026\u0026 \r\n({.../cntModelRange/drpMode.props.value} !\u003d \u0027\u0027 ) \u0026\u0026 \r\n({.../cntPlant/drpMode.props.value} !\u003d \u0027\u0027) \u0026\u0026\r\n({.../cntGearRatio/txt.props.text} !\u003d \u0027\u0027 ) ,\r\ntoBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "ClassificationDataConfigPanel",
+                      "pageScope": true,
+                      "script": "\tload\u003dpayload.copy()\n\tsystem.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027isConfigured\u0027)\n\tload.pop(\u0027Action\u0027)\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 6,
+                  "rowIndex": 2,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 6,
+                  "rowIndex": 2,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Model range:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 19,
+                  "x": 75
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpMode"
+                },
+                "position": {
+                  "height": 27,
+                  "width": 274,
+                  "x": 9,
+                  "y": 25
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "LD",
+                      "value": "L"
+                    },
+                    {
+                      "label": "HD",
+                      "value": "H"
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntModelRange",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area Name:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 12,
+                  "x": 67
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpModel"
+                },
+                "position": {
+                  "height": 27,
+                  "width": 274,
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Master/ClassificationData/addPanelArea"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\t\tpyData \u003d system.dataset.toPyDataSet(value)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdict \u003d {}\n\t\t\tdict[\"value\"] \u003d data[\u0027value\u0027]\n\t\t\tdict[\"label\"] \u003d data[\u0027label\u0027]\n\t\t\toptionList.append(dict)\n\t\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntAreaName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "BOM Code: "
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 20,
+                  "x": 67
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpCode"
+                },
+                "position": {
+                  "height": 27,
+                  "width": 274,
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Master/ClassificationData/addPanelBom"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027value\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027label\u0027]\n\t\toptionList.append(dict)\n\treturn optionList\n",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "codeRefresh",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\ttry:\n\t\tself.refreshBinding(\"props.options\")\n\t\t\n\texcept:\n\t\tscreenName \u003d\u0027modelPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/ClassificationConfig\u0027)  \n\t\terrorFunction \u003d str(\u0027root -\u003emessageHandler-\u003eClassificationConfig\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntCode"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 3,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 3,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Plant:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 19,
+                  "x": 41
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpMode"
+                },
+                "position": {
+                  "height": 27,
+                  "width": 274,
+                  "x": 9,
+                  "y": 25
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Dewas",
+                      "value": "D"
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": "D"
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntPlant",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Gear Ratio:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 19,
+                  "x": 62
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt",
+                  "tooltip": {
+                    "text": "Please Enter Character less than 50."
+                  }
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 27/10/2024\n\t\tPurpose: Gear ratio shoul be less than 11 \n\t\"\"\"\n\timport re\n\ttext \u003d self.props.text\n\tif len(text) \u003c\u003d 10:\n\t\tself.props.text \u003d self.props.text\n\t\t\t \n\t\tdef contains_special_characters(input_string):\n\t\t    # Define a regex pattern for special characters\n\t\t    pattern \u003d r\"[^a-zA-Z0-9*().]\"\n\t\t    \n\t\t    # Search for special characters\n\t\t    if re.search(pattern, input_string):\n\t\t        return True\n\t\t    else:\n\t\t        return False\n\t\tinput_string \u003d self.props.text\n\t\tif contains_special_characters(input_string):\n\t\t    self.props.text \u003d str(self.props.text)[:-1]\n\telse:\n\t\tself.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              }
+            ],
+            "meta": {
+              "name": "cntGearRatio",
+              "tooltip": {
+                "enabled": true
+              }
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "activeDirectoryData": "",
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 22,
+      "y": -10
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "classificationDataPanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 15/11/2024\n\t\tPurpose: Insert row values into db. \n\t\"\"\"\n\t# implement your handler here\n\tsystem.perspective.print(\"Outside TRY -------------\u003e\")\n\tsystem.perspective.print(payload)\t\n\ttry:\n\t\t#classificationDataPanel\n\t\tsystem.perspective.print(\"Inside TRY -------------\u003e\")\n\t\tsystem.perspective.print(payload)\n\t\t#self.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpModel\").props.value\u003dpayload[\u0027AreaName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpModel\").props.value\u003dpayload[\"Area_Id\"]\n\t\t#system.perspective.print(\"Area %s\"%self.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpModel\").props.value)\n\t\tself.getChild(\"cntColumn\").getChild(\"cntCode\").getChild(\"drpCode\").props.value\u003dpayload[\u0027M_BOMNumber_Id\u0027]\n\t\t#Modeltype\u003dpayload[\u0027ModelRange\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntModelRange\").getChild(\"drpMode\").props.value\u003dpayload[\"ModelRange\"]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntPlant\").getChild(\"drpMode\").props.value\u003dpayload[\u0027PlantCode\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntGearRatio\").getChild(\"txt\").props.text\u003dpayload[\"GearRation\"]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\u003dpayload[\u0027IsActive\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\u003dpayload[\u0027headerLabel\u0027]\n\t\t\n\t\t\n\texcept:\n\t\tscreenName \u003d\u0027classificationDataPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/classificationDataPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027root -\u003emessageHandler-\u003eclassificationDataPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

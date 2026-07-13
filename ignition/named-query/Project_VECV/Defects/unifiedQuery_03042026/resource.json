@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "MESPRODDB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "24c22c6c7a681c73744af55b593b45f0642f8e5f351d492a4a19ac45c92b8f00",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2026-04-03T04:06:31Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "level",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectLevel1",
+        "sqlType": 2
+      }
+    ]
+  }
+}

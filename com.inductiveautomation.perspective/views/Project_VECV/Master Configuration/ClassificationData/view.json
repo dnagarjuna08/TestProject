@@ -1,0 +1,1478 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 15/12/2024\n\t\tPurpose: If previous page not logged in then revert to login page. \n\t\n\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsModelConfigurationAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Model Configuration\"\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Model Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/ModelConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Model Configuration\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\"\"\""
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Area": "Legacy Axle",
+    "BomCode": "",
+    "ModelType": ""
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.BomCode": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.ModelType": {
+      "paramDirection": "output",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblHeader"
+        },
+        "position": {
+          "height": 0.0317,
+          "width": 0.3437,
+          "x": 0.0033,
+          "y": 0.0077
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/TopNavigation/Navigation"
+          },
+          "text": "Classification Data Configuration:",
+          "textStyle": {
+            "color": "#000000"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "cntLoader",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1904,
+          "width": 0.1448,
+          "x": 0.4006,
+          "y": 0.4302
+        },
+        "propConfig": {
+          "props.params.isLoader": {
+            "binding": {
+              "config": {
+                "path": "this.meta.visible"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/Loader"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\tsystem.perspective.print(\"Start the row selection\")\n\tselectedRow \u003d self.props.selection.data\n\tmessageType \u003d \u0027classificationDataPanel\u0027   \n\theaderLabel \u003d \"Edit\"\n\tAction \u003d \"Update\"\n\tsystem.perspective.print(selectedRow)\n\t#u\u0027Legacy Axle\u0027, u\u0027GearRation\u0027: u\u00277x41(5.85)\u0027, u\u0027IsActive\u0027: True, u\u0027PlantCode\u0027: u\u0027D\u0027, u\u0027M_BOMNumber\u0027: u\u0027RA592\u0027, u\u0027ModelRange\u0027: u\u0027H\u0027}]\n\tfor data in\tselectedRow:\n\t\tBomCode\u003ddata[\"M_BOMNumber\"]\n\t\tsystem.perspective.print(BomCode)\n\t\tAreaName\u003ddata[\"AreaName\"]\n\t\tModelRange\u003ddata[\"ModelRange\"]\n\t\tPlantCode\u003ddata[\"PlantCode\"]\n\t\tGearRatio\u003ddata[\"GearRation\"]\n\t\tisActive\u003ddata[\"IsActive\"]\n\t\tM_BOMNumber_Id\u003ddata[\"M_BOMNumber_Id\"]\n\t\tArea_Id\u003ddata[\"Area_Id\"],\n\t\tclassificationId\u003ddata[\"classificationId\"]\n\t\tself.session.custom.classificationId\u003dclassificationId\n\t\t\n\t\tif isActive:\n\t\t\tisActive \u003d 1\n\t\telse:\n\t\t\tisActive \u003d 0\n\t\t\n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\u0027M_BOMNumber\u0027:data[\"M_BOMNumber\"],\n\t\t\t\t\u0027AreaName\u0027:data[\"AreaName\"],\n\t\t\t\t\u0027ModelRange\u0027:data[\"ModelRange\"],\n\t\t\t\t\u0027PlantCode\u0027:data[\"PlantCode\"],\n\t\t\t\t\u0027GearRation\u0027:data[\"GearRation\"],\n\t\t\t\t\u0027IsActive\u0027:isActive,\n\t\t\t\t\t\u0027Action\u0027:Action,\n\t\t\t\t\t\u0027M_BOMNumber_Id\u0027:M_BOMNumber_Id,\n\t\t\t\t\t\u0027Area_Id\u0027:Area_Id,\n\t\t\t\t\t\u0027classificationId\u0027:classificationId}\n\t\tsystem.perspective.print(\"payload onRowClick--------\u003e\")\n\t\tsystem.perspective.print(\"payload %s\"%payload)\n\t\t\n\t\n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\u0027rightView\u0027)\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\t\n\t#system.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1,\"id\":int(Id),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\n\t\n\n\t\t\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblModelMaster"
+                },
+                "position": {
+                  "height": 460,
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "FilterArea": "{view.params.Area}",
+                          "FilterBomCode": "{view.params.BomCode}",
+                          "FilterModelType": "{view.params.ModelType}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tFilterArea \u003d value[\"FilterArea\"]\n\tFilterBomCode \u003d value[\"FilterBomCode\"]\n\tFilterModelType \u003d value[\"FilterModelType\"]\n\tparams\u003d{\u0027FilterArea\u0027:FilterArea,\u0027FilterBomCode\u0027:FilterBomCode,\u0027FilterModelType\u0027:FilterModelType}\n\tsystem.perspective.print(params)\n\treturn system.db.runNamedQuery(\u0027Project_VECV/Master/ClassificationData/getClassView\u0027,params)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "M_BOMNumber",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "BOM Code"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "AreaName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Area"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ModelRange",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Model Type"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "PlantCode",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Plant Code"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "GearRation",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Gear Ratio"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsActive",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "IsActive"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "M_BOMNumber_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "M_BOMNumber_Id"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Area_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Area_Id"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "classificationId",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "classificationId"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true,
+                    "results": {
+                      "enabled": true
+                    }
+                  },
+                  "headerGroupStyle": {
+                    "fontWeight": "bolder"
+                  },
+                  "headerGroups": [
+                    []
+                  ],
+                  "pager": {
+                    "initialOption": 10
+                  },
+                  "rows": {
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    },
+                    "subview": {
+                      "viewPath": "Templates/EditDelete"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRefresh",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 14/11/2024\n\t\tPurpose: make table refersh and reset in panel. \n\t\"\"\"\n\ttry:\n\t\tself.refreshBinding(\"props.data\")\n\t\tself.session.custom.type\u003d\u0027Add\u0027\n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027classificationDataPanel\u0027  \n\t\tAction \u003d \"Save\" \t\t\t\t \t\n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027M_BOMNumber\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027AreaName\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027ModelRange\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027PlantCode\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027GearRation\u0027:\u0027\u0027,\n\t\t\t\t\t\t\t\t\u0027IsActive\u0027:1,\n\t\t\t\t\t\t\t\t\u0027Area_Id\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027M_BOMNumber_Id\u0027:-1\n\t\t\t\t\t\t\t\t}\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\t#system.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\texcept:   \n\t#start of except block  \n\t\tscreenName \u003d\u0027classificationDataPanel tableRefresh msgHandler\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/classificationDataPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onRowClick -\u003e cntBody/tblImage\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 480
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "Area:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpCode"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "queryPath": "Project_VECV/Master/ClassificationData/drpArea"
+                              },
+                              "type": "query"
+                            },
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d -1"
+                            }
+                          }
+                        },
+                        "props": {
+                          "dropdownOptionStyle": {
+                            "classes": "Project_VECV/Reports/drpDownInternal"
+                          },
+                          "options": {
+                            "$": [
+                              "ds",
+                              192,
+                              1736701152200
+                            ],
+                            "$columns": [
+                              {
+                                "data": [
+                                  "Legacy Axle",
+                                  "Titan Axle"
+                                ],
+                                "name": "AreaName",
+                                "type": "String"
+                              }
+                            ]
+                          },
+                          "placeholder": {
+                            "icon": {
+                              "path": "material/star_rate"
+                            },
+                            "text": "Select Area..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Reports/drpDown"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntArea"
+                    },
+                    "position": {
+                      "basis": "200px",
+                      "display": null
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "BOM Code:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpCode"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "queryPath": "Project_VECV/Master/ClassificationData/drpRAcode"
+                              },
+                              "type": "query"
+                            },
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d -1"
+                            }
+                          }
+                        },
+                        "props": {
+                          "dropdownOptionStyle": {
+                            "classes": "Project_VECV/Reports/drpDownInternal"
+                          },
+                          "options": {
+                            "$": [
+                              "ds",
+                              192,
+                              1736701152195
+                            ],
+                            "$columns": [
+                              {
+                                "data": [
+                                  "RA1001",
+                                  "RA1002",
+                                  "RA117",
+                                  "RA188",
+                                  "RA202",
+                                  "RA204",
+                                  "RA209",
+                                  "RA214",
+                                  "RA224",
+                                  "RA228",
+                                  "RA230",
+                                  "RA248",
+                                  "RA261",
+                                  "RA264",
+                                  "RA272",
+                                  "RA275",
+                                  "RA282",
+                                  "RA294",
+                                  "RA296",
+                                  "RA303",
+                                  "RA305",
+                                  "RA307",
+                                  "RA308",
+                                  "RA310",
+                                  "RA311",
+                                  "RA312",
+                                  "RA313",
+                                  "RA315",
+                                  "RA316",
+                                  "RA317",
+                                  "RA318",
+                                  "RA319",
+                                  "RA320",
+                                  "RA323",
+                                  "RA324",
+                                  "RA325",
+                                  "RA326",
+                                  "RA327",
+                                  "RA328",
+                                  "RA329",
+                                  "RA330",
+                                  "RA331",
+                                  "RA332",
+                                  "RA336",
+                                  "RA337",
+                                  "RA338",
+                                  "RA339",
+                                  "RA341",
+                                  "RA344",
+                                  "RA347",
+                                  "RA348",
+                                  "RA349",
+                                  "RA350",
+                                  "RA351",
+                                  "RA352",
+                                  "RA357",
+                                  "RA358",
+                                  "RA360",
+                                  "RA361",
+                                  "RA362",
+                                  "RA363",
+                                  "RA372",
+                                  "RA373",
+                                  "RA379",
+                                  "RA380",
+                                  "RA381",
+                                  "RA382",
+                                  "RA383",
+                                  "RA385",
+                                  "RA386",
+                                  "RA387",
+                                  "RA391",
+                                  "RA394",
+                                  "RA398",
+                                  "RA405",
+                                  "RA413",
+                                  "RA417",
+                                  "RA418",
+                                  "RA419",
+                                  "RA420",
+                                  "RA514",
+                                  "RA516",
+                                  "RA520",
+                                  "RA529",
+                                  "RA538",
+                                  "RA540",
+                                  "RA545",
+                                  "RA548",
+                                  "RA555",
+                                  "RA556",
+                                  "RA562",
+                                  "RA564",
+                                  "RA565",
+                                  "RA566",
+                                  "RA567",
+                                  "RA569",
+                                  "RA570",
+                                  "RA574",
+                                  "RA575",
+                                  "RA576",
+                                  "RA577",
+                                  "RA580",
+                                  "RA581",
+                                  "RA582",
+                                  "RA585",
+                                  "RA587",
+                                  "RA588",
+                                  "RA591",
+                                  "RA592",
+                                  "RA730",
+                                  "RA739",
+                                  "RA793",
+                                  "RA794",
+                                  "RA799",
+                                  "RA810",
+                                  "RA830",
+                                  "RA833",
+                                  "RA839",
+                                  "RA847",
+                                  "RA852",
+                                  "RA854",
+                                  "RA855",
+                                  "RA862",
+                                  "RA868",
+                                  "RA872",
+                                  "RA875",
+                                  "RA890",
+                                  "RA891",
+                                  "RA901",
+                                  "RA903",
+                                  "RA904",
+                                  "RA908",
+                                  "RA924",
+                                  "RA940",
+                                  "RA950",
+                                  "RA971",
+                                  "TM574",
+                                  "TM991"
+                                ],
+                                "name": "M_BOMNumber",
+                                "type": "String"
+                              }
+                            ]
+                          },
+                          "placeholder": {
+                            "icon": {
+                              "path": "material/star_rate"
+                            },
+                            "text": "Select BoM..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Reports/drpDown"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntCode"
+                    },
+                    "position": {
+                      "basis": "200px",
+                      "display": null
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "Model Type:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpModelType"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "queryPath": "Project_VECV/Master/ClassificationData/drpModelType"
+                              },
+                              "type": "query"
+                            },
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d -1"
+                            }
+                          }
+                        },
+                        "props": {
+                          "dropdownOptionStyle": {
+                            "classes": "Project_VECV/Reports/drpDownInternal"
+                          },
+                          "options": {
+                            "$": [
+                              "ds",
+                              192,
+                              1736701152195
+                            ],
+                            "$columns": [
+                              {
+                                "data": [
+                                  "H",
+                                  "L",
+                                  "S"
+                                ],
+                                "name": "ModelRange",
+                                "type": "String"
+                              }
+                            ]
+                          },
+                          "placeholder": {
+                            "icon": {
+                              "path": "material/star_rate"
+                            },
+                            "text": "Select Model Type..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Reports/drpDown"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntModelType"
+                    },
+                    "position": {
+                      "basis": "200px"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "cntFlex"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": 10,
+                    "borderBottomRightRadius": 10,
+                    "borderColor": "#D5D5D5",
+                    "borderStyle": "outset",
+                    "borderTopLeftRadius": 10,
+                    "borderTopRightRadius": 10,
+                    "fontWeight": "bolder",
+                    "opacity": "1",
+                    "outlineStyle": "double"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "dom": {
+                            "onClick": {
+                              "config": {
+                                "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 27/10/2024\n\t\tPurpose: Pass dropdown values to custom params. \n\t\"\"\"\n\ttry:\n\t\tself.view.params.Area\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpCode\").props.value\n\t\tself.view.params.BomCode\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntCode\").getChild(\"drpCode\").props.value\n\t\tself.view.params.ModelType\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModelType\").getChild(\"drpModelType\").props.value\n\texcept:\n\t\tscreenName \u003d\u0027Classification Data Configuration Filter\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/ClassificationData\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\n\t"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "BtnApply"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                          },
+                          "text": "View",
+                          "textStyle": {
+                            "classes": "Project_VECV/Panel/Button"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "flexApply"
+                    },
+                    "position": {
+                      "basis": "100px"
+                    },
+                    "props": {
+                      "style": {
+                        "margin": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\t\"\"\"\n\t\tWritten By: Aniket Sagar\n\t\tWritten Date: 27/10/2024\n\t\tPurpose: Reset all selections. \n\t\"\"\"\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntArea\").getChild(\"drpCode\").props.value\u003d\u0027\u0027\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntCode\").getChild(\"drpCode\").props.value\u003d\u0027\u0027\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModelType\").getChild(\"drpModelType\").props.value\u003d\u0027\u0027\n\tself.view.params.Area\u003d\u0027\u0027\n\tself.view.params.BomCode\u003d\u0027\u0027\n\tself.view.params.ModelType\u003d\u0027\u0027"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "BtnClear"
+                        },
+                        "position": {
+                          "grow": 1
+                        },
+                        "props": {
+                          "image": {
+                            "height": "24px"
+                          },
+                          "style": {
+                            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                          },
+                          "text": "Clear",
+                          "textStyle": {
+                            "classes": "Project_VECV/Panel/Button"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "flexClear"
+                    },
+                    "position": {
+                      "basis": "100px"
+                    },
+                    "props": {
+                      "style": {
+                        "margin": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "   try:\n       # Get the table data\n       table_data \u003d self.parent.parent.parent.getChild(\"cntBody\").getChild(\"tblModelMaster\").props.data\n       \n       # Initialize message text\n       message_text \u003d \"\"\n   \n       # Check if the table contains data\n       if table_data is not None and len(table_data) \u003e 0:\n           try:\n               # If data is available, export it to Excel and trigger download\n               excel_data \u003d system.dataset.toExcel(True, [table_data])\n               system.perspective.download(fileName\u003d\"Classification Data.xlsx\", data\u003dexcel_data)\n               message \u003d \"Classification Data download successful to your local system in Excel format.\"\n               setMessage(\"Success\", message)\n           except Exception as e:\n               # Handle errors during Excel export or download\n               system.perspective.print(\"Error during export or download: %s\" % str(e))\n               message \u003d \"An error occurred during export. Please try again or contact MES team\"\n               setMessage(\"Error\", message)\n       else:\n           # Handle case where no data is available\n           message \u003d \"No data available to export for given Inputs.\"\n           setMessage(\"Error\", message)\n   \n   except Exception as e:\n       # Handle unexpected errors in the overall script\n       system.perspective.print(\"Unexpected error: %s\" % str(e))\n       setMessage(\"Error\", \"An unexpected error occurred. Please Contact MES team\")\n\ndef setMessage(status, message):\n    system.perspective.sendMessage(\n        messageType\u003d\"setMessage\",\n        payload\u003d{\n            \"message\": message,\n            \"status\": status\n        },\n        scope\u003d\"view\"\n    )\n   "
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnDownload",
+                      "tooltip": {
+                        "width": "50px"
+                      }
+                    },
+                    "position": {
+                      "basis": "50px",
+                      "shrink": 5
+                    },
+                    "props": {
+                      "image": {
+                        "height": 20,
+                        "icon": {
+                          "path": "material/cloud_download"
+                        }
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntAction"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "justify": "flex-end"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "SearchPannel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 115
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 0.9315,
+          "width": 0.96,
+          "x": 0.0141,
+          "y": 0.0587
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\tself.getChild(\"ColumnContainer\").getChild(\"cntBody\").getChild(\"tblModelMaster\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"ColumnContainer\").getChild(\"cntBody\").getChild(\"tblModelMaster\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 45,
+      "y": -620
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

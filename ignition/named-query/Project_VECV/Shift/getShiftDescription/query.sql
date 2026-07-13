@@ -1,0 +1,1 @@
+SELECT  Description,Shiftnumber FROM MST_Shift WHERE MST_Shift_Id = :MST_Shift_Id and isdeleted=0

@@ -1,0 +1,1 @@
+select MST_User_Id from mst_user where UserName='asagar3'

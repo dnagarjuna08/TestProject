@@ -1,0 +1,85 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "ScalarQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "8b2a4374357deb56f18fe815502b0b6c95c5a8a3830c5b282525f9963a8252d5",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStationId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Name",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LineId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModelId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPList",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "wiID",
+        "sqlType": 3
+      }
+    ]
+  }
+}

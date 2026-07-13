@@ -1,0 +1,493 @@
+{
+  "custom": {
+    "Timeout": null,
+    "Timeout_SP_Seconds": ""
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\ttry:\n\t#start of try block\n\t\tpass\n\t\t#Check if user is logged or not if not then navigate to login page\n#\t\tpreviousPage \u003d self.session.custom.IsLoggedIn\n#\t\tif not previousPage:\n#\t\t\tsystem.perspective.print(\"New Session\")\n#\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n#\t\telse:\n#\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n#\t\t\tsystem.perspective.openDock(\"rightView\")\n#\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n#\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027OPCode Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/OPCode\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e OPCode\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "LogNCReport"
+  },
+  "propConfig": {
+    "custom.Timeout": {
+      "persistent": true
+    },
+    "custom.Timeout_SP_Seconds": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "ReportViewer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": "auto"
+            },
+            "props": {
+              "page": 1,
+              "pageCount": 1,
+              "params": {
+                "AreaID": 23,
+                "Date": {
+                  "$": [
+                    "ts",
+                    192,
+                    1722253927494
+                  ],
+                  "$ts": 1722253904774
+                }
+              },
+              "source": "Production_Dashboard_Report"
+            },
+            "type": "ia.reporting.report-viewer"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\n\t\"\"\"Created By : Amitkumar Ravat\n\t\tDate : 05.07.2024\n\t\tPurpose : Passing values to Parameteres\"\"\" \n\tsystem.perspective.sendMessage(\"reportVisible\", scope\u003d\u0027page\u0027)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnApply"
+                    },
+                    "position": {
+                      "basis": "50px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({..../DateTimeInput.props.value} !\u003d\u0027\u0027 \u0026\u0026\r\n{..../Dropdown.props.value} !\u003d -1\r\n,true,false)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "View",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexApply"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t#CLEAR ALL FILTER SELECTION\n\tself.parent.parent.parent.getChild(\"Dropdown\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"DateTimeInput\").props.value\u003dsystem.date.now()\n\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.Date\u003d\u0027\u0027\n\tself.parent.parent.parent.getChild(\"ReportViewer\").props.params.AreaID\u003d\u0027\u0027"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnClear"
+                    },
+                    "position": {
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "Clear",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexClear"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "5px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntAction"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 40
+            },
+            "props": {
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "DateTimeInput"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 2,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 2
+                },
+                {
+                  "colIndex": 2,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 2
+                },
+                {
+                  "colIndex": 2,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 2
+                }
+              ],
+              "height": 45
+            },
+            "propConfig": {
+              "props.maxDate": {
+                "binding": {
+                  "config": {
+                    "expression": "Now(0)"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "expression": "now(0)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "format": "DD-MM-YYYY",
+              "formattedValue": "29-07-2024",
+              "pickerType": "date"
+            },
+            "type": "ia.input.date-time-input"
+          },
+          {
+            "meta": {
+              "name": "lbl_date"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 1,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 1,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 1
+                }
+              ],
+              "height": 45
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Label"
+              },
+              "text": "Date",
+              "textStyle": {
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 4,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 4,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 4,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 1
+                }
+              ],
+              "height": 45
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Common/Label"
+              },
+              "text": "Area",
+              "textStyle": {
+                "textAlign": "right"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Dropdown"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 5,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 0,
+                  "span": 2
+                },
+                {
+                  "colIndex": 5,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 0,
+                  "span": 2
+                },
+                {
+                  "colIndex": 5,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 0,
+                  "span": 2
+                }
+              ],
+              "height": 45
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "AreaID": "-1",
+                      "DropdownType": "1",
+                      "LineID": "-1"
+                    },
+                    "queryPath": "Project_VECV/Panel/getallDropdowns"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "value": 23
+            },
+            "type": "ia.input.dropdown"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1.0013,
+          "width": 1.002,
+          "x": -0.0042,
+          "y": -0.0012
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "reportVisible",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tDate \u003d self.getChild(\"DateTimeInput\").props.value\n\tsystem.perspective.print(Date)\n\tArea \u003d self.getChild(\"Dropdown\").props.value\n\tsystem.perspective.print(Area)\n\tself.getChild(\"ReportViewer\").meta.visible \u003d True\n\t#self.getChild(\"ReportViewer\").props.source \u003d \u0027Log NC Report - Amit\u0027\n\tself.getChild(\"ReportViewer\").props.params.AreaID\u003dArea\n\tself.getChild(\"ReportViewer\").props.params.Date\u003dself.getChild(\"DateTimeInput\").props.value",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "cntLoader",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1933,
+          "width": 0.1537,
+          "x": 0.4099,
+          "y": 0.3093
+        },
+        "propConfig": {
+          "props.params.isLoader": {
+            "binding": {
+              "config": {
+                "path": "this.meta.visible"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/Loader"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")  \n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027OPCodePanel\u0027\n\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027ModelId\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\n\t\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027OPDefinitionId\u0027:-1,\u0027WITypeId\u0027:-1,\u0027OPCode\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027Description\u0027:\u0027\u0027,\u0027AttributeText\u0027:\u0027\u0027,\u0027ImageName\u0027:\u0027\u0027,\u0027ImagePath\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\t\u0027ToolId\u0027:\u0027\u0027,\u0027ProgramId\u0027:\u0027\u0027,\u0027IsMinMaxReq\u0027:-1,\u0027MaxVal\u0027:\u0027\u0027,\u0027MinVal\u0027:\u0027\u0027,\"Action\":Action,\u0027Part\u0027:-1,\u0027BOMId\u0027:-1}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

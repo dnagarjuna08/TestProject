@@ -1,0 +1,624 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblArea"
+                },
+                "position": {
+                  "basis": "2rem"
+                },
+                "props": {
+                  "text": "Area",
+                  "textStyle": {
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "2rem"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "color": "#C0C0C0C7",
+                    "text": "Select.."
+                  },
+                  "style": {
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "basis": "10rem"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "1rem",
+                "marginTop": "0.5rem"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblBOM"
+                },
+                "position": {
+                  "basis": "2rem"
+                },
+                "props": {
+                  "text": "BOM",
+                  "textStyle": {
+                    "fontWeight": "bold"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpBOM"
+                },
+                "position": {
+                  "basis": "2rem"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Report/RAandDH_Mapping/FetchBOMUsingArea"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "placeholder": {
+                    "color": "#C0C0C0C7",
+                    "text": "Select.."
+                  },
+                  "style": {
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px"
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntBOM"
+            },
+            "position": {
+              "basis": "10rem"
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "marginRight": "1rem",
+                "marginTop": "0.5rem"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\n\tArea \u003d self.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\tsystem.perspective.print(\"AreaID: %s\" %Area)\n\t\n\tBOM \u003d str(self.parent.parent.getChild(\"cntBOM\").getChild(\"drpBOM\").props.value)\n\tsystem.perspective.print(\"BOM: %s\" %BOM)\n\n\tif (Area \u003d\u003d \u0027\u0027 or Area \u003d\u003d -1):\n\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\tmessage \u003d \u0027Please Select Area..\u0027\n\t\tsetMessage(\"Error\", message)\n\telse:\n\t\ttry:\n\t\t\tsystem.perspective.print(\"Inside try\")\n\t\t\tif Area \u003d\u003d 1:\n\t\t\t\tsystem.perspective.print(\"Inside IF\")\n\t\t\t\tparam \u003d {\n\t\t\t\t\u0027AreaID\u0027: Area,\n\t\t\t\t\u0027BOM\u0027: BOM,\n\t\t\t\t\u0027WorkStationName\u0027: \u0027LAML130\u0027\n\t\t\t\t}\n\t\t\t\tsystem.perspective.print(\"Param: %s\"%param)\n\t\t\t\tfetchResult  \u003d system.db.runNamedQuery(\u0027Project_VECV/Report/RAandDH_Mapping/FetchBomAndPartNumber\u0027,param)\n\t\t\t\tsystem.perspective.print(\"Legacy Fetch Result: %s\"%fetchResult)\n\t\t\t\tif fetchResult.rowCount !\u003d 0:\n\t\t\t\t\tsystem.perspective.print(\"Legacy Fetch Result: %s\"%fetchResult.rowCount)\n\t\t\t\t\tself.parent.parent.parent.getChild(\"Table\").props.data \u003d fetchResult\n\t\t\t\t\t\n\t\t\t\t\tmessage \u003d \u0027Data Fetched.\u0027\n\t\t\t\t\tsystem.perspective.print(message)\n\t\t\t\telse:\n\t\t\t\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\t\t\t\tmessage \u003d \u0027No Record Found.\u0027\n\t\t\t\t\tsetMessage(\"Error\", message)\n\t\t\telif Area \u003d\u003d 2:\n\t\t\t\tsystem.perspective.print(\"Inside IF\")\n\t\t\t\tparam \u003d {\n\t\t\t\t\u0027AreaID\u0027: Area,\n\t\t\t\t\u0027BOM\u0027: BOM,\n\t\t\t\t\u0027WorkStationName\u0027: \u0027TAML30\u0027\n\t\t\t\t}\n\t\t\t\tsystem.perspective.print(\"Param: %s\"%param)\n\t\t\t\tfetchResult  \u003d system.db.runNamedQuery(\u0027Project_VECV/Report/RAandDH_Mapping/FetchBomAndPartNumber\u0027,param)\n\t\t\t\tsystem.perspective.print(\"Legacy Fetch Result: %s\"%fetchResult)\n\t\t\t\tif fetchResult.rowCount !\u003d 0:\n\t\t\t\t\tsystem.perspective.print(\"Legacy Fetch Result: %s\"%fetchResult.rowCount)\n\t\t\t\t\tself.parent.parent.parent.getChild(\"Table\").props.data \u003d fetchResult\n\t\t\t\t\t\n\t\t\t\t\tmessage \u003d \u0027Data Fetched.\u0027\n\t\t\t\t\tsystem.perspective.print(message)\n\t\t\t\telse:\n\t\t\t\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\t\t\t\tmessage \u003d \u0027No Record Found.\u0027\n\t\t\t\t\tsetMessage(\"Error\", message)\n\t\t\telse:\n\t\t\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\t\t\tmessage \u003d \u0027No Area Selected.\u0027\n\t\t\t\tsetMessage(\"Error\", message)\n\t\texcept Exception as e:\n\t\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\t\tsystem.perspective.print(\"Unexpected error in script: %s\" % str(e))\n\t\t\tsetMessage(\"Error\", \"An unexpected error occurred.\")\n\t\t\t\ndef setMessage(status, message):\n    system.perspective.sendMessage(\n        messageType\u003d\"setMessage\",\n        payload\u003d{\n            \"message\": message,\n            \"status\": status\n        },\n        scope\u003d\"view\"\n    )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnApply"
+                },
+                "position": {
+                  "basis": "80px"
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px",
+                    "height": "2rem"
+                  },
+                  "text": "Retrieve"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d \u0027\u0027\n\tself.parent.parent.getChild(\"cntBOM\").getChild(\"drpBOM\").props.value \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"Table\").props.data \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"msgStrip\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027none\u0027"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnClear"
+                },
+                "position": {
+                  "basis": "80px"
+                },
+                "props": {
+                  "style": {
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px",
+                    "height": "2rem"
+                  },
+                  "text": "Clear"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "   try:\n       # Get the table data\n       table_data \u003d self.parent.parent.parent.getChild(\"Table\").props.data\n   \n       # Check if the table contains data\n       if table_data is not None and len(table_data) \u003e 0:\n           try:\n               # If data is available, export it to Excel and trigger download\n               excel_data \u003d system.dataset.toExcel(True, [table_data])\n               system.perspective.download(fileName\u003d\"RA and DH Mapping Report.xlsx\", data\u003dexcel_data)\n               message \u003d \"Defect Report download successful to your local system in Excel format.\"\n               self.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n               setMessage(\"Success\", message)\n           except Exception as e:\n               # Handle errors during Excel export or download\n               system.perspective.print(\"Error during export or download: %s\" % str(e))\n               message \u003d \"An error occurred during export. Please try again or contact MES team\"\n               self.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n               setMessage(\"Error\", message)\n       else:\n           # Handle case where no data is available\n        \tmessage \u003d \"No data available to export for given Inputs.\"\n        \tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n        \tsetMessage(\"Error\", message)\n   \n   except Exception as e:\n       # Handle unexpected errors in the overall script\n\t\tsystem.perspective.print(\"Unexpected error: %s\" % str(e))\n\t\tself.parent.parent.parent.getChild(\"msgStrip\").props.style.display \u003d \u0027block\u0027\n\t\tsetMessage(\"Error\", message)\n       \ndef setMessage(status, message):\n    system.perspective.sendMessage(\n        messageType\u003d\"setMessage\",\n        payload\u003d{\n            \"message\": message,\n            \"status\": status\n        },\n        scope\u003d\"view\"\n    )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "BtnDownload"
+                },
+                "position": {
+                  "basis": "65px"
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "path": "material/cloud_download"
+                    }
+                  },
+                  "style": {
+                    "borderBottomLeftRadius": "5px",
+                    "borderBottomRightRadius": "5px",
+                    "borderTopLeftRadius": "5px",
+                    "borderTopRightRadius": "5px",
+                    "height": "2rem"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntButtons"
+            },
+            "position": {
+              "basis": "16rem"
+            },
+            "props": {
+              "alignItems": "flex-start",
+              "justify": "space-between",
+              "style": {
+                "marginTop": "2.5rem"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntFilter"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 83
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "paddingLeft": "1rem",
+            "paddingRight": "1rem"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 438
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "BOM",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Part Number",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "data": "",
+          "emptyMessage": {
+            "noData": {
+              "text": "No Record Found"
+            }
+          },
+          "filter": {
+            "enabled": true
+          },
+          "style": {
+            "marginLeft": "1rem",
+            "marginRight": "1rem"
+          }
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "meta": {
+          "name": "msgStrip"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "meta.visible": {
+            "persistent": false
+          },
+          "props.style.classes": {
+            "persistent": false
+          },
+          "props.text": {
+            "persistent": false
+          }
+        },
+        "props": {
+          "enabled": false,
+          "style": {
+            "borderBottomLeftRadius": 4,
+            "borderBottomRightRadius": 4,
+            "borderStyle": "hidden",
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
+            "display": "none",
+            "fill": "#808080",
+            "marginLeft": "1rem",
+            "marginRight": "1rem",
+            "outlineColor": "#D5D5D5",
+            "outlineWidth": "5"
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "setMessage",
+              "pageScope": true,
+              "script": "\t# Get the parameters from the message\n\tmessage \u003d payload[\u0027message\u0027]  \n\tstatus \u003d payload[\u0027status\u0027]\n\t\n\t# Update the Text Field\u0027s text\n\tself.props.text \u003d message\n\tself.meta.visible\u003dTrue\n\t# Apply the style class (from the payload or a default value)\n\tself.props.style.classes \u003d \"Project_VECV/Reports/successMsg\" if status\u003d\u003d\u0027Success\u0027 else \"Project_VECV/Common/StatusBlinking/Hold\"",
+              "sessionScope": false,
+              "viewScope": true
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "breakpoints": [
+        {
+          "minWidth": 220,
+          "name": "sm"
+        },
+        {
+          "minWidth": 480,
+          "name": "md"
+        },
+        {
+          "minWidth": 996,
+          "name": "lg"
+        }
+      ]
+    },
+    "type": "ia.container.column"
+  }
+}

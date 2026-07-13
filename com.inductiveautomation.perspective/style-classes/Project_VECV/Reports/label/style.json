@@ -1,0 +1,24 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#D5D5D5",
+      "borderColor": "#AAAAAA",
+      "borderStyle": "outset",
+      "borderWidth": "2px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "color": "#000000",
+      "fontSize": "10x",
+      "fontWeight": "bolder",
+      "outlineColor": "#AAAAAA",
+      "outlineStyle": "outset",
+      "outlineWidth": "2",
+      "padding": "10px",
+      "textAlign": "center",
+      "textShadow": "#D5D5D5",
+      "textTransform": "uppercase"
+    }
+  }
+}

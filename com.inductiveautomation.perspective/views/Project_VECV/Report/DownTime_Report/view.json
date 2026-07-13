@@ -1,0 +1,1683 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 821,
+      "width": 1795
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "height": 32,
+          "width": 468,
+          "x": 573,
+          "y": 0.00000190735
+        },
+        "props": {
+          "text": "Downtime Report",
+          "textStyle": {
+            "fontSize": 25,
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "Table"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 6,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 526
+                    },
+                    "props": {
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "city",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "country",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "number",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "population",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                          "editable": false,
+                          "field": "StartTime",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY HH:mm:ss",
+                          "editable": false,
+                          "field": "EndTime",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Downtime",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Downtime (Minutes)"
+                          },
+                          "justify": "left",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "LossTime",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Axle Loss"
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        }
+                      ],
+                      "data": {
+                        "$": [
+                          "ds",
+                          192,
+                          1732864000094
+                        ],
+                        "$columns": [
+                          {
+                            "data": [
+                              "Legacy Axle"
+                            ],
+                            "name": "Area",
+                            "type": "String"
+                          },
+                          {
+                            "data": [
+                              "LAPDI"
+                            ],
+                            "name": "Station",
+                            "type": "String"
+                          },
+                          {
+                            "data": [
+                              "Inline"
+                            ],
+                            "name": "IssueType",
+                            "type": "String"
+                          },
+                          {
+                            "data": [
+                              1732594453327
+                            ],
+                            "name": "StartTime",
+                            "type": "Date"
+                          },
+                          {
+                            "data": [
+                              1732594464927
+                            ],
+                            "name": "EndTime",
+                            "type": "Date"
+                          },
+                          {
+                            "data": [
+                              0.18
+                            ],
+                            "name": "Downtime",
+                            "type": "Double"
+                          },
+                          {
+                            "data": [
+                              0.09
+                            ],
+                            "name": "LossTime",
+                            "type": "Double"
+                          }
+                        ]
+                      },
+                      "headerStyle": {
+                        "backgroundColor": "#5FC5F0"
+                      }
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "TblContainer"
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "custom": {
+                      "Area": "Legacy Axle",
+                      "EndDate": "2024-11-28 21:16:22",
+                      "StartDate": "2024-11-01 21:16:22"
+                    },
+                    "meta": {
+                      "name": "PieChart"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 5,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 8
+                        }
+                      ],
+                      "height": 513
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "AreaName": "{...../InputContainer/areadd.props.value}",
+                              "EndTime": "{...../InputContainer/toDate.props.value}",
+                              "IssueType": "{...../InputContainer/issuetypedd.props.value}",
+                              "StartTime": "{...../InputContainer/frmDate.props.value}",
+                              "Station": "{...../InputContainer/stationdd.props.value}",
+                              "cycleTime": "{...../StContainer/cycleTimetext.props.text}",
+                              "downtime": "{...../InputContainer/downtimedd.props.value}"
+                            },
+                            "queryPath": "Project_VECV/Report/DownTimeReport/GetDowntimeDetailsForChart"
+                          },
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "colors": [
+                        "#3366CC",
+                        "#EC4B3D",
+                        "#4FC86C",
+                        "#00A9C6",
+                        "#E69300"
+                      ],
+                      "title": "IssueWise DownTime"
+                    },
+                    "type": "ia.chart.pie"
+                  }
+                ],
+                "meta": {
+                  "name": "PieContainer"
+                },
+                "position": {
+                  "tabIndex": 1
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "TabContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 569
+            },
+            "props": {
+              "currentTabIndex": 1,
+              "tabSize": {
+                "width": 160
+              },
+              "tabs": [
+                "DownTime Report",
+                "DownTime Chart"
+              ]
+            },
+            "type": "ia.container.tab"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 611,
+          "width": 1741,
+          "y": 171
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label_5"
+            },
+            "position": {
+              "basis": "11px"
+            },
+            "props": {
+              "text": "*",
+              "textStyle": {
+                "color": "red",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "text": "Area:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tAreaName\u003dself.props.value\n\tresult\u003dsystem.db.runNamedQuery(\"StationQuery\",{\u0027AreaName\u0027:AreaName})\n\tself.getSibling(\"stationdd\").props.options \u003d result\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "areadd"
+            },
+            "position": {
+              "basis": "196px"
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "queryPath": "Project_VECV/Report/DownTimeReport/AreaQuery"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "placeholder": {
+                "text": ""
+              },
+              "value": -1
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "basis": "67px"
+            },
+            "props": {
+              "text": "Station:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "stationdd"
+            },
+            "position": {
+              "basis": "145px"
+            },
+            "props": {
+              "options": {
+                "$": [
+                  "ds",
+                  192,
+                  1732862415141
+                ],
+                "$columns": [
+                  {
+                    "data": [
+                      "Test",
+                      "LAH20",
+                      "LAH30",
+                      "LAH40",
+                      "LAH50",
+                      "LAH60",
+                      "LAH70",
+                      "LAH80",
+                      "LAH90",
+                      "LAD10",
+                      "LAD20",
+                      "LAQG01",
+                      "LADL10",
+                      "LADL20",
+                      "LADL30",
+                      "LADL40",
+                      "LADL50",
+                      "LADL60",
+                      "LADL90",
+                      "LADL70",
+                      "LAQG04",
+                      "LADH10",
+                      "LADH20",
+                      "LADH30",
+                      "LADH40",
+                      "LADH50",
+                      "LADH60",
+                      "LADH70",
+                      "LADH80",
+                      "LADH90",
+                      "LADH100",
+                      "LAQG03",
+                      "LAML20",
+                      "LAML60",
+                      "LAML70",
+                      "LAML90",
+                      "LAML100",
+                      "LAML110",
+                      "LAML120",
+                      "LAML130",
+                      "LAML140",
+                      "LAML150",
+                      "LAML160",
+                      "LAML170",
+                      "LAML180",
+                      "LAPS010",
+                      "LAQG02",
+                      "LAPDI",
+                      "LAH100",
+                      "LAML10",
+                      "LAML175",
+                      "LAML185"
+                    ],
+                    "name": "WorkStationName",
+                    "type": "String"
+                  }
+                ]
+              },
+              "placeholder": {
+                "text": ""
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "basis": "90px"
+            },
+            "props": {
+              "text": "Issue Type:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "issuetypedd"
+            },
+            "position": {
+              "basis": "178px"
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "queryPath": "Project_VECV/Report/DownTimeReport/issueTypeQuery"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "placeholder": {
+                "text": ""
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_2"
+            },
+            "position": {
+              "basis": "122px"
+            },
+            "props": {
+              "text": "Downtime(Min):"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "downtimedd"
+            },
+            "position": {
+              "basis": "104px"
+            },
+            "props": {
+              "options": [
+                {
+                  "label": 1,
+                  "value": 1
+                },
+                {
+                  "label": 2,
+                  "value": 2
+                },
+                {
+                  "label": 3,
+                  "value": 3
+                },
+                {
+                  "label": 4,
+                  "value": 4
+                },
+                {
+                  "label": 5,
+                  "value": 5
+                },
+                {
+                  "label": 6,
+                  "value": 6
+                },
+                {
+                  "label": 7,
+                  "value": 7
+                },
+                {
+                  "label": 8,
+                  "value": 8
+                }
+              ],
+              "placeholder": {
+                "text": ""
+              }
+            },
+            "type": "ia.input.dropdown"
+          },
+          {
+            "meta": {
+              "name": "Label_6"
+            },
+            "position": {
+              "basis": "9px"
+            },
+            "props": {
+              "text": "*",
+              "textStyle": {
+                "color": "red",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_3"
+            },
+            "position": {
+              "basis": "88.1px"
+            },
+            "props": {
+              "text": "From Date:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "frmDate",
+              "tooltip": {
+                "text": "Select Date"
+              }
+            },
+            "position": {
+              "basis": "215px"
+            },
+            "props": {
+              "formattedValue": "Dec 1, 2024 8:00 AM",
+              "minDate": {
+                "$": [
+                  "ts",
+                  0,
+                  1733066292648
+                ],
+                "$ts": 1732559400000
+              },
+              "placeholder": "",
+              "style": {
+                "backgroundColor": "#D5D5D5"
+              },
+              "value": {
+                "$": [
+                  "ts",
+                  0,
+                  1733066115224
+                ],
+                "$ts": 1733020200000
+              }
+            },
+            "type": "ia.input.date-time-input"
+          },
+          {
+            "meta": {
+              "name": "Label_7"
+            },
+            "position": {
+              "basis": "11px"
+            },
+            "props": {
+              "text": "*",
+              "textStyle": {
+                "color": "red",
+                "fontWeight": "bold",
+                "textAlign": "center"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_4"
+            },
+            "position": {
+              "basis": "66px"
+            },
+            "props": {
+              "text": "To Date:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "toDate"
+            },
+            "position": {
+              "basis": "199px"
+            },
+            "props": {
+              "formattedValue": "Nov 26, 2024 10:00 AM",
+              "placeholder": "",
+              "value": {
+                "$": [
+                  "ts",
+                  0,
+                  1732863996325
+                ],
+                "$ts": 1732595400000
+              }
+            },
+            "type": "ia.input.date-time-input"
+          }
+        ],
+        "meta": {
+          "name": "InputContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 35,
+          "width": 1722,
+          "x": 6,
+          "y": 40
+        },
+        "props": {
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "basis": "132px"
+            },
+            "props": {
+              "text": "Cycle Time (Min):"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "cycleTimetext"
+            },
+            "position": {
+              "basis": "180px"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.print(\u0027Line 2\u0027)\n\tself.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp\").props.text \u003d 0\n\tself.parent.parent.getChild(\"OpContainer\").getChild(\"lblCount\").props.text \u003d 0\n\tself.parent.parent.getChild(\"ColumnContainer\").getChild(\"TabContainer\").getChild(\"TblContainer\").getChild(\"Table\").props.data \u003d \u0027\u0027  # Clear the table data\n\tfrom datetime import datetime\n\tsystem.perspective.print(\u0027Line 6\u0027)\n\t\n\tAreaName \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"areadd\").props.value\n\tStation \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"stationdd\").props.value\n\tcycleTime \u003d self.getSibling(\"cycleTimetext\").props.text  # Ensure this is a number (int)\n\tIssueType \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"issuetypedd\").props.value\n\tStartTime \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"frmDate\").props.value  # This should be a datetime object\n\tEndTime \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"toDate\").props.value  # This should be a datetime object\n\tdowntime \u003d self.parent.parent.getChild(\"InputContainer\").getChild(\"downtimedd\").props.value\n\tsystem.perspective.print(\u0027Line 15\u0027)\n\tif cycleTime \u003d\u003d \u0027\u0027:\n\t    cycleTime \u003d 2.8\n\t# Check if all required fields are filled\n\tif AreaName !\u003d \"\" and StartTime !\u003d \"\" and EndTime !\u003d \"\":\n\t    # Ensure FromDate and EndDate are datetime objects\n\t    if isinstance(StartTime, datetime):\n\t        # If FromDate is a datetime object, convert to string format (yyyy-MM-dd)\n\t        StartTime \u003d StartTime.strftime(\u0027%Y-%m-%d\u0027)\t        \n\t    if isinstance(EndTime, datetime):\n\t        # If EndDate is a datetime object, convert to string format (yyyy-MM-dd)\n\t        EndTime \u003d EndTime.strftime(\u0027%Y-%m-%d\u0027)\n\t\n\t    # Ensure cycleTime is a number (integer)\n\t    try:\n\t        cycleTime \u003d int(cycleTime)\n\t    except ValueError:\n\t        cycleTime \u003d 10  # Default to 10 if the value is not an integer\n\t    system.perspective.print(\"resutl\")\n\t    system.perspective.print(\u0027Line 34\u0027)\n\t    \n\t    # Run the named query to get the downtime details and populate the table\n\t    result \u003d system.db.runNamedQuery(\u0027Project_VECV/Report/DownTimeReport/GetDowntimeDetails\u0027,\n\t        {\n\t            \u0027AreaName\u0027: AreaName,\n\t            \u0027Station\u0027: Station,\n\t            \u0027cycleTime\u0027: cycleTime,\n\t            \u0027IssueType\u0027: IssueType,\n\t            \u0027StartTime\u0027: StartTime,  \n\t            \u0027EndTime\u0027: EndTime,\n\t            \u0027downtime\u0027: downtime\n\t        }\n\t    )\n\t    system.perspective.print(\u0027Line 48\u0027)\n\t\n\t    # Run the named query to get the downtime details and populate the table\n\t    resultCount \u003d system.db.runNamedQuery(\n\t        \u0027Project_VECV/Report/DownTimeReport/CountDowntimes\u0027,\n\t        {\n\t            \u0027AreaName\u0027: AreaName,\n\t            \u0027Station\u0027: Station,\n\t            \u0027cycleTime\u0027: cycleTime,\n\t            \u0027IssueType\u0027: IssueType,\n\t            \u0027StartTime\u0027: StartTime,\n\t            \u0027EndTime\u0027: EndTime,\n\t            \u0027downtime\u0027: downtime\n\t        }\n\t    )\n\t\n\t    # Check if data is returned and set it to the table\n\t    if result:\n\t        self.parent.parent.getChild(\"ColumnContainer\").getChild(\"TabContainer\").getChild(\"TblContainer\").getChild(\"Table\").props.data \u003d result\n\t\n\t    # Now, run the SumDowntime query to get the sum of downtime\n\t    sum_result \u003d system.db.runNamedQuery(\n\t        \u0027Project_VECV/Report/DownTimeReport/SumDowntime\u0027, {\n\t            \u0027AreaName\u0027: AreaName,\n\t            \u0027Station\u0027: Station,\n\t            \u0027cycleTime\u0027: cycleTime,\n\t            \u0027IssueType\u0027: IssueType,\n\t            \u0027StartTime\u0027: StartTime,  \n\t            \u0027EndTime\u0027: EndTime,\n\t            \u0027downtime\u0027: downtime\n\t        }\n\t    )\n\t    sum_downtime \u003d sum_result[0][\u0027sum_downtime\u0027]\n\t    system.perspective.print(sum_downtime)\n\t    system.perspective.print(\u0027Line 75\u0027)\n\t    if sum_downtime is not None:\n\t        minutes \u003d int(sum_downtime)  # Convert decimal part into seconds \n\t        seconds \u003d int(round((sum_downtime - minutes) * 60))\n\t        hour \u003d int(sum_downtime) / 60\n\t        \n\t        if hour \u003e 0:\n\t            minutes \u003d int(sum_downtime % 60)\n\t            self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp\").props.text \u003d str(hour) + \u0027 Hour \u0027 + str(minutes) + \u0027 Minutes \u0027 + str(int(seconds)) + \u0027 Seconds\u0027\n\t        else:\n\t            if minutes \u003e 0:\n\t                self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp\").props.text \u003d str(minutes) + \u0027 Minutes \u0027 + str(int(seconds)) + \u0027 Seconds\u0027\n\t            else:\n\t                self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp\").props.text \u003d str(int(seconds)) + \u0027 Seconds\u0027\n\t        \n\t    if resultCount:\n\t        count_downtime \u003d resultCount[0][\u0027count_downtime\u0027]\n\t        self.parent.parent.getChild(\"OpContainer\").getChild(\"lblCount\").props.text \u003d count_downtime\n\t    system.perspective.print(\u0027Line 100\u0027)\n\t    \n\t    #---------------------------\n\t    #system.perspective.print(\"downtime for conveyor before query-----------\u003e\")\n\t    system.perspective.print(\u0027Line 104\u0027)\n\t    \t\n\t    sum_resultConv \u003d system.db.runNamedQuery(\n\t        \u0027Project_VECV/Report/DownTimeReport/SumDowntimeConveyor\u0027, {\n\t            \u0027AreaName\u0027: AreaName,\n\t            \u0027StartTime\u0027: StartTime,  \n\t            \u0027EndTime\u0027: EndTime\n\t        }\n\t    )\n\t    system.perspective.print(\u0027Downtime------------\u003e\u0027)\n\t    system.perspective.print(downtime)\n\t    system.perspective.print(\u0027Line 116\u0027)\n\t    system.perspective.print(sum_resultConv)\n\t    system.perspective.print(sum_resultConv[0][\u0027sum_downtime\u0027])\n\t    sum_downtimeConv \u003d sum_resultConv[0][\u0027sum_downtime\u0027]\n\t    system.perspective.print(\u0027downtime for conveyor-----------\u003e\u0027)\n\t    system.perspective.print(sum_downtimeConv)\n\t    if sum_downtimeConv is not None:\n\t        minutes \u003d int(sum_downtimeConv)  # Convert decimal part into seconds \n\t        seconds \u003d int(round((sum_downtimeConv - minutes) * 60))\n\t        hour \u003d int(sum_downtimeConv) / 60\n\t        \n\t        if hour \u003e 0:\n\t        \t#system.perspective.print(\"Line 128 hour\u003e0\")\n\t            minutes \u003d int(sum_downtimeConv % 60)\n\t            self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp_0\").props.text \u003d str(hour) + \u0027 Hour \u0027 + str(minutes) + \u0027 Minutes \u0027 + str(int(seconds)) + \u0027 Seconds\u0027\n\t        else:\n\t            if minutes \u003e 0:\n\t            \tsystem.perspective.print(\"Line 132 minute\u003e0\")\n\t                self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp_0\").props.text \u003d str(minutes) + \u0027 Minutes \u0027 + str(int(seconds)) + \u0027 Seconds\u0027\n\t            else:\n\t            \tsystem.perspective.print(\"Line 132 minute\u003c0\")\n\t                self.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp_0\").props.text \u003d str(int(seconds)) + \u0027 Seconds\u0027\n\t    else:\n\t    \tsystem.perspective.print(\"-----\")\n\t\t    \t\n\t\t\n\n\t\t\t\n\t    #--------------------------------\n\telse:\n\t    system.perspective.print(\"Select Area and Date\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button"
+            },
+            "position": {
+              "basis": "129px"
+            },
+            "props": {
+              "text": "Apply"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.parent.parent.getChild(\"InputContainer\").getChild(\"areadd\").props.value\u003d\"\"\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"stationdd\").props.value\u003d\"\"\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"issuetypedd\").props.value\u003d\"\"\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"downtimedd\").props.value\u003d\"\"\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"frmDate\").props.value\u003d\"\"\n\tself.parent.parent.getChild(\"InputContainer\").getChild(\"toDate\").props.value\u003d\"\"\n\tself.getSibling(\"cycleTimetext\").props.text\u003d\"\"\n\tself.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp\").props.text\u003d0\n\tself.parent.parent.getChild(\"OpContainer\").getChild(\"lblCount\").props.text\u003d0\n\tself.parent.parent.getChild(\"ColumnContainer\").getChild(\"TabContainer\").getChild(\"TblContainer\").getChild(\"Table\").props.data\u003d\"\"\n\tself.parent.parent.getChild(\"OpContainer\").getChild(\"lblSumDowntimeOp_0\").props.text\u003d0"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_0"
+            },
+            "position": {
+              "basis": "133px"
+            },
+            "props": {
+              "text": "Clear"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\t   # Get the table data\n\t   table_data \u003d self.parent.parent.getChild(\"ColumnContainer\").getChild(\"TabContainer\").getChild(\"TblContainer\").getChild(\"Table\").props.data\n\t   \n\t   # Check if the table contains data\n\t   if table_data is not None and len(table_data) \u003e 0:\n\t       # If data is available, export it to Excel and trigger download\n\t       excel_data \u003d system.dataset.toExcel(True, [table_data])\n\t       system.perspective.download(fileName\u003d\"Downtime_Report.xlsx\", data\u003dexcel_data)\n\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "Button_1"
+            },
+            "position": {
+              "basis": "150px"
+            },
+            "props": {
+              "text": "Download"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "StContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 33,
+          "width": 1680,
+          "x": 6,
+          "y": 80
+        },
+        "props": {
+          "justify": "center"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label_2"
+            },
+            "position": {
+              "basis": "156px"
+            },
+            "props": {
+              "text": "Line Total Downtime: ",
+              "textStyle": {
+                "fontWeight": "bold"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblSumDowntimeOp_0"
+            },
+            "position": {
+              "basis": "422px"
+            },
+            "props": {
+              "textStyle": {
+                "color": "#FF8A8A",
+                "fontSize": 24,
+                "fontWeight": "bold",
+                "textTransform": "capitalize"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_0"
+            },
+            "position": {
+              "basis": "160px"
+            },
+            "props": {
+              "text": "Station Total Downtime: ",
+              "textStyle": {
+                "fontWeight": "bold"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblSumDowntimeOp"
+            },
+            "position": {
+              "basis": "422px"
+            },
+            "props": {
+              "textStyle": {
+                "color": "#FF8A8A",
+                "fontSize": 24,
+                "fontWeight": "bold",
+                "textTransform": "capitalize"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label_1"
+            },
+            "position": {
+              "basis": "72px"
+            },
+            "props": {
+              "text": "Count :",
+              "textStyle": {
+                "fontWeight": "bold"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "lblCount"
+            },
+            "position": {
+              "basis": "50px"
+            },
+            "props": {
+              "textStyle": {
+                "color": "#FF8A8A",
+                "fontSize": 24,
+                "fontWeight": "bold",
+                "textTransform": "capitalize"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "OpContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 46,
+          "width": 1723,
+          "x": 7,
+          "y": 125
+        },
+        "props": {
+          "alignContent": "center",
+          "justify": "center"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\n\tprint(\"Inside runAction\")\n\tfrom java.util import Calendar\n\t\n\t# Get today\u0027s date and set the time to 7:30 AM\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 7)\n\tcal.set(Calendar.MINUTE, 30)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\t# Set the value of the DateTime Picker component\n\tself.parent.getChild(\"InputContainer\").getChild(\"frmDate\").props.value\u003d cal.getTimeInMillis()\n\t\n\t# Get today\u0027s date and set the time to 4:30 PM\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 16)\n\tcal.set(Calendar.MINUTE, 30)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\tself.parent.getChild(\"InputContainer\").getChild(\"toDate\").props.value\u003d cal.getTimeInMillis()"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnShiftA"
+        },
+        "position": {
+          "height": 35,
+          "rotate": {
+            "anchor": "13% 0%"
+          },
+          "width": 59,
+          "x": 1387,
+          "y": 79
+        },
+        "props": {
+          "text": "Shift A"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\n\tprint(\"Inside runAction\")\n\tfrom java.util import Calendar\n\t\n\t# Get today\u0027s date and set the time to 4:30 pm\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 16)\n\tcal.set(Calendar.MINUTE, 30)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\t# Set the value of the DateTime Picker component\n\tself.parent.getChild(\"InputContainer\").getChild(\"frmDate\").props.value\u003d cal.getTimeInMillis()\n\t\n\t# Get today\u0027s date and set the time to 11:59 PM\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 23)\n\tcal.set(Calendar.MINUTE, 59)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\tself.parent.getChild(\"InputContainer\").getChild(\"toDate\").props.value\u003d cal.getTimeInMillis()"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnShiftB"
+        },
+        "position": {
+          "height": 35,
+          "rotate": {
+            "anchor": "13% 0%"
+          },
+          "width": 59,
+          "x": 1459,
+          "y": 78
+        },
+        "props": {
+          "text": "Shift B"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\n\tprint(\"Inside runAction\")\n\tfrom java.util import Calendar\n\t\n\t# Get today\u0027s date and set the time to 12:00 AM\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 00)\n\tcal.set(Calendar.MINUTE, 00)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\t# Set the value of the DateTime Picker component\n\tself.parent.getChild(\"InputContainer\").getChild(\"frmDate\").props.value\u003d cal.getTimeInMillis()\n\t\n\t# Get today\u0027s date and set the time to 7:30 AM\n\tcal \u003d Calendar.getInstance()\n\tcal.set(Calendar.HOUR_OF_DAY, 7)\n\tcal.set(Calendar.MINUTE, 30)\n\tcal.set(Calendar.SECOND, 0)\n\tcal.set(Calendar.MILLISECOND, 0)\n\tprint(cal)\n\tself.parent.getChild(\"InputContainer\").getChild(\"toDate\").props.value\u003d cal.getTimeInMillis()"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btnShiftC"
+        },
+        "position": {
+          "height": 35,
+          "rotate": {
+            "anchor": "13% 0%"
+          },
+          "width": 59,
+          "x": 1530,
+          "y": 78
+        },
+        "props": {
+          "text": "Shift C"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

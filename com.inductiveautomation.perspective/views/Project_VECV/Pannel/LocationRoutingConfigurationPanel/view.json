@@ -1,0 +1,1817 @@
+{
+  "custom": {
+    "dsLocation": null,
+    "userId": ""
+  },
+  "params": {},
+  "propConfig": {
+    "custom.dsLocation": {
+      "persistent": true
+    },
+    "custom.userId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 642,
+      "width": 700
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027locationRoutPanel\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")  \n\t\n\tself.session.custom.dsLocationRout\u003dNone\n\tself.session.custom.selectedMSTLocationRouteID\u003d0\n\t\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027MST_Area_Id\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027MST_Line_Id\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027NoOfStep\u0027:0,\n\t\t\t\t\t\t\t\t\u0027IsActive\u0027:1,\n\t\t\t\t\t\t\t\t\u0027Action\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027ds\u0027:None}\t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "x": 23,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 126,
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 40,
+                  "y": -2.00001
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dFalse\n\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value\u003d0"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpAreaName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 199,
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1742281128955
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          1,
+                          2
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Legacy Axle",
+                          "Titan Axle"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntAreaName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 57,
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 36,
+                  "y": -2.00124
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: On Line change, store station count. \n\t\"\"\"\n\tif self.props.value \u003e 0:\n\t\tMST_Line_Id\u003dself.props.value\n\t\t\n\t\tparams \u003d {\"MST_Line_Id\":MST_Line_Id}\n\t\tds \u003d system.db.runNamedQuery(\"Project_VECV/LocationRouting/GetLineWiseWorkStation\",params)\n\t\tds\u003dsystem.dataset.toPyDataSet(ds)\n\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dFalse\n\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").props.text\u003d\"\"\n\t\tnoOfStationCount\u003dlen(ds)\n\t\tsystem.perspective.print(\"ds--\u003e %s\"%ds)\n\t\tsystem.perspective.print(\"noOfStationCount--\u003e %s\"%noOfStationCount)\n\t\traneg\u003d\"1 - \"+str(noOfStationCount)\n\t\tif len(ds)\u003e0:\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").props.text\u003draneg\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dTrue\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.inputBounds.maximum\u003dint(noOfStationCount)\n\t\telse:\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dFalse\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").props.text\u003d[]\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.inputBounds.maximum\u003d0"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "drpLineName"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 198,
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntAreaName/drpAreaName.props.value} \u003e -1\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  },
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "MST_Area_Id": "{.../cntAreaName/drpAreaName.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getLine"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tpyData \u003d system.dataset.toPyDataSet(value)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {}\n\t\tdict[\"value\"] \u003d data[\u0027MST_Line_Id\u0027]\n\t\tdict[\"label\"] \u003d data[\u0027LineName\u0027]\n\t\toptionList.append(dict)\n\treturn optionList",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLineName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 113,
+                  "x": 9,
+                  "y": -1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Sequence Number:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 14,
+                  "x": 107,
+                  "y": 1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txtSeqNo"
+                },
+                "position": {
+                  "height": 32,
+                  "width": 123,
+                  "x": 11,
+                  "y": 20
+                },
+                "props": {
+                  "inputBounds": {
+                    "invalidStyle": {
+                      "color": "#FF4747"
+                    },
+                    "maximum": 14,
+                    "minimum": 0
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Common/TextBox"
+                  }
+                },
+                "type": "ia.input.numeric-entry-field"
+              },
+              {
+                "meta": {
+                  "name": "lbl_NoOfSation"
+                },
+                "position": {
+                  "height": 28,
+                  "width": 113,
+                  "x": 145,
+                  "y": 21
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Common/Label Project_VECV/Panel/LabelContent"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntSeqNumber"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": -0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Add/Update location routing. \n\t\"\"\"\n\ttry:\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Edit\u0027:\n\t\t\tactualDatalen \u003d  len(self.session.custom.dsLocationRout)\n\t\t\toldDS \u003d  self.session.custom.dsLocationRout\n\t\t\tareaId\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\n\t\t\tlineId\u003dself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t#\t\tself.session.custom.dsLocationRout\u003dNone\n\t#\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\t\t\t\n\t\t\tMSTLocationRouteID\u003dself.session.custom.selectedMSTLocationRouteID\n\t\t\tMST_WorkStation_Id\u003d-1\n\t\t\tMST_WorkStation_Ids\u003dstr([-1])\n\t\t\tRouteStep_Id\u003d0\n\t\t\tParallelIDs \u003d str([-1])\n\t\t\tId\u003d0\n\t\t\theaders\u003d[\"MST_LocationRoute_Id\",\"SRNo\",\"MST_WorkStation_Id\",\"MST_Area_Id\",\"MST_Line_Id\",\"MST_WorkStation_Ids\",\"RouteStep_Id\",\"Id\",\"Step\",\"Parallel\",\"ParallelIDs\"]\n\t\t\tdata\u003d[]\n\t\t\tseqNumber\u003dself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value\n\t\t\tsystem.perspective.print(\"MSTLocationRouteID \"+str(MSTLocationRouteID))\n\t\t\ttarget \u003d seqNumber - actualDatalen\n\t\t\tsrno\u003dactualDatalen + 1\n\t\t\tif target \u003e 0: \n\t\t\t\tfor i in range(target):\n\t\t\t\t\tstep\u003d\"Step-\"+str(srno)\n\t\t\t\t\t\n\t\t#\t\t\tif MSTLocationRouteID!\u003d0 and str(MSTLocationRouteID)!\u003dNone and str(MSTLocationRouteID).strip().lower()!\u003d\u0027none\u0027:\n\t\t#\t\t\t\tRouteStep_Id\u003dself.session.custom.dsLocationRout[i-1][\u0027RouteStep_Id\u0027]\n\t\t#\t\t\t\tpass\n\t\t#\t\t\tRouteStep_Id\u003d0\t\n\t\t\t\t\tdata.append([MSTLocationRouteID,srno,MST_WorkStation_Id,areaId,lineId,MST_WorkStation_Ids,RouteStep_Id,Id,step,0,ParallelIDs])\n\t\t\t\t\tsrno\u003dsrno+1\n\t\t\t\tds\u003dsystem.dataset.toDataSet(headers, data)\t\n\t\t\t\tds\u003dsystem.dataset.toPyDataSet(ds)\n\t\t\t\tcomboData  \u003d system.dataset.appendDataset(oldDS, ds)\n\t\t\t\tif len(ds)\u003e0:\n\t\t\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dcomboData\t\n\t\t\t\t\tself.session.custom.dsLocationRout\u003dcomboData\n\t\t\t\t\tsystem.perspective.sendMessage(\"TableRefreshLR\",payload \u003d {}, scope \u003d \"page\")\t\n\t\t\t\telse:\n\t\t\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\t\t\t\t\tsystem.perspective.sendMessage(\"TableRefreshLR\",payload \u003d {}, scope \u003d \"page\")\t\n\t\t\telse:\n\t\t\t\tactuallen \u003d len(self.session.custom.dsLocationRout)\n\t\t\t\tds \u003d self.session.custom.dsLocationRout\n\t\t\t\ttarget \u003d target * -1\n\t\t\t\tfor i in range(target):\n\t\t\t\t\tself.session.custom.dsLocationRout \u003d system.dataset.deleteRow(ds, (actuallen - 1))\n\t\t\t\t\tds \u003d self.session.custom.dsLocationRout\n\t\t\t\t\tds \u003d system.dataset.toPyDataSet(ds)\n\t\t\t\t\tactuallen \u003d len(ds)\n\t\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dds\n\t\t\t\tself.session.custom.dsLocationRout\u003dds\n\t\telse:\n\t\t\tareaId\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\n\t\t\tlineId\u003dself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\t\t\t\n\t\t\tMSTLocationRouteID\u003dself.session.custom.selectedMSTLocationRouteID\n\t\t\tMST_WorkStation_Id\u003d-1\n\t\t\tMST_WorkStation_Ids\u003dstr([-1])\n\t\t\tParallelIDs \u003d str([-1])\n\t\t\tRouteStep_Id\u003d0\n\t\t\tId\u003d0\n\t\t\theaders\u003d[\"MST_LocationRoute_Id\",\"SRNo\",\"MST_WorkStation_Id\",\"MST_Area_Id\",\"MST_Line_Id\",\"MST_WorkStation_Ids\",\"RouteStep_Id\",\"Id\",\"Step\",\"Parallel\",\"ParallelIDs\"]\n\t\t\tdata\u003d[]\n\t\t\tseqNumber\u003dself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value\n\t\t\tsrno\u003d1\n\t\t\tsystem.perspective.print(\"MSTLocationRouteID \"+str(MSTLocationRouteID))\n\t\t\tfor i in range(seqNumber):\n\t\t\t\tstep\u003d\"Step-\"+str(srno)\n\t\t\t\t\n\t#\t\t\tif MSTLocationRouteID!\u003d0 and str(MSTLocationRouteID)!\u003dNone and str(MSTLocationRouteID).strip().lower()!\u003d\u0027none\u0027:\n\t#\t\t\t\tRouteStep_Id\u003dself.session.custom.dsLocationRout[i-1][\u0027RouteStep_Id\u0027]\n\t#\t\t\t\tpass\n\t#\t\t\tRouteStep_Id\u003d0\t\n\t\t\t\tdata.append([MSTLocationRouteID,srno,MST_WorkStation_Id,areaId,lineId,MST_WorkStation_Ids,RouteStep_Id,Id,step,0,ParallelIDs])\n\t\t\t\tsrno\u003dsrno+1\n\t\t\t\n\t\t\tsystem.perspective.print(\"Dataset:%s\"%data)\n\t\t\tds\u003dsystem.dataset.toDataSet(headers, data)\t\n\t\t\tds\u003dsystem.dataset.toPyDataSet(ds)\n\t\t\tsystem.perspective.print(\"Dataset after:%s\"%ds)\n\t\t\tif len(ds)\u003e0:\n\t\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dds\t\n\t\t\t\tself.session.custom.dsLocationRout\u003dds\n\t\t\t\tsystem.perspective.sendMessage(\"TableRefreshLR\",payload \u003d {}, scope \u003d \"page\")\t\n\t\t\telse:\n\t\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\t\t\t\tsystem.perspective.sendMessage(\"TableRefreshLR\",payload \u003d {}, scope \u003d \"page\")\t\n\texcept:\n\t\tscreenName \u003d\u0027LocationRoutingConfigurationPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/LocationRoutingConfigurationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003eviewbtn\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(\"errorFunction: \"+str(errorFunction)+\" description: \"+str(description)+\" lineno: \"+str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_View"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "75% 50%"
+                  },
+                  "width": 100,
+                  "x": 18.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntAreaName/drpAreaName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntLineName/drpLineName.props.value} \u003e -1) \r\n\u0026\u0026({.../cntSeqNumber/txtSeqNo.props.value} \u003e 0) \r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "View Step",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntView"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": -0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 20,
+                  "width": 17,
+                  "x": 48
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 4,
+                  "span": 3
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 5,
+                  "span": 3
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 4,
+                  "span": 3
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Save location routing data into db. \n\t\"\"\"\n\ttry:\n\n\t\tMST_Area_Id\u003dself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\n\t\tMST_Line_Id\u003dself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t\tNoOfStep\u003dself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value\n\t\tdsLocationRout\u003dself.session.custom.dsLocationRout\n\t\tIsActive \u003d self.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tcount\u003d1\n\t\tflagFE\u003d0\n\t\tflagVS\u003d0\n\t\tlistWS\u003d[]\n#\t\tdsLocationRout\u003dself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\n\t\tdsLocationRout \u003d system.dataset.toPyDataSet(dsLocationRout)\n\t\tfor i in dsLocationRout:\t\t\n\t\t\tWorkStation_Id\u003di[\u0027MST_WorkStation_Id\u0027]\n\t\t\tsystem.perspective.print(\"WorkStation_Id validation \"+str(WorkStation_Id))\n\t\t\tif WorkStation_Id in listWS:\n\t\t\t\tflagVS\u003d1\n\t\t\t\tbreak\t\n\t\t\tif \tWorkStation_Id\u003d\u003d\u0027\u0027 or WorkStation_Id\u003d\u003d-1 or WorkStation_Id \u003c\u003d0 or WorkStation_Id\u003d\u003dNone:\n\t\t\t\tflagFE\u003d1\n\t\t\t\tbreak\n\t\t\tlistWS.append(WorkStation_Id)\n#\t\tif \tflagFE\u003d\u003d1:\t\n#\t\t\tmessage\u003d\"Please fill Work Station\"\n#\t\t\tstate \u003d \"warning\"\n#\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\tif \tflagVS\u003d\u003d1:\t\n\t\t\t\tmessage\u003d\"Please Enter Valid Work Station Sequence\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\t\n\t\telse:\t\t\n\t\t\tfor i in dsLocationRout:\n\t\t\t\tLocationRoute_Id\u003di[\u0027MST_LocationRoute_Id\u0027]\n\t\t\t\tRouteStep_Id\u003di[\u0027RouteStep_Id\u0027]\n\t\t\t\tWorkStation_Id\u003di[\u0027MST_WorkStation_Id\u0027]\n\t\t\t\tsystem.perspective.print(\"WorkStation_Ids-----\u003e%s\"%WorkStation_Id)\n\t\t\t\tId\u003di[\u0027Id\u0027]\n\t\t\t\tStepNumber\u003di[\u0027SRNo\u0027]\n\t\t\t\tPrevWorkStation_Id\u003dstr(i[\u0027MST_WorkStation_Ids\u0027])\n\t\t\t\t\n\t\t\t\tParallelIDs\u003dstr(i[\u0027ParallelIDs\u0027])\n\t\t\t\tParallelIDs\u003dParallelIDs.replace(\u0027\u003cArrayWrapper\u003e:\u0027,\u0027\u0027)\n\t\t\t\tParallelIDs\u003dParallelIDs.replace(\u0027L\u0027,\u0027\u0027)\n\t\t\t\tParallelIDs\u003dParallelIDs.replace(\u0027[\u0027,\u0027\u0027)\n\t\t\t\tParallelIDs\u003dParallelIDs.replace(\u0027]\u0027,\u0027\u0027)\n\t\t\t\tif str(ParallelIDs) \u003d\u003d \u0027-1\u0027 or str(ParallelIDs).upper() \u003d\u003d \u0027None\u0027.upper() or str(ParallelIDs) \u003d\u003d \u0027\u0027:\n\t\t\t\t\tParallelIDs \u003d \u0027\u0027\n\t\t\t\tParallelIDs\u003d\u0027\"\u0027+str(ParallelIDs)+\u0027\"\u0027\n\t\n\t\t\t\tPrevWorkStation_Id\u003dPrevWorkStation_Id.replace(\u0027\u003cArrayWrapper\u003e:\u0027,\u0027\u0027)\n\t\t\t\tPrevWorkStation_Id\u003dPrevWorkStation_Id.replace(\u0027L\u0027,\u0027\u0027)\n\t\t\t\tPrevWorkStation_Id\u003dPrevWorkStation_Id.replace(\u0027[\u0027,\u0027\u0027)\n\t\t\t\tPrevWorkStation_Id\u003dPrevWorkStation_Id.replace(\u0027]\u0027,\u0027\u0027)\n\t\t\t\tif str(PrevWorkStation_Id) \u003d\u003d \u0027-1\u0027 or str(PrevWorkStation_Id).upper() \u003d\u003d \u0027None\u0027.upper():\n\t\t\t\t\tPrevWorkStation_Id \u003d \u0027\u0027\n\t\t\t\tPrevWorkStation_Id\u003d\u0027\"\u0027+str(PrevWorkStation_Id)+\u0027\"\u0027\n\t\t\t\tif count\u003d\u003d1:\n\t\t\t\t\tjson\u003d\u0027[{\"LocationRoute_Id\":\u0027+str(LocationRoute_Id)+\u0027,\"RouteStep_Id\":\u0027+str(RouteStep_Id)+\u0027,\"WorkStation_Id\":\u0027+str(WorkStation_Id)+\u0027,\"Id\":\u0027+str(Id)+\u0027,\"StepNumber\":\u0027+str(StepNumber)+\u0027,\"PrevWorkStation_Id\":\u0027+str(PrevWorkStation_Id)+\u0027,\"ParallelStation\":\u0027+str(ParallelIDs)+\u0027}\u0027\n\t\t\t  \telse:\n\t\t\t  \t\tjson\u003djson+\u0027,{\"LocationRoute_Id\":\u0027+str(LocationRoute_Id)+\u0027,\"RouteStep_Id\":\u0027+str(RouteStep_Id)+\u0027,\"WorkStation_Id\":\u0027+str(WorkStation_Id)+\u0027,\"Id\":\u0027+str(Id)+\u0027,\"StepNumber\":\u0027+str(StepNumber)+\u0027,\"PrevWorkStation_Id\":\u0027+str(PrevWorkStation_Id)+\u0027,\"ParallelStation\":\u0027+str(ParallelIDs)+\u0027}\u0027\n\t\t  \t\tcount\u003dcount+1\n\t\t\tjson\u003djson +\"]\"\n\t\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Add\u0027:\n\t\t\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\t\tMST_LocationRoute_Id\u003d0\n\t\t\t\tId\u003d0\n\t\t\t\t\n\t\t\t\tparams \u003d {\"MST_Area_Id\":int(MST_Area_Id),\"MST_Line_Id\": int(MST_Line_Id),\"jsondata\":json,\"NoOfStep\": int(NoOfStep),\"IsActive\":int(IsActive),\"ModifiedBy\":int(CreatedBy),\"MST_LocationRoute_Id\":int(MST_LocationRoute_Id)}\n\t\t\t\tsystem.perspective.print(\"params \"+str(params))\n\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/LocationRouting/AddUpdateLocationRouting\",params)\n\t\t\t\tresult\u003dresult[0][0]\n\t\t\t\tsystem.perspective.print(\"add result  \"+str(result))\n\t\t\t\tresult\u003dstr(result)\n\t\t\t\tif(result!\u003d\u00271\u0027 and result!\u003d\u00272\u0027) :\n\t\t\t\t\tif result.strip().lower()\u003d\u003d\u0027Duplicate Location Routing Not allowed\u0027.strip().lower():\n\t\t\t\t\t\tmessage\u003d\u0027Location Routing Already Configure Duplicate Not Allowed\u0027\n\t\t\t\t\telse:\t\n\t\t\t\t\t\tmessage \u003d str(\"Location Routing Not Added\")\n\t\t\t\t\tstate \u003d \"warning\"\n\t\t\t\telif(result\u003d\u003d\u00271\u0027 or result\u003d\u003d\u00272\u0027):\n\t\t\t\t\tmessage \u003d \"Location Routing added successfully.\"\n\t\t\t\t\tstate \u003d \"success\"\n\t\t\t\t\tauditMsg\u003dmessage + \" for AreaID\u003d\" + str(MST_Area_Id) + \",LindID\u003d\" + str(MST_Line_Id) + \",WorkStationID\u003d\" + str(WorkStation_Id)\n\t\t\telse:\n\t\t\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\t\t\tgroupConfigurationID \u003d self.session.custom.selectedMSTGroupConfigID\n\t\t\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\t\t\n\t\t\t\tMST_LocationRoute_Id\u003dself.session.custom.selectedMSTLocationRouteID\n\t\t\t\tId\u003dMST_LocationRoute_Id\n\t\t\t\tsystem.perspective.print(\"json %s\"%json)\n\t\t\t\tparams \u003d {\"MST_Area_Id\":int(MST_Area_Id),\"MST_Line_Id\": int(MST_Line_Id),\"jsondata\":json,\"NoOfStep\": int(NoOfStep),\"IsActive\":int(IsActive),\"ModifiedBy\":int(CreatedBy),\"MST_LocationRoute_Id\":int(MST_LocationRoute_Id)}\n\t\t\t\tsystem.perspective.print(\"params \"+str(params))\n\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/LocationRouting/AddUpdateLocationRouting\",params)\n\t\t\t\tresult\u003dresult[0][0]\n\t\t\t\tresult\u003dstr(result)\n\t\t\t\tsystem.perspective.print(\"update result  \"+str(result))\n\t#\t\t\tresult\u003dstr(result[0][0]).strip()\n\t\t\t\tif(result!\u003d\u00271\u0027 and result!\u003d\u00272\u0027):\n\t\t\t\t\tmessage \u003d str(\"Location Routing Update Failed\")\n\t\t\t\t\tstate \u003d \"warning\"\n\t\t\t\telif(result\u003d\u003d\u00271\u0027 or result\u003d\u003d\u00272\u0027):\n\t\t\t\t\tmessage \u003d \"Location Routing Updated successfully.\"\n\t\t\t\t\tstate \u003d \"success\"\t\n\t\t\t\t\tauditMsg\u003dmessage\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t\tself.parent.parent.getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value\u003d-1\n\t\t\tself.parent.parent.getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\u003d-1\n\t\t\tself.parent.parent.getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value\u003d0\n\t\t\tself.parent.parent.getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\t\t\n\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\tself.session.custom.selectedMSTLocationRouteID\u003d0\n\t\t\t\n\t\t\t#addToAuditLogStrat\n\t\t\tsystem.perspective.print(auditMsg)\n\t\t\tcategory\u003d\u0027Master Configuration\u0027\n\t\t\tsubCategory\u003d\u0027LocationRouting Configuration\u0027\n\t\t\tif(Id!\u003d0):\n\t\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n\t\t\t\tcurDesc \u003d {\n\t\t\t\t\t\"MST_Area_Id\":MST_Area_Id,\n\t\t\t\t\t\"MST_Line_Id\":MST_Line_Id,\n\t\t\t\t\t\"NoOfStep\":NoOfStep,\n\t\t\t\t\t\"IsActive\":IsActive,\n\t\t\t\t\t\"MST_LocationRoute_Id\":LocationRoute_Id,\n\t\t\t\t\t\"MST_RouteStep_Id\":RouteStep_Id,\n\t\t\t\t\t\"MST_WorkStation_Id\":WorkStation_Id\n\t\t\t\t}\n\t\t\t\timport json\n\t\t\t\tcurDesc_json \u003d json.dumps(curDesc)\n\t\t\t\tcurDesc\u003dcurDesc_json\n\t\t\t\tsystem.perspective.print(prevDesc)\n\t\t\t\tsystem.perspective.print(curDesc)\n\t\t\t\tdescription\u003dstr(auditMsg)+\" Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n\t\t\telse:\n\t\t\t\tdescription\u003dstr(auditMsg)\n\t\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t\t#addAuditLogEnd\n\t\t\t\n\t\t\t\n\texcept:\n\t\tscreenName \u003d\u0027LocationRoutingPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/LocationRouting\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(\"errorFunction: \"+str(errorFunction)+\" description: \"+str(description)+\" lineno: \"+str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 10,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntAreaName/drpAreaName.props.value} \u003e -1) \u0026\u0026\r\n({.../cntLineName/drpLineName.props.value} \u003e -1) \u0026\u0026\r\n({session.custom.dsLocationRout}!\u003dNone)\r\n,toBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "locationRoutPanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n#\tsystem.perspective.print(\"Into messageHandler-----------\u003e\")\n\tload\u003dpayload.copy()\n#\tsystem.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n#\tsystem.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027Action\u0027)\n\tload.pop(\u0027Additional_WorkStation\u0027)\n\tload.pop(\u0027Additional_WorkStationId\u0027)\n\tload.pop(\u0027ds\u0027)\n\t\n#\tsystem.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n#\tsystem.perspective.print(\"msg handler2-----------\u003e\")\n#\tsystem.perspective.print(\"payload msghandler3-------------\u003e\")\n#\tsystem.perspective.print(self.view.getChild(\"root\").custom.payload)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightS\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027locationRoutPanel\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")  \n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027MST_Area_Id\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027MST_Line_Id\u0027:-1,\n\t\t\t\t\t\t\t\t\u0027NoOfStep\u0027:0,\n\t\t\t\t\t\t\t\t\u0027IsActive\u0027:1,\n\t\t\t\t\t\t\t\t\u0027Action\u0027:headerLabel,\n\t\t\t\t\t\t\t\t\u0027ds\u0027:None}\t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\tself.session.custom.dsLocationRout\u003dNone\n\tself.session.custom.selectedMSTLocationRouteID\u003d0"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "86% 63%"
+                  },
+                  "width": 100,
+                  "x": 141,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 5,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 6,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 5,
+                  "span": 7
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "tblLocationRouting"
+                },
+                "position": {
+                  "height": 300,
+                  "width": 880,
+                  "x": 6
+                },
+                "propConfig": {
+                  "meta.visible": {
+                    "binding": {
+                      "config": {
+                        "path": "session.custom.dsCycleTime"
+                      },
+                      "enabled": false,
+                      "transforms": [
+                        {
+                          "code": "\tif value\u003d\u003dNone or value\u003d\u003d\u0027\u0027:\n\t\tvalue\u003dFalse\n\telse:\n\t\tvalue\u003dTrue\n\treturn value",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_LocationRoute_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "MST_WorkStation_Id"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "SRNo",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "SR No"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "RouteStep_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "RouteStep_Id"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Id"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Step",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "Step No"
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_WorkStation_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "Station Code"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "view",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {
+                        "column": "value",
+                        "columnIndex": "value",
+                        "row": "value",
+                        "rowData": "value",
+                        "rowIndex": "value",
+                        "value": -1
+                      },
+                      "viewPath": "Project_VECV/Templates/LocationRoutingDropDownWorkStation",
+                      "visible": true,
+                      "width": 30
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "value",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_Area_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "Area Id"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "value",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_Line_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "Line Id"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "value",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MST_WorkStation_Ids",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": "Additional Station Code"
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "view",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {
+                        "column": "value",
+                        "columnIndex": "value",
+                        "row": "value",
+                        "rowData": "value",
+                        "rowIndex": "value",
+                        "value": 0,
+                        "value1": []
+                      },
+                      "viewPath": "Project_VECV/Templates/LocationRoutingPrevDropDownWorkStation",
+                      "visible": true,
+                      "width": 40
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Parallel",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "Project_VECV/Pannel/locationParallelCheck",
+                      "visible": false,
+                      "width": 10
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ParallelIDs",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header",
+                          "fontSize": 14,
+                          "fontWeight": "bold"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {
+                        "column": "value",
+                        "columnIndex": "value",
+                        "row": "value",
+                        "rowData": "value",
+                        "rowIndex": "value",
+                        "value": ""
+                      },
+                      "viewPath": "Project_VECV/Templates/LocationRoutingPrevDropDownWorkStationparallel",
+                      "visible": true,
+                      "width": 25
+                    }
+                  ],
+                  "data": {
+                    "$": [
+                      "ds",
+                      192,
+                      1717408123040
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "MST_LocationRoute_Id",
+                        "type": "String"
+                      },
+                      {
+                        "data": [],
+                        "name": "SRNo",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "MST_WorkStation_Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "MST_Area_Id",
+                        "type": "Long"
+                      },
+                      {
+                        "data": [],
+                        "name": "MST_Line_Id",
+                        "type": "Long"
+                      },
+                      {
+                        "data": [],
+                        "name": "MST_WorkStation_Ids",
+                        "type": "String"
+                      },
+                      {
+                        "data": [],
+                        "name": "RouteStep_Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "Step",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "emptyMessage": {
+                    "noData": {
+                      "text": "No Data Found"
+                    }
+                  },
+                  "filter": {
+                    "results": {
+                      "enabled": true
+                    }
+                  },
+                  "headerGroups": [
+                    []
+                  ],
+                  "pager": {
+                    "bottom": false,
+                    "initialOption": 50
+                  },
+                  "rows": {
+                    "height": 20,
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    },
+                    "subview": {
+                      "viewPath": "Templates/EditDelete"
+                    }
+                  },
+                  "selection": {
+                    "selectedColumn": "",
+                    "selectedRow": -1
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  },
+                  "virtualized": false
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "LocationRoutTableRefresh",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.data\u003dself.session.custom.dsLocationRout\n\ttable\u003dself.getSibling(\"Table\")\n\ttable.refreshBinding(\"props.data\")\n\t\n\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\n\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "UpdateLocationRout",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Store updated location route data in custom dataset. \n\t\"\"\"\n\ttry:\n\t\tscriptName\u003d\"message handler UpdateLocationRout\"\n\t\tno\u003dpayload[\u0027No\u0027]\n\t\tselRow\u003dpayload[\u0027SelctedRow\u0027]\n\t\tselColumn\u003dpayload[\u0027columnName\u0027]\n#\t\tif selColumn\u003d\u003d\"MST_WorkStation_Ids\":\n#\t\t\tno\u003d\u0027\u003cArrayWrapper\u003e: [269L]\u0027\n#\t\t\tno\u003dno.replace(\u0027\u003cArrayWrapper\u003e:\u0027,\u0027\u0027)\n#\t\t\tno\u003dno.replace(\u0027L\u0027,\u0027\u0027)\n\t\tupdateRowResultDs \u003d {selColumn:no}\n\t\tsystem.perspective.print(\"payload %s\"%payload)\n\t\t\n\t\tsystem.perspective.print(\"updateRowResultDs \"+str(updateRowResultDs))\n\t\tdtSet\u003dself.session.custom.dsLocationRout\n\t\tresultpyData \u003d system.dataset.updateRow(dtSet,selRow,updateRowResultDs)\t\n\t\tds\u003d system.dataset.toPyDataSet(resultpyData)\t\n\t\tself.session.custom.dsLocationRout\u003dds\n\t\tsystem.perspective.print(\"self.session.custom.dsLocationRout \u003d \"+str(self.session.custom.dsLocationRout[selRow][selColumn]))\n#\t\tsystem.perspective.sendMessage(\"LocationRoutTableRefresh\", scope \u003d \"page\")\n\texcept:\n\t\tscreenName \u003d\u0027UpdateLocationRout\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/LocationRoutingConfigurationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event on message handler  -\u003e UpdateLocationRout\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t\t\t\t\t\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "TableRefreshLR",
+                      "pageScope": true,
+                      "script": "\tself.refreshBinding(\"props.data\")\n\t\t\n\t\n\n",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntLocationTable"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 11
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 4,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 300
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "activeDirectoryData": "",
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "locationRoutPanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 30/05/2024\n\t\tPurpose: Insert row values into db. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tsystem.perspective.print(\"Header label:%s\"%self.session.custom.type)\n\t\tif \tpayload[\u0027headerLabel\u0027]\u003d\u003d\u0027Add\u0027:\t\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u0027Add\u0027\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value \u003d -1\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.value \u003d -1\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value \u003d 0\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d 1\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d \u0027Add\u0027\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dFalse\n\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\tself.session.custom.selectedMSTLocationRouteID\u003d0\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.enabled\u003dTrue\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.enabled\u003dTrue\n\t\telse:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.value \u003d payload[\u0027MST_Area_Id\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.value \u003d payload[\u0027MST_Line_Id\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.value \u003d payload[\u0027NoOfStep\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d payload[\u0027IsActive\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d payload[\u0027Action\u0027]\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003d payload[\u0027ds\u0027]\n\t\tif payload[\u0027headerLabel\u0027]\u003d\u003d\u0027Add\u0027:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dFalse\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").props.text\u003d\u0027\u0027\n\t\t\t\n\t\t\tself.session.custom.dsLocationRout\u003dNone\n\t\t\tself.session.custom.selectedMSTLocationRouteID\u003d0\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.enabled\u003dTrue\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.enabled\u003dTrue\n\t\telse:\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntAreaName\").getChild(\"drpAreaName\").props.enabled\u003dFalse\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.enabled\u003dFalse\n\t\t\t\n\t\t\tMST_Line_Id\u003dself.getChild(\"cntColumn\").getChild(\"cntLineName\").getChild(\"drpLineName\").props.value\n\t\t\t\n\t\t\tparams \u003d {\"MST_Line_Id\":MST_Line_Id}\n\t\t\tds \u003d system.db.runNamedQuery(\"Project_VECV/LocationRouting/GetLineWiseWorkStation\",params)\n\t\t\tds\u003dsystem.dataset.toPyDataSet(ds)\n\t\t\tnoOfStationCount\u003dlen(ds)\n\t\t\tsteprange\u003d\"1 - \"+str(noOfStationCount)\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").props.text\u003dsteprange\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"lbl_NoOfSation\").meta.visible\u003dTrue\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntSeqNumber\").getChild(\"txtSeqNo\").props.inputBounds.maximum\u003dint(noOfStationCount)\n\t\t\tMSTLocationRouteID\u003dself.session.custom.selectedMSTLocationRouteID\n\t\t\tparams\u003d{\u0027AreaID\u0027:-1,\u0027LineID\u0027:-1,\u0027MST_LocationRoute_Id\u0027:MSTLocationRouteID}\n\t\t\tds\u003dsystem.db.runNamedQuery(\"Project_VECV/LocationRouting/getLocationRouting\",params)\n\t\t\tds\u003dsystem.dataset.toPyDataSet(ds)\n\t\t\t\n\t\t\t\n\t\t\tMST_WorkStation_Id\u003d-1\n\t\t\tMST_WorkStation_Ids\u003dstr([-1])\n\t\t\tRouteStep_Id\u003d0\n\t\t\tId\u003d0\n\t\t\theaders\u003d[\"MST_LocationRoute_Id\",\"SRNo\",\"MST_WorkStation_Id\",\"MST_Area_Id\",\"MST_Line_Id\",\"MST_WorkStation_Ids\",\"RouteStep_Id\",\"Id\",\"Step\",\"Parallel\",\"ParallelIDs\"]\n\t\t\tdata\u003d[]\n\t\t\tMSTLocationRouteID\u003dself.session.custom.selectedMSTLocationRouteID\n\t\t\tsrno\u003d1\n#\t\t\tfor i in range(len(ds)):\n\t\t\tfor i in ds:\n\t\t\t\tMST_WorkStation_Id\u003dint(i[\u0027MST_WorkStation_Id\u0027])\n\t\t\t\tMST_WorkStation_Ids\u003di[\u0027Additional_WorkStationId\u0027]\n\t\t\t\t\n\t\t\t\tRouteStep_Id\u003di[\u0027MST_RouteStep_Id\u0027]\n\t\t\t\tlineId\u003di[\u0027MST_Line_Id\u0027]\n\t\t\t\tareaId\u003di[\u0027MST_Area_Id\u0027]\n\t\t\t\tstep\u003d\"Step-\"+str(srno)\n\t\t\t\tParallelIDs \u003d i[\u0027ParallelIDs\u0027]\n\t\t\t\tdata.append([MSTLocationRouteID,srno,MST_WorkStation_Id,areaId,lineId,MST_WorkStation_Ids,RouteStep_Id,Id,step,0,ParallelIDs])\n\t\t\t\t\n\t\t\t\tsrno\u003dsrno+1\n\t\t\tsystem.perspective.print(\"data %s --\u003e\"%data)\n\t\t\tds\u003dsystem.dataset.toDataSet(headers, data)\t\n\t\t\t#ds\u003dsystem.dataset.toPyDataSet(ds)\n\t\t\t\n#\t\t\tif len(ds)\u003e0:\n\t\t\t\t\n\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dds\n\t\t\tself.session.custom.dsLocationRout\u003dds\n\t\t\tsystem.perspective.print(\"ds %s\"%ds)\n#\t\t\telse:\n#\t\t\t\tself.session.custom.dsLocationRout\u003dNone\n#\t\t\t\tself.getChild(\"cntColumn\").getChild(\"cntLocationTable\").getChild(\"tblLocationRouting\").props.data\u003dNone\n\n\t\t\t\n\texcept:\n\t\tscreenName \u003d\u0027locationConfigurationPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/locationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027messageHandler/locationPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(description)\n\t\tsystem.perspective.print(lineNumber)\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

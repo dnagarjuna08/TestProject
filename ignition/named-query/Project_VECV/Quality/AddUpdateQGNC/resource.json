@@ -1,0 +1,145 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e326d730a96de8b3e3389cfaefc049cf15b2d896c594209300a1a0f7757c35c5",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "eventid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueval",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torquecount",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueangle",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "torqueresult",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pressingval",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pressingdep",
+        "sqlType": 5
+      },
+      {
+        "type": "Parameter",
+        "identifier": "operatorid",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "stationeventid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "partnum",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "createdby",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "serialnumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WIID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WITypeID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPDefID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkstationID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "areaID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOMID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OPCodeID",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "trnstid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ConsumedPart",
+        "sqlType": 7
+      }
+    ]
+  }
+}

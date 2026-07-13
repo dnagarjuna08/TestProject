@@ -1,0 +1,95 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "MESPRODDB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "9a9ef8b8a0bcc6365f2f4fe34dea5a131bb9abbabf023b1554f90714757afc61",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-12-09T04:10:00Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Line",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Comment",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNo",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "BOM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "WorkStation",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Area",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorId",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectCategory",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectSubName",
+        "sqlType": 7
+      }
+    ]
+  }
+}

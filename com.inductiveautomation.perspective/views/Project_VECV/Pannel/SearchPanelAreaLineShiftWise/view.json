@@ -1,0 +1,631 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tself.session.custom.dsCycleTime\u003dNone"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Area": -1,
+    "AreaVisible": true,
+    "Line": -1,
+    "LineVisible": true,
+    "Model": -1,
+    "ModelVisible": true,
+    "ProductGroup": -1,
+    "Shift": 1,
+    "Workstation": -1,
+    "WorkstationVisible": true
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.AreaVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Line": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.LineVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Model": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.ModelVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.ProductGroup": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.Shift": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.Workstation": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.WorkstationVisible": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 91,
+      "width": 950
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\u003d-1\n\tself.parent.parent.getChild(\"cntProduct\").getChild(\"drpProduct\").props.value\u003d-1"
+                    }
+                  }
+                },
+                "props": {
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1724917754099
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          23,
+                          26
+                        ],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Titan Axle",
+                          "Legacy Axle"
+                        ],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Area..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.AreaVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Line:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\n\tself.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\u003d-1\n\tself.parent.parent.getChild(\"cntProduct\").getChild(\"drpProduct\").props.value\u003d-1"
+                    }
+                  }
+                },
+                "props": {
+                  "maxMenuHeight": 300,
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1724917754098
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "value",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "label",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Line..."
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.LineVisible"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Material Configuration Group:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpProduct"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "MST_Area_Id": "{.../cntArea/drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/CycleTimeConfiguration/GetLineWiseProductGroup"
+                      },
+                      "overlayOptOut": true,
+                      "type": "query"
+                    },
+                    "persistent": true
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\n\tself.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\u003d-1"
+                    }
+                  }
+                },
+                "props": {
+                  "maxMenuHeight": 300,
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1724917754099
+                    ],
+                    "$columns": [
+                      {
+                        "data": [],
+                        "name": "MST_Model_Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [],
+                        "name": "ModelName",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Gorup"
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntProduct"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px",
+                  "grow": 1
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Shift:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpShift"
+                },
+                "position": {
+                  "basis": "40px",
+                  "grow": 1
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/CycleTimeConfiguration/GetShiftDetails"
+                      },
+                      "type": "query"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "maxMenuHeight": 300,
+                  "options": {
+                    "$": [
+                      "ds",
+                      192,
+                      1724917754099
+                    ],
+                    "$columns": [
+                      {
+                        "data": [
+                          1,
+                          2,
+                          3
+                        ],
+                        "name": "MST_Shift_Id",
+                        "type": "Integer"
+                      },
+                      {
+                        "data": [
+                          "Shift A",
+                          "Shift B",
+                          "Shift C"
+                        ],
+                        "name": "ShiftName",
+                        "type": "String"
+                      }
+                    ]
+                  },
+                  "placeholder": {
+                    "text": "Select Shift"
+                  },
+                  "showClearIcon": true,
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntShift"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "props": {
+              "direction": "column",
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\n\t\"\"\"Created By : Niladri Banerjee\n\t\tDate : 08.05.2024\n\t\tPurpose : Passing dropdown values to Parameteres\"\"\" \n\t\t\n\n\tif self.parent.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d\u003dNone:\n\t   \n\t\tself.view.params.Area\u003d-1\n\telse:\n\t\tself.view.params.Area\u003dself.parent.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\tif self.parent.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003d\u003dNone:\n\t\tself.view.params.Line\u003d-1\n\telse:\n\t\tself.view.params.Line\u003dself.parent.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\n\tif self.parent.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\u003d\u003dNone:\n\t\tself.view.params.Shift\u003d-1\n\telse:\n\t\tself.view.params.Shift\u003dself.parent.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\n\tif self.parent.parent.parent.getChild(\"cntProduct\").getChild(\"drpProduct\").props.value\u003d\u003dNone:\t\n\t\tself.view.params.ProductGroup\u003d-1\n\telse:\t\n\t\tself.view.params.ProductGroup\u003dself.parent.parent.parent.getChild(\"cntProduct\").getChild(\"drpProduct\").props.value\n\t\t\n\tsystem.perspective.print(\"self.view.params.Area\"+str(self.view.params.Area))\t\n\tsystem.perspective.print(\"Line \"+str(self.view.params.Line))\t\n\tsystem.perspective.print(\"Shift \"+str(self.view.params.Shift))\t\n\tsystem.perspective.print(\"ProductGroup \"+str(self.view.params.ProductGroup))\t\n\tself.session.custom.dsCycleTime\u003dProject_VECV.Master.CycleTime.GetCycleTime(self.view.params.Line,self.view.params.ProductGroup,self.view.params.Shift)\n\tsystem.perspective.sendMessage(\"CycleTimeTableRefresh\", scope \u003d \"page\")"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnApply"
+                    },
+                    "position": {
+                      "basis": "100px",
+                      "grow": 1
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if (({..../cntArea/drpArea.props.value} \u003e 0) \u0026\u0026 ({..../cntLine/drpLine.props.value} \u003e0 )\u0026\u0026 ( {..../cntShift/drpShift.props.value} \u003e 0 ) \u0026\u0026 ( {..../cntProduct/drpProduct.props.value} \u003e 0 ),1,0)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "width": 40
+                      },
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "View",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexApply"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "15px"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t\"\"\"Created By : Niladri Banerjee\n\t\t\tDate : 08.05.2024\n\t\t\tPurpose : Reset all Parameteres\"\"\" \t\n\t#CLEAR ALL FILTER SELECTION\n\tself.parent.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"cntShift\").getChild(\"drpShift\").props.value\u003d-1\n\tself.parent.parent.parent.getChild(\"cntProduct\").getChild(\"drpProduct\").props.value\u003d-1\n\tself.view.params.Area\u003d-1\n\tself.view.params.Line\u003d-1\n\tself.view.params.ProductGroup\u003d-1\n\tself.view.params.Shift\u003d1\n\tself.session.custom.dsCycleTime\u003dNone\n\tsystem.perspective.sendMessage(\"CycleTimeTableRefresh\", scope \u003d \"page\")"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "BtnClear"
+                    },
+                    "position": {
+                      "basis": "200px",
+                      "grow": 1
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                      },
+                      "text": "Clear",
+                      "textStyle": {
+                        "classes": "Project_VECV/Panel/Button"
+                      }
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "flexClear"
+                },
+                "position": {
+                  "basis": "200px"
+                },
+                "props": {
+                  "style": {
+                    "margin": "15px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "cntAction"
+            },
+            "position": {
+              "basis": "200px"
+            },
+            "props": {
+              "alignContent": "flex-end",
+              "alignItems": "flex-end",
+              "justify": "flex-end"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntFlex"
+        },
+        "position": {
+          "basis": "100px"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "space-evenly"
+    },
+    "type": "ia.container.flex"
+  }
+}

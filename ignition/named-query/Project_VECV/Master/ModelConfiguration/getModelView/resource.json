@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "73f0755b8262c9faae56a6417d4fe10297eaadbd2b7eab9b1534de7f8102c43e",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "FilterCode",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "FilterLineTypeCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "FilterMode",
+        "sqlType": 7
+      }
+    ]
+  }
+}

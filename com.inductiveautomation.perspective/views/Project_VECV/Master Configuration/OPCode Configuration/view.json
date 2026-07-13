@@ -1,0 +1,1426 @@
+{
+  "custom": {
+    "Timeout": null,
+    "Timeout_SP_Seconds": ""
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: Add/Update data on row selection. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsLoggedIn\n\t\tif not previousPage:\n\t\t\tsystem.perspective.print(\"New Session\")\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027OPCode Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/OPCode\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e OPCode\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "OPCode Configuration"
+  },
+  "propConfig": {
+    "custom.Timeout": {
+      "persistent": true
+    },
+    "custom.Timeout_SP_Seconds": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "cntSearch"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 125
+            },
+            "props": {
+              "params": {
+                "Area": "",
+                "Line": "",
+                "Model": "",
+                "Workstation": ""
+              },
+              "path": "Project_VECV/Pannel/SearchPanel"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: Add/Update data on row selection. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\u0027rightView\u0027)\n\t\tselectedRow \u003d self.props.selection.selectedRow\n\t\tpydata \u003d system.dataset.toPyDataSet(self.props.data)\n\t\tcountWI \u003d 0\n\t\tif(len(pydata) \u003e 0):\n\t\t\tfor rows in range(len(pydata)):\n\t\t\t\tif(selectedRow \u003d\u003d rows):\n\t\t\t\t\tId \u003d pydata[rows][\u0027OPCodeId\u0027]\n\t\t\t\t\tModelId\u003d pydata[rows][\u0027ModelId\u0027]\n\t\t\t\t\tModel\u003d pydata[rows][\u0027Model\u0027]\n\t\t\t\t\tAreaId\u003d pydata[rows][\u0027AreaId\u0027]\n\t\t\t\t\tArea\u003d pydata[rows][\u0027Area\u0027]\n\t\t\t\t\tLineId\u003d pydata[rows][\u0027LineId\u0027]\n\t\t\t\t\tLine\u003d pydata[rows][\u0027Line\u0027]\n\t\t\t\t\tWorkStationId\u003d pydata[rows][\u0027WorkStationId\u0027]\n\t\t\t\t\tWorkStation\u003d pydata[rows][\u0027WorkStation\u0027]\n\t\t\t\t\tOPDefinitionId\u003d pydata[rows][\u0027OPDefinitionId\u0027]\n\t\t\t\t\tOPDefinition\u003d pydata[rows][\u0027OPDefinition\u0027]\n\t\t\t\t\tWITypeId\u003d pydata[rows][\u0027WITypeId\u0027]\n\t\t\t\t\tWIType\u003d pydata[rows][\u0027WIType\u0027]\n\t\t\t\t\tOPCode\u003d pydata[rows][\u0027OPCode\u0027]\n\t\t\t\t\tdesc \u003d pydata[rows][\u0027Description\u0027]\n\t\t\t\t\tAttributeText \u003d pydata[rows][\u0027AttributeText\u0027]\t\n\t\t\t\t\tImageName \u003d pydata[rows][\u0027ImageName\u0027]\t\n\t\t\t\t\tImagePath \u003d pydata[rows][\u0027ImagePath\u0027]\n\t\t\t\t\tisActive \u003d pydata[rows][\u0027IsActive\u0027]\n\t\t\t\t\tToolId \u003d pydata[rows][\u0027ToolId\u0027]\n\t\t\t\t\tProgramId \u003d pydata[rows][\u0027ProgramId\u0027]\n\t\t\t\t\tMarriagePart \u003d pydata[rows][\u0027MarriagePart\u0027]\n\t\t\t\t\tsystem.perspective.print(\"IsMinMaxReq:%s\"%str(pydata[rows][\u0027IsMinMaxReq\u0027]))\n#\t\t\t\t\tIsMinMaxReq \u003d -1\n#\t\t\t\t\tif pydata[rows][\u0027IsMinMaxReq\u0027] !\u003d \u0027\u0027 or str(pydata[rows][\u0027IsMinMaxReq\u0027]).lower() !\u003d \u0027None\u0027.lower():\n\t\t\t\t\tif str(pydata[rows][\u0027IsMinMaxReq\u0027]).upper() \u003d\u003d \u0027True\u0027.upper():\n\t\t\t\t\t\tIsMinMaxReq \u003d 1\n\t\t\t\t\telse:\n\t\t\t\t\t\tIsMinMaxReq \u003d 0\n\t\t\t\t\tMaxVal \u003d pydata[rows][\u0027MaxVal\u0027]\n\t\t\t\t\tMinVal \u003d pydata[rows][\u0027MinVal\u0027]\n\t\t\t\t\tPart \u003d pydata[rows][\u0027Part\u0027]\n\t\t\t\t\tBOMId \u003d pydata[rows][\u0027BOMId\u0027]\n\t\t\t\t\tQuantity \u003d pydata[rows][\u0027TorqueQuantity\u0027]\n#\t\t\t\t\tsystem.perspective.print({\u0027UnitId\u0027:UnitId,\u0027UnitName\u0027:str(name),\u0027UnitDescription\u0027:str(desc),\u0027UnitLevel\u0027:levelId,\u0027AttachedTo\u0027:attachedId,\u0027isActive\u0027:isActive,\u0027IPAddress\u0027:ipAddress,\u0027WorkStationTypeId\u0027:WorkStationTypeId})\n\t\t\t\t\tbreak\t\n\n\t\theaderLabel \u003d \"Edit\"\n\t\tmessageType \u003d \u0027OPCodePanel\u0027\n\t\tpayload \u003d {\u0027UnitId\u0027:int(Id),\u0027headerLabel\u0027:headerLabel,\u0027ModelId\u0027:int(ModelId),\u0027AreaId\u0027:int(AreaId),\u0027LineId\u0027:int(LineId),\n\t\t\u0027WorkStationId\u0027:int(WorkStationId),\u0027OPDefinitionId\u0027:int(OPDefinitionId),\u0027WITypeId\u0027:int(WITypeId),\u0027OPCode\u0027:int(OPCode),\n\t\t\u0027Description\u0027:desc,\u0027AttributeText\u0027:AttributeText,\u0027ImageName\u0027:ImageName,\u0027ImagePath\u0027:ImagePath,\u0027isActive\u0027:int(isActive),\n\t\t\u0027ToolId\u0027:ToolId,\u0027ProgramId\u0027:ProgramId,\u0027IsMinMaxReq\u0027:IsMinMaxReq,\u0027MaxVal\u0027:MaxVal,\u0027MinVal\u0027:MinVal,\u0027Part\u0027:Part,\u0027BOMId\u0027:BOMId,\n\t\t\u0027MarriagePart\u0027:MarriagePart,\u0027Quantity\u0027:Quantity}\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027)\n\n\t\tfolderName \u003d \u0027Project_VECV/OPCode\u0027\n\t\tcolName \u003d \u0027OPCodeId\u0027\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1,\"id\":int(Id),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\n\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027OPCode Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/OPCodeConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onRowClick -\u003e cntBody/TabContainer/cntTable/tblEquip\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tsystem.perspective.print(str(description) + \u0027  \u0027 + str(lineNumber))\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n\t\n\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblOpCode"
+                },
+                "position": {
+                  "height": 480,
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "AreaId": "{.../cntSearch.props.params.Area}",
+                          "LineId": "{.../cntSearch.props.params.Line}",
+                          "ModelId": "{.../cntSearch.props.params.Model}",
+                          "WorkStationId": "{.../cntSearch.props.params.Workstation}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tModelId \u003d value[\u0027ModelId\u0027]\n\tAreaId \u003d value[\u0027AreaId\u0027]\n\tLineId \u003d value[\u0027LineId\u0027]\n\tWorkStationId \u003d value[\u0027WorkStationId\u0027]\n\tif ModelId \u003d\u003d -1 or ModelId \u003d\u003d \"\":\n\t\tModelId \u003d 0\n\tif AreaId \u003d\u003d -1 or AreaId \u003d\u003d \"\":\n\t\tAreaId \u003d 0\n\tif LineId \u003d\u003d -1 or LineId\u003d\u003d\"\":\n\t\tLineId \u003d 0\n\tif WorkStationId \u003d\u003d -1 or WorkStationId \u003d\u003d \"\":\n\t\tWorkStationId \u003d 0\n\tparams\u003d{\u0027AreaId\u0027:AreaId,\u0027LineId\u0027:LineId,\u0027WorkStationId\u0027:WorkStationId,\u0027ModelId\u0027:ModelId}\n\tval\u003dsystem.db.runNamedQuery(\"Project_VECV/Master/OPCodeConfiguration/FilterData\",params)\n\treturn val",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Model",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Area",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Line",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkStation",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "OPDefinition",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "OPCode",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Description",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "AttributeText",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ImageName",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WIType",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsActive",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Part",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "BOMId",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "TorqueQuantity",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "MarriagePart",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true,
+                    "results": {
+                      "enabled": true
+                    }
+                  },
+                  "headerGroups": [
+                    []
+                  ],
+                  "pager": {
+                    "initialOption": 10
+                  },
+                  "rows": {
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    },
+                    "subview": {
+                      "viewPath": "Templates/EditDelete"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRefresh",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: make table refersh and reset in panel. \n\t\"\"\"\n\ttry:\n\t\tself.refreshBinding(\"props.data\")\n\t\tself.session.custom.type\u003d\u0027Add\u0027\n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027OPCodePanel\u0027  \n\t\tAction \u003d \"Save\"\t\t \t\t\t\n\t\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027ModelId\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\n\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027OPDefinitionId\u0027:-1,\u0027WITypeId\u0027:-1,\u0027OPCode\u0027:\u0027\u0027,\n\t\t\t\t\u0027Description\u0027:\u0027\u0027,\u0027AttributeText\u0027:\u0027\u0027,\u0027ImageName\u0027:\u0027\u0027,\u0027ImagePath\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\u0027ToolId\u0027:\u0027\u0027,\u0027ProgramId\u0027:\u0027\u0027,\u0027IsMinMaxReq\u0027:-1,\u0027MaxVal\u0027:\u0027\u0027,\u0027MinVal\u0027:\u0027\u0027,\"Action\":Action,\u0027Quantity\u0027:\u0027\u0027,\u0027Part\u0027:-1,\u0027BOMId\u0027:-1}\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027)\n\t\t\n\t\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\texcept: \n\t#start of except block \n\t\tscreenName \u003d\u0027OPCode Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/OPCode\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root-\u003etblOPCode-\u003eMessageHandler\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 500
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 0.9217,
+          "width": 0.9657,
+          "x": 0.0149,
+          "y": 0.0438
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "lblview"
+        },
+        "position": {
+          "height": 0.0194,
+          "width": 0.4835,
+          "x": 0.0056,
+          "y": 0.0103
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header"
+          },
+          "text": "OPCode Configuration:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "cntLoader",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1933,
+          "width": 0.1537,
+          "x": 0.4099,
+          "y": 0.3093
+        },
+        "propConfig": {
+          "props.params.isLoader": {
+            "binding": {
+              "config": {
+                "path": "this.meta.visible"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/Loader"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: remove selection on double click and make reset in panel. \n\t\"\"\"\n\ttry:\n\t\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedRow \u003d -1\n\t\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblOpCode\").props.selection.selectedColumn \u003d \u0027\u0027\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")  \n\t\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027OPCodePanel\u0027\n\t\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027ModelId\u0027:-1,\u0027AreaId\u0027:-1,\u0027LineId\u0027:-1,\n\t\t\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027OPDefinitionId\u0027:-1,\u0027WITypeId\u0027:-1,\u0027OPCode\u0027:\u0027\u0027,\n\t\t\t\t\t\t\u0027Description\u0027:\u0027\u0027,\u0027AttributeText\u0027:\u0027\u0027,\u0027ImageName\u0027:\u0027\u0027,\u0027ImagePath\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\t\t\u0027ToolId\u0027:\u0027\u0027,\u0027ProgramId\u0027:\u0027\u0027,\u0027IsMinMaxReq\u0027:-1,\u0027MaxVal\u0027:\u0027\u0027,\u0027MinVal\u0027:\u0027\u0027,\"Action\":Action,\u0027Part\u0027:-1,\u0027BOMId\u0027:-1}\t\t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\texcept:\n\t\tscreenName \u003d\u0027OPCodeConfiguration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/OPCodeConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:root  -\u003e OPCodeConfiguration\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t\t\t\t"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

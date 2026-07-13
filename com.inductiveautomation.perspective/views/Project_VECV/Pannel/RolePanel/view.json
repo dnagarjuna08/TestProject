@@ -1,0 +1,759 @@
+{
+  "custom": {
+    "activeHeight": 40,
+    "activeWidth": 220,
+    "functionalityData": "",
+    "height": 30,
+    "moduleData": "",
+    "prevScreenData": "",
+    "roleId": "",
+    "screenData": "",
+    "width": 100
+  },
+  "params": {},
+  "propConfig": {
+    "custom.activeHeight": {
+      "binding": {
+        "config": {
+          "expression": "toInt(40)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.activeWidth": {
+      "binding": {
+        "config": {
+          "expression": "toInt(220)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.functionalityData": {
+      "persistent": true
+    },
+    "custom.height": {
+      "binding": {
+        "config": {
+          "expression": "toInt(30)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "custom.moduleData": {
+      "persistent": true
+    },
+    "custom.prevScreenData": {
+      "persistent": true
+    },
+    "custom.roleId": {
+      "persistent": true
+    },
+    "custom.screenData": {
+      "persistent": true
+    },
+    "custom.width": {
+      "binding": {
+        "config": {
+          "expression": "toInt(100)"
+        },
+        "type": "expr"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 588,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\ttry:\n\t#start of try block \n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027rolePanel\u0027   \n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027id\u0027:\u0027\u0027,\u0027roleName\u0027:\u0027\u0027,\u0027description\u0027:\u0027\u0027,\u0027isActive\u0027:int(1)}\t\t \t\t\t\t\t\t\t\t\t\n\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t\t\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t\t\n\t\tself.view.custom.prevScreenData \u003d \u0027\u0027\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/RolePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onClick -\u003e cntHeader/lblClose\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Role name  :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9_ ]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    },
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-field"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 12,
+                  "x": 75
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntName"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Description:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "txt"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.text": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 04/09/2024\n\t\tPurpose: Check Special character in text. \n\t\"\"\"\n\timport re\n\t \n\tdef contains_special_characters(input_string):\n\t    # Define a regex pattern for special characters\n\t    pattern \u003d r\u0027[^a-zA-Z0-9 _]\u0027\n\t    \n\t    # Search for special characters\n\t    if re.search(pattern, input_string):\n\t        return True\n\t    else:\n\t        return False\n\t \n\t# Calling Special Character Check Function\n\tinput_string \u003d self.props.text\n\tif contains_special_characters(input_string):\n\t    self.props.text \u003d str(self.props.text)[:-1]"
+                    }
+                  }
+                },
+                "props": {
+                  "deferUpdates": false,
+                  "rejectUpdatesWhileFocused": false,
+                  "style": {
+                    "classes": "Project_VECV/Panel/TextContent"
+                  }
+                },
+                "type": "ia.input.text-area"
+              }
+            ],
+            "meta": {
+              "name": "cntDesc"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "90%",
+                  "x": 9
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpIsActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if(({.../cntHeader/lblHeader.props.text}\u003d \u0027Add\u0027)\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t# Write your script here\n\n\tself.parent.parent.parent.getChild(\"cntToolTipActive\").meta.visible  \u003d 1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onMouseEnter": {
+                      "config": {
+                        "script": "\t# Write your script here\n\tself.parent.parent.parent.getChild(\"cntToolTipActive\").meta.visible  \u003d 1"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    },
+                    "onMouseOut": {
+                      "config": {
+                        "script": "\t# Write your script here\n\tself.parent.parent.parent.getChild(\"cntToolTipActive\").meta.visible \u003d 0"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "imgToolActive",
+                  "visible": false
+                },
+                "position": {
+                  "height": 16,
+                  "width": 16,
+                  "x": 65
+                },
+                "props": {
+                  "fit": {
+                    "height": 16,
+                    "width": 16
+                  },
+                  "source": "/system/images/Builtin/icons/16/unknown.png",
+                  "style": {
+                    "cursor": "pointer"
+                  },
+                  "tint": {
+                    "enabled": true
+                  }
+                },
+                "type": "ia.display.image"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik",
+                  "visible": false
+                },
+                "position": {
+                  "height": 29,
+                  "width": 18,
+                  "x": 48,
+                  "y": 1
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntIsActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 8,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 7,
+                  "span": 12
+                },
+                {
+                  "colIndex": 8,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 7,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 7,
+                  "span": 12
+                }
+              ],
+              "height": 56
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/04/2024\n\t\tPurpose: Reset all values. \n\t\"\"\"\n\ttry:\n\t#start of try block \n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027rolePanel\u0027   \n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027id\u0027:str(\u0027\u0027),\u0027roleName\u0027:str(\u0027\u0027),\u0027description\u0027:str(\u0027\u0027),\u0027isActive\u0027:int(1)} \t\t\t\t\t\t\t\t\t\n\t\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.openDock(\u0027rightView\u0027)\n\t\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t\tself.view.custom.prevScreenData \u003d \u0027\u0027\t\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/RolePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntCancel/btnCancel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "image": {
+                    "style": {
+                      "backgroundColor": "#FFAF00"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 9,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 9,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 9,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onActionPerformed": {
+                      "config": {
+                        "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/04/2024\n\t\t\tPurpose: Save Add/Edit data to Table.\n\t\t\"\"\"\n\t\troleName \u003d self.parent.parent.getChild(\"cntName\").getChild(\"txt\").props.text\n\t\tdescription \u003d self.parent.parent.getChild(\"cntDesc\").getChild(\"txt\").props.text\n\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\tisActive \u003d self.parent.parent.getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value\n\t\tif self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d\u003d \u0027Add\u0027:\n\t\t\tId \u003d 0\n\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.InsertUpdateRolesConfiguration(roleName, description, createdBy, Id, isActive)\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d str(roleName) +\" details Already Exists!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003d str(roleName) +\" details Added successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dmessage\n\t\telse:\n\t\t\tId \u003d self.session.custom.selectedRoleID\n\t\t\t#check data already exists or not\n\t\t\tresult \u003d Project_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.InsertUpdateRolesConfiguration(roleName, description, createdBy, Id, isActive)\n\t\t\tif(result\u003d\u003d0):\n\t\t\t\tmessage \u003d str(roleName) +\" details Already Exists!\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\telif(result\u003d\u003d1):\n\t\t\t\tmessage \u003d str(roleName) +\" details updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tauditMsg\u003dmessage\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027)\n\t\t\n\t\t#addToAuditLogStrat\n\t\tsystem.perspective.print(auditMsg)\n\t\tcategory\u003d\u0027Adminstration\u0027\n\t\tsubCategory\u003d\u0027Role Configuration\u0027\n\t\tif(Id!\u003d0):\n\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n\t\t\t#curDesc\u003d{\"linetypecode\":LineTypeCode, \"mode\":mode, \"isActive\":isActive, \"Code\":bomId }\n\t\t\tcurDesc \u003d {\n\t\t\t\t\"roleName\":roleName,\n\t\t\t\t\"description\":description,\n\t\t\t\t\"isActive\":isActive\n\t\t\t}\n\t\t\tsystem.perspective.print(prevDesc)\n\t\t\tsystem.perspective.print(curDesc)\n\t\t\tdescription\u003dstr(auditMsg)+\"Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n\t\telse:\n\t\t\tdescription\u003dstr(auditMsg)\n\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n\t\t#addAuditLogEnd\n\t\t\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/RolePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\t\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btn_Save"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 22.5,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if((({.../cntName/txt.props.text} !\u003d \u0027\u0027)\r\n\u0026 ({.../cntIsActive/drpIsActive.props.value} !\u003d -1)),\r\ntoBoolean(1),toBoolean(0))"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "rolePanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\t#system.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\t#system.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tload.pop(\u0027Action\u0027)\n\t#system.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\t#system.perspective.print(\"msg handler2-----------\u003e\")\n\t#system.perspective.print(\"payload msghandler3-------------\u003e\")\n\t#system.perspective.print(self.view.getChild(\"root\").custom.payload)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 9,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 9,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 9,
+                  "span": 6
+                }
+              ],
+              "height": 52
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "cntToolTip",
+          "visible": 0
+        },
+        "position": {
+          "x": 60,
+          "y": 218
+        },
+        "propConfig": {
+          "position.height": {
+            "binding": {
+              "config": {
+                "path": "view.custom.height"
+              },
+              "type": "property"
+            }
+          },
+          "position.width": {
+            "binding": {
+              "config": {
+                "path": "view.custom.width"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.height": {
+            "binding": {
+              "config": {
+                "path": "view.custom.height"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.width": {
+            "binding": {
+              "config": {
+                "path": "view.custom.width"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "lblText": "Level Hierarchy"
+          },
+          "path": "PopUp/ToolTip",
+          "useDefaultViewHeight": true,
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "custom": {
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -40,
+      "y": 80
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "rolePanel",
+          "pageScope": true,
+          "script": "\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/04/2024\n\t\t\tPurpose: Passing data to Add/Edit panel.\n\t\t\"\"\"\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text \u003d payload[\u0027headerLabel\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntName\").getChild(\"txt\").props.text \u003d payload[\u0027roleName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntDesc\").getChild(\"txt\").props.text \u003d payload[\u0027description\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntIsActive\").getChild(\"drpIsActive\").props.value \u003d payload[\u0027isActive\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntSave\").getChild(\"btn_Save\").props.text \u003d payload[\u0027Action\u0027]\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/RolePanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:rolePanel  -\u003e root\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

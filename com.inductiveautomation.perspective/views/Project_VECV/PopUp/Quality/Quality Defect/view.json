@@ -1,0 +1,1655 @@
+{
+  "custom": {},
+  "params": {
+    "bom": "",
+    "model": "",
+    "order": "",
+    "serialNumber": "",
+    "station": ""
+  },
+  "propConfig": {
+    "params.bom": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.model": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.order": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.serialNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.station": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 565,
+      "width": 1016
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblSerialNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Serial Number"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtSerialNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntSerialNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblOrder"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Order"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "TexOrder"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.order"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntOrder"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 2,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblBOM"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "BOM"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtBOM"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.bom"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntBOM"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 4,
+                      "name": "sm",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Model"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.model"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntModel"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblStation"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": -16,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": -16,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": -16,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Station"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtStation"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.station"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStation"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 7,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 7,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 7,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0,
+                "vertical": 7
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\ttry:\n\t\tarea \u003d self.session.custom.CurrentAreaId\n\t\tsystem.perspective.print(\"inside the code\")\n\t\tline \u003d self.session.custom.CurrentLineId\n\t\tworkStation \u003d self.view.params.station\n\t\tserialNumber\u003dself.view.params.serialNumber\n\t\torderNumber\u003dself.view.params.order\n\t\tbom \u003dself.view.params.bom\n\t\tcreatedBy\u003d self.session.custom.loggedInUserId\n\t\toperatorID\u003d self.session.custom.operatorID\n\t\t\n\t\t#Defect Category\n\t\tdefectCategory\u003dself.parent.parent.parent.getChild(\"FlexContainer\").getChild(\"cntDefectOptions\").getChild(\"cntDefectCategory\").getChild(\"drpDefectCatergory\").props.value\n\t\tsystem.perspective.print(\"defectCategory: %s\"%defectCategory)\n\t\t\n\t\t#Defect Name\n\t\tdefectName \u003d self.parent.parent.parent.getChild(\"FlexContainer\").getChild(\"cntDefectOptions\").getChild(\"cntDefectName\").getChild(\"drpDefectName\").props.value\n\t\tsystem.perspective.print(\"defectName: %s\"%defectName)\n\t\t\n\t\t#Defect Subname\n\t\tdefectListTable \u003d self.parent.parent.parent.getChild(\"FlexContainer\").getChild(\"FlexContainer\").getChild(\"tblSubDefectName\").props.data\n\t\tsystem.perspective.print(\"defectListTable: %s\"%defectListTable)\n\t\t\n\t\tselectedRow\u003dself.parent.parent.parent.getChild(\"FlexContainer\").getChild(\"FlexContainer\").getChild(\"tblSubDefectName\").props.selection.selectedRow\n\t\tsystem.perspective.print(\"selectedRow: %s\"%selectedRow)\n\t\tif(len(defectListTable) \u003e 0):\n\t\t\tfor row in range(len(defectListTable)):\n\t\t\t\tisSelect \u003d defectListTable[row][\u0027Select\u0027]\n\t\t\t\tif(str(isSelect) \u003d\u003d \u0027True\u0027 or str(isSelect) \u003d\u003d \u00271\u0027):\n\t\t\t\t\tDefectSubname\u003d defectListTable[row][\u0027Defect SubName\u0027]\n\t\t\t\t\tcomment\u003d defectListTable[row][\u0027Comments\u0027]\n\t\t\t\t\tparams\u003d {\u0027Area\u0027:area ,\u0027Line\u0027:line,\u0027Comment\u0027:comment, \u0027WorkStation\u0027:workStation, \u0027SerialNumber\u0027:serialNumber, \u0027OrderNo\u0027:orderNumber, \u0027CreatedBy\u0027:createdBy, \u0027BOM\u0027:bom, \u0027DefectCategory\u0027:defectCategory, \u0027DefectName\u0027 :defectName, \u0027DefectSubName\u0027: DefectSubname,\u0027OperatorId\u0027:operatorID}\n\t\t\t\t\tsystem.perspective.print(\"parameters in confirm button%s\"%params)\n\t\t\t\t\tinsertDetails \u003d system.db.runNamedQuery(\u0027Project_VECV/Quality/insertDefectsQuality\u0027,params)\n\t\tsystem.perspective.sendMessage(\u0027RefreshDefectCheck\u0027)\n\t\tsystem.perspective.sendMessage(\u0027refreshQGdefectTab\u0027)\n\t\tsystem.perspective.closePopup(\u0027\u0027)\n\t\tstate \u003d \u0027Warning\u0027\n\t\tmessage \u003d \"Defect added for serial number %s\"%(serialNumber)\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\ttry:\n\t\t    stationName\u003dworkStation\n\t\t    state\u003d\u0027Info\u0027\n\t\t    userName\u003dself.session.custom.loggedInUser\n\t\t    ipAddress\u003dself.session.custom.currentIpAddress\n\t\t    Project_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,message)\n\t\texcept:\n\t\t\tsystem.perspective.print(\"Logging Failed -\u003d\u003e stationName: %s, userName: %s\"%stationName %userName)\n\texcept exception as e:\n\t\t\tsystem.perspective.print(\"In defect Save button Error\u003d %s\"%e)\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnConfirm"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 8,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 4
+                        },
+                        {
+                          "colIndex": 8,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 4
+                        },
+                        {
+                          "colIndex": 8,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 6
+                        }
+                      ],
+                      "height": 41
+                    },
+                    "props": {
+                      "image": {
+                        "position": "right"
+                      },
+                      "style": {
+                        "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+                      },
+                      "text": "Confirm"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntConfirm"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    }
+                  ],
+                  "height": 43
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "draggable": true,
+                            "id": "QualityDefect",
+                            "modal": false,
+                            "overlayDismiss": false,
+                            "resizable": true,
+                            "showCloseIcon": true,
+                            "type": "close",
+                            "viewPath": "Project_VECV/PopUp/Quality/Quality Defect",
+                            "viewportBound": false
+                          },
+                          "scope": "C",
+                          "type": "popup"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnClose"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 4
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 4
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 4
+                        }
+                      ],
+                      "height": 41
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+                      },
+                      "text": "Close"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntClose"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 5,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    },
+                    {
+                      "colIndex": 5,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 6
+                    }
+                  ],
+                  "height": 41
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntFooter"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 47
+            },
+            "props": {
+              "style": {
+                "marginTop": "1rem"
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.parent.getChild(\"btnReset\").meta.visible\u003d0"
+                          },
+                          "enabled": false,
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "embeddedCapturedDefect"
+                    },
+                    "propConfig": {
+                      "props.params.order": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.order"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.serialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.station": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.station"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/PopUp/Quality/CaptureDefects"
+                    },
+                    "type": "ia.display.view"
+                  }
+                ],
+                "meta": {
+                  "name": "tab"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 376
+                },
+                "props": {
+                  "tabSize": {
+                    "height": 30,
+                    "width": 150
+                  },
+                  "tabStyle": {
+                    "active": {
+                      "backgroundColor": "#1D1D97",
+                      "color": "#FFFFFF",
+                      "fontFamily": "Cambria"
+                    },
+                    "inactive": {
+                      "fontFamily": "Cambria"
+                    }
+                  },
+                  "tabs": [
+                    "Captured Defects"
+                  ]
+                },
+                "type": "ia.container.tab"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t#Reset values\n\tpayload\u003d0\n\tsystem.perspective.sendMessage(\"refreshTable\", payload)\n\tself.parent.parent.getChild(\"FlexContainer\").getChild(\"cntDefectOptions\").getChild(\"cntDefectCategory\").getChild(\"drpDefectCatergory\").props.value \u003d -1\n\tself.parent.parent.getChild(\"FlexContainer\").getChild(\"cntDefectOptions\").getChild(\"cntDefectName\").getChild(\"drpDefectName\").props.value \u003d -1\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnReset"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 10,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 33
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button",
+                    "marginRight": 5
+                  },
+                  "text": "Reset"
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntTab"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 6
+                }
+              ],
+              "height": "auto"
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lblDefectCatergory"
+                        },
+                        "position": {
+                          "basis": "2rem"
+                        },
+                        "props": {
+                          "text": "Defect Category",
+                          "textStyle": {
+                            "fontWeight": "bold"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpDefectCatergory"
+                        },
+                        "position": {
+                          "basis": "2rem"
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "queryPath": "Project_VECV/Quality/getDefectCategory"
+                              },
+                              "type": "query"
+                            }
+                          }
+                        },
+                        "props": {
+                          "placeholder": {
+                            "color": "#C0C0C0C7",
+                            "text": "Select.."
+                          },
+                          "style": {
+                            "borderBottomLeftRadius": "5px",
+                            "borderBottomRightRadius": "5px",
+                            "borderTopLeftRadius": "5px",
+                            "borderTopRightRadius": "5px"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntDefectCategory"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "marginRight": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lblArea"
+                        },
+                        "position": {
+                          "basis": "2rem"
+                        },
+                        "props": {
+                          "text": "Defect Name",
+                          "textStyle": {
+                            "fontWeight": "bold"
+                          }
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpDefectName"
+                        },
+                        "position": {
+                          "basis": "2rem"
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "parameters": {
+                                  "DefectCategory": "{.../cntDefectCategory/drpDefectCatergory.props.value}"
+                                },
+                                "queryPath": "Project_VECV/Defects/defectNameQuality"
+                              },
+                              "type": "query"
+                            }
+                          }
+                        },
+                        "props": {
+                          "placeholder": {
+                            "color": "#C0C0C0C7",
+                            "text": "Select.."
+                          },
+                          "style": {
+                            "borderBottomLeftRadius": "5px",
+                            "borderBottomRightRadius": "5px",
+                            "borderTopLeftRadius": "5px",
+                            "borderTopRightRadius": "5px"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntDefectName"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "props": {
+                      "direction": "column",
+                      "style": {
+                        "marginLeft": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDefectOptions"
+                },
+                "position": {
+                  "basis": "100%"
+                },
+                "props": {
+                  "alignItems": "flex-start",
+                  "style": {
+                    "marginTop": "2rem"
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onEditCellCommit": {
+                          "config": {
+                            "script": "\tsystem.perspective.print(\"In sub defect\")\n\tvalueToSet \u003d event.value\n\tsystem.perspective.print(\"Value: %s\"%valueToSet)\n\tself.props.data[event.row][event.column] \u003d valueToSet\n\tsystem.perspective.print(\"event.row: %s\"%self.props.data[event.row][event.column])"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      },
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.parent.getChild(\"btnReset\").meta.visible\u003d1"
+                          },
+                          "enabled": false,
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "tblSubDefectName"
+                    },
+                    "position": {
+                      "basis": "100%"
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "DefectName": "{.../cntDefectOptions/cntDefectName/drpDefectName.props.value}"
+                            },
+                            "queryPath": "Project_VECV/Defects/subnameQuality",
+                            "returnFormat": "json"
+                          },
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "cells": {
+                        "allowEditOn": "single-click"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "Select",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "boolean",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "DefectName",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Defect Sub Name"
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "Comments",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": "Comment"
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        }
+                      ],
+                      "filter": {
+                        "enabled": true,
+                        "style": {
+                          "backgroundColor": "#f4f4f4"
+                        }
+                      },
+                      "pager": {
+                        "bottom": false,
+                        "initialOption": 10
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "refreshTable",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 10/06/2024\n\t\tPurpose: Refresh table to show defects. \n\t\"\"\"\n\t# implement your handler here\n\tserialNumber \u003d self.view.params.serialNumber\n\torderNumber \u003dself.view.params.order\n\tworkStationName \u003d self.view.params.station\n\tparams\u003d {\u0027SerialNumber\u0027:serialNumber,\u0027OrderNumber\u0027:orderNumber,\u0027WorkStationName\u0027:workStationName}\n\trefreshedData \u003d system.db.runNamedQuery(\u0027Project_VECV/Quality/getDefect\u0027,(params))\n\trefreshfulfilDataList\u003d[]\n\tfor row in range(len(refreshedData)):\n\t\tdefectName \u003d refreshedData[row][\u0027DefectName\u0027]\n\t\tcomments\u003drefreshedData[row][\u0027Comments\u0027]\n\t\trefreshfulfilDataList.append({\"DefectName\":defectName,\"Comments\":comments})\t\t\n\t\tsystem.perspective.print(\u0027refreshfulfilDataList\u0027+str(refreshfulfilDataList))\n\tself.props.data\u003drefreshfulfilDataList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "RefreshDefectCheck",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.data\")\n\tself.props.selection.selectedRow\u003d-1\n\tself.props.selection.selectedColumn\u003d\u0027\u0027",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "100%"
+                },
+                "props": {
+                  "style": {
+                    "height": "17.5rem",
+                    "marginTop": "2rem"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 2,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                }
+              ],
+              "height": 411
+            },
+            "props": {
+              "alignContent": "flex-start",
+              "alignItems": "flex-start",
+              "wrap": "wrap"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          },
+          "style": {
+            "padding": "10px"
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,2 @@
+select top 10 d.CreatedDate AS 'Scan Date', E.SerialNumber as'RA Serial Number',D.ConsumedSerialNumbeR as 'DH Serial Number' from TRN_Station_Events as E inner join TRN_Operation_Data D on D.TRN_Station_Events_Id=e.TRN_Station_Events_Id
+where MST_OPDefinition_Id='3'and MST_Event_Id='5'  and   D.ConsumedSerialNumbeR = :DHserialNumber and E.MST_WorkStation_Id='319' and D.ConsumedPartNumber !='' and D.ConsumedSerialNumber !=''   order by e.CreatedDate desc

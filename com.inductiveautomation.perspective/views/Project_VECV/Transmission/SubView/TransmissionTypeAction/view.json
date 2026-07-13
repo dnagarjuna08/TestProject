@@ -1,0 +1,194 @@
+{
+  "custom": {},
+  "params": {
+    "deleteValue": "",
+    "editValue": "",
+    "value": {
+      "Design": "",
+      "Id": "",
+      "Model": "",
+      "PunchingCode": "",
+      "PunchingGroup": "",
+      "TMCode": "",
+      "WormSpeedoRatio": ""
+    }
+  },
+  "propConfig": {
+    "params.deleteValue": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.editValue": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 72
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "#\t\tsystem.perspective.openPopup(\u0027TransmissionTypePopupId\u0027,\u0027Project_VECV/Transmission/Popup/TransmissionTypePopup\u0027,params \u003d {\u0027ID\u0027:int(self.view.params.value.ID),\u0027TMCode\u0027:str(self.view.params.value.TMCode),\u0027Model\u0027:str(self.view.params.value.Model),\u0027PunchingCode\u0027:str(self.view.params.value.PunchingCode),\n#\t\t\u0027PunchingGroup\u0027:str(self.view.params.value.PunchingGroup),\u0027WormSpeedoRatio\u0027:str(self.view.params.value.WormSpeedoRatio),\u0027Design\u0027:str(self.view.params.Design)},position \u003d {\u0027left\u0027:200,\u0027top\u0027:100,\u0027width\u0027:1050,\u0027height\u0027:230})"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "editIcon",
+              "tooltip": {
+                "enabled": true,
+                "text": "Edit"
+              }
+            },
+            "position": {
+              "basis": "21px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "#FFFFFF",
+              "path": "material/create",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tvalue \u003d self.view.params.value\n\tsystem.perspective.openPopup(\u0027TransmissionTypePopupId\u0027,\u0027Project_VECV/Transmission/Popup/TransmissionTypePopup\u0027,params \u003d {\u0027Id\u0027:int(value[\u0027value\u0027][\u0027Id\u0027]),\u0027TMCode\u0027:str(value[\u0027value\u0027][\u0027TMCode\u0027]),\u0027Model\u0027:str(value[\u0027value\u0027][\u0027Model\u0027]),\u0027PunchingCode\u0027:str(value[\u0027value\u0027][\u0027PunchingCode\u0027]),\n\t\u0027PunchingGroup\u0027:str(value[\u0027value\u0027][\u0027PunchingGroup\u0027]),\u0027WormSpeedoRatio\u0027:str(value[\u0027value\u0027][\u0027WormSpeedoRatio\u0027]),\u0027Design\u0027:str(value[\u0027value\u0027][\u0027Design\u0027])},modal \u003d True,draggable \u003d False)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FlexContainer_0",
+          "tooltip": {
+            "enabled": true,
+            "text": "Edit"
+          }
+        },
+        "position": {
+          "basis": "34px"
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-evenly",
+          "style": {
+            "backgroundColor": "#0000FF",
+            "borderBottomLeftRadius": "100%",
+            "borderBottomRightRadius": "100%",
+            "borderTopLeftRadius": "100%",
+            "borderTopRightRadius": "100%",
+            "height": "30px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "#\tid \u003d self.view.params.deleteValue\n\tvalue \u003d self.view.params.value\n\tid \u003d int(value[\u0027value\u0027][\u0027Id\u0027])\n\tfolder \u003d \"Project_VECV/Transmission/TransmissionType\"\n\tcolName\u003d \"Id\"\n\tstate \u003d \u0027info\u0027\n\tmessage \u003d \u0027Are you sure you want to delete the Transmission Type data?\u0027\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), \"Confirm\", str(message), \"true\", \"No\", \"Yes\", \"close\", \"check\", \"right\", \"closePopup\", \"deleteNewPop\", \"closePopup\", colName,folder,id,\u0027\u0027)\n\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "deleteIcon",
+              "tooltip": {
+                "enabled": true,
+                "text": "Delete"
+              }
+            },
+            "position": {
+              "basis": "24px",
+              "shrink": 0
+            },
+            "props": {
+              "color": "#FFFFFF",
+              "path": "material/delete_forever",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tvalue \u003d self.view.params.value\n\tid \u003d int(value[\u0027value\u0027][\u0027Id\u0027])\n\tsystem.perspective.print(self.session.custom.loggedInUserId)\n\tfolder \u003d \"Project_VECV/Transmission/TransmissionType\"\n\tcolName\u003d \"Id\"\n\tstate \u003d \u0027info\u0027\n\tmessage \u003d \u0027Are you sure you want to delete the Transmission Type data?\u0027\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), \"Confirm\", str(message), \"true\", \"No\", \"Yes\", \"close\", \"check\", \"right\", \"closePopup\", \"deleteNewPop\", \"closePopup\", colName,folder,id,\u0027\u0027)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FlexContainer",
+          "tooltip": {
+            "enabled": true,
+            "text": "Delete"
+          }
+        },
+        "position": {
+          "basis": "33px"
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-evenly",
+          "style": {
+            "backgroundColor": "#FF4747",
+            "borderBottomLeftRadius": "100%",
+            "borderBottomRightRadius": "100%",
+            "borderTopLeftRadius": "100%",
+            "borderTopRightRadius": "100%",
+            "height": "30px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root",
+      "tooltip": {
+        "enabled": true,
+        "style": {
+          "backgroundColor": "#AAAAAA",
+          "color": "#FFFFFF"
+        }
+      }
+    },
+    "props": {
+      "justify": "space-between"
+    },
+    "type": "ia.container.flex"
+  }
+}

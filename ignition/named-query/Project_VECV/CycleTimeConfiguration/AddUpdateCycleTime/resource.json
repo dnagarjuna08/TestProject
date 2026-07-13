@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "445ff42dc3810bd44fbc538aeb3bc3ef03c814614f065c03c525b6ae45dc3546",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GroupID",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ShiftID",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CycleTime",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MSTCycleTimeId",
+        "sqlType": 3
+      }
+    ]
+  }
+}

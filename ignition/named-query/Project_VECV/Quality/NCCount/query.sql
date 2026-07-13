@@ -1,0 +1,1 @@
+select count(*) as count from TRN_OPNonConformance where MST_WorkStation_Id=:MST_WorkStation_Id and SerialNumber = :SerialNumber

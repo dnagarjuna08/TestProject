@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a654dc7221d8618423db962921acb0ff9bec72715603346ae1d2b6091f349ad8",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "PrevOrder",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaID",
+        "sqlType": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tsystem.perspective.print(\"OnStartup subView columnIndex\u003d%s rowData\u003d%s \"%(self.params.columnIndex,self.params.rowData))\n\tsystem.perspective.sendMessage(\"ErrorProofQgScan\", scope\u003d\u0027page\u0027)"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "columnIndex": "value",
+    "rowData": "value",
+    "value": "value"
+  },
+  "propConfig": {
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 32,
+      "width": 127
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "suppressChangeScript": "True"
+        },
+        "meta": {
+          "name": "ScanPart"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d 1 or str(value) \u003d\u003d \u00271\u0027:\n\t\treturn True\n\telse:\n\t\treturn False\n\t\t ",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "path": "view.params.value"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value \u003d\u003d 1 or str(value) \u003d\u003d \u00271\u0027:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "onChange": {
+              "enabled": null,
+              "script": "\ttry:\n\t    system.perspective.print(\"currentValue start of block %s\" % currentValue.value)\n\t    system.perspective.print(\"val0 in text change %s\" % self.props.text)\n\t\n\t    if currentValue.value not in [False, 0, None, \u0027\u0027] and str(currentValue.value).strip() !\u003d \u0027\u0027:\n\t        rowData \u003d self.view.params.rowData\n\t        system.perspective.print(\"scanpart.props.text changeScript rowData \u003d %s\" % rowData)\n\t\n\t        PartNumber \u003d rowData[\u0027PartName\u0027]\n\t        AlternatePart \u003d rowData[\u0027AlternatePart\u0027]\n\t        MST_ErrorProof_id \u003d rowData[\u0027ErrorProofId\u0027]\n\t\n\t        system.perspective.print(\"currentValue inside block \u003d %s\" % currentValue.value)\n\t        system.perspective.print(\"AlternatePart inside block \u003d %s\" % str(AlternatePart))\n\t\n\t        # Split and clean AlternatePart list\n\t        AlternatePartList \u003d [part.strip() for part in AlternatePart.split(\",\") if part.strip()]\n\t        system.perspective.print(\"AlternatePart List: %s\" % AlternatePartList)\n\t\n\t        # Matching logic\n\t        match_found \u003d (\n\t            str(PartNumber).upper() in str(currentValue).upper()\n\t            or any(str(part).upper() in str(currentValue).upper() for part in AlternatePartList)\n\t        ) and (\n\t            len(str(PartNumber)) \u003c\u003d len(str(currentValue))\n\t            or any(len(str(part)) \u003c\u003d len(str(currentValue)) for part in AlternatePartList)\n\t        )\n\t\n\t        if match_found:\n\t            PartID \u003d currentValue.value[1:].split(\"#\", 1)[0]\n\t\n\t            params \u003d {\n\t                \u0027MST_Area_Id\u0027: self.session.custom.CurrentAreaId,\n\t                \u0027MST_Line_Id\u0027: self.session.custom.CurrentLineId,\n\t                \u0027MST_Shift_Id\u0027: 1,\n\t                \u0027MST_WorkStation_Id\u0027: self.session.custom.CurrentWorkStationId,\n\t                \u0027MST_Event_Id\u0027: 3,\n\t                \u0027M_BOM_Id\u0027: self.session.custom.BOMId,\n\t                \u0027OrderNumber\u0027: self.session.custom.orderNumber,\n\t                \u0027SerialNumber\u0027: self.session.custom.DashBoardSerialNumber,\n\t                \u0027MST_OPDefinition_Id\u0027: 3,\n\t                \u0027OperatorID\u0027: 1,\n\t                \u0027IsExceedTime\u0027: 0,\n\t                \u0027MST_Status_Id\u0027: 2,\n\t                \u0027IsActive\u0027: 1,\n\t                \u0027IsDeleted\u0027: 0,\n\t                \u0027CreatedBy\u0027: self.session.custom.CurrentWorkStationId,\n\t                \u0027PartNumber\u0027: PartID,\n\t                \u0027ConsumedSerialNumber\u0027: self.session.custom.DashBoardSerialNumber,\n\t                \u0027ConsumedPartNumber\u0027: currentValue.value,\n\t                \u0027MST_ErrorProof_id\u0027: MST_ErrorProof_id\n\t            }\n\t\n\t            system.perspective.print(\"scanpart.props.text changeScript Params \u003d %s\" % params)\n\t            system.db.runNamedQuery(\"Project_VECV/Quality/checksheet/insertEfData\", params)\n\t            self.props.text \u003d \u0027\u0027\n\t            system.perspective.sendMessage(\u0027RefreshErrorProofingQG\u0027, scope\u003d\u0027session\u0027)\n\t            system.perspective.print(\"Val1 in change Script %s\" % self.props.text)\n\t\n\t            try:\n\t                system.perspective.print(\"scanpart.props.text changeScript Data Saved To Logs\")\n\t            except:\n\t                pass\n\t\n\t        else:\n\t            self.props.text \u003d \u0027\u0027\n\t            state \u003d \u0027Warning\u0027\n\t            message \u003d \"Incorrect Part Scan. Please scan or enter the correct part.\"\n\t\n\t            Project_VECV.PopUp.Alerts.showAlert(\n\t                str(state),\n\t                str(state.capitalize()),\n\t                str(message),\n\t                \"true\",\n\t                \"Okay\",\n\t                \"\", \"\", \"\", \"\",\n\t                \"closePopup\", \"closePopup\", \"closePopup\",\n\t                \"\", \"\", \"\", \"\"\n\t            )\n\t\n\t            try:\n\t                system.perspective.print(\"scanpart.props.text changeScript Incorrect Part Alert Triggered\")\n\t            except:\n\t                pass\n\t\n\texcept Exception as e:\n\t    system.perspective.print(\"Error in scanpart.props.text changeScript change: %s\" % str(e))"
+            }
+          }
+        },
+        "props": {
+          "rejectUpdatesWhileFocused": false,
+          "spellcheck": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "TabErrorFocus",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tsystem.perspective.print(\u0027Scanpart TabErrorFocus inside\u0027)\n\tself.focus()",
+              "sessionScope": true,
+              "viewScope": false
+            },
+            {
+              "messageType": "ErrorProofQgScan",
+              "pageScope": true,
+              "script": "\tsystem.perspective.print(\u0027Scanpart ErrorProofQgScan inside\u0027)\n\tself.props.text\u003d\u0027\u0027\n\tself.focus()",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tself.focus()"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

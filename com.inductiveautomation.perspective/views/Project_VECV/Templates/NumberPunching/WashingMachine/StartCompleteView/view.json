@@ -1,0 +1,60 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 34,
+      "width": 80
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "btnStart"
+        },
+        "position": {
+          "height": 34,
+          "width": 80
+        },
+        "props": {
+          "text": "Start"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "btnComplete"
+        },
+        "position": {
+          "height": 34,
+          "width": 80
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "path": "../btnStart.meta.visible"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value:\n\t\treturn False\n\treturn True",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "text": "Complete"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#24249D",
+      "borderWidth": "0px",
+      "borderRadius": "0px",
+      "color": "#FFFFFF",
+      "fontFamily": "Cambria",
+      "fontSize": "14px",
+      "outlineWidth": "0"
+    }
+  }
+}

@@ -1,0 +1,2117 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: If previous page not logged in then revert to login page. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsModelConfigurationAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Model Configuration\"\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Model Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/ModelConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e Model Configuration\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Code": -1,
+    "Mode": "",
+    "Model": ""
+  },
+  "propConfig": {
+    "params.Code": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.Mode": {
+      "paramDirection": "output",
+      "persistent": true
+    },
+    "params.Model": {
+      "paramDirection": "output",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblHeader"
+        },
+        "position": {
+          "height": 0.0317,
+          "width": 0.1842,
+          "x": 0.0053,
+          "y": 0.0102
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/TopNavigation/Navigation"
+          },
+          "text": "Model Configuration:",
+          "textStyle": {
+            "color": "#000000"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "cntLoader",
+          "visible": 0
+        },
+        "position": {
+          "height": 0.1904,
+          "width": 0.1448,
+          "x": 0.4006,
+          "y": 0.4302
+        },
+        "propConfig": {
+          "props.params.isLoader": {
+            "binding": {
+              "config": {
+                "path": "this.meta.visible"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Project_VECV/Templates/Loader"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: Add/Update data on row selection. \n\t\"\"\"\n\ttry:\n\t\tselectedRow \u003d self.props.selection.data\n\t\tmessageType \u003d \u0027modelPanel\u0027   \n\t\theaderLabel \u003d \"Edit\"\n\t\tAction \u003d \"Update\"\n\t\tsystem.perspective.print(selectedRow)\n\t\t# [{u\u0027LineTypeCode\u0027: u\u0027TA\u0027, u\u0027BOM_Code\u0027: u\u0027TM567\u0027, u\u0027IsActive\u0027: True, u\u0027Mode\u0027: u\u0027Verticle\u0027, u\u0027Id\u0027: 36L, u\u0027IsConfigured\u0027: True}]\n\t\tfor data in\tselectedRow:\n\t\t\tId \u003d data[\u0027MST_ModelConfiguration_Id\u0027]\n\t\t\tlineTypeCode \u003d data[\"LineTypeCode\"]\n\t\t\tbOM_Code \u003d data[\"M_BOMNumber\"]\n\t\t\tisActive\u003ddata[\"IsActive\"]\n\t\t\tif isActive:\n\t\t\t\tisActive \u003d 1\n\t\t\telse:\n\t\t\t\tisActive \u003d 0\n\t\t\tmode \u003d data[\"Mode\"]\n\t\t\tisConfigured\u003ddata[\"IsConfigured\"]\n\t\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\u0027lineTypeCode\u0027:data[\"LineTypeCode\"],\n\t\t\t\u0027code\u0027:data[\"M_BOM_Id\"],\n\t\t\t\u0027mode\u0027:data[\"Mode\"],\n\t\t\t\u0027isActive\u0027:isActive,\n\t\t\t\u0027isConfigured\u0027:data[\"IsConfigured\"],\n\t\t\t\u0027Action\u0027:Action}\t\n\t\t\t\t\n\t\tfolderName \u003d \u0027Project_VECV/ModelConfiguration\u0027\n\t\tcolName \u003d \u0027Id\u0027\n\t\tself.session.custom.selectedModelConfigId\u003d Id\n\t\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\u0027rightView\u0027)\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1,\"id\":int(Id),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\t\t\n\texcept:\n\t\tscreenName \u003d\u0027model Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/Model ConfigurationDraft\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onRowClick -\u003e cntBody/tblModelMaster\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblModelMaster"
+                },
+                "position": {
+                  "height": 460,
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "FilterCode": "{view.params.Code}",
+                          "FilterLineTypeCode": "{view.params.Model}",
+                          "FilterMode": "{view.params.Mode}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tFilterMode \u003d value[\"FilterMode\"]\n\tFilterLineTypeCode \u003d value[\"FilterLineTypeCode\"]\n\tif FilterMode  \u003d\u003d \u0027\u0027:\n\t\tFilterMode \u003d \u0027\u0027\n\tif FilterLineTypeCode \u003d\u003d \u0027\u0027:\n\t\tFilterLineTypeCode \u003d \u0027\u0027\n\tFilterCode \u003d value[\"FilterCode\"]\n\tparams\u003d{\u0027FilterMode\u0027:FilterMode,\u0027FilterLineTypeCode\u0027:FilterLineTypeCode,\u0027FilterCode\u0027:FilterCode}\n\tsystem.perspective.print(params)\n\treturn system.db.runNamedQuery(\u0027Project_VECV/Master/ModelConfiguration/getModelView\u0027,params)",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "M_BOMNumber",
+                      "filter": {
+                        "boolean": {
+                          "condition": ""
+                        },
+                        "date": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "enabled": false,
+                        "number": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "string": {
+                          "condition": "",
+                          "value": ""
+                        },
+                        "visible": "on-hover"
+                      },
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "BOM Code"
+                      },
+                      "justify": "auto",
+                      "nullFormat": {
+                        "includeNullStrings": false,
+                        "nullFormatValue": "",
+                        "strict": false
+                      },
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "max": 100,
+                        "min": 0,
+                        "track": {
+                          "color": "",
+                          "style": {
+                            "classes": ""
+                          }
+                        },
+                        "value": {
+                          "enabled": true,
+                          "format": "0,0.##",
+                          "justify": "center",
+                          "style": {
+                            "classes": ""
+                          }
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "",
+                          "unselected": ""
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "LineTypeCode",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Mode",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "left",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsActive",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsConfigured",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "BOM_Id",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true,
+                    "results": {
+                      "enabled": true
+                    }
+                  },
+                  "headerGroups": [
+                    []
+                  ],
+                  "pager": {
+                    "initialOption": 10
+                  },
+                  "rows": {
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    },
+                    "subview": {
+                      "viewPath": "Templates/EditDelete"
+                    }
+                  },
+                  "style": {
+                    "classes": "Project_VECV/Table/Border"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRefresh",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: make table refersh and reset in panel. \n\t\"\"\"\n\ttry:\n\t\tself.refreshBinding(\"props.data\")\n\t\tself.session.custom.type\u003d\u0027Add\u0027\n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027modelPanel\u0027  \n\t\tAction \u003d \"Save\" \t\t\t\t\n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027id\u0027:\u0027\u0027,\u0027code\u0027:-1,\u0027mode\u0027:\u0027\u0027,\u0027isActive\u0027:1,\u0027lineTypeCode\u0027:\u0027\u0027} \t\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\texcept:   \n\t#start of except block  \n\t\tscreenName \u003d\u0027Model Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/ModelPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onRowClick -\u003e cntBody/tblImage\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 480
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "Code:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpCode"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "queryPath": "Project_VECV/Master/ModelConfiguration/drpCode"
+                              },
+                              "type": "query"
+                            },
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d -1"
+                            }
+                          }
+                        },
+                        "props": {
+                          "options": {
+                            "$": [
+                              "ds",
+                              192,
+                              1760076154205
+                            ],
+                            "$columns": [
+                              {
+                                "data": [
+                                  9,
+                                  18,
+                                  19,
+                                  20,
+                                  21,
+                                  22,
+                                  23,
+                                  24,
+                                  25,
+                                  26,
+                                  27,
+                                  28,
+                                  29,
+                                  30,
+                                  31,
+                                  32,
+                                  33,
+                                  34,
+                                  35,
+                                  36,
+                                  37,
+                                  38,
+                                  39,
+                                  40,
+                                  41,
+                                  42,
+                                  43,
+                                  44,
+                                  45,
+                                  46,
+                                  47,
+                                  48,
+                                  49,
+                                  50,
+                                  51,
+                                  52,
+                                  53,
+                                  54,
+                                  55,
+                                  56,
+                                  57,
+                                  58,
+                                  59,
+                                  60,
+                                  61,
+                                  62,
+                                  63,
+                                  64,
+                                  65,
+                                  66,
+                                  67,
+                                  68,
+                                  69,
+                                  70,
+                                  71,
+                                  72,
+                                  73,
+                                  74,
+                                  75,
+                                  76,
+                                  77,
+                                  78,
+                                  79,
+                                  80,
+                                  81,
+                                  82,
+                                  83,
+                                  84,
+                                  85,
+                                  86,
+                                  87,
+                                  88,
+                                  89,
+                                  90,
+                                  91,
+                                  92,
+                                  93,
+                                  94,
+                                  95,
+                                  96,
+                                  97,
+                                  98,
+                                  99,
+                                  100,
+                                  101,
+                                  102,
+                                  103,
+                                  104,
+                                  105,
+                                  106,
+                                  107,
+                                  108,
+                                  109,
+                                  110,
+                                  111,
+                                  112,
+                                  113,
+                                  114,
+                                  115,
+                                  116,
+                                  117,
+                                  118,
+                                  119,
+                                  120,
+                                  121,
+                                  122,
+                                  123,
+                                  124,
+                                  125,
+                                  126,
+                                  127,
+                                  128,
+                                  129,
+                                  130,
+                                  131,
+                                  132,
+                                  133,
+                                  134,
+                                  135,
+                                  136,
+                                  137,
+                                  138,
+                                  139,
+                                  140,
+                                  141,
+                                  142,
+                                  143,
+                                  144,
+                                  145,
+                                  146,
+                                  147,
+                                  148,
+                                  149,
+                                  150,
+                                  151,
+                                  152,
+                                  153,
+                                  154,
+                                  155,
+                                  156,
+                                  157,
+                                  158,
+                                  159,
+                                  160,
+                                  161,
+                                  162,
+                                  163,
+                                  164,
+                                  165,
+                                  166,
+                                  167,
+                                  168,
+                                  169,
+                                  170,
+                                  171,
+                                  172,
+                                  173,
+                                  174,
+                                  175,
+                                  176,
+                                  177,
+                                  178,
+                                  179,
+                                  180,
+                                  181,
+                                  182,
+                                  183,
+                                  184,
+                                  185,
+                                  186,
+                                  187,
+                                  188,
+                                  189,
+                                  190,
+                                  191,
+                                  192,
+                                  193,
+                                  194,
+                                  195,
+                                  196,
+                                  197,
+                                  198,
+                                  199,
+                                  200,
+                                  201,
+                                  202,
+                                  203,
+                                  204,
+                                  205,
+                                  206,
+                                  207,
+                                  208,
+                                  209,
+                                  210,
+                                  211,
+                                  212,
+                                  213,
+                                  214,
+                                  215,
+                                  216,
+                                  217,
+                                  218,
+                                  219,
+                                  220,
+                                  221,
+                                  222,
+                                  223,
+                                  224,
+                                  225,
+                                  226,
+                                  227,
+                                  228,
+                                  229,
+                                  230,
+                                  231,
+                                  232,
+                                  233,
+                                  234,
+                                  235,
+                                  236,
+                                  237,
+                                  238,
+                                  239,
+                                  240,
+                                  241,
+                                  242,
+                                  243,
+                                  244,
+                                  245,
+                                  246,
+                                  247,
+                                  248,
+                                  249,
+                                  250,
+                                  251,
+                                  252,
+                                  253,
+                                  254,
+                                  255,
+                                  256,
+                                  257,
+                                  258,
+                                  259,
+                                  260,
+                                  261,
+                                  262,
+                                  263,
+                                  264,
+                                  265,
+                                  266,
+                                  267,
+                                  268,
+                                  269,
+                                  270,
+                                  271,
+                                  272,
+                                  273,
+                                  274,
+                                  275,
+                                  276,
+                                  277,
+                                  278,
+                                  279,
+                                  280,
+                                  281,
+                                  282,
+                                  283,
+                                  284,
+                                  285,
+                                  286,
+                                  287,
+                                  288,
+                                  289,
+                                  290,
+                                  291,
+                                  292,
+                                  293,
+                                  294,
+                                  295,
+                                  296,
+                                  297,
+                                  298,
+                                  299,
+                                  300,
+                                  301,
+                                  302,
+                                  303,
+                                  304,
+                                  305,
+                                  306,
+                                  307,
+                                  308,
+                                  309,
+                                  310,
+                                  311,
+                                  312,
+                                  313,
+                                  314,
+                                  315,
+                                  316,
+                                  317,
+                                  318,
+                                  319,
+                                  320,
+                                  321,
+                                  322,
+                                  323,
+                                  324,
+                                  325,
+                                  326,
+                                  327,
+                                  328,
+                                  329,
+                                  330,
+                                  331,
+                                  332,
+                                  333,
+                                  334,
+                                  335,
+                                  336,
+                                  337,
+                                  338,
+                                  339,
+                                  340,
+                                  341,
+                                  342,
+                                  343,
+                                  344,
+                                  345,
+                                  346,
+                                  347,
+                                  348,
+                                  349,
+                                  350,
+                                  351,
+                                  352,
+                                  353,
+                                  354,
+                                  355,
+                                  356,
+                                  357,
+                                  358,
+                                  359,
+                                  360,
+                                  361,
+                                  362,
+                                  363,
+                                  364,
+                                  365,
+                                  366,
+                                  367,
+                                  368,
+                                  369,
+                                  370,
+                                  371,
+                                  372,
+                                  373,
+                                  374,
+                                  375,
+                                  376,
+                                  377,
+                                  378,
+                                  379,
+                                  380,
+                                  381,
+                                  382,
+                                  383,
+                                  384,
+                                  385,
+                                  386,
+                                  387,
+                                  388,
+                                  389,
+                                  390,
+                                  391,
+                                  392,
+                                  393,
+                                  394,
+                                  395,
+                                  396,
+                                  397,
+                                  398,
+                                  399,
+                                  400,
+                                  401,
+                                  402,
+                                  403,
+                                  404,
+                                  405,
+                                  406,
+                                  407,
+                                  408,
+                                  409,
+                                  410,
+                                  411,
+                                  412,
+                                  413,
+                                  414,
+                                  415,
+                                  416,
+                                  417,
+                                  418,
+                                  419,
+                                  420,
+                                  421,
+                                  422,
+                                  423,
+                                  424,
+                                  425,
+                                  426,
+                                  427,
+                                  428,
+                                  429,
+                                  430,
+                                  431,
+                                  432,
+                                  433,
+                                  434,
+                                  435,
+                                  436,
+                                  437,
+                                  438,
+                                  439,
+                                  440,
+                                  441,
+                                  442,
+                                  443,
+                                  444,
+                                  445,
+                                  446,
+                                  447,
+                                  448,
+                                  449,
+                                  450,
+                                  451,
+                                  452,
+                                  453,
+                                  454,
+                                  455,
+                                  456,
+                                  457,
+                                  458,
+                                  459,
+                                  460,
+                                  461,
+                                  462,
+                                  463,
+                                  464,
+                                  465,
+                                  466,
+                                  467,
+                                  468,
+                                  469,
+                                  470,
+                                  471,
+                                  472,
+                                  473,
+                                  474,
+                                  475,
+                                  476,
+                                  477,
+                                  478,
+                                  479,
+                                  480,
+                                  481,
+                                  482,
+                                  483,
+                                  484,
+                                  485,
+                                  486,
+                                  487,
+                                  488,
+                                  489,
+                                  490,
+                                  491,
+                                  492,
+                                  493,
+                                  494,
+                                  495,
+                                  496,
+                                  502,
+                                  503,
+                                  504,
+                                  505,
+                                  506,
+                                  507,
+                                  508
+                                ],
+                                "name": "value",
+                                "type": "Integer"
+                              },
+                              {
+                                "data": [
+                                  "TM574",
+                                  "RA1002",
+                                  "RA1001",
+                                  "RA1099",
+                                  "RA567",
+                                  "RA310",
+                                  "RA592",
+                                  "RA305",
+                                  "RA587",
+                                  "TM991",
+                                  "RA329",
+                                  "RA585",
+                                  "RA566",
+                                  "RA394",
+                                  "RA313",
+                                  "RA580",
+                                  "RA319",
+                                  "RA347",
+                                  "RA308",
+                                  "RA324",
+                                  "RA326",
+                                  "RA316",
+                                  "RA581",
+                                  "RA569",
+                                  "RA334",
+                                  "RA339",
+                                  "RA382",
+                                  "RA555",
+                                  "TM567",
+                                  "RA391",
+                                  "RA325",
+                                  "RA381",
+                                  "RA311",
+                                  "RA351",
+                                  "RA373",
+                                  "RA209",
+                                  "RA564",
+                                  "RA387",
+                                  "RA214",
+                                  "RA338",
+                                  "RA312",
+                                  "RA363",
+                                  "RA337",
+                                  "RA327",
+                                  "RA336",
+                                  "RA540",
+                                  "RA341",
+                                  "RA320",
+                                  "RA570",
+                                  "RA332",
+                                  "RA323",
+                                  "RA264",
+                                  "RA307",
+                                  "RA303",
+                                  "RA296",
+                                  "RA350",
+                                  "RA349",
+                                  "RA317",
+                                  "RA357",
+                                  "RA372",
+                                  "RA361",
+                                  "RA385",
+                                  "RA380",
+                                  "RA379",
+                                  "RA386",
+                                  "RA398",
+                                  "RA360",
+                                  "RA576",
+                                  "RA400",
+                                  "RA294",
+                                  "RA405",
+                                  "RA514",
+                                  "RA575",
+                                  "RA545",
+                                  "RA538",
+                                  "RA577",
+                                  "RA556",
+                                  "RA352",
+                                  "RA579",
+                                  "RA565",
+                                  "RA548",
+                                  "RA331",
+                                  "RA793",
+                                  "RA574",
+                                  "RA854",
+                                  "RA730",
+                                  "RA799",
+                                  "RA354",
+                                  "RA403",
+                                  "RA375",
+                                  "RA402",
+                                  "RA378",
+                                  "RA890",
+                                  "RA862",
+                                  "RA855",
+                                  "RA416",
+                                  "RA340",
+                                  "RA875",
+                                  "RA374",
+                                  "RA591",
+                                  "RA358",
+                                  "RA362",
+                                  "RA588",
+                                  "RA330",
+                                  "RA414",
+                                  "RA348",
+                                  "RA562",
+                                  "TM563",
+                                  "TM547",
+                                  "RA529",
+                                  "RA852",
+                                  "RA516",
+                                  "RA851",
+                                  "RA751",
+                                  "RA847",
+                                  "RA318",
+                                  "RA739",
+                                  "RA810",
+                                  "RA924",
+                                  "RA950",
+                                  "RA202",
+                                  "TM310",
+                                  "TM1002",
+                                  "TM1001",
+                                  "TM1003",
+                                  "TM1004",
+                                  "TM1005",
+                                  "TM1006",
+                                  "TM1007",
+                                  "TM1008",
+                                  "TM1009",
+                                  "TM1010",
+                                  "TM1011",
+                                  "TM133",
+                                  "TM173",
+                                  "TM134",
+                                  "TM228",
+                                  "TM177",
+                                  "TM235",
+                                  "TM230",
+                                  "TM229",
+                                  "TM231",
+                                  "TM246",
+                                  "TM241",
+                                  "TM237",
+                                  "TM242",
+                                  "TM253",
+                                  "TM249",
+                                  "TM247",
+                                  "TM251",
+                                  "TM255",
+                                  "TM256",
+                                  "TM263",
+                                  "TM258",
+                                  "TM264",
+                                  "TM265",
+                                  "TM268",
+                                  "TM266",
+                                  "TM267",
+                                  "TM272",
+                                  "TM278",
+                                  "TM269",
+                                  "TM279",
+                                  "TM280",
+                                  "TM363",
+                                  "TM561",
+                                  "TM530",
+                                  "TM566",
+                                  "TM552",
+                                  "TM812",
+                                  "TM307",
+                                  "TM347",
+                                  "TM560",
+                                  "TM309",
+                                  "TM545",
+                                  "TM375",
+                                  "TM373",
+                                  "TM361",
+                                  "TM818",
+                                  "TM562",
+                                  "RA328",
+                                  "TM298",
+                                  "TM384",
+                                  "TM366",
+                                  "TM313",
+                                  "TM319",
+                                  "TM289",
+                                  "TM798",
+                                  "TM297",
+                                  "TM346",
+                                  "TM855",
+                                  "TM300",
+                                  "TM285",
+                                  "TM367",
+                                  "TM306",
+                                  "TM281",
+                                  "TM304",
+                                  "TM374",
+                                  "TM780",
+                                  "TM588",
+                                  "TM757",
+                                  "TM744",
+                                  "TM820",
+                                  "TM333",
+                                  "TM800",
+                                  "TM548",
+                                  "TM544",
+                                  "TM585",
+                                  "TM369",
+                                  "TM365",
+                                  "TM796",
+                                  "TM355",
+                                  "TM315",
+                                  "TM868",
+                                  "TM295",
+                                  "TM286",
+                                  "TM824",
+                                  "TM353",
+                                  "TM854",
+                                  "TM284",
+                                  "TM840",
+                                  "TM312",
+                                  "TM565",
+                                  "TM531",
+                                  "TM586",
+                                  "TM806",
+                                  "TM305",
+                                  "TM564",
+                                  "TM570",
+                                  "TM749",
+                                  "TM364",
+                                  "TM316",
+                                  "TM831",
+                                  "TM572",
+                                  "TM799",
+                                  "TM329",
+                                  "TM755",
+                                  "TM557",
+                                  "TM861",
+                                  "TM383",
+                                  "TM357",
+                                  "TM359",
+                                  "TM377",
+                                  "TM370",
+                                  "TM826",
+                                  "TM789",
+                                  "TM841",
+                                  "TM303",
+                                  "TM779",
+                                  "TM765",
+                                  "TM538",
+                                  "TM769",
+                                  "TM335",
+                                  "TM580",
+                                  "TM391",
+                                  "TM362",
+                                  "TM714",
+                                  "TM301",
+                                  "TM589",
+                                  "TM862",
+                                  "TM578",
+                                  "TM334",
+                                  "TM341",
+                                  "TM345",
+                                  "TM402",
+                                  "TM388",
+                                  "TM308",
+                                  "TM784",
+                                  "TM865",
+                                  "TM371",
+                                  "TM853",
+                                  "TM813",
+                                  "TM581",
+                                  "TM314",
+                                  "TM360",
+                                  "TM385",
+                                  "TM571",
+                                  "TM550",
+                                  "TM721",
+                                  "TM859",
+                                  "TM776",
+                                  "TM852",
+                                  "TM320",
+                                  "TM322",
+                                  "TM395",
+                                  "TM317",
+                                  "TM348",
+                                  "TM829",
+                                  "TM396",
+                                  "TM856",
+                                  "TM870",
+                                  "TM860",
+                                  "TM551",
+                                  "TM869",
+                                  "TM729",
+                                  "TM810",
+                                  "TM372",
+                                  "TM350",
+                                  "TM577",
+                                  "TM321",
+                                  "TM390",
+                                  "TM340",
+                                  "TM760",
+                                  "TM857",
+                                  "TM382",
+                                  "TM575",
+                                  "TM579",
+                                  "TM405",
+                                  "TM594",
+                                  "TM864",
+                                  "TM871",
+                                  "TM834",
+                                  "TM873",
+                                  "TM774",
+                                  "TM379",
+                                  "TM559",
+                                  "TM549",
+                                  "TM387",
+                                  "TM819",
+                                  "TM777",
+                                  "TM592",
+                                  "TM858",
+                                  "TM576",
+                                  "TM399",
+                                  "TM389",
+                                  "TM583",
+                                  "TM835",
+                                  "TM582",
+                                  "TM397",
+                                  "TM836",
+                                  "TM386",
+                                  "TM328",
+                                  "TM324",
+                                  "TM727",
+                                  "TM532",
+                                  "TM573",
+                                  "TM358",
+                                  "TM732",
+                                  "TM866",
+                                  "TM326",
+                                  "TM392",
+                                  "TM726",
+                                  "TM595",
+                                  "TM590",
+                                  "TM404",
+                                  "TM344",
+                                  "TM403",
+                                  "TM587",
+                                  "TM823",
+                                  "TM771",
+                                  "TM874",
+                                  "TM848",
+                                  "TM406",
+                                  "TM514",
+                                  "TM291",
+                                  "TM593",
+                                  "TM719",
+                                  "TM828",
+                                  "TM748",
+                                  "TM833",
+                                  "TM352",
+                                  "TM839",
+                                  "TM380",
+                                  "TM398",
+                                  "TM401",
+                                  "TM407",
+                                  "TM554",
+                                  "TM555",
+                                  "TM553",
+                                  "TM556",
+                                  "TM568",
+                                  "TM741",
+                                  "TM875",
+                                  "TM764",
+                                  "TM902",
+                                  "TM901",
+                                  "TM759",
+                                  "TM817",
+                                  "TM903",
+                                  "TM906",
+                                  "TM905",
+                                  "TM904",
+                                  "TM907",
+                                  "TM909",
+                                  "TM325",
+                                  "RA315",
+                                  "SK280",
+                                  "SK375",
+                                  "SK364",
+                                  "SK346",
+                                  "SK266",
+                                  "SK357",
+                                  "SK329",
+                                  "SK333",
+                                  "SK286",
+                                  "SK565",
+                                  "SK370",
+                                  "SK284",
+                                  "SK285",
+                                  "SK551",
+                                  "SK568",
+                                  "SK549",
+                                  "SK555",
+                                  "SK557",
+                                  "SK559",
+                                  "SK569",
+                                  "SK798",
+                                  "SK567",
+                                  "SK560",
+                                  "SK818",
+                                  "SK769",
+                                  "SK856",
+                                  "SK755",
+                                  "SK721",
+                                  "SK860",
+                                  "SK819",
+                                  "SK799",
+                                  "SK800",
+                                  "SK841",
+                                  "SK820",
+                                  "SK813",
+                                  "SK824",
+                                  "SK857",
+                                  "SK859",
+                                  "SK812",
+                                  "SK566",
+                                  "SK852",
+                                  "SK585",
+                                  "SK826",
+                                  "RA971",
+                                  "RA275",
+                                  "RA868",
+                                  "RA117",
+                                  "RA520",
+                                  "RA230",
+                                  "RA224",
+                                  "RA795",
+                                  "RA590",
+                                  "RA794",
+                                  "RA383",
+                                  "RA228",
+                                  "RA968",
+                                  "RA904",
+                                  "RA225",
+                                  "RA848",
+                                  "RA872",
+                                  "RA204",
+                                  "RA700",
+                                  "RA789",
+                                  "RA248",
+                                  "RA213",
+                                  "RA369",
+                                  "RA838",
+                                  "RA188",
+                                  "RA884",
+                                  "RA413",
+                                  "RA899",
+                                  "RA412",
+                                  "RA261",
+                                  "RA956",
+                                  "RA571",
+                                  "RA839",
+                                  "RA344",
+                                  "RA903",
+                                  "RA901",
+                                  "RA418",
+                                  "RA830",
+                                  "RA419",
+                                  "RA420",
+                                  "RA282",
+                                  "RA582",
+                                  "RA417",
+                                  "RA272",
+                                  "RA891",
+                                  "RA940",
+                                  "RA833",
+                                  "RA908",
+                                  "RA1005",
+                                  "RA1004",
+                                  "RA1003",
+                                  "ID341496",
+                                  "RA766",
+                                  "RA189",
+                                  "RA215",
+                                  "RA517",
+                                  "ID618835",
+                                  "ID619502"
+                                ],
+                                "name": "label",
+                                "type": "String"
+                              }
+                            ]
+                          },
+                          "placeholder": {
+                            "text": "Select Code..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Panel/DropdownContent"
+                          },
+                          "value": -1
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntCode"
+                    },
+                    "position": {
+                      "basis": "200px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.AreaVisible"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "LineTypeCode:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpModel"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d \u0027\u0027"
+                            }
+                          }
+                        },
+                        "props": {
+                          "options": [
+                            {
+                              "label": "TM",
+                              "value": "TM"
+                            },
+                            {
+                              "label": "RA",
+                              "value": "RA"
+                            }
+                          ],
+                          "placeholder": {
+                            "text": "Select LineTypeCode..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Panel/DropdownContent"
+                          }
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntModel"
+                    },
+                    "position": {
+                      "basis": "200px"
+                    },
+                    "propConfig": {
+                      "position.display": {
+                        "binding": {
+                          "config": {
+                            "path": "view.params.ModelVisible"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "meta": {
+                          "name": "lbl"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "alignVertical": "bottom",
+                          "style": {
+                            "classes": "Project_VECV/Panel/LabelContent",
+                            "fontWeight": "bold"
+                          },
+                          "text": "Mode:"
+                        },
+                        "type": "ia.display.label"
+                      },
+                      {
+                        "meta": {
+                          "name": "drpMode"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "propConfig": {
+                          "props.options": {
+                            "binding": {
+                              "config": {
+                                "expression": "{.../cntModel/drpModel.props.value}"
+                              },
+                              "transforms": [
+                                {
+                                  "code": "\ttry:\n\t\ttemp \u003d []\n\t\tmodelName \u003d self.session.custom.tempModelMode[value]\n\t\tfor model in modelName:\n\t\t\tdict \u003d {\n\t\t\t\"value\": model,\n\t\t\t\"label\": model\n\t\t\t}\n\t\t\ttemp.append(dict)\n\t\treturn temp\n\texcept:\n\t\treturn []\n\t\t",
+                                  "type": "script"
+                                }
+                              ],
+                              "type": "expr"
+                            },
+                            "persistent": true
+                          },
+                          "props.value": {
+                            "onChange": {
+                              "enabled": null,
+                              "script": "\tif self.props.value \u003d\u003d None:\n\t\tself.props.value \u003d \u0027\u0027"
+                            }
+                          }
+                        },
+                        "props": {
+                          "placeholder": {
+                            "text": "Select Mode..."
+                          },
+                          "showClearIcon": true,
+                          "style": {
+                            "classes": "Project_VECV/Panel/DropdownContent"
+                          }
+                        },
+                        "type": "ia.input.dropdown"
+                      }
+                    ],
+                    "meta": {
+                      "name": "cntMode"
+                    },
+                    "position": {
+                      "basis": "200px",
+                      "display": 1
+                    },
+                    "props": {
+                      "direction": "column",
+                      "justify": "flex-end",
+                      "style": {
+                        "margin": "10px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "cntFlex"
+                },
+                "position": {
+                  "basis": "100px"
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "dom": {
+                            "onClick": {
+                              "config": {
+                                "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: Pass dropdown values to custom params. \n\t\"\"\"\n\ttry:\n\t\tself.view.params.Code\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntCode\").getChild(\"drpCode\").props.value\n\t\tself.view.params.Mode\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntMode\").getChild(\"drpMode\").props.value\n\t\tself.view.params.Model\u003dself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModel\").getChild(\"drpModel\").props.value\n\texcept:\n\t\tscreenName \u003d\u0027Model Configuration Filter\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/ModelPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\n\t"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "BtnApply"
+                        },
+                        "position": {
+                          "basis": "50px",
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                          },
+                          "text": "View",
+                          "textStyle": {
+                            "classes": "Project_VECV/Panel/Button"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "flexApply"
+                    },
+                    "position": {
+                      "basis": "100px"
+                    },
+                    "props": {
+                      "style": {
+                        "margin": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  },
+                  {
+                    "children": [
+                      {
+                        "events": {
+                          "component": {
+                            "onActionPerformed": {
+                              "config": {
+                                "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 12/05/2024\n\t\tPurpose: Reset all selections. \n\t\"\"\"\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntMode\").getChild(\"drpMode\").props.value \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntModel\").getChild(\"drpModel\").props.value \u003d \u0027\u0027\n\tself.parent.parent.parent.getChild(\"cntFlex\").getChild(\"cntCode\").getChild(\"drpCode\").props.value \u003d -1\n\tself.view.params.Mode \u003d \u0027\u0027\n\tself.view.params.Code \u003d -1\n\tself.view.params.Model \u003d \u0027\u0027"
+                              },
+                              "scope": "G",
+                              "type": "script"
+                            }
+                          }
+                        },
+                        "meta": {
+                          "name": "BtnClear"
+                        },
+                        "position": {
+                          "grow": 1
+                        },
+                        "props": {
+                          "style": {
+                            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton"
+                          },
+                          "text": "Clear",
+                          "textStyle": {
+                            "classes": "Project_VECV/Panel/Button"
+                          }
+                        },
+                        "type": "ia.input.button"
+                      }
+                    ],
+                    "meta": {
+                      "name": "flexClear"
+                    },
+                    "position": {
+                      "basis": "100px"
+                    },
+                    "props": {
+                      "style": {
+                        "margin": "5px"
+                      }
+                    },
+                    "type": "ia.container.flex"
+                  }
+                ],
+                "meta": {
+                  "name": "cntAction"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "justify": "flex-end"
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "meta": {
+              "name": "SearchPannel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0.5,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1.5,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 147
+            },
+            "props": {
+              "direction": "column",
+              "justify": "space-evenly"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "ColumnContainer"
+        },
+        "position": {
+          "height": 0.9315,
+          "width": 0.96,
+          "x": 0.0141,
+          "y": 0.0587
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\tself.getChild(\"ColumnContainer\").getChild(\"cntBody\").getChild(\"tblModelMaster\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"ColumnContainer\").getChild(\"cntBody\").getChild(\"tblModelMaster\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 45,
+      "y": -620
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

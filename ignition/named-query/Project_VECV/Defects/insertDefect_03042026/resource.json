@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "MESPRODDB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "806890d4e8af84e5e265522b29dbe5816de9a64f51af1b9035657a8c5833ff8e",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2026-04-03T04:07:47Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "unitName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "createdBy",
+        "sqlType": 3
+      }
+    ]
+  }
+}

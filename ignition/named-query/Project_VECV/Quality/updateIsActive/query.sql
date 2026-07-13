@@ -1,0 +1,1 @@
+update TRN_QGCheckListStatus set IsActive = 0 where SerialNumber = :SerialNumber

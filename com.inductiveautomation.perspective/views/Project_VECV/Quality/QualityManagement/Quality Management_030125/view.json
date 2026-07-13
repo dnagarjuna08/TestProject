@@ -1,0 +1,4242 @@
+{
+  "custom": {
+    "ModelID": "",
+    "Process_End_Time": "",
+    "Process_Start_time": "",
+    "bom": "",
+    "checklistTable": [],
+    "description": "",
+    "model": "",
+    "order": "",
+    "serialNumber": "",
+    "station": "",
+    "status": null
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tReset screen to default state on startup\t\t\t\n\t\"\"\"\n\t#self.session.custom.CurrentAreaId \u003d 23\n\t#self.session.custom.CurrentLineId  \u003d 37\n\tself.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntTab\").getChild(\"tab\").props.currentTabIndex \u003d 4\n\tself.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntTable\").getChild(\"TabContainer\").props.currentTabIndex \u003d 0\n\tworkstation\u003dself.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntStation\").getChild(\"txtStation\").props.text\n\tparam\u003d{\u0027Workstation\u0027:workstation}\n\tres\u003dsystem.db.runNamedQuery(\"Project_VECV/Quality/getarealine\",param)\n\tself.session.custom.CurrentAreaId \u003d res[0][\u0027Areaid\u0027]\n\tself.session.custom.CurrentLineId \u003d res[0][\u0027Lineid\u0027]\n\tsystem.perspective.sendMessage(\"refreshorder\")\n\tself.session.custom.ExceedEndTime \u003d 0\n\tself.session.custom.IsTimeExceed \u003d False\n\tself.session.custom.cycleTime \u003d 0\n\tself.session.custom.exceedStartTime \u003d 0\n\tself.session.custom.exceedTime \u003d 0\n\tself.session.custom.processEndTime \u003d 0\n\tself.session.custom.processStartTime \u003d 0\n\tself.session.custom.processTime \u003d 0\n\tself.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntProgress\").getChild(\"Progress\").props.bar.color \u003d \u0027#8AFF8A\u0027\n\tself.session.custom.TopViewHeader \u003d \"Quality Management\"\n\tif self.session.custom.showSingleView:\n\t\tsystem.perspective.alterDock(\u0027Nav\u0027, {\u0027handle\u0027:\u0027hide\u0027})\n\t\tsystem.perspective.closeDock(\u0027Nav\u0027)"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "propConfig": {
+    "custom.ModelID": {
+      "persistent": true
+    },
+    "custom.Process_End_Time": {
+      "binding": {
+        "config": {
+          "path": "session.custom.processEndTime"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.Process_Start_time": {
+      "binding": {
+        "config": {
+          "path": "session.custom.processStartTime"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.bom": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntBOM/TextField.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.checklistTable": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntTable/TabContainer/tblCheckPoints.props.data"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.description": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntDescription/txtDescription.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.model": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntModel/txtModel.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.order": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntOrder/TextField.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.serialNumber": {
+      "persistent": true
+    },
+    "custom.station": {
+      "persistent": true
+    },
+    "custom.status": {
+      "binding": {
+        "config": {
+          "path": "/root/cntColumn/cntHeader/cntStatus/txtStatus.props.text"
+        },
+        "type": "property"
+      },
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 900,
+      "width": 1600
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblSearchSerialNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Serial Number"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtSerialNumber"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tGet all details and perform prechecks on serial number scan\t\t\t\n\t\"\"\"\n\ttry:\n\t\t#system.perspective.sendMessage(\"refreshorder\")\n\t\t#self.refreshBinding()\n\t\t#self.view.getChild(\"root\").refreshBinding(\"custom.Order_details\")\n\t\tself.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntDefect\").getChild(\"btnDefect\").props.enabled\u003dFalse\n\t\tself.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntInspection\").getChild(\"btnInspection\").props.enabled\u003dTrue\n\t\t\n\t\tSerialNumber\u003dself.props.text\n\t\tif SerialNumber\u003d\u003d\u0027\u0027:\n\t\t\tself.session.custom.ExceedEndTime\u003d\u0027\u0027\n\t\t\tself.session.custom.IsTimeExceed \u003dFalse\n\t\t\tself.session.custom.cycleTime\u003d0\n\t\t\tself.session.custom.exceedStartTime\u003d\u0027\u0027\n\t\t\tself.session.custom.exceedTime\u003d0\n\t\t\tself.session.custom.processEndTime\u003d\u0027\u0027\n\t\t\tself.session.custom.processStartTime\u003d\u0027\u0027\n\t\t\tself.session.custom.processTime\u003d0\n\t\t\tsystem.perspective.print(self.session.custom.ExceedEndTime)\n\t\telse:\n\t\t\tWorkStationID \u003d self.session.custom.CurrentWorkStationId\n\t\t\tAreaID \u003d self.session.custom.CurrentAreaId\n\t\t\tLineID \u003d self.session.custom.CurrentLineId\n\t\ttry:\n\t\t\tstatus \u003d Project_VECV.OperatorDashboard.OperatorDashboard.getStationDetails(WorkStationID,SerialNumber,AreaID,LineID)\n\t\t\tself.view.getChild(\"root\").custom.StationStatus \u003d status\n\t\t\tsystem.perspective.print(\"status--\u003e %s\"%status)\n\t\texcept:\n\t\t\tself.view.getChild(\"root\").custom.StationStatus \u003d 0\n\t\t\n\t\tparam\u003d{\u0027SerialNumber\u0027:SerialNumber}\n\t\torder\u003dsystem.db.runNamedQuery(\u0027Project_VECV/OperatorDashboard/GetOrderDetailsForWorkStation\u0027,param)\n\t\tBOMId\u003d-1\n\t\t#system.perspective.print(self.view.getChild(\"root\").custom.Order_details.getRowCount())\n\t\tif order.getRowCount()\u003e0:\n\t\t\tBOMId\u003dorder.getValueAt(0,\u0027BOMId\u0027)\n\t\t\tself.session.custom.BOMId \u003d BOMId\n\t\tWorkStationID\u003dself.session.custom.CurrentWorkStationId\n\t\tAreaID\u003dself.session.custom.CurrentAreaId\n\t\tLineID\u003dself.session.custom.CurrentLineId\n\t\tif order.getRowCount()\u003e0:\n\t\t\tModelId\u003dorder.getValueAt(0,\u0027ModelId\u0027)\n\t\telse:\n\t\t\tModelId\u003d-1\n\t\tcycleparams\u003d{\u0027LineID\u0027:LineID,\u0027WorkstationID\u0027:WorkStationID,\u0027ModelID\u0027:ModelId}\n\t\tcycletime\u003dsystem.db.runNamedQuery(\u0027Project_VECV/OperatorDashboard/getCycleTime\u0027,cycleparams)\n\t\tcycletime\u003dcycletime.getValueAt(0,0)\n\t\tself.view.custom.ModelID\u003d-1\n\t\t#system.perspective.print(SerialNumber)\n\t\t#system.perspective.print(BOMId)\n\t\t#orderStatus \u003d Project_VECV.OperatorDashboard.OperatorDashboard.getOrderStatus(SerialNumber, BOMId)\n\t\t#if orderStatus:\n\t\t\t#Prev_Station_Status \u003d Project_VECV.OperatorDashboard.OperatorDashboard.checkDetailsForOPStart(SerialNumber, WorkStationID, AreaID, LineID)\n\t\t#else:\n\t\t\t#Prev_Station_Status \u003d -1\n\t\tPrev_Station_Status \u003d 1\n\t\tif Prev_Station_Status \u003d\u003d 1:\n\t\t\tif cycletime\u003e0 and BOMId\u003e0:\n\t\t\t\tsystem.perspective.print(\"Line 47 in serialNumber change script\")\n\t\t\t\tserial\u003dself.props.text\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedProcess\").props.params.SerialNumber\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedTorque\").props.params.SerialNumber\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedPrevStation\").props.params.SerialNumber\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedTestbed\").props.params.Serial\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedStationWiseStatus\").props.params.Serial\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedScannedValues\").props.params.SerialNumber\u003dserial\n#\t\t\tself.parent.parent.parent.getChild(\"cntTab\").getChild(\"tab\").getChild(\"embeddedProcessStatus\").props.params.SerialNumber\u003dserial\n\t\t\t\tself.view.custom.serialNumber\u003dserial\n\t\t\t\tself.view.custom.ModelID\u003dModelId\n\t\t\t\tself.view.custom.station\u003dself.parent.parent.getChild(\"cntStation\").getChild(\"txtStation\").props.text\n\t\t\t\tsystem.perspective.sendMessage(\"RefreshQualityCheck\",scope\u003d\u0027page\u0027)\n\t\t\t\tsystem.perspective.sendMessage(\"RefreshNC\",scope\u003d\u0027page\u0027)\n\t\t\t\tself.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntDefect\").getChild(\"btnDefect\").props.enabled\u003dTrue\n\t\t\t#if self.parent.parent.getChild(\"cntStation\").getChild(\"txtStation\").props.text\u003d\u003d\u0027TAQG04\u0027 or self.parent.parent.parent.getChild(\"cntTable\").getChild(\"TabContainer\").getChild(\"tblLogNC\").props.data.getRowCount()\u003d\u003d0:\n\t\t\t\t#self.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntInspection\").getChild(\"btnInspection\").props.enabled\u003dTrue\n\t\t\t\tif SerialNumber!\u003d\u0027\u0027 and self.parent.parent.getChild(\"cntOrder\").getChild(\"TextField\").props.text!\u003d\u0027\u0027:\n\t\t\t\t\tself.session.custom.cycleTime \u003d cycletime\n\t\t\t\t\tself.parent.parent.parent.getChild(\"cntProgress\").getChild(\"Progress\").props.bar.color \u003d \u0027#8AFF8A\u0027\n\t\t\telse:\n\t\t\t\tserial\u003dself.props.text\n\t\t\t\tself.view.custom.serialNumber\u003dserial\n\t\t\t\tself.view.custom.ModelID\u003dModelId\n\t\t\t\tself.view.custom.station\u003dself.parent.parent.getChild(\"cntStation\").getChild(\"txtStation\").props.text\n\t\t\t\tsystem.perspective.sendMessage(\"RefreshQualityCheck\",scope\u003d\u0027page\u0027)\n\t\t\t\tsystem.perspective.sendMessage(\"RefreshNC\",scope\u003d\u0027page\u0027)\n\t\t\t\tself.session.custom.ExceedEndTime\u003d\u0027\u0027\n\t\t\t\tself.session.custom.IsTimeExceed \u003dFalse\n\t\t\t\tself.session.custom.cycleTime\u003d0\n\t\t\t\tself.session.custom.exceedStartTime\u003d\u0027\u0027\n\t\t\t\tself.session.custom.exceedTime\u003d0\n\t\t\t\tself.session.custom.processEndTime\u003d\u0027\u0027\n\t\t\t\tself.session.custom.processStartTime\u003d\u0027\u0027\n\t\t\t\tself.session.custom.processTime\u003d0\n\t\t\t\t#self.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntDefect\").getChild(\"btnDefect\").props.enabled\u003dFalse\n\t\t\t\t#system.perspective.print(self.session.custom.cycleTime)\n\t\telif Prev_Station_Status \u003d\u003d 2:\n\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\tmessage \u003d \"Current Station Completed with Serial Number %s\"%(SerialNumber)\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\telif Prev_Station_Status \u003d\u003d -1:\n\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\tmessage \u003d \"Order status is not in Started State.\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\telse:\n\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\tmessage \u003d \"Prev Station InCompleted with Serial Number %s\"%(SerialNumber)\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n#\tself.session.custom.cycleTime \u003d  Project_VECV.NamedQuery.OperatorDashboard.CycleTime.getCycleTime(LineID, WorkStationID, ModelId)\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality\u0027)\n\t\terrorFunction \u003d str(\u0027Event:changed Serial\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntSerialNumber"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  },
+                  "style": {
+                    "marginLeft": 5
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "refreshserial",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tReset serialnumber value\t\t\t\n\t\"\"\"\n\tself.getChild(\"txtSerialNumber\").props.text\u003d\u0027\u0027\n\tself.view.custom.serialNumber\u003d\u0027\u0027\n\tself.parent.parent.getChild(\"cntFooter\").getChild(\"cntInspection\").getChild(\"btnInspection\").props.enabled\u003dTrue\n\tself.parent.parent.getChild(\"cntFooter\").getChild(\"cntDefect\").getChild(\"btnDefect\").props.enabled\u003dFalse",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblOrder"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Order"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "TextField"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({/root.custom.Order_details})\u003e0,{/root.custom.Order_details}[0,\"WONumber\"],\u0027\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#000000"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntOrder"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 2,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 2,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblBOM"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "BOM"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "TextField"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({/root.custom.Order_details})\u003e0,{/root.custom.Order_details}[0,\u0027BOMNUMBER\u0027],\u0027\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#000000"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntBOM"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 4,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 4,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 9
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 9
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 9
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Model"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtModel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({/root.custom.Order_details})\u003e0,{/root.custom.Order_details}[0,\u0027ModelName\u0027],\u0027\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#000000"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntModel",
+                  "tooltip": {
+                    "width": "10%"
+                  }
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "lg",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblDescription"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Description"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtDescription"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "if(len({/root.custom.Order_details})\u003e0,{/root.custom.Order_details}[0,\u0027BOMDescription\u0027],\u0027\u0027)"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#000000"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDescription"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 8,
+                      "name": "sm",
+                      "order": 6,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "md",
+                      "order": 6,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "lg",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblStation"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": -16,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": -16,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 1
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "text": "Station"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtStation"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 37
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentWorkStation"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#000000"
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "meta": {
+                  "name": "cntStation"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 10,
+                      "name": "sm",
+                      "order": 7,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "md",
+                      "order": 7,
+                      "rowIndex": 0,
+                      "span": 2
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "lg",
+                      "order": 6,
+                      "rowIndex": 0,
+                      "span": 2
+                    }
+                  ],
+                  "height": 60
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0,
+                "vertical": 7
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "embeddedProcess"
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Process"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedTorque"
+                    },
+                    "position": {
+                      "tabIndex": 1
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "expression": "{view.custom.serialNumber}"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.params.StationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tsystem.perspective.print(\"test refresh\")\n\tsystem.perspective.print(value)\n\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Torque"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedPrevStation"
+                    },
+                    "position": {
+                      "tabIndex": 2
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.StationName": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.station"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Previous Station"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedTestbed"
+                    },
+                    "position": {
+                      "tabIndex": 3
+                    },
+                    "propConfig": {
+                      "props.params.Serial": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Testbed"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedStationWiseStatus"
+                    },
+                    "position": {
+                      "tabIndex": 4
+                    },
+                    "propConfig": {
+                      "props.params.Serial": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.StationName": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.station"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Station Wise Status"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedScannedValues"
+                    },
+                    "position": {
+                      "tabIndex": 5
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "expression": "{view.custom.serialNumber}"
+                          },
+                          "type": "expr"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Scanned Values"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedProcessStatus"
+                    },
+                    "position": {
+                      "tabIndex": 6
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Process Status"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedPressing"
+                    },
+                    "position": {
+                      "tabIndex": 7
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntSerialNumber/txtSerialNumber.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Pressing"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedOil"
+                    },
+                    "position": {
+                      "tabIndex": 8
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Oil Filling"
+                    },
+                    "type": "ia.display.view"
+                  },
+                  {
+                    "meta": {
+                      "name": "embeddedVisual"
+                    },
+                    "position": {
+                      "tabIndex": 9
+                    },
+                    "propConfig": {
+                      "props.params.AreaId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentAreaId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.LineId": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.CurrentLineId"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.SerialNumber": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.serialNumber"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.WorkstationName": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.params.ws": {
+                        "binding": {
+                          "config": {
+                            "path": "session.custom.ws"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "path": "Project_VECV/Quality/QualityManagement/Visual"
+                    },
+                    "type": "ia.display.view"
+                  }
+                ],
+                "meta": {
+                  "name": "tab"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 568
+                },
+                "props": {
+                  "currentTabIndex": 4,
+                  "menuType": "modern",
+                  "style": {
+                    "marginTop": 25
+                  },
+                  "tabSize": {
+                    "width": 150
+                  },
+                  "tabStyle": {
+                    "active": {
+                      "backgroundColor": "#1D1D97",
+                      "color": "#FFFFFF",
+                      "fontFamily": "Cambria",
+                      "whiteSpace": "normal"
+                    },
+                    "inactive": {
+                      "fontFamily": "Cambria",
+                      "whiteSpace": "normal"
+                    }
+                  },
+                  "tabs": [
+                    "Process Value",
+                    "Torque",
+                    "Defects",
+                    "Testbed",
+                    "Station Status",
+                    "Scanned Values",
+                    "Process Status",
+                    "Pressing Value",
+                    "Oil Filling",
+                    "Visual Status"
+                  ]
+                },
+                "type": "ia.container.tab"
+              }
+            ],
+            "meta": {
+              "name": "cntTab"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 1,
+                  "span": 7
+                }
+              ],
+              "height": 596
+            },
+            "props": {
+              "gutters": {
+                "horizontal": 0
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "custom": {
+                      "bOM": "value",
+                      "model": "value",
+                      "order": "value",
+                      "serialNumber": "value",
+                      "status": "value"
+                    },
+                    "events": {
+                      "component": {
+                        "onEditCellCommit": {
+                          "config": {
+                            "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tcommit cell value in table data\t\t\t\n\t\"\"\"\n\tvalueToSet \u003d event.value\n\tself.props.data[event.row][event.column] \u003d valueToSet\n\tcurrentData\u003dself.props.data"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onRowClick": {
+                          "config": {
+                            "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tAlter status value on row selection\t\n\t\"\"\"\n\ttry:\n\t\tcheckdata\u003dself.props.data[self.props.selection.selectedRow][\u0027Status\u0027]\n\t\tsystem.perspective.print(self.props.selection.selectedColumn)\n\t\tsystem.perspective.print(\"checkdata %s\"%checkdata)\n\t\tif checkdata\u003d\u003d0 and str(self.props.selection.selectedColumn)\u003d\u003d\"Status\":\n\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Status\u0027]\u003d1\n\t\tif checkdata\u003d\u003d1 and str(self.props.selection.selectedColumn)\u003d\u003d\"Status\":\n\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Status\u0027]\u003d0\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality/table_CheckList\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onRowClick - CheckList\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "tblCheckPoints"
+                    },
+                    "position": {
+                      "checkListData": ""
+                    },
+                    "propConfig": {
+                      "custom.station": {
+                        "binding": {
+                          "config": {
+                            "path": "..../cntHeader/cntStation/txtStation.props.text"
+                          },
+                          "type": "property"
+                        }
+                      },
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "BOMId": "{session.custom.BOMId}",
+                              "ModelID": "{view.custom.ModelID}",
+                              "SerialNumber": "{view.custom.serialNumber}",
+                              "WorkStationName": "{this.custom.station}"
+                            },
+                            "queryPath": "Project_VECV/Quality/getCheckList",
+                            "returnFormat": "json"
+                          },
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "cells": {
+                        "allowEditOn": "single-click"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Item",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": "Check List"
+                          },
+                          "justify": "center",
+                          "key": "value",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 20
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "Remark",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": 20
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "toggle",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "Status",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "view",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "Project_VECV/Quality/QualityManagement/subViewCheckBox",
+                          "visible": true,
+                          "width": 10
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "CheckListID",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": ""
+                        }
+                      ],
+                      "pager": {
+                        "initialOption": 10
+                      },
+                      "virtualized": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "RefreshQualityCheck",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tRefresh checklist data\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\tself.props.pager.activePage \u003d 1\n\tself.props.selection.selectedRow \u003d -1\n\tself.refreshBinding(\"props.data\")\n\tsystem.perspective.print(\"self.props.selection.selectedRow\")\n\tsystem.perspective.print(self.props.selection.selectedRow)",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onEditCellCommit": {
+                          "config": {
+                            "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tCommit cell value into table data \u0026 check for error proofing operation.\t\t\t\n\t\"\"\"\n\tselecteddata\u003dself.props.selection.data\n\n\toperationType\u003dstr(selecteddata[0][\u0027OPDefinition\u0027]).strip()\n\t\n\tsystem.perspective.print(\"selecteddata \"+str(operationType))\n\t\n\tvalueToSet \u003d event.value\n\tif operationType.lower()\u003d\u003dstr(\u0027Error Proofing\u0027).lower():\n\t\tPartNumber \u003d str(selecteddata[0][\u0027PartNumber\u0027]).strip()\n\t\tsystem.perspective.print(\"selectedPartNumber \"+str(PartNumber))\n\t\tsystem.perspective.print(\"Value:%s\"%event.value)\n\t\tif str(PartNumber).upper() in str(event.value).upper():\n\t\t\tself.props.data[event.row][event.column] \u003d valueToSet\n\t\t\tcurrentData\u003dself.props.data\n\t\telse:\n\t\t\tselecteddata[0][\u0027ConsumedPartNumber\u0027]\u003d\u0027\u0027\n\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\tmessage \u003d \"Incorrect Part Scan. Please scan or enter correct part.\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\telse:\n\t\tself.props.data[event.row][event.column] \u003d valueToSet\n\t\tcurrentData\u003dself.props.data"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onRowClick": {
+                          "config": {
+                            "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tEnable field values for edit based on OP definition\t\t\t\n\t\"\"\"\n\ttry:\n\t\tselecteddata\u003dself.props.selection.data\n\t\toperationType\u003dstr(selecteddata[0][\u0027OPDefinition\u0027]).strip()\n\t\tsystem.perspective.print(\"selecteddata \"+str(operationType))\n\t\t\n\t\tif operationType.lower()\u003d\u003dstr(\u0027Error Proofing\u0027).lower():\n\t\t\tself.props.columns[8].editable\u003dTrue\n\t\t#system.perspective.print(\"IF CONDITION\")\n\t\telse:\n\t\t\tself.props.columns[8].editable\u003dFalse\n\t\t#system.perspective.print(\"Else CONDITION\")\n\t\t\n\t\tif operationType.lower()\u003d\u003dstr(\u0027Torque\u0027).lower() or operationType.lower()\u003d\u003dstr(\u0027Double Torque\u0027).lower():\n\t\t\tself.props.columns[2].editable\u003dTrue\n\t\t\tself.props.columns[3].editable\u003dTrue\n\t\t\tself.props.columns[4].editable\u003dTrue\n\t\t\tself.props.columns[5].editable\u003dTrue\n\t\telse:\n\t\t\tself.props.columns[2].editable\u003dFalse\n\t\t\tself.props.columns[3].editable\u003dFalse\n\t\t\tself.props.columns[4].editable\u003dFalse\n\t\t\tself.props.columns[5].editable\u003dFalse\n\n\t\tif operationType.lower()\u003d\u003dstr(\u0027Pressing Operation\u0027).lower():\n\t\t\tself.props.columns[6].editable\u003dTrue\n\t\t\tself.props.columns[7].editable\u003dTrue\n\t\telse:\n\t\t\tself.props.columns[6].editable\u003dFalse\n\t\t\tself.props.columns[7].editable\u003dFalse\n\t\t\t\n\t\tif operationType.lower()\u003d\u003dstr(\u0027Operator Scan\u0027).lower():\n\t\t\tself.props.columns[9].editable\u003dTrue\n\t\telse:\n\t\t\tself.props.columns[9].editable\u003dFalse\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality/table_LogNC\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onRowClick - logNC\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onRowDoubleClick": {
+                          "config": {
+                            "script": "\tselecteddata\u003dself.props.selection.data\n\toperationType\u003dstr(selecteddata[0][\u0027OPDefinition\u0027]).strip()\n\tsystem.perspective.print(\"selecteddata \"+str(operationType))\n\tif operationType.lower()\u003d\u003dstr(\u0027Error Proofing\u0027).lower():\n\t\tself.props.columns[8].editable\u003dTrue\n\t\tsystem.perspective.print(\"IF CONDITION\")\n\telse:\n\t\tself.props.columns[8].editable\u003dFalse\n\t\tsystem.perspective.print(\"ELSE CONDITION\")"
+                          },
+                          "enabled": false,
+                          "scope": "G",
+                          "type": "script"
+                        },
+                        "onSelectionChange": {
+                          "config": {
+                            "script": "\ttry:\n\t\tselecteddata\u003dself.props.selection.data\n\t\toperationType\u003dstr(selecteddata[0][\u0027OPDefinition\u0027]).strip()\n\t\tsystem.perspective.print(\"selecteddata \"+str(operationType))\n\t\tif operationType.lower()\u003d\u003dstr(\u0027Error Proofing\u0027).lower():\n\t\t\tself.props.columns[8].editable\u003dTrue\n\t\t\t#system.perspective.print(\"IF CONDITION\")\n\t\telse:\n\t\t\tself.props.columns[8].editable\u003dFalse\n\t\t\t#system.perspective.print(\"ELSE CONDITION\")\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality/table_LogNC\u0027)\n\t\terrorFunction \u003d str(\u0027Event:Selectionchange - logNC\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                          },
+                          "enabled": false,
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "tblLogNC"
+                    },
+                    "position": {
+                      "tabIndex": 1
+                    },
+                    "propConfig": {
+                      "props.data": {
+                        "binding": {
+                          "config": {
+                            "parameters": {
+                              "Area": "{session.custom.CurrentAreaId}",
+                              "Line": "{session.custom.CurrentLineId}",
+                              "Serial": "{..../cntHeader/cntSerialNumber/txtSerialNumber.props.text}",
+                              "workstation": "{session.custom.CurrentWorkStation}"
+                            },
+                            "queryPath": "Project_VECV/Quality/GetLogNC",
+                            "returnFormat": "json"
+                          },
+                          "type": "query"
+                        }
+                      }
+                    },
+                    "props": {
+                      "cells": {
+                        "allowEditOn": "single-click"
+                      },
+                      "columns": [
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "OPCode",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "OPDefinition",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": false,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "PLCTorqueValue",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "PLCTorqueCount",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "Torque_Angle",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": "Torque_Angle"
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "PLCTorqueResult",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "PressingValue",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "PressingDepth",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "ConsumedPartNumber",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": "Part Number"
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": true,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": true,
+                          "field": "OperatorID",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "center",
+                            "style": {
+                              "backgroundColor": "#000000",
+                              "classes": "",
+                              "color": "#FFFFFF"
+                            },
+                            "title": ""
+                          },
+                          "justify": "center",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "PartNumber",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": ""
+                        },
+                        {
+                          "align": "center",
+                          "boolean": "checkbox",
+                          "dateFormat": "MM/DD/YYYY",
+                          "editable": false,
+                          "field": "TRN_Station_Events_Id",
+                          "filter": {
+                            "boolean": {
+                              "condition": ""
+                            },
+                            "date": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "enabled": false,
+                            "number": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "string": {
+                              "condition": "",
+                              "value": ""
+                            },
+                            "visible": "on-hover"
+                          },
+                          "footer": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "header": {
+                            "align": "center",
+                            "justify": "left",
+                            "style": {
+                              "classes": ""
+                            },
+                            "title": ""
+                          },
+                          "justify": "auto",
+                          "nullFormat": {
+                            "includeNullStrings": false,
+                            "nullFormatValue": "",
+                            "strict": false
+                          },
+                          "number": "value",
+                          "numberFormat": "0,0.##",
+                          "progressBar": {
+                            "bar": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "track": {
+                              "color": "",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "value": {
+                              "enabled": true,
+                              "format": "0,0.##",
+                              "justify": "center",
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "render": "auto",
+                          "resizable": true,
+                          "sort": "none",
+                          "sortable": true,
+                          "strictWidth": false,
+                          "style": {
+                            "classes": ""
+                          },
+                          "toggleSwitch": {
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            }
+                          },
+                          "viewParams": {},
+                          "viewPath": "",
+                          "visible": false,
+                          "width": ""
+                        }
+                      ],
+                      "pager": {
+                        "initialOption": 10
+                      },
+                      "virtualized": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "RefreshNC",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tRefresh LogNC table\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.refreshBinding(\"props.data\")\n\t\t#system.perspective.print(len(self.props.data))\n\t\tif len(self.props.data)\u003d\u003d0:\n\t\t\t#system.perspective.print(\"enable inspection 1\")\n\t\t\tself.parent.parent.parent.getChild(\"cntFooter\").getChild(\"cntInspection\").getChild(\"btnInspection\").props.enabled\u003dTrue\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality\u0027)\n\t\terrorFunction \u003d str(\u0027Event:RefreshNC\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.table"
+                  }
+                ],
+                "meta": {
+                  "name": "TabContainer"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 567
+                },
+                "propConfig": {
+                  "props.currentTabIndex": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tif currentValue.value !\u003d previousValue.value and currentValue.value\u003d\u003d1:\n\t\tsystem.perspective.sendMessage(\"RefreshNC\")\n\t\t"
+                    }
+                  }
+                },
+                "props": {
+                  "tabStyle": {
+                    "active": {
+                      "backgroundColor": "#1D1D97",
+                      "color": "#FFFFFF",
+                      "fontFamily": "CAMBRIA"
+                    },
+                    "inactive": {
+                      "fontFamily": "CAMBRIA"
+                    }
+                  },
+                  "tabs": [
+                    "Check List",
+                    "Log NC"
+                  ]
+                },
+                "type": "ia.container.tab"
+              }
+            ],
+            "meta": {
+              "name": "cntTable"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 6,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 7,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 5
+                }
+              ],
+              "height": 595
+            },
+            "props": {
+              "style": {
+                "marginTop": 25
+              }
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Progress"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 1,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    },
+                    {
+                      "colIndex": 1,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 12
+                    }
+                  ],
+                  "height": 40
+                },
+                "propConfig": {
+                  "props.value": {
+                    "binding": {
+                      "config": {
+                        "path": ".../cntFooter/cntProcessTime.custom.processTime"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\ttry:\n\t\treturn int(value)*100/int(self.parent.parent.getChild(\"cntFooter\").getChild(\"cntProcessTime\").custom.cycleTime)\n\texcept:\n\t\treturn 0",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "bar": {
+                    "color": "#8AFF8A"
+                  },
+                  "valueDisplay": {
+                    "enabled": true,
+                    "format": "0.##%"
+                  }
+                },
+                "type": "ia.display.progress"
+              }
+            ],
+            "meta": {
+              "name": "cntProgress"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 40
+            },
+            "type": "ia.container.column"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblProcessTime"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "style": {
+                        "textAlign": "center"
+                      },
+                      "text": "Process Time(in secs)"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "txtProcessTime"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 40
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "now(1000)"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif int(self.parent.custom.processTime) \u003c int(self.parent.custom.cycleTime):\n\t\tself.session.custom.processTime \u003d self.session.custom.processTime + 1\n\t\treturn self.session.custom.processTime\n\telse:\n\t\treturn self.session.custom.processTime",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tif self.props.text \u003d\u003d 1:\n\t\tself.session.custom.processStartTime \u003d system.date.now()"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  }
+                ],
+                "custom": {
+                  "cusionTime": 120
+                },
+                "meta": {
+                  "name": "cntProcessTime"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 0,
+                      "name": "sm",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "md",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 0,
+                      "name": "lg",
+                      "order": 0,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 80
+                },
+                "propConfig": {
+                  "custom.cycleTime": {
+                    "binding": {
+                      "config": {
+                        "path": "session.custom.cycleTime"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "custom.exceedTime": {
+                    "binding": {
+                      "config": {
+                        "path": "session.custom.exceedTime"
+                      },
+                      "type": "property"
+                    }
+                  },
+                  "custom.processTime": {
+                    "binding": {
+                      "config": {
+                        "path": "session.custom.processTime"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "SaveExceedTime",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tQuery to save exceed time\t\t\n\t\"\"\"\n\t# implement your handler here\n\t# implement your handler here\n\tparams \u003d {\n\t\u0027AreaId\u0027 : self.session.custom.CurrentAreaId, \n\t\u0027LineId\u0027 : self.session.custom.CurrentLineId,\n\t\u0027WorkStationId\u0027 : self.session.custom.CurrentWorkStationId ,\n\t\u0027SerialNumber\u0027 : self.view.custom.serialNumber ,\n\t\u0027ProcessStartTime\u0027 : self.view.getChild(\"root\").custom.processStartTime,\n\t\u0027ProcessEndTime\u0027 : self.view.getChild(\"root\").custom.exceedStartTime,\n\t\u0027ExceedStartTime\u0027 : self.view.getChild(\"root\").custom.exceedStartTime ,\n\t\u0027ExceedEndTime\u0027 : self.view.getChild(\"root\").custom.ExceedEndTime ,\n\t\u0027OperatorId\u0027 : self.session.custom.loggedInUserId ,\n\t\u0027Reason\u0027 : payload[\u0027Id\u0027] ,\n\t\u0027CreatedBy\u0027 : self.session.custom.loggedInUserId \n\t}\n\tqueryPath \u003d \u0027Project_VECV/OperatorDashboard/InsertIntoExceedTime\u0027\n\tsystem.db.runNamedQuery(queryPath,params)\n\tself.session.custom.cycleTime \u003d 0\n\tself.session.custom.exceedStartTime \u003d \u0027\u0027\n\tself.session.custom.exceedTime \u003d 0\n\tself.session.custom.processEndTime \u003d \u0027\u0027\n\tself.session.custom.processStartTime \u003d \u0027\u0027 \n\tself.session.custom.processTime \u003d 0\n\tself.session.custom.IsTimeExceed \u003d False",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "CheckExceed",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tOpen exceed time popup\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\tif self.custom.exceedTime \u003e self.custom.cusionTime:\n\t\tself.session.custom.processTime \u003d 0\n\t\tself.session.custom.cycleTime \u003d 0\n\t\tself.session.custom.ExceedEndTime \u003d system.date.now()\n\t\texceedTime \u003d self.custom.exceedTime\n\t\tmessage \u003d \"Process Time exceeded by %s sec\"%exceedTime\n\t\tsystem.perspective.openPopup(id\u003d\u0027#exceed\u0027, view\u003d\u0027Project_VECV/Operator Dashboard/ExceedPopUp\u0027,params\u003d{\u0027warningMessage\u0027:message},showCloseIcon \u003d False)\n\t\tself.session.custom.exceedTime \u003d 0",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "txtExceedTime"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 40
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "binding": {
+                          "config": {
+                            "expression": "now(1000)"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif self.parent.parent.getChild(\"cntProcessTime\").custom.processTime !\u003d 0 and self.parent.parent.getChild(\"cntProcessTime\").custom.cycleTime !\u003d 0 and  (self.parent.parent.getChild(\"cntProcessTime\").custom.processTime \u003d\u003d self.parent.parent.getChild(\"cntProcessTime\").custom.cycleTime):\n\t\tself.session.custom.exceedTime \u003d self.session.custom.exceedTime + 1\n\t\tself.parent.parent.parent.getChild(\"cntProgress\").getChild(\"Progress\").props.bar.color \u003d \u0027#FF0000\u0027\n\t\tif self.parent.parent.getChild(\"cntProcessTime\").custom.exceedTime \u003e 120:\n\t\t\tself.session.custom.IsTimeExceed \u003d True\n\t\treturn self.session.custom.exceedTime\n\telse:\n\t\treturn self.session.custom.exceedTime",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr"
+                        },
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\tif self.props.text \u003d\u003d 1:\n\t\tself.session.custom.exceedStartTime \u003d system.date.now()\n\t"
+                        }
+                      }
+                    },
+                    "type": "ia.input.text-field"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblExceedTime"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 20
+                    },
+                    "props": {
+                      "style": {
+                        "textAlign": "center"
+                      },
+                      "text": "Exceed Time(in secs)"
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntExceedTime"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 3,
+                      "name": "sm",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 3,
+                      "name": "md",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    },
+                    {
+                      "colIndex": 3,
+                      "name": "lg",
+                      "order": 1,
+                      "rowIndex": 0,
+                      "span": 3
+                    }
+                  ],
+                  "height": 80
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 3
+                  }
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "draggable": true,
+                            "id": "QualityDefect",
+                            "modal": true,
+                            "overlayDismiss": false,
+                            "resizable": true,
+                            "showCloseIcon": true,
+                            "title": "Quality Defect",
+                            "type": "open",
+                            "viewParams": {
+                              "bom": "{view.custom.bom}",
+                              "model": "{view.custom.model}",
+                              "order": "{view.custom.order}",
+                              "serialNumber": "{view.custom.serialNumber}",
+                              "station": "{view.custom.station}"
+                            },
+                            "viewPath": "Project_VECV/PopUp/Quality/Quality Defect",
+                            "viewportBound": true
+                          },
+                          "scope": "C",
+                          "type": "popup"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnDefect"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({..../cntHeader/cntSerialNumber/txtSerialNumber.props.text} !\u003d \u0027\u0027,toBoolean(1), toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#FE9F30",
+                        "classes": "Project_VECV/CommonBackgroundColor/Button",
+                        "color": "#000000"
+                      },
+                      "text": "Defects"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntDefect"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 6,
+                      "name": "sm",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 6,
+                      "name": "md",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 7,
+                      "name": "lg",
+                      "order": 2,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 80
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "draggable": true,
+                            "id": "QualityReworkPopup",
+                            "modal": true,
+                            "overlayDismiss": false,
+                            "resizable": true,
+                            "showCloseIcon": true,
+                            "type": "open",
+                            "viewPath": "Project_VECV/Quality/QualityManagement/ReworkPopUp",
+                            "viewportBound": false
+                          },
+                          "scope": "C",
+                          "type": "popup"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnRework"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({..../cntHeader/cntSerialNumber/txtSerialNumber.props.text} !\u003d \u0027\u0027,toBoolean(1), toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#FFF135",
+                        "classes": "Project_VECV/CommonBackgroundColor/Button",
+                        "color": "#000000"
+                      },
+                      "text": "Rework"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntRework"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 7,
+                      "name": "sm",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 7,
+                      "name": "md",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 8,
+                      "name": "lg",
+                      "order": 3,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 80
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "saveDefect",
+                      "pageScope": true,
+                      "script": "\n\n\t# implement your handler here\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/05/2024\n\t\t\tPurpose: Save Defect in Table.\n\t\t\"\"\"\n\t\tsystem.perspective.print(self.view.custom.bom)\n\t\tsystem.perspective.print(self.session.custom.BOMId)\n\t\t\n\t\tsystem.perspective.print(self.view.custom.ModelID)\n\t\tsystem.perspective.print(self.view.custom.model)\n\t\t\t\t\n\t\tparams \u003d {\n\t\t\u0027AreaId\u0027 :  self.session.custom.CurrentAreaId,\n\t\t\u0027LineId\u0027 : self.session.custom.CurrentLineId,\n\t\t\u0027WorkStationId\u0027 : self.session.custom.CurrentWorkStationId,\n\t\t\u0027SerialNumber\u0027 : self.parent.parent.getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"txtSerialNumber\").props.text,\n\t\t\u0027OrderNumber\u0027 : self.parent.parent.getChild(\"cntHeader\").getChild(\"cntOrder\").getChild(\"TextField\").props.text,\n\t\t\u0027BOMId\u0027 : self.session.custom.BOMId,\n\t\t\n\t\t\u0027DefectId\u0027 : payload[\u0027Id\u0027],\n\t\t\u0027OperatorID\u0027 : self.session.custom.loggedInUserId, \n\t\t\u0027Comments\u0027 : payload[\u0027comments\u0027],\n\t\t\u0027CreatedBy\u0027 : self.session.custom.loggedInUserId,\n\t\t\u0027DefectName\u0027 : payload[\u0027defectName\u0027]}\n\t\tdataset \u003d system.db.runNamedQuery(\u0027Project_VECV/OperatorDashboard/InsertQGDefect\u0027,params)\n\t\tstate \u003d \u0027success\u0027\n\t\tmessage \u003d \u0027Data Saved Successfully\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\n\t\tsystem.util.getLogger(\"Take Out Message handler script\").info(\"script called\")\n\t\tWorkInstructionId \u003d \u0027\u0027\n\t\tOPCodeId \u003d \u0027\u0027\n\t\tOPDefinitionId \u003d \u0027\u0027\n\t\tWITypeId \u003d \u0027\u0027\n\t\tseqNo \u003d 0\n\t\t\n\t\tArea\u003dself.session.custom.CurrentAreaName\n\t\tLine\u003dself.session.custom.CurrentLineName\n\t\tWS\u003dself.session.custom.CurrentWorkStation\n\t\tOPType\u003d\u0027\u0027\n\t\tsystem.perspective.print(\"Take Out Message Handler Script--OPType:%s\"%OPType)\n\t\tpayload \u003d {}\n\t\t\n\n\t\tSerialNumber \u003d self.parent.parent.getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"txtSerialNumber\").props.text\n\t\tWorkStationId \u003d self.session.custom.CurrentWorkStationId\n\t\tBOMId \u003d self.session.custom.BOMId\n\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\t\n\t\t#### ADD Takeout event in StationEvent table\n\t\tpayload \u003d {\u0027EventID\u0027:Project_VECV.config.getTakeOutID() , \u0027OPCodeId\u0027:OPCodeId, \u0027OPDefinitionId\u0027:OPDefinitionId,\n\t\t\u0027MST_Status_Id\u0027:3, \u0027OrderNumber\u0027:self.parent.parent.getChild(\"cntHeader\").getChild(\"cntOrder\").getChild(\"TextField\").props.text}\n\t\tsystem.perspective.sendMessage(messageType\u003d\u0027InsertIntoStationEvents\u0027, payload\u003dpayload, scope\u003d\u0027page\u0027)\n\t\t\n\t\t#### Add Takeout event in Takein_TakeOut table\n\t\tparams\u003d{\u0027areaid\u0027:self.session.custom.CurrentAreaId,\u0027Lineid\u0027:self.session.custom.CurrentLineId,\u0027serial\u0027:SerialNumber,\n\t\t\u0027ordernum\u0027:self.parent.parent.getChild(\"cntHeader\").getChild(\"cntOrder\").getChild(\"TextField\").props.text,\n\t\t\u0027bomid\u0027:BOMId,\u0027station\u0027:WorkStationId,\u0027operator\u0027:ModifiedBy}\n\t\tsystem.db.runNamedQuery(\"Project_VECV/OperatorDashboard/InsertTakeOutData\",params)\t\t\n\t\t\n\t\t### Update Release Production Order table with Takeout event\n\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\tOrderNumber \u003d self.parent.parent.getChild(\"cntHeader\").getChild(\"cntOrder\").getChild(\"TextField\").props.text\n\t\tProject_VECV.OperatorDashboard.OperatorDashboard.UpdateOrderStatus(ModifiedBy, SerialNumber, BOMId, OrderNumber)\n\t\t\n\t\tSerialNumber \u003d SerialNumber\n\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\tstate\u003d\u0027Info\u0027\n\t\tuserName\u003dself.session.custom.loggedInUser\n\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\tArea\u003dself.session.custom.CurrentAreaName\n\t\tLine\u003dself.session.custom.CurrentLineName\n\t\tWS\u003dself.session.custom.CurrentWorkStation\t\t\t\t\n\n\t\tdata\u003d\"Take Out for Serial Number %s\"%(SerialNumber)\n\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t## Flush all data and send takeout bit to PLC\n\t\tsystem.perspective.sendMessage(\u0027flash\u0027, scope\u003d\u0027page\u0027)\n\texcept:\n\t\tscreenName \u003d\u0027Rework-Quality\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality Management/WorkStation\u0027)  \n\t\terrorFunction \u003d str(\u0027Message handler : saveDefect -\u003e cntColumn/cntAction/cntQuality\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": [
+                          {
+                            "config": {
+                              "draggable": true,
+                              "id": "Inspection",
+                              "modal": false,
+                              "overlayDismiss": false,
+                              "resizable": true,
+                              "showCloseIcon": false,
+                              "type": "open",
+                              "viewParams": {
+                                "bom": "{view.custom.bom}",
+                                "checkListData": "{view.custom.checklistTable}",
+                                "message": "Do you want to complete the Inspection ?",
+                                "modelNumber": "{view.custom.model}",
+                                "orderNumber": "{view.custom.order}",
+                                "serialNumber": "{view.custom.serialNumber}",
+                                "workStationName": "{view.custom.station}"
+                              },
+                              "viewPath": "Project_VECV/PopUp/Quality/InspectionConfirmationPopup",
+                              "viewportBound": false
+                            },
+                            "enabled": false,
+                            "scope": "C",
+                            "type": "popup"
+                          },
+                          {
+                            "config": {
+                              "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 27/06/2024\n\t\tPurpose: Call Confirmation popup after prechecks completion. \n\t\"\"\"\n\ttry:\n\t\tserialNum \u003d self.parent.parent.parent.getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"txtSerialNumber\").props.text\n\t\tif serialNum !\u003d \"\":\n\t\t\tAreaID\u003dself.session.custom.CurrentAreaId\n\t\t\tLineID\u003dself.session.custom.CurrentLineId\n\t\t\tWorkStationID\u003dself.session.custom.CurrentWorkStationId\n\t\t\tSerialNumber \u003d self.view.custom.serialNumber\n\t\t\tif str(self.session.custom.CurrentWorkStation).upper() in [\u0027LAQG04\u0027,\u0027LAQG05\u0027]:\n\t\t\t\tsystem.perspective.print(\u0027in if -------\u003e\u0027)\n\t\t\t\tPrev_Station_Status \u003d Project_VECV.Quality.checkPrevStation.checkDetailsForOPStart(SerialNumber, WorkStationID, AreaID, LineID)\n\t\t\telse:\n\t\t\t\tdataset \u003d system.db.runNamedQuery(\u0027Project_VECV/OperatorDashboard/parallelPrevCheck/parallelPrevCheck\u0027,{\u0027MST_line_Id\u0027:LineID})\n\t\t\t\tgetparallelStation \u003d \u0027\u0027\n\t\t\t\tfor data in dataset:\n\t\t\t\t    if str(data[\u0027ParallelStation\u0027]) \u003d\u003d str(WorkStationID):\n\t\t\t\t        getparallelStation \u003d str(data[\u0027MST_WorkStation_Id\u0027])\n\t\t\t\t        break\n\t\t\t\t\n\t\t\t\tif getparallelStation \u003d\u003d \u0027\u0027:\n\t\t\t\t    #get Prev station status for current Station\n\t\t\t\t    Prev_Station_Status \u003d Project_VECV.OperatorDashboard.OperatorDashboard.checkDetailsForOPStart(SerialNumber, WorkStationID, AreaID, LineID)\n\t\t\t\telse:\n\t\t\t\t    #check it Station Station is Already OK or NOT\n\t\t\t\t    Prev_Station_Status \u003d Project_VECV.OperatorDashboard.OperatorDashboard.getStationDetails(WorkStationID,SerialNumber,AreaID,LineID)\n\t\t\t\t    #0 --\u003e NOK \u0026 1\u003d--\u003e OK\n\t\t\t\t    if Prev_Station_Status \u003d\u003d 0:\n\t\t\t\t        Prev_Station_Status \u003d Project_VECV.OperatorDashboard.OperatorDashboard.checkDetailsForOPStart(SerialNumber, getparallelStation, AreaID, LineID)\n\t\t\t\t        if Prev_Station_Status \u003d\u003d 1 or Prev_Station_Status \u003d\u003d 2:\n\t\t\t\t            Prev_Station_Status \u003d 1\n\t\t\t\t        else:\n\t\t\t\t            Prev_Station_Status \u003d 0\n\t\t\t\t    else:\n\t\t\t\t        Prev_Station_Status \u003d 2\n\t\t\t        \n\t\t\tif Prev_Station_Status \u003d\u003d 1:\n\t\t\t\tNCdata\u003dself.parent.parent.parent.getChild(\"cntTable\").getChild(\"TabContainer\").getChild(\"tblLogNC\").props.data\n\t\t\t\tsystem.perspective.print(\"len of nc %s\"%len(NCdata))\n\t\t\t\tif(len(NCdata) \u003e 0):\n\t\t\t\t\tncState\u003d\u0027Not Ok\u0027\n\t\t\t\telse:\n\t\t\t\t\tncState\u003d\u0027Ok\u0027\n\t\t\t\tsystem.perspective.print(\"ncState %s\"%ncState)\n\t\t\t\tif ncState\u003d\u003d\u0027Ok\u0027:\n\t\t\t\t\tinspectionListTable \u003d self.parent.parent.parent.getChild(\"cntTable\").getChild(\"TabContainer\").getChild(\"tblCheckPoints\").props.data\n\t\t\t\t\tsystem.perspective.print(\"Lenght:%s\"%str(len(inspectionListTable)))\n\t\t\t\t\tif(len(inspectionListTable) \u003e 0):\n\t\t\t\t\t\tfor row in range(len(inspectionListTable)):\n\t\t#\t\t\t\t\tsystem.perspective.print(\"Inside Loop:%s\"%str(row))\n\t\t\t\t\t\t\tstatus \u003d inspectionListTable[row][\u0027Status\u0027]\n\t\t\t\t\t\t\tif(str(status) \u003d\u003d \u0027False\u0027 or str(status) \u003d\u003d \u00270\u0027):\n\t\t\t\t\t\t\t\tstatus\u003d \u0027Not Ok\u0027\n\t\t\t\t\t\t\t\tbreak\n\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\tstatus\u003d \u0027Ok\u0027\n\t\t\t\t\telse:\n\t\t\t\t\t\tstatus\u003d \u0027Ok\u0027\n\t\t\t\t\tif status !\u003d \"Not Ok\":\t\n\t\t\t\t\t\tmessage \u003d \u0027Do you want to complete the Inspection?\u0027\n\t\t\t\t\t\tparams \u003d {\u0027bom\u0027:self.view.custom.bom,\u0027checkListData\u0027:self.view.custom.checklistTable,\u0027message\u0027:message,\n\t\t\t\t\t\t\u0027modelNumber\u0027:self.view.custom.ModelID,\u0027orderNumber\u0027:self.view.custom.order,\u0027serialNumber\u0027:self.view.custom.serialNumber,\n\t\t\t\t\t\t\u0027workStationName\u0027:self.view.custom.station}\n\t\t\t\t\t\tsystem.perspective.openPopup(\"Inspection\", \"Project_VECV/PopUp/Quality/InspectionConfirmationPopup\", params, showCloseIcon\u003dFalse)\n\t\t\t\t\telse:\n\t\t\t\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\t\t\t\tmessage \u003d \u0027Please complete all checkpoints before inspection.\u0027\n\t\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\telse:\n\t\t\t\t\tstate \u003d \u0027Warning\u0027\n\t\t\t\t\tmessage \u003d \u0027Please clear all LogNCs before inspection.\u0027\n\t\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\telif Prev_Station_Status \u003d\u003d 2:\n\t\t\t    state \u003d \u0027Warning\u0027\n\t\t\t    message \u003d \"Current Station Completed with Serial Number %s\"%(SerialNumber)\n\t\t\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t\n\t\t\telif Prev_Station_Status \u003d\u003d -1:\n\t\t\t    state \u003d \u0027Warning\u0027\n\t\t\t    message \u003d \"Order status is not in Started State.\"\n\t\t\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\telse:\n\t\t\t    state \u003d \u0027Warning\u0027\n\t\t\t    message \u003d \"Prev Station InCompleted with Serial Number %s\"%(SerialNumber)\n\t\t\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\telse:\n\t\t    state \u003d \u0027Warning\u0027\n\t\t    message \u003d \"SerialNumber is Empty. Please Scan serialnumber.\"\n\t\t    Project_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\texcept:\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Quality\u0027)\n\t\terrorFunction \u003d str(\u0027Event:btnInspection--onClick\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)"
+                            },
+                            "scope": "G",
+                            "type": "script"
+                          }
+                        ]
+                      }
+                    },
+                    "meta": {
+                      "name": "btnInspection"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({..../cntHeader/cntSerialNumber/txtSerialNumber.props.text} !\u003d \u0027\u0027,toBoolean(1), toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#00AC00",
+                        "classes": "Project_VECV/CommonBackgroundColor/Button",
+                        "color": "#2D2323"
+                      },
+                      "text": "Inspection"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntInspection"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 10,
+                      "name": "sm",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "md",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 10,
+                      "name": "lg",
+                      "order": 5,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 80
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tUpdate log NC data\t\t\t\n\t\"\"\"\n\ttry:\n\t\tNCdata\u003dself.parent.parent.parent.getChild(\"cntTable\").getChild(\"TabContainer\").getChild(\"tblLogNC\").props.data\n\t\torder\u003dself.view.getChild(\"root\").custom.Order_details\n\t\tsystem.perspective.print(\"LOOP1\")\n\t\tif(len(NCdata) \u003e 0):\n\t\t\tfor row in range(len(NCdata)):\n\t\t\t\teventid\u003dNCdata[row][\u0027MST_Event_Id\u0027]\n\t\t\t\ttorqueval\u003dNCdata[row][\u0027PLCTorqueValue\u0027]\n\t\t\t\ttorquecount\u003dNCdata[row][\u0027PLCTorqueCount\u0027]\n\t\t\t\ttorqueangle\u003dNCdata[row][\u0027Torque_Angle\u0027]\n\t\t\t\ttorqueresult\u003dNCdata[row][\u0027PLCTorqueResult\u0027]\n\t\t\t\tpressingval\u003dNCdata[row][\u0027PressingValue\u0027]\n\t\t\t\tpressingdep\u003dNCdata[row][\u0027PressingDepth\u0027]\n\t\t\t\toperatorid\u003dNCdata[row][\u0027OperatorID\u0027]\n\t\t\t\tstationeventid\u003dNCdata[row][\u0027TRN_Station_Events_Id\u0027]\n\t\t\t\topdef\u003dNCdata[row][\u0027OPDefinition\u0027]\n\t\t\t\tpartnum\u003dNCdata[row][\u0027ConsumedPartNumber\u0027]\n\t\t\t\tcreatedby\u003dself.session.custom.loggedInUserId\n\t\t\t\tserialnumber\u003dself.view.custom.serialNumber\n#\t\t\t\tWITypeID\u003dNCdata[row][\u0027MST_WIType_Id\u0027]\n\t\t\t\tWITypeID\u003d\u0027\u0027\n\t\t\t\tOPDefID\u003dNCdata[row][\u0027MST_OPDefinition_Id\u0027]\n\t\t\t\tOPDef\u003dNCdata[row][\u0027OPDefinition\u0027]\n\t\t\t\tBOMID\u003dorder.getValueAt(0,\u0027BOMId\u0027)\n\t\t\t\tOPCodeID\u003dNCdata[row][\u0027MST_OPCode_Id\u0027]\n\t\t\t\tlineid\u003dself.session.custom.CurrentLineId\n\t\t\t\tareaid\u003dself.session.custom.CurrentAreaId\n\t\t\t\tworkstationid\u003dself.session.custom.CurrentWorkStationId\n\t\t\t\ttrnstid\u003dNCdata[row][\u0027TRN_Station_Events_Id\u0027]\n\t\t\t\tsystem.perspective.print(\"trnstid %s\"%trnstid)\n\t\t\t\teventid\u003d0\n\t\t\t\tif opdef\u003d\u003d\u0027Operator Scan\u0027 and operatorid!\u003d\u0027\u0027 and operatorid!\u003d0 :\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif opdef\u003d\u003d\u0027Torque\u0027 and float(torqueval)\u003e0 and int(torqueangle)\u003e0 and int(torqueresult)\u003e0:\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif opdef\u003d\u003d\u0027Double Torque\u0027 and float(torqueval)\u003e0 and int(torqueangle)\u003e0 and int(torqueresult)\u003e0:\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif opdef\u003d\u003d\u0027Pressing Operation\u0027 and float(pressingval)\u003e0 and float(pressingdep)\u003e0 :\n\t\t\t\t\t#system.perspective.print(pressingval)\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif opdef\u003d\u003d\u0027Error Proofing\u0027 and partnum!\u003d\u0027\u0027 and partnum!\u003d0:\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif opdef\u003d\u003d\u0027Process Status\u0027 or opdef\u003d\u003d\u0027Visual WI\u0027 or opdef\u003d\u003d\u0027Process Data\u0027:\n\t\t\t\t\teventid\u003d5\n\t\t\t\tif eventid\u003d\u003d5:\n\t\t\t\t\tparams\u003d {\u0027stationeventid\u0027:stationeventid,\u0027torqueval\u0027:torqueval, \u0027torquecount\u0027: torquecount,\u0027torqueangle\u0027:torqueangle,\u0027torqueresult\u0027:torqueresult, \u0027pressingval\u0027:pressingval, \u0027pressingdep\u0027:pressingdep, \u0027operatorid\u0027:operatorid,\u0027partnum\u0027:partnum,\u0027createdby\u0027:createdby,\u0027serialnumber\u0027:serialnumber,\u0027WIID\u0027:\u0027\u0027,\u0027WITypeID\u0027:WITypeID,\u0027OPDefID\u0027:OPDefID,\u0027WorkstationID\u0027:workstationid,\u0027areaID\u0027:areaid,\u0027lineID\u0027:lineid,\u0027BOMID\u0027:BOMID,\u0027OPCodeID\u0027:OPCodeID,\u0027trnstid\u0027:trnstid}\n\t\t\t\t#params\u003d {\u0027stationeventid\u0027:stationeventid,\u0027eventid\u0027:eventid ,\u0027torqueval\u0027:torqueval, \u0027torquecount\u0027: torquecount,\u0027torqueangle\u0027:torqueangle,\u0027torqueresult\u0027:torqueresult, \u0027pressingval\u0027:pressingval, \u0027pressingdep\u0027:pressingdep, \u0027operatorid\u0027:operatorid}\n\t\t\t\t#system.perspective.print(params)\n\t\t\t\t\tinsertDetails \u003d system.db.runNamedQuery(\u0027Project_VECV/Quality/AddUpdateQGNC\u0027,params)\n\t\t\tsystem.perspective.sendMessage(\u0027RefreshNC\u0027,scope\u003d\u0027page\u0027)\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/Quality\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick - updateNC\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\n\t\t\n\t\t\n\t\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnLogNC"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 2,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 10
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({..../cntHeader/cntSerialNumber/txtSerialNumber.props.text} !\u003d \u0027\u0027,toBoolean(1), toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#1B9DCB",
+                        "classes": "Project_VECV/CommonBackgroundColor/Button",
+                        "color": "#000000"
+                      },
+                      "text": "Update Log NC"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntLogNC"
+                },
+                "position": {
+                  "breakpoints": [
+                    {
+                      "colIndex": 7,
+                      "name": "sm",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 7,
+                      "name": "md",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    },
+                    {
+                      "colIndex": 9,
+                      "name": "lg",
+                      "order": 4,
+                      "rowIndex": 0,
+                      "span": 1
+                    }
+                  ],
+                  "height": 60
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntFooter"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                }
+              ],
+              "height": 80
+            },
+            "props": {
+              "style": {
+                "marginRight": 5
+              }
+            },
+            "type": "ia.container.column"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "StationStatus": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0.2462,
+      "y": 0.2344
+    },
+    "propConfig": {
+      "custom.ExceedEndTime": {
+        "binding": {
+          "config": {
+            "path": "session.custom.ExceedEndTime"
+          },
+          "type": "property"
+        }
+      },
+      "custom.Order_details": {
+        "binding": {
+          "config": {
+            "parameters": {
+              "SerialNumber": "{./cntColumn/cntHeader/cntSerialNumber/txtSerialNumber.props.text}"
+            },
+            "queryPath": "Project_VECV/OperatorDashboard/GetOrderDetailsForWorkStation"
+          },
+          "type": "query"
+        }
+      },
+      "custom.exceedStartTime": {
+        "binding": {
+          "config": {
+            "path": "session.custom.exceedStartTime"
+          },
+          "type": "property"
+        }
+      },
+      "custom.processStartTime": {
+        "binding": {
+          "config": {
+            "path": "session.custom.processStartTime"
+          },
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "mode": "percent"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "Refreshorder",
+          "pageScope": true,
+          "script": "\tself.refreshBinding(\"custom.Order_details\")\n\t",
+          "sessionScope": false,
+          "viewScope": false
+        },
+        {
+          "messageType": "flash",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 05/06/2024\n\tPurpose:\t\t\t \n\t\t\tremove serialnumber value\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tsystem.perspective.print(\"in flash logic\")\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"cntSerialNumber\").getChild(\"txtSerialNumber\").props.text \u003d \u0027\u0027\n\texcept:\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Quality Insert\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/Quality Inspection\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onClick- cntStep/btnAdd\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\t",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

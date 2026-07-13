@@ -1,0 +1,2 @@
+exec usp_getActiveWashingMachine 
+@workstationName=:workstationName

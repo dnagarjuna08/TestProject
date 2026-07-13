@@ -1,0 +1,141 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\n\tif self.params.value \u003d\u003d 2 :\n\t\tself.getChild(\"root\").getChild(\"txtSerialNumber\").meta.visible\u003d1\n\telse:\n\t\tself.getChild(\"root\").getChild(\"txtSerialNumber\").meta.visible\u003d0"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "column": "value",
+    "columnIndex": "value",
+    "row": "value",
+    "rowData": "value",
+    "rowIndex": "value",
+    "value": "value"
+  },
+  "propConfig": {
+    "params.column": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.columnIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.row": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 38,
+      "width": 193
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onKeyDown": {
+              "config": {
+                "script": "\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\"getSerialNumber\", scope\u003d\"page\")\n\t\tif str(self.session.custom.DashBoardSerialNumber) \u003d\u003d str(self.props.text):\n\t\t\tsystem.perspective.closePopup(\"#SerialDashboard\")\n\t\t\tpayload \u003d {\"serialNumber\":self.session.custom.DashBoardSerialNumber}\n\t\t\tsystem.perspective.sendMessage(\"scanSerialNumber\",payload\u003dpayload, scope\u003d\"page\")\n\t\telse:\n\t\t\tself.props.text \u003d \"\"\n\t\t\tsystem.perspective.sendMessage(\"warning\", payload\u003d{\u0027warning\u0027:\"Serial Number MisMatch\"})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "txtSerialNumber"
+        },
+        "position": {
+          "height": 32,
+          "width": 178,
+          "x": 3,
+          "y": 2
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if({view.params.value}\u003d2,1,0)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "deferUpdates": false,
+          "rejectUpdatesWhileFocused": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "getfocus",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.focus()",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.text-field"
+      },
+      {
+        "meta": {
+          "name": "TextField",
+          "visible": false
+        },
+        "position": {
+          "height": 12,
+          "width": 9,
+          "x": 179,
+          "y": 25
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "expression": "now()"
+              },
+              "transforms": [
+                {
+                  "code": "\tsystem.perspective.sendMessage(\"getfocus\", scope\u003d\u0027page\u0027)\n\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "type": "ia.input.text-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

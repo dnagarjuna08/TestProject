@@ -1,0 +1,1634 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 20/06/2024\n\t\tPurpose: If previous page not logged in then navigate to login page. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\t#Check if user is logged or not if not then navigate to login page\n\t\tpreviousPage \u003d self.session.custom.IsBOMCopyAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"BOM Copy\"\n\t\t\tself.getChild(\"root\").getChild(\"drp_area\").props.value\u003d-1\n\t\t\tself.getChild(\"root\").getChild(\"drp_line\").props.value\u003d-1\n\t\t\tself.getChild(\"root\").getChild(\"drp_model\").props.value\u003d-1\n\t\t\tself.getChild(\"root\").getChild(\"drp_bomfrom\").props.value\u003d-1\n\t\t\tself.getChild(\"root\").getChild(\"Drp_bomto\").props.value\u003d-1\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027BOMCopy\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/BOMCopy\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e BOMCopy\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 801
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 60
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header"
+          },
+          "text": "BOM Copy:"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 20/06/2024\n\t\tPurpose: Copy one bom data into another bom. \n\t\"\"\"\n\ttry:\n\t\tdata\u003dself.getSibling(\"Table\").props.data\n\t\tbomidto\u003dint(self.getSibling(\"Drp_bomto\").props.value)\n\t\tbomidfrom\u003dself.getSibling(\"drp_bomfrom\").props.value\n\t\tcreatedby\u003d2\n\t\tresult\u003d0\n\t#self.session.custom.loggedInUserId\n\t\tfor row in range(len(data)):\n\t\t\tWSID\u003dint(data[row][\u0027MST_WorkStation_Id\u0027])\n\t\t\tWIID\u003dint(data[row][\u0027MST_WorkInstruction_Id\u0027])\n\t\t\t#system.perspective.print(WSID)\n\t\t\tisselected\u003ddata[row][\u0027Select\u0027]\n\t\t\tif isselected\u003d\u003d1:\n\t\t\t\tparams\u003d{\u0027bomidto\u0027:bomidto,\u0027WSID\u0027:WSID,\u0027WIID\u0027:WIID,\u0027createdby\u0027:createdby}\n\t\t\t\tresult\u003dsystem.db.runNamedQuery(\"Project_VECV/BomCopy/AddBomCopy\",params)\n\t\tsystem.perspective.sendMessage(\"RefreshTable\")\n\t\tresult\u003dresult[0][0]\n\t\t#system.perspective.print(result)\n\t\tif result\u003d\u003d1:\n\t\t\tmessage\u003d\"BOM Copied Successfully\"\n\t\t\tmessageType \u003d \u0027popup_View\u0027 \n\t\t\tstate\u003d\u0027success\u0027   \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType,payload \u003d {\"display\":1,\u0027state\u0027:str(state),\u0027text\u0027:str(message)},scope \u003d \u0027page\u0027 )\n\t\t\tself.getSibling(\"Table\").props.selection.selectedRow\u003d-1\n\t\t\tself.getSibling(\"Table\").props.selection.selectedColumn\u003d\u0027\u0027\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027BOM Copy Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/BomCopy/table\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onButtonclick - CopyWI\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \t\t\t\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t\t\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Btn_copy"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 4,
+              "span": 2
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 4,
+              "span": 2
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.enabled": {
+            "binding": {
+              "config": {
+                "expression": "if({../drp_bomfrom.props.value}!\u003d-1 \u0026\u0026 {../Drp_bomto.props.value}!\u003d-1 \u0026\u0026 {../drp_bomfrom.props.value}!\u003d{../Drp_bomto.props.value},True,False)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/Button",
+            "marginTop": 0
+          },
+          "text": "Copy WI"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onRowClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 21/06/2024\n\t\tPurpose: on row click, pass remark based on selection. \n\t\"\"\"\n\t\n\ttry:\n\t\tcheckdata\u003dself.props.data[self.props.selection.selectedRow][\u0027Select\u0027]\n\t\tif checkdata\u003d\u003d0 and str(self.props.selection.selectedColumn)\u003d\u003d\"Select\":\n\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Select\u0027]\u003d1\n\t\t\tif int(self.props.data[self.props.selection.selectedRow][\u0027OPCountTo\u0027])\u003e0:\n\t\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Remark\u0027]\u003d\u0027Existing \u0027 + str(self.getSibling(\"Table\").props.data[self.props.selection.selectedRow][\u0027OPCountTo\u0027])+\u0027 assigned OP(s) will be deleted\u0027\t\n\t\tif checkdata\u003d\u003d1 and str(self.props.selection.selectedColumn)\u003d\u003d\"Select\":\n\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Select\u0027]\u003d0\n\t\t\tself.props.data[self.props.selection.selectedRow][\u0027Remark\u0027]\u003d\u0027\u0027\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027BOM Copy Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/BomCopy/table\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onRowClick - BomCopy\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \t\t\t\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t\t\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 6,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 6,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 6,
+              "span": 12
+            }
+          ],
+          "height": 493
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "areaid": "{../drp_area.props.value}",
+                  "bomidfrom": "{../drp_bomfrom.props.value}",
+                  "bomidto": "{../Drp_bomto.props.value}",
+                  "lineid": "{../drp_line.props.value}"
+                },
+                "queryPath": "Project_VECV/BomCopy/GetBomCopy",
+                "returnFormat": "json"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": true,
+              "field": "Select",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "boolean",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "AreaName",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "LineName",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "WorkStationName",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "BOMFrom",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "OPCountfrom",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "BOMTo",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "OPCountTo",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Remark",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "center",
+                "style": {
+                  "backgroundColor": "#000000",
+                  "classes": "",
+                  "color": "#FFFFFF"
+                },
+                "title": ""
+              },
+              "justify": "center",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": true,
+              "sort": "none",
+              "sortable": true,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": ""
+            }
+          ],
+          "style": {
+            "marginLeft": 5,
+            "marginRight": 5
+          }
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "RefreshTable",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.refreshBinding(\"props.data\")\n\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "meta": {
+          "name": "Label_Area"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 4
+            }
+          ],
+          "height": 20
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label",
+            "marginLeft": 5
+          },
+          "text": "Area"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 22/06/2024\n\t\tPurpose: Reset values when Area value changes. \n\t\"\"\"\n\tself.getSibling(\"drp_line\").props.value\u003d-1\n\tself.getSibling(\"drp_model\").props.value\u003d-1\n\tself.getSibling(\"drp_bomfrom\").props.value\u003d-1\n\tself.getSibling(\"Drp_bomto\").props.value\u003d-1\n\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "drp_area"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 2,
+              "span": 4
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "-1",
+                  "DropdownType": "1",
+                  "LineID": "-1"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginLeft": 5
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_Line"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 4
+            }
+          ],
+          "height": 20
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label"
+          },
+          "text": "Line"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 22/06/2024\n\t\tPurpose: Reset values when Line value changes. \n\t\"\"\"\n\tself.getSibling(\"drp_model\").props.value\u003d-1\n\tself.getSibling(\"drp_bomfrom\").props.value\u003d-1\n\tself.getSibling(\"Drp_bomto\").props.value\u003d-1\n\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "drp_line"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 2,
+              "span": 4
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "{../drp_area.props.value}",
+                  "DropdownType": "2",
+                  "LineID": "-1"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 22/06/2024\n\t\tPurpose: Reset values when model value changes. \n\t\"\"\"\n\tself.getSibling(\"drp_bomfrom\").props.value\u003d-1\n\tself.getSibling(\"Drp_bomto\").props.value\u003d-1\n\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "drp_model"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 2,
+              "span": 4
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "AreaID": "{../drp_area.props.value}",
+                  "DropdownType": "10",
+                  "LineID": "{../drp_line.props.value}"
+                },
+                "queryPath": "Project_VECV/Panel/getallDropdowns"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginRight": 5
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Label_Model"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 4
+            }
+          ],
+          "height": 20
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label",
+            "marginRight": 5
+          },
+          "text": "Model"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_BOM_To"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 3,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 3,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 3,
+              "span": 4
+            }
+          ],
+          "height": 20
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label"
+          },
+          "text": "BOM (To)"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Label_BOM_From"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 3,
+              "span": 4
+            }
+          ],
+          "height": 20
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label",
+            "marginLeft": 5
+          },
+          "text": "BOM (From)"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "drp_bomfrom"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 4,
+              "span": 4
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "Modelid": "{../drp_model.props.value}"
+                },
+                "queryPath": "Project_VECV/Panel/GetBOM"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginLeft": 5
+          },
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tself.getSibling(\"Checkbox_selectall\").props.selected\u003dFalse"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Drp_bomto"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 4,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 4,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 4,
+              "span": 4
+            }
+          ],
+          "height": 35
+        },
+        "propConfig": {
+          "props.options": {
+            "binding": {
+              "config": {
+                "parameters": {
+                  "Modelid": "{../drp_model.props.value}"
+                },
+                "queryPath": "Project_VECV/Panel/GetBOM"
+              },
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "value": -1
+        },
+        "type": "ia.input.dropdown"
+      },
+      {
+        "meta": {
+          "name": "Checkbox_selectall"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 5,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 5,
+              "span": 2
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 5,
+              "span": 2
+            }
+          ],
+          "height": 26
+        },
+        "propConfig": {
+          "meta.visible": {
+            "binding": {
+              "config": {
+                "expression": "if (len({../Table.props.data})\u003e0,True,False)"
+              },
+              "type": "expr"
+            }
+          },
+          "props.selected": {
+            "onChange": {
+              "enabled": null,
+              "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 22/06/2024\n\t\tPurpose: Select/Deselect all rows. \n\t\"\"\"\n\ttry:\n\t\tself.getSibling(\"Table\").props.selection.selectedRow\u003d-1\n\t\tself.getSibling(\"Table\").props.selection.selectedColumn\u003d\u0027\u0027\n\t\tdata\u003dself.getSibling(\"Table\").props.data\n\t\t#system.perspective.print(currentValue)\n\t\tif currentValue.value\u003d\u003d0:\n\t\t\tfor row in range(len(data)):\n\t\t\t\tself.getSibling(\"Table\").props.data[row][\u0027Select\u0027]\u003d0\n\t\t\t\tself.getSibling(\"Table\").props.data[row][\u0027Remark\u0027]\u003d\u0027\u0027\n\t\tif currentValue.value\u003d\u003d1:\n\t\t\tfor row in range(len(data)):\n\t\t\t\tself.getSibling(\"Table\").props.data[row][\u0027Select\u0027]\u003d1\n\t\t\t\tif int(self.getSibling(\"Table\").props.data[row][\u0027OPCountTo\u0027])\u003e0:\n\t\t\t\t\tself.getSibling(\"Table\").props.data[row][\u0027Remark\u0027]\u003d\u0027Existing \u0027 + str(self.getSibling(\"Table\").props.data[row][\u0027OPCountTo\u0027])+\u0027 assigned OP(s) will be deleted\u0027\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027BOM Copy Screen\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/BomCopy\u0027)\n\t\terrorFunction \u003d str(\u0027Event:onchangescript - SelectAll\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \t\t\t\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\t\t\t"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "marginLeft": 5
+          },
+          "text": "Select All"
+        },
+        "type": "ia.input.checkbox"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onDoubleClick": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 20/06/2024\n\t\tPurpose: Deselect row on double click. \n\t\"\"\"\n\tself.getChild(\"Table\").props.selection.selectedRow\u003d-1\n\tself.getChild(\"Table\").props.selection.selectedColumn\u003d\u0027\u0027"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "popup_View",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 20/06/2024\n\t\tPurpose: call popup message hanlder. \n\t\"\"\"\n\t# implement your handler here\n\t#system.perspective.print(\u0027In Popup\u0027)\t\t\n\tstate\u003dpayload[\u0027state\u0027]\n\tmessage\u003dpayload[\u0027text\u0027]\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.column"
+  }
+}

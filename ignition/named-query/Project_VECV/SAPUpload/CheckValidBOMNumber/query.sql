@@ -1,0 +1,1 @@
+SELECT count(*) FROM M_BOM WHERE M_BOMNumber = :Material_Number AND Mst_Area_Id = :Area_Id

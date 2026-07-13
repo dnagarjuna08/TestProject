@@ -1,0 +1,16 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "data.bin"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "Niladri",
+      "timestamp": "2024-07-29T11:52:52Z"
+    },
+    "lastModificationSignature": "8613738a6be50bb1f2e122a38895d54134d44dcdf2aea1f2f9adcc97c2224643"
+  }
+}

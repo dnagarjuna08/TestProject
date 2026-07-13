@@ -1,0 +1,836 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\tsystem.perspective.sendMessage(\"onFocusAlertPrimary\", scope\u003d\u0027page\u0027)"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "btnActionClose": "closePopup",
+    "btnActionPrimary": "closePopup",
+    "btnActionSecondary": "closePopup",
+    "btnIconAlignment": "right",
+    "btnIconPrimary": "chevron_right",
+    "btnIconSecondary": "",
+    "btnTextPrimary": "Primary",
+    "btnTextSecondary": "Secondary",
+    "colName": "",
+    "folder": "",
+    "id": "",
+    "levelId": "value",
+    "message": "Alert message goes here.",
+    "showCloseBtn": true,
+    "state": "info",
+    "title": "title"
+  },
+  "propConfig": {
+    "params.btnActionClose": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.btnActionPrimary": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.btnActionSecondary": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.btnIconAlignment": {
+      "paramDirection": "inout"
+    },
+    "params.btnIconPrimary": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.btnIconSecondary": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.btnIconSecondary_1": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.btnIconSecondary_2": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.btnIconSecondary_3": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.btnTextPrimary": {
+      "paramDirection": "inout"
+    },
+    "params.btnTextSecondary": {
+      "paramDirection": "inout"
+    },
+    "params.buttons.key": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.colName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.folder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.levelId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.message": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.showCloseBtn": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.state": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.title": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 512,
+      "width": 693
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "iconMain"
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.color": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.state}"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "var(--info)",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "warning",
+                          "output": "var(--warning)"
+                        },
+                        {
+                          "input": "success",
+                          "output": "var(--success)"
+                        },
+                        {
+                          "input": "error",
+                          "output": "var(--error)"
+                        },
+                        {
+                          "input": "info",
+                          "output": "var(--info)"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              },
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.state}"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "material/info",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "warning",
+                          "output": "material/warning"
+                        },
+                        {
+                          "input": "info",
+                          "output": "material/info"
+                        },
+                        {
+                          "input": "error",
+                          "output": "material/error"
+                        },
+                        {
+                          "input": "success",
+                          "output": "material/check_circle"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/PopUp/Utilities/m-r-16"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "title"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "position.display": {
+                    "binding": {
+                      "config": {
+                        "expression": "{this.props.text}"
+                      },
+                      "transforms": [
+                        {
+                          "fallback": true,
+                          "inputType": "scalar",
+                          "mappings": [
+                            {
+                              "input": "",
+                              "output": false
+                            }
+                          ],
+                          "outputType": "scalar",
+                          "type": "map"
+                        }
+                      ],
+                      "type": "expr"
+                    }
+                  },
+                  "props.style.color": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.state"
+                      },
+                      "transforms": [
+                        {
+                          "fallback": "var(--info)",
+                          "inputType": "scalar",
+                          "mappings": [
+                            {
+                              "input": "info",
+                              "output": "var(--info)"
+                            },
+                            {
+                              "input": "success",
+                              "output": "var(--success)"
+                            },
+                            {
+                              "input": "error",
+                              "output": "var(--error)"
+                            },
+                            {
+                              "input": "warning",
+                              "output": "var(--warning)"
+                            }
+                          ],
+                          "outputType": "scalar",
+                          "type": "map"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  },
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.title"
+                      },
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Alerts/alertTitle"
+                  }
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "message"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "path": "view.params.message"
+                      },
+                      "overlayOptOut": true,
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Alerts/alertMessage"
+                  },
+                  "textStyle": {
+                    "textAlign": "justify-all"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "content"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "classes": "Project_VECV/PopUp/Utilities/m-r-16"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tmessageType \u003d self.view.params.btnActionClose\t\n\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onTouchStart": {
+                  "config": {
+                    "script": "\tmessageType \u003d self.view.params.btnActionClose\t\n\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "iconClose"
+            },
+            "position": {
+              "basis": "16px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.showCloseBtn"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "path": "material/close",
+              "style": {
+                "classes": "Project_VECV/PopUp/Alerts/alertClose"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "closePopup",
+                  "pageScope": false,
+                  "script": "\t# closes the last focused popup\n#\tsystem.perspective.closePopup(\u0027\u0027)\n\tsystem.perspective.closePopup(\u0027alertDialog\u0027)",
+                  "sessionScope": true,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.display.icon"
+          }
+        ],
+        "meta": {
+          "name": "body"
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "classes": "Project_VECV/PopUp/Utilities/p-16",
+            "fontSize": 30,
+            "fontWeight": "bold"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Image"
+        },
+        "position": {
+          "basis": "150px",
+          "grow": 1
+        },
+        "props": {
+          "fit": {
+            "height": 400,
+            "mode": "fill",
+            "width": 300
+          },
+          "source": "/system/images/VinPlate/UdVinplate.jpg\n"
+        },
+        "type": "ia.display.image"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tmessageType \u003d self.view.params.btnActionSecondary\t\n\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              },
+              "dom": {
+                "onKeyPress": {
+                  "config": {
+                    "script": "\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.print(\"Enter Key Pressed\")\n\t\tmessageType \u003d self.view.params.btnActionSecondary\t\n\t\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onKeyUp": {
+                  "config": {
+                    "script": "\n\tif event.key \u003d\u003d \u0027ArrowRight\u0027:\n\t\tself.props.style.borderStyle \u003d \u0027none\u0027\n\t\tsystem.perspective.sendMessage(\u0027onFocusAlertPrimary\u0027,scope\u003d\u0027page\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "actionSecondary"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "this.props.text"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": true,
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "",
+                          "output": false
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.image.icon.path": {
+                "binding": {
+                  "config": {
+                    "expression": "\"material/\" + {view.params.btnIconSecondary}"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif str(value) \u003d\u003d \"material/\":\n\t\treturn \"\"\n\telse:\n\t\treturn value",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              },
+              "props.image.position": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.btnIconAlignment"
+                  },
+                  "overlayOptOut": true,
+                  "type": "property"
+                }
+              },
+              "props.image.style.fill": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.state"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "#222222",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "info",
+                          "output": "#17599C"
+                        },
+                        {
+                          "input": "success",
+                          "output": "#117539"
+                        },
+                        {
+                          "input": "warning",
+                          "output": "#C26700"
+                        },
+                        {
+                          "input": "error",
+                          "output": "#A62D19"
+                        }
+                      ],
+                      "outputType": "color",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.state"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "Project_VECV/PopUp/Alerts/alertBtn2 Utilities/m-r-8 Utilities/p-rl-8",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "error",
+                          "output": "Project_VECV/PopUp/Alerts/states/errorBtn2 Utilities/m-r-8 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "warning",
+                          "output": "Project_VECV/PopUp/Alerts/states/warningBtn2 Utilities/m-r-8 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "info",
+                          "output": "Project_VECV/PopUp/Alerts/states/infoBtn2 Utilities/m-r-8 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "success",
+                          "output": "Project_VECV/PopUp/Alerts/states/successBtn2 Utilities/m-r-8 Utilities/p-rl-8"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "{view.params.btnTextSecondary}"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "height": 20,
+                "icon": {},
+                "width": 20
+              },
+              "primary": false,
+              "style": {
+                "borderColor": "#000000",
+                "borderStyle": "none",
+                "borderWidth": "2px"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "closePopup",
+                  "pageScope": false,
+                  "script": "\t# closes the last focused popup\n#\tsystem.perspective.closePopup(\u0027\u0027)\n\tsystem.perspective.closePopup(\u0027alertDialog\u0027)",
+                  "sessionScope": true,
+                  "viewScope": false
+                },
+                {
+                  "messageType": "onFocusAlertSecondary",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tself.focus()\n\tself.props.style.borderStyle \u003d \u0027groove\u0027\n\tself.props.style.borderWidth \u003d \u0027#000000\u0027\n\tself.props.style.borderColor \u003d \u00272px\u0027",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\tsystem.perspective.print(\"event %s\"%event)\n\tmessageType \u003d self.view.params.btnActionPrimary\t\n\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")\n\tsystem.perspective.sendMessage(\u0027SerialNumberFocus\u0027,payload \u003d {},scope\u003d\u0027page\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              },
+              "dom": {
+                "onKeyPress": {
+                  "config": {
+                    "script": "\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.print(\"Enter Key Pressed\")\n\t\tmessageType \u003d self.view.params.btnActionPrimary\t\n\t\tsystem.perspective.sendMessage(messageType, scope \u003d \"session\")"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                },
+                "onKeyUp": {
+                  "config": {
+                    "script": "\n\tif event.key \u003d\u003d \u0027ArrowLeft\u0027:\n\t\tself.props.style.borderStyle \u003d \u0027none\u0027\n\t\tsystem.perspective.sendMessage(\u0027onFocusAlertSecondary\u0027,scope\u003d\u0027page\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "actionPrimary"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.image.icon.path": {
+                "binding": {
+                  "config": {
+                    "expression": "\"material/\" + {view.params.btnIconPrimary}"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif str(value) \u003d\u003d \"material/\":\n\t\treturn \"\"\n\telse:\n\t\treturn value",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr"
+                }
+              },
+              "props.image.position": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.btnIconAlignment"
+                  },
+                  "overlayOptOut": true,
+                  "type": "property"
+                }
+              },
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.state"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "Project_VECV/PopUp/Alerts/alertBtn1 Utilities/p-rl-8",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "error",
+                          "output": "Project_VECV/PopUp/Alerts/states/errorBtn1 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "warning",
+                          "output": "Project_VECV/PopUp/Alerts/states/warningBtn1 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "info",
+                          "output": "Project_VECV/PopUp/Alerts/states/infoBtn1 Utilities/p-rl-8"
+                        },
+                        {
+                          "input": "success",
+                          "output": "Project_VECV/PopUp/Alerts/states/successBtn1 Utilities/p-rl-8"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.btnTextPrimary"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "height": 20,
+                "icon": {},
+                "width": 20
+              },
+              "style": {
+                "borderColor": "#000000",
+                "borderStyle": "groove",
+                "borderWidth": "2px"
+              }
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "closePopup",
+                  "pageScope": false,
+                  "script": "\t# closes the last focused popup\n#\tsystem.perspective.closePopup(\u0027\u0027)\n\tsystem.perspective.closePopup(\u0027alertDialog\u0027)",
+                  "sessionScope": true,
+                  "viewScope": false
+                },
+                {
+                  "messageType": "deleteNewPop",
+                  "pageScope": false,
+                  "script": "\t# implement your handler here  # final delete from here...\n\t\"\"\"\n\tWritten By: Gaurav Amrutkar\n\tWritten Date: 24/04/2024\n\tPurpose:\n\t\t\tThe purpose of the script to delete entries from db by calling named query.\n\t\"\"\"\t\n\t\t\n\ttry:\n\t\t#Start of try\n\t\timport time\n\t\tstart_time \u003d time.time()\t\t\n\n\t\tid \u003d  self.view.params.id\n\t\tfolder \u003d self.view.params.folder\n\t\tcolName\u003d self.view.params.colName\n\t\tlevelid\u003d self.view.params.levelId\n\t\tsystem.perspective.print(\"In NEW delete popup script:%s\"%folder)\n\t\tModifiedBy \u003d self.session.custom.loggedInUserId\n\t\tscreenName1 \u003d folder.split(\u0027/\u0027)\n\t\tscreenName \u003d screenName1[1]\n\t\tif(id \u003e 0 and folder !\u003d\u0027\u0027):\n\t\t\tif screenName \u003d\u003d \"Plant\" :\n\t\t\t\tsystem.perspective.print(\"If Plant\")\n\t\t\t\tsystem.perspective.print(\"Values:%s\"%({str(colName):int(id), \"LevelId\":levelid}))\n\t\t\t\tparams \u003d {str(colName):int(id), \"LevelId\":levelid,\"ModifiedBy\":ModifiedBy}\n\t\t\t\tresult \u003d system.db.runNamedQuery(str(folder)+\"/Delete\",params)\n\t\t\telse:\n\t\t\t\tsystem.perspective.print(\"All other screens\")\n\t\t\t\tparams \u003d {str(colName):int(id),\"ModifiedBy\":ModifiedBy}\n\t\t\t\tsystem.perspective.print(str(folder)+\"/Delete\")\n\t\t\t\tsystem.perspective.print(params)\n\t\t\t\tresult \u003d system.db.runNamedQuery(str(folder)+\"/Delete\",params)\n\t\t\t\tif screenName \u003d\u003d \"Image\" and result\u003e0:\n\t\t\t\t\tProject_VECV.Master.ImageMasterConfiguration.Delete.deleteImage(self.session.custom.SelectedImageURL)\n#\t\t\t\t\t\tresult \u003d system.db.runNamedQuery(str(folder)+\"/Delete\",params)\n\t\t\tif(str(result) \u003e \u00270\u0027):\n\t\t\t\tcloseDisablePopup()\n\t\t\t\tmessage\u003d str(screenName) + \u0027 details deleted succesfully.\u0027\n\t\t\t\tauditMsg\u003dmessage\n\t\t\t\tstate \u003d \u0027success\u0027\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\telse:\n\t\t\t\tstate \u003d \u0027error\u0027\n\t\t\t\tmessage \u003d \u0027Unexepected error while deleting selected row\u0027\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\t\t\t#addToAuditLog\n\t\t\tsystem.perspective.print(\"auditMsg\")\n\t\t\tsystem.perspective.print(auditMsg)\n\t\t\tcategory\u003d\u0027PopUp\u0027\n\t\t\tsubCategory\u003d\u0027Alert\u0027\n\t\t\tif screenName \u003d\u003d \"Plant\" :\n\t\t\t\tdescription\u003d str(auditMsg) + \" \" + \"Where \" + str(colName) + \"\u003d \" + str(id) + \" and \" + \"Level Id\u003d\" + str(levelid)\n\t\t\telse:\n\t\t\t\tdescription\u003d str(auditMsg) + \" \" + \"Where \" + str(colName) + \"\u003d \" + str(id)\n\t\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\t\n\t\t\tsystem.perspective.print(folder)\n\t\t\tsystem.perspective.print(screenName)\n\t\t\t#system.perspective.print(levelid)\n\t\t\t\t\t\t\t\t\t\t\t\n\t\t#end of try\n\texcept:\n\t\t#start of except block  \n\t\tscreenName \u003d\u0027Alert Pop Up\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/Alert\u0027)  \n\t\terrorFunction \u003d str(\u0027Event: onmsgHandler -\u003e btnYes\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())  \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t\t\n\t\t#end of except block \n\t\t#popup_DeleteToolValidation\n\t\t\ndef commonFunctionality(message):\n#\tsystem.perspective.sendMessage(\"deletePop\",payload \u003d {\"isVisible\":0}, scope \u003d \"page\")\n\tmessageType \u003d \u0027tableRefresh\u0027\n\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\tmessageType \u003d \u0027tableRefresh1\u0027\n\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tmessageType \u003d \u0027popup_View\u0027\t\t\t\n\tsystem.perspective.sendMessage(messageType,payload \u003d {\"display\":1,\u0027text\u0027:str(message)},scope \u003d \u0027page\u0027 )\t\t\n\ndef popupDeleteToolValidation(message):\n#\t\tsystem.perspective.sendMessage(\"deletePop\",payload \u003d {\"isVisible\":0}, scope \u003d \"page\")\n\t\tmessageType \u003d \u0027tableRefresh\u0027\n\t\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\t\tmessageType \u003d \u0027tableRefresh1\u0027\n\t\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\t\tmessageType \u003d \u0027popup_DeleteToolValidation\u0027\t\t\t\n\t\tsystem.perspective.sendMessage(messageType,payload \u003d {\"display\":1,\u0027text\u0027:str(message)},scope \u003d \u0027page\u0027 )\t\t\n\n\ndef closeDisablePopup():\n#\tsystem.perspective.sendMessage(\"deletePop\",payload \u003d {\"isVisible\":0}, scope \u003d \"page\")\n\tmessageType \u003d \u0027tableRefresh\u0027\n\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\tmessageType \u003d \u0027tableRefresh1\u0027\n\tsystem.perspective.sendMessage(messageType,payload\u003d{},scope \u003d \u0027page\u0027 )\n\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\t\n\t\t\t\t\t\n\tsystem.perspective.closePopup(\u0027alertDialog\u0027)",
+                  "sessionScope": true,
+                  "viewScope": false
+                },
+                {
+                  "messageType": "onFocusAlertPrimary",
+                  "pageScope": true,
+                  "script": "\t# implement your handler here\n\tself.focus()\n\tself.props.style.borderStyle \u003d \u0027groove\u0027\n\tself.props.style.borderWidth \u003d \t\u00272px\u0027\n\tself.props.style.borderColor \u003d \"#000000\"",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "footer"
+        },
+        "position": {
+          "basis": "56px",
+          "shrink": 0
+        },
+        "props": {
+          "justify": "space-evenly",
+          "style": {
+            "backgroundColor": "var(--neutral-30)",
+            "borderTop": "1px solid var(--neutral-50)",
+            "classes": "Project_VECV/PopUp/Utilities/p-8"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onFocus": {
+          "config": {
+            "script": "\tmessageType \u003d \u0027alertFocus\u0027\n\tsystem.perspective.sendMessage(alertFocus)"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "dialog"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "expression": "{view.params.state}"
+          },
+          "transforms": [
+            {
+              "fallback": "Project_VECV/PopUp/Alerts/alertDefault",
+              "inputType": "scalar",
+              "mappings": [
+                {
+                  "input": "info",
+                  "output": "Project_VECV/PopUp/Alerts/states/info"
+                },
+                {
+                  "input": "warning",
+                  "output": "Project_VECV/PopUp/Alerts/states/warning"
+                },
+                {
+                  "input": "error",
+                  "output": "Project_VECV/PopUp/Alerts/states/error"
+                },
+                {
+                  "input": "success",
+                  "output": "Project_VECV/PopUp/Alerts/states/success"
+                }
+              ],
+              "outputType": "scalar",
+              "type": "map"
+            }
+          ],
+          "type": "expr"
+        }
+      }
+    },
+    "props": {
+      "alignContent": "flex-end",
+      "direction": "column",
+      "style": {
+        "maxHeight": "none"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

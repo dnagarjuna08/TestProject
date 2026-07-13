@@ -1,0 +1,210 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "761032276649dd450138018085f3717c967729d92cbdecf8e4fea2cfeef72720",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "PressingDepth",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PressingPTLStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsExceedTime",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Event_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOM_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PartNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPCode_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPDefinition_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Status_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ConsumedSerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ConsumedPartNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PLCTorqueValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PLCTorqueCount",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PLCTorqueResult",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MESTorqueMaxValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MESTorqueMinValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PressingValue",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ProcessPTLStatus",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LOGNCId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Comments",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ID",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MESTorqueResult",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Torque_Angle",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Shift_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "LeakRate",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "pressure",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "abs",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GreaseQty",
+        "sqlType": 4
+      }
+    ]
+  }
+}

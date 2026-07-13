@@ -1,0 +1,1 @@
+select distinct cd.ModelRange from classificationData as cd

@@ -1,0 +1,1418 @@
+{
+  "custom": {
+    "key": "value"
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tcheck whether user is authenticated if not return to login poge\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\tpreviousPage \u003d self.session.custom.IsRoleConfigurationAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tself.session.custom.TopViewHeader \u003d \"Role Configuration\"\n\t\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\t#message handler to get role based data on view for selection\n\t\t\tsystem.perspective.sendMessage(messageType\u003d\u0027roleData\u0027, payload\u003d{},scope\u003d\"page\")\t\t\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/Role\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup -\u003e Role\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "Role configuration"
+  },
+  "propConfig": {
+    "custom.key": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 1080,
+      "width": 1920
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "cntHeader",
+              "visible": false
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 1
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 0
+            },
+            "props": {
+              "path": "Project_VECV/Templates/Header/Common"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 8/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tSave data for user/role based login in table\n\t\tUpdate Date:- 10/01/2025\n\t\tpupose: send email for new screen access to user\n\t\tauthor:Aniket Sagar\n\t\"\"\"\t\n\ttry:\n\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\t#save data for role based login\n\t\tif self.getSibling(\"TabContainer\").props.currentTabIndex \u003d\u003d 0:\n\t\t\tMST_Role_Id \u003d self.getSibling(\"TabContainer\").custom.selectedRoleID\n\t\t\tscreens \u003d self.getSibling(\"TabContainer\").custom.screenData\n\t\t\tfor screen in screens:\n\t\t\t\tmoduleId \u003d screen[\"moduleId\"]\n\t\t\t\tformID \u003d  screen[\"Id\"]\n\t\t\t\tisEdit \u003d screen[\"IsSelected\"]\n\t\t\t\tProject_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.UpdateRELRoleForm(MST_Role_Id, moduleId, formID, createdBy, isEdit)\n\t\t\t\tmessage \u003d \"Roles Updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\telse:\n\t\t\t#save data for user based login\n\t\t\tcount\u003d0\n\t\t\tMST_Role_Id \u003d self.getSibling(\"TabContainer\").custom.selectedRoleID\n\t\t\teditedFormIDs\u003d[]\n\t\t\tMST_User_Id \u003d self.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.selectUserId\n\t\t\tscreens  \u003d self.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserFormFlexRepeater\").custom.screenData\n\t\t\tfor screen in screens:\n\t\t\t\tmoduleId \u003d screen[\"moduleId\"]\n\t\t\t\tformID \u003d  screen[\"Id\"]\n\t\t\t\tisEdit \u003d screen[\"IsSelected\"]\n\t\t\t\tProject_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.UpdateRELUserForm(MST_User_Id, moduleId, formID, createdBy, isEdit)\n\t\t\t\tmessage \u003d \"User Roles updated successfully.\"\n\t\t\t\tstate \u003d \"success\"\n\t\t\t\tif (isEdit\u003d\u003dTrue):\n\t\t\t\t\teditedFormIDs.append(formID)\n\t\t\t\t\tcount\u003dcount+1\n\t\t\tsystem.perspective.print(\"formIDS-------------------\u003e\")\n\t\t\tsystem.perspective.print(editedFormIDs)\n\t\t\t\n\t\t\tif(MST_Role_Id!\u003d2 or MST_Role_Id!\u003d66):\n\t\t\t\ttry:\n\t\t\t\t\tProject_VECV.NamedQuery.Admin.Roles.sendMailNewFormAccess.sendMail(editedFormIDs, createdBy,MST_User_Id,count)\n\t\t\t\t\tsystem.perspective.print(\"Email Sent----------------\u003e\")\n\t\t\t\texcept Exception as e:\n\t\t\t\t\tsystem.perspective.print(e)\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t#reset selection and show success message\n\t\t\n\t\t\n\t\tsystem.perspective.sendMessage(messageType\u003d\u0027roleData\u0027, payload\u003d{},scope\u003d\"page\")\n\t\tsystem.perspective.sendMessage(messageType\u003d\"saveAction\", payload\u003d{},scope\u003d\"page\")\t\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\t\t\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntColumn/cntBody/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\tmessage \u003d \"Something went wrong.Please contact System Adminstration.\"\n\t\tstate \u003d \"Error\"\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\n\t#End of except block\t\t\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btn_Save"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 10,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 10,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 10,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "enabled": false,
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                      },
+                      "text": "Save"
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "saveButton",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 8/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tEnabled Save button\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\tself.props.enabled\u003d True\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:saveButton  -\u003e btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "custom": {
+                              "moduleIds": []
+                            },
+                            "meta": {
+                              "name": "ModuleFlexRepeater"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 4,
+                                  "name": "sm",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 4,
+                                  "name": "md",
+                                  "order": 4,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 4,
+                                  "name": "lg",
+                                  "order": 4,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "propConfig": {
+                              "props.instances": {
+                                "binding": {
+                                  "config": {
+                                    "path": "..../TabContainer.custom.moduleData"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/ModuleBoxSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "moduleSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Getting data from Module Selection \n\t\t\"\"\"\t\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tself.custom.moduleIds.append(moduleId)\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t\t\toptionList.append(dict)\n\t\t#Select All Checkbox selection if all options are selected\n\t\tif len(optionList) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\t\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003emoduleSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "moduleDeSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Removing data from Module Selection \n\t\t\"\"\"\t\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tif moduleId in self.custom.moduleIds:\n\t\t\tself.custom.moduleIds.remove(moduleId)\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\tnewscreenData \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] \u003d\u003d moduleId:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\tnewscreenData.append(dict)\n\t\t\n\t\tself.parent.parent.parent.getChild(\"TabContainer\").custom.screenData \u003d newscreenData\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t\t\toptionList.append(dict)\n\t\t#Select All Checkbox deselection if all options are not selected\n\t\tif len(optionList) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003d True\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003d False\n\t\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003emoduleDeSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "refreshBinding",
+                                  "pageScope": true,
+                                  "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Refresh Module Instance List\n\t\"\"\"\t\n\tsystem.perspective.print(\"refresh \")\n\tself.refreshBinding(\u0027props.instances\u0027)\n\tsystem.perspective.print(\"refresh completed \")",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "meta": {
+                              "name": "FormFlexRepeater",
+                              "tooltip": {
+                                "enabled": true
+                              }
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 8,
+                                  "name": "sm",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "md",
+                                  "order": 5,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "lg",
+                                  "order": 5,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/FormBoxSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "formSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Updating Form Selection after selection. \n\t\t\"\"\"\t\n\t\tformID \u003d payload[\"formID\"]\n\t\tmoduleID \u003d payload[\"moduleID\"]\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d formID\n\t\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\t\tself.parent.parent.parent.getChild(\"TabContainer\").custom.screenData \u003d optionList\n\n\t\tmoduleIds \u003d self.getSibling(\"ModuleFlexRepeater\").custom.moduleIds\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t#All Select checkbox selection if all form are selected\n\t\tif len(self.props.instances) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\texcept:\n\t\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eformSelection\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "formDeSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Updating Form Selection after deselection. \n\t\t\"\"\"\t\n\t\tformID \u003d payload[\"formID\"]\n\t\tmoduleID \u003d payload[\"moduleID\"]\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d formID\n\t\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\t\tself.parent.parent.parent.getChild(\"TabContainer\").custom.screenData \u003d optionList\n\n\t\tmoduleIds \u003d self.getSibling(\"ModuleFlexRepeater\").custom.moduleIds\n\t\tscreenData \u003d self.parent.parent.parent.getChild(\"TabContainer\").custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t#All Select checkbox deselection if all form not are selected\n\t\tif len(self.props.instances) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\texcept:\n\t\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eformDeSelection\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \t",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblModule"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 4,
+                                  "name": "sm",
+                                  "order": 0.5,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 4,
+                                  "name": "md",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 4,
+                                  "name": "lg",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Modules"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblScreen"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 8,
+                                  "name": "sm",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "md",
+                                  "order": 2,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "lg",
+                                  "order": 2,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Screens"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblRoles"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 0,
+                                  "name": "sm",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "md",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Roles"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "RolesFlexRepeater"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 0,
+                                  "name": "sm",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "md",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "lg",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "propConfig": {
+                              "props.instances": {
+                                "binding": {
+                                  "config": {
+                                    "path": "parent.custom.roleData"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/RoleSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "roleData",
+                                  "pageScope": true,
+                                  "script": "\t# implement your handler here\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Get all roles data into Role Instance. \n\t\t\"\"\"\t\n\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getRoles()\n\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d data[\"RoleName\"]\n\t\t\tdict[\"Id\"] \u003d data[\"MST_Role_Id\"]\n\t\t\toptionList.append(dict)\n\t\tself.parent.custom.roleData \u003d optionList\n\texcept:\n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:getData  -\u003e TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: select/deselect all form in Form Instance  \n\t\t\"\"\"\t\n\t\tif self.props.selected:\n\t\t\tscreenData \u003d self.getSibling(\"FormFlexRepeater\").props.instances\n\t\t\toptionList \u003d []\n\t\t\tfor screen in screenData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\t\toptionList.append(dict)\n\t\t\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList\n\t\telse:\n\t\t\tscreenData \u003d self.getSibling(\"FormFlexRepeater\").props.instances\n\t\t\toptionList \u003d []\n\t\t\tfor screen in screenData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\t\toptionList.append(dict)\n\t\t\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList\n\t\tsystem.perspective.sendMessage(messageType\u003d\"saveButton\", payload\u003d{},scope\u003d\"page\")\n\texcept:\n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027onclick-\u003eTabContainer/selectAllCheckBox\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "selectAllCheckBox"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 8,
+                                  "name": "sm",
+                                  "order": 1,
+                                  "rowIndex": 1,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "md",
+                                  "order": 1,
+                                  "rowIndex": 1,
+                                  "span": 4
+                                },
+                                {
+                                  "colIndex": 8,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 1,
+                                  "span": 4
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "propConfig": {
+                              "meta.visible": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if(len({../FormFlexRepeater.props.instances})\u003e0\r\n,toBoolean(1),toBoolean(0))"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "checkedIcon": {
+                                "style": {
+                                  "classes": ""
+                                }
+                              },
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "bold"
+                              },
+                              "text": "Select All",
+                              "uncheckedIcon": {
+                                "style": {
+                                  "classes": ""
+                                }
+                              }
+                            },
+                            "type": "ia.input.checkbox"
+                          }
+                        ],
+                        "custom": {
+                          "roleData": []
+                        },
+                        "meta": {
+                          "name": "RoleColumnContainer"
+                        },
+                        "type": "ia.container.column"
+                      },
+                      {
+                        "children": [
+                          {
+                            "meta": {
+                              "name": "RolesFlexRepeater"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 0,
+                                  "name": "sm",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "md",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "lg",
+                                  "order": 1,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "propConfig": {
+                              "props.instances": {
+                                "binding": {
+                                  "config": {
+                                    "path": "parent.custom.roleData"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/RoleSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "roleData",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Get all role data into Role Instance. \n\t\t\"\"\"\t\n\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getRoles()\n\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d data[\"RoleName\"]\n\t\t\tdict[\"Id\"] \u003d data[\"MST_Role_Id\"]\n\t\t\toptionList.append(dict)\n\t\tself.props.instances \u003d optionList\n\texcept:\n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:roleData  -\u003e TabContainer/RolesFlexRepeater\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblRoles"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 0,
+                                  "name": "sm",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "md",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 0,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Roles"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblUsers"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 3,
+                                  "name": "sm",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 3,
+                                  "name": "md",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 3,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Users"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblModules"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 6,
+                                  "name": "sm",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 6,
+                                  "name": "md",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 6,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Modules"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "lblScreens"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 9,
+                                  "name": "sm",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "md",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "props": {
+                              "style": {
+                                "classes": "Project_VECV/Common/Label_Header\nProject_VECV/CommonBackgroundColor/TopView",
+                                "color": "#FFFFFF",
+                                "textAlign": "Center"
+                              },
+                              "text": "Screens"
+                            },
+                            "type": "ia.display.label"
+                          },
+                          {
+                            "meta": {
+                              "name": "UserFlexRepeater"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 3,
+                                  "name": "sm",
+                                  "order": 2,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 3,
+                                  "name": "md",
+                                  "order": 2,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 3,
+                                  "name": "lg",
+                                  "order": 2,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "propConfig": {
+                              "props.instances": {
+                                "binding": {
+                                  "config": {
+                                    "path": "..../TabContainer.custom.userData"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/UserSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              }
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "custom": {
+                              "moduleIds": [],
+                              "selectUserId": "",
+                              "userModuleData": []
+                            },
+                            "meta": {
+                              "name": "UserModuleFlexRepeater"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 6,
+                                  "name": "sm",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 6,
+                                  "name": "md",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 6,
+                                  "name": "lg",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "propConfig": {
+                              "props.instances": {
+                                "binding": {
+                                  "config": {
+                                    "path": "this.custom.userModuleData"
+                                  },
+                                  "type": "property"
+                                }
+                              }
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/UserModuleBoxSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "usermoduleSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Populate data on User selection. \n\t\t\"\"\"\t\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tself.custom.moduleIds.append(moduleId)\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t\t\toptionList.append(dict)\n\t\t#All Select checkbox selection if all form are selected\n\t\tif len(optionList) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\t\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eusermoduleSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "usermoduleDeSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Populate data on User deselection. \n\t\t\"\"\"\t\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tif moduleId in self.custom.moduleIds:\n\t\t\tself.custom.moduleIds.remove(moduleId)\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\t\tnewscreenData \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] \u003d\u003d moduleId:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\t\n\t\t\tnewscreenData.append(dict)\n\t\tself.getSibling(\"UserFormFlexRepeater\").custom.screenData \u003d newscreenData\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t\t\toptionList.append(dict)\n\t\t#All Select checkbox deselection if all form not are selected\n\t\tif len(optionList) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003d True\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003d False\n\t\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eusermoduleDeSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "usermoduleData",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Populate data on User selection. \n\t\t\"\"\"\t\n\t\tuserID \u003d payload[\"userID\"]\n\t\tself.custom.selectUserId \u003d userID\n\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserModules(userID)\n\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d data[\"Module name\"]\n\t\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\telse:\n\t\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\t\tdict[\"Id\"] \u003d data[\"Sr No\"]\n\t\t\toptionList.append(dict)\n\t\tself.custom.userModuleData \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eusermoduleData\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "custom": {
+                              "screenData": []
+                            },
+                            "meta": {
+                              "name": "UserFormFlexRepeater",
+                              "tooltip": {
+                                "enabled": true
+                              }
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 9,
+                                  "name": "sm",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "md",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "lg",
+                                  "order": 3,
+                                  "rowIndex": 0,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 410
+                            },
+                            "props": {
+                              "direction": "column",
+                              "path": "Project_VECV/Templates/UserFormBoxSelection",
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "lighter",
+                                "textAlign": "left"
+                              },
+                              "useDefaultViewWidth": false
+                            },
+                            "scripts": {
+                              "customMethods": [],
+                              "extensionFunctions": null,
+                              "messageHandlers": [
+                                {
+                                  "messageType": "userformSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Select data on UserForm selection. \n\t\t\"\"\"\t\n\t\tformID \u003d payload[\"formID\"]\n\t\tmoduleID \u003d payload[\"moduleID\"]\n\t\tscreenData \u003d self.custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d formID\n\t\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\t\tself.custom.screenData \u003d optionList\n\t\t\n\t\tmoduleIds \u003d self.getSibling(\"UserModuleFlexRepeater\").custom.moduleIds\n\t\tscreenData \u003d self.custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t#All Select checkbox selection if all form are selected\n\t\tif len(self.props.instances) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003euserformSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "userformDeSelection",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Remove data on UserForm deselection. \n\t\t\"\"\"\t\n\t\tformID \u003d payload[\"formID\"]\n\t\tmoduleID \u003d payload[\"moduleID\"]\n\t\tscreenData \u003d self.custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d formID\n\t\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\telse:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\t\tself.custom.screenData \u003d optionList\n\t\t\n\t\tmoduleIds \u003d self.getSibling(\"UserModuleFlexRepeater\").custom.moduleIds\n\t\tscreenData \u003d self.custom.screenData\n\t\toptionList \u003d []\n\t\tcount \u003d 0\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tif screen[\"IsSelected\"]:\n\t\t\t\t\tcount+\u003d1\n\t\t#All Select checkbox deselection if all form not are selected\n\t\tif len(self.props.instances) \u003d\u003d count:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dTrue\n\t\telse:\n\t\t\tself.getSibling(\"selectAllCheckBox\").props.selected \u003dFalse\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003euserformDeSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                },
+                                {
+                                  "messageType": "userscreenData",
+                                  "pageScope": true,
+                                  "script": "\ttry:\n\t\t# implement your handler here\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Get UserForm Data. \n\t\t\"\"\"\t\n\t\tuserID \u003d payload[\"userID\"]\n\t\tsystem.perspective.print(\"userscreenData\")\n\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserScreen(userID)\n\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\toptionList \u003d []\n\t\tfor data in pyData:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d data[\"Screen name\"]\n\t\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\telse:\n\t\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\t\tdict[\"Id\"] \u003d data[\"FormID\"]\n\t\t\tdict[\"moduleId\"] \u003d data[\"ModuleID\"]\n\t\t\toptionList.append(dict)\n\t\tself.custom.screenData \u003d optionList\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003euserscreenData\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                                  "sessionScope": false,
+                                  "viewScope": false
+                                }
+                              ]
+                            },
+                            "type": "ia.display.flex-repeater"
+                          },
+                          {
+                            "events": {
+                              "dom": {
+                                "onClick": {
+                                  "config": {
+                                    "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: select/deselect all form in UserForm Instance  \n\t\t\"\"\"\t\n\t\tif self.props.selected:\n\t\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").props.instances\n\t\t\toptionList \u003d []\n\t\t\tfor screen in screenData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\t\toptionList.append(dict)\n\t\t\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList\n\t\telse:\n\t\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").props.instances\n\t\t\toptionList \u003d []\n\t\t\tfor screen in screenData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d False\n\t\t\t\toptionList.append(dict)\n\t\t\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList\n\t\tsystem.perspective.sendMessage(messageType\u003d\"saveButton\", payload\u003d{},scope\u003d\"page\")\n\texcept:\n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027onclick-\u003eTabContainer/selectAllCheckBox\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+                                  },
+                                  "scope": "G",
+                                  "type": "script"
+                                }
+                              }
+                            },
+                            "meta": {
+                              "name": "selectAllCheckBox"
+                            },
+                            "position": {
+                              "breakpoints": [
+                                {
+                                  "colIndex": 9,
+                                  "name": "sm",
+                                  "order": 1,
+                                  "rowIndex": 1,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "md",
+                                  "order": 1,
+                                  "rowIndex": 1,
+                                  "span": 3
+                                },
+                                {
+                                  "colIndex": 9,
+                                  "name": "lg",
+                                  "order": 0,
+                                  "rowIndex": 1,
+                                  "span": 3
+                                }
+                              ],
+                              "height": 60
+                            },
+                            "propConfig": {
+                              "meta.visible": {
+                                "binding": {
+                                  "config": {
+                                    "expression": "if(len({../UserFormFlexRepeater.props.instances})\u003e0\r\n,toBoolean(1),toBoolean(0))"
+                                  },
+                                  "type": "expr"
+                                }
+                              }
+                            },
+                            "props": {
+                              "checkedIcon": {
+                                "style": {
+                                  "classes": ""
+                                }
+                              },
+                              "style": {
+                                "borderBottomLeftRadius": 5,
+                                "borderBottomRightRadius": 5,
+                                "borderStyle": "solid",
+                                "borderTopLeftRadius": 5,
+                                "borderTopRightRadius": 5,
+                                "fontWeight": "bold"
+                              },
+                              "text": "Select All",
+                              "uncheckedIcon": {
+                                "style": {
+                                  "classes": ""
+                                }
+                              }
+                            },
+                            "type": "ia.input.checkbox"
+                          }
+                        ],
+                        "custom": {
+                          "roleData": []
+                        },
+                        "meta": {
+                          "name": "UserColumnContainer"
+                        },
+                        "position": {
+                          "tabIndex": 1
+                        },
+                        "type": "ia.container.column"
+                      }
+                    ],
+                    "custom": {
+                      "moduleData": [],
+                      "screenData": [],
+                      "selectedRoleID": "",
+                      "tempscreenData": "",
+                      "userData": []
+                    },
+                    "meta": {
+                      "name": "TabContainer"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 600
+                    },
+                    "props": {
+                      "menuType": "modern",
+                      "tabSize": {
+                        "height": 30,
+                        "width": 100
+                      },
+                      "tabStyle": {
+                        "active": {
+                          "backgroundColor": "#1C5987",
+                          "color": "#FFFFFF",
+                          "fontFamily": "Cambria",
+                          "marginRight": "10px",
+                          "pointerEvents": "none"
+                        },
+                        "inactive": {
+                          "backgroundColor": "#D5D5D5",
+                          "fontFamily": "Cambria",
+                          "marginRight": "10px",
+                          "pointerEvents": "none"
+                        }
+                      },
+                      "tabs": [
+                        "Role Based",
+                        "User Based"
+                      ]
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "currentTabIndex",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Switch Tab index based on payload received.\n\t\"\"\"\t\n\ttry:\n\t#start of try block\n\t\t\n\t\tself.props.currentTabIndex \u003d payload[\"CurrentTabName\"]\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:currentTabIndex  -\u003e TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "getData",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Get data for role Based on Tab index\n\t\"\"\"\t\n\ttry:\n\t\t\n\t\troleID \u003d payload[\"roleID\"]\n\t\tself.custom.selectedRoleID \u003d roleID\n\t\tif self.props.currentTabIndex \u003d\u003d 0:\n\t\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getRolesModules(roleID)\n\t\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\t\toptionList \u003d []\n\t\t\t#Parse data to show on module\n\t\t\tfor data in pyData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d data[\"Module name\"]\n\t\t\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\t\telse:\n\t\t\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\t\t\tdict[\"Id\"] \u003d data[\"Sr No\"]\n\t\t\t\toptionList.append(dict)\n\n\t\t\tself.custom.moduleData \u003d optionList\n\t\t\t\n\t\t\tqueryParams \u003d {\"roleID\":roleID}\n\t\t\tqueryPath \u003d \u0027Project_VECV/Role/Role_Screens/Get_ScreenData\u0027\n\t\t\tresult \u003d system.db.runNamedQuery(queryPath,queryParams)\n\t\t\t#get data for form and store in custom for further role add selection\n\t\t\tpyData \u003d system.dataset.toPyDataSet(result)\n\t\t\toptionList \u003d []\n\t\t\tfor data in pyData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d data[\"Screen name\"]\n\t\t\t\tdict[\"Id\"] \u003d data[\"FormID\"]\n\t\t\t\tdict[\"moduleId\"] \u003d data[\"ModuleID\"]\n\t\t\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\t\t\tdict[\"IsSelected\"] \u003d True\n\t\t\t\telse:\n\t\t\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\t\t\toptionList.append(dict)\n\t\t\tself.custom.screenData \u003d optionList\n\t\telse:\n\t\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserBasedOnRoles(roleID)\n\t\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\t\toptionList \u003d []\n\t\t\t#Parse data to show on User \n\t\t\tfor data in pyData:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d data[\"UserName\"]\n\t\t\t\tdict[\"Id\"] \u003d data[\"MST_User_Id\"]\n\t\t\t\tdict[\"roleID\"] \u003d data[\"MST_Role_Id\"]\n\t\t\t\toptionList.append(dict)\n\t\t\tself.custom.userData \u003d optionList\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:getData  -\u003e TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                          "sessionScope": true,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.container.tab"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\n\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Message handler for Save data\n\t\t\"\"\"\t\n\t\tsystem.perspective.sendMessage(messageType\u003d\"saveAction\", payload\u003d{},scope\u003d\"page\")\n\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntColumn/btnCancel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnCancel"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 9,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/PopUp/Button"
+                      },
+                      "text": "Cancel"
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "saveAction",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Action for Cancel/Save button and Data reset on screen\n\t\"\"\"\t\n\ttry:\n\t\tsystem.perspective.sendMessage(messageType\u003d\u0027roleData\u0027, payload\u003d{},scope\u003d\"page\")\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"RoleColumnContainer\").getChild(\"ModuleFlexRepeater\").custom.moduleIds \u003d []\n\t\tself.getSibling(\"TabContainer\").custom.moduleData \u003d []\n\t\tself.getSibling(\"TabContainer\").custom.selectedRoleID \u003d 0\n\t\tself.getSibling(\"TabContainer\").custom.userData \u003d []\n\t\tself.getSibling(\"TabContainer\").custom.screenData \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"RoleColumnContainer\").getChild(\"FormFlexRepeater\").props.instances \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.moduleIds \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.selectUserId \u003d \u0027\u0027\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.userModuleData \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserFormFlexRepeater\").custom.screenData \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserFormFlexRepeater\").props.instances \u003d []\n\t\t#disable save button\n\t\tself.getSibling(\"btn_Save\").props.enabled \u003d False\n\texcept:\n\t\tscreenName \u003d\u0027RoleConfiguration\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:btnCancel:saveAction -\u003e cntBody/TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027) \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "Action",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Action for Cancel/Save button \n\t\"\"\"\t\n\ttry:\n\t\t#clear all instance that has data for operation\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"RoleColumnContainer\").getChild(\"FormFlexRepeater\").props.instances \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.moduleIds \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserModuleFlexRepeater\").custom.userModuleData \u003d []\n\t\tself.parent.getChild(\"TabContainer\").getChild(\"UserColumnContainer\").getChild(\"UserFormFlexRepeater\").custom.screenData \u003d []\n\texcept:\n\t\tscreenName \u003d\u0027RoleConfiguration\u0027\n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:btnCancel:Action -\u003e cntBody/TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027) \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())\n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\ttry:\n\t\t\"\"\"\n\t\t\tWritten By: Amitkumar Ravat\n\t\t\tWritten Date: 27/03/2024\n\t\t\tPurpose: Action for Prev/Next button \n\t\t\"\"\"\t\n\t\t#check if there is Data not saved if so stop to switch tabs\n\t\tif self.getSibling(\"TabContainer\").props.currentTabIndex \u003d\u003d 0:\n\t\t\tif self.getSibling(\"btn_Save\").props.enabled:\n\t\t\t\tstate \u003d \"warning\"\n\t\t\t\tmessage \u003d \"Please save changes before moving to next screen\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\telse:\n\t\t\t\tself.getSibling(\"TabContainer\").props.currentTabIndex \u003d 1\n\t\t\t\tself.props.text \u003d \"Prev\"\n\t\t\t\tsystem.perspective.sendMessage(messageType\u003d\"saveAction\", payload\u003d{},scope\u003d\"page\")\n\t\telse:\n\t\t\tif self.getSibling(\"btn_Save\").props.enabled:\n\t\t\t\tstate \u003d \"warning\"\n\t\t\t\tmessage \u003d \"Please save changes before moving to previous screen\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\telse:\n\t\t\t\tself.getSibling(\"TabContainer\").props.currentTabIndex \u003d 0\n\t\t\t\tself.props.text \u003d \"Next\"\n\t\t\t\tsystem.perspective.sendMessage(messageType\u003d\"saveAction\", payload\u003d{},scope\u003d\"page\")\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Admin/RoleConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntColumn/btn_Next\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btn_Next"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 11,
+                          "name": "sm",
+                          "order": 2,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 11,
+                          "name": "md",
+                          "order": 2,
+                          "rowIndex": 1,
+                          "span": 1
+                        },
+                        {
+                          "colIndex": 11,
+                          "name": "lg",
+                          "order": 2,
+                          "rowIndex": 1,
+                          "span": 1
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                      },
+                      "text": "Next"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "cntColumn"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%",
+                  "x": 0.484375,
+                  "y": -0.21875
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 2
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 652
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+              }
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "95%",
+          "width": "96%",
+          "x": "2%",
+          "y": "5%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "lblView"
+        },
+        "position": {
+          "height": "5%",
+          "width": 840,
+          "x": 19.15,
+          "y": "1%"
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header"
+          },
+          "text": "Role configuration:"
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": -19,
+      "y": -3.9999847412109375
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

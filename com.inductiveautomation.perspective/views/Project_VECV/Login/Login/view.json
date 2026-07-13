@@ -1,0 +1,530 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Set focus on Username field.\t\n\t\"\"\"\n\tsystem.perspective.print(\"called on start up\")\n\tsystem.perspective.sendMessage(\"UserNameFocus\", scope\u003d\u0027page\u0027)\n\tself.getChild(\"root\").getChild(\"cntColumn\").getChild(\"cntLogin\").getChild(\"cntColumn\").getChild(\"txtUserName\").focus()"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1240
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "lblLogin"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Login/LabelHeader"
+                      },
+                      "text": "LOGIN"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onKeyUp": {
+                          "config": {
+                            "script": "\t# Description - Calls message handler to start authontication process\n\tsystem.perspective.print(\"on click enter\")\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\"Auth\",payload \u003d {}, scope \u003d \"page\")\n\t\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      },
+                      "system": {
+                        "onStartup": {
+                          "config": {
+                            "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: set focus on self.\t\n\t\"\"\"\n\tself.focus()"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "txtUserName"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 1,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 2,
+                          "span": 10
+                        }
+                      ],
+                      "height": 40
+                    },
+                    "propConfig": {
+                      "props.text": {
+                        "onChange": {
+                          "enabled": null,
+                          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Set focus on password field\t\n\t\"\"\"\n\tself.getSibling(\"txtPassword\").focus()"
+                        }
+                      }
+                    },
+                    "props": {
+                      "placeholder": "User name",
+                      "style": {
+                        "classes": "Project_VECV/Login/TextBox"
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "UserNameFocus",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Keep focus.\t\n\t\"\"\"\n\t# implement your handler here\n\tsystem.perspective.print(\"focus event called\")\n\tself.focus()",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.input.text-field"
+                  },
+                  {
+                    "custom": {
+                      "key": ""
+                    },
+                    "events": {
+                      "dom": {
+                        "onKeyPress": {
+                          "config": {
+                            "script": "\t\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Calls message handler to start authontication process.\t\n\t\"\"\"\n\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\n#\t\tfrom threading import Timer\n#\t\tdef runThisLater():\n\t    system.perspective.sendMessage(\"Auth\",payload \u003d {}, scope \u003d \"page\")\n#\t\tTimer(2.0, runThisLater).start()\n\t\t            \n#\t\tsystem.perspective.sendMessage(\"buttonClick\",payload \u003d {}, scope \u003d \"page\")\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "txtPassword",
+                      "visible": false
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 2,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 2,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 3,
+                          "span": 10
+                        }
+                      ],
+                      "height": 0
+                    },
+                    "propConfig": {
+                      "custom.key": {
+                        "binding": {
+                          "config": {
+                            "path": "this.props.text"
+                          },
+                          "enabled": false,
+                          "type": "property"
+                        }
+                      },
+                      "props.text": {
+                        "onChange": {
+                          "enabled": false,
+                          "script": "\tpass"
+                        }
+                      }
+                    },
+                    "props": {
+                      "placeholder": "Password",
+                      "style": {
+                        "classes": "Project_VECV/Login/TextBox",
+                        "marginTop": "5px"
+                      }
+                    },
+                    "type": "ia.input.password-field"
+                  },
+                  {
+                    "events": {
+                      "component": {
+                        "onActionPerformed": {
+                          "config": {
+                            "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 12/08/2024\n\t\tPurpose: call message handler for authentication process. \n\t\"\"\"\n\tsystem.perspective.sendMessage(\"Auth\",payload \u003d {}, scope \u003d \"page\")"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      },
+                      "dom": {
+                        "onKeyPress": {
+                          "config": {
+                            "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 12/08/2024\n\t\tPurpose: on enter key press call message handler for authentication process. \n\t\"\"\"\n\t# Description - Calls message handler to start authontication process\n\tif event.key \u003d\u003d \u0027Enter\u0027:\n\t\tsystem.perspective.sendMessage(\"Auth\",payload \u003d {}, scope \u003d \"page\")\n\t\t"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "btnSubmit"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 1,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 3,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 3,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 1,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 4,
+                          "span": 10
+                        }
+                      ],
+                      "height": 40
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if({../txtUserName.props.text} !\u003d \u0027\u0027,toBoolean(1),toBoolean(0))"
+                          },
+                          "transforms": [
+                            {
+                              "code": "\tif value\u003d\u003dFalse or value\u003d\u003d0 or str(value).strip().lower()\u003d\u003dstr(\u0027false\u0027).strip():\n\t\tuserName\u003dself.getSibling(\"txtUserName\").props.text\n\t\tuserName\u003dstr(userName).strip()\n\t\tif userName\u003d\u003d\u0027\u0027 or userName\u003d\u003d\u0027null\u0027 or userName\u003d\u003d\u0027None\u0027 or userName\u003d\u003dNone or userName\u003d\u003d\u0027Null\u0027:\n\t\t\timport sys\n\t\t\tself.getSibling(\"txtUserName\").focus()\n\treturn value",
+                              "type": "script"
+                            }
+                          ],
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Login/ButtonText\nProject_VECV/CommonBackgroundColor/Button\nProject_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton ",
+                        "marginTop": "25px"
+                      },
+                      "text": "Login",
+                      "textStyle": {
+                        "classes": "Project_VECV/Login/ButtonText"
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "buttonClick",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 27/03/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tCheck user authentication and provide access.\n\t\"\"\"\t\n\t\n\tuserName \u003d self.getSibling(\"txtUserName\").props.text\n\t#Reset all Auth params of all screens\n\tself.session.custom.IsPlantConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsDeviceConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsUserManagementAuthenticated \u003d 0\n\tself.session.custom.IsRoleManagementAuthenticated \u003d 0\n\tself.session.custom.IsRoleConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsShiftConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsDashboardAuthenticated \u003d 0\n\tself.session.custom.IsProductTrackingAuthenticated \u003d 0\n\tself.session.custom.IsImageMasterConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsOPCodeConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsWorkInstructionConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsCycleTimeConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsLocationRoutingAuthenticated \u003d 0\n\tself.session.custom.IsMachineBuildDataAuthenticated \u003d 0\n\tself.session.custom.IsFirstShotOKAuthenticated \u003d 0\n\tself.session.custom.IsHourlyProductionReportAuthenticated \u003d 0\n\tself.session.custom.IsReworkAuthenticated \u003d 0\n\tself.session.custom.IsWIPReportAuthenticated \u003d 0\n\tself.session.custom.IsOrderManagementAuthenticated \u003d 0\n\tself.session.custom.IsWashingMachineAuthenticated \u003d 0\n\tself.session.custom.IsSAPDataUploadAuthenticated \u003d 0\n\tself.session.custom.IsMaterialGroupConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsErrorProofingConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsWorkStationAuthenticated \u003d 0\n\tself.session.custom.IsTorqueMarkingAuthenticated \u003d 0\n\tself.session.custom.IsModelConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsChecklistConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsQualityManagementAuthenticated \u003d 0\n\tself.session.custom.IsReworkStationAuthenticated \u003d 0\n\tself.session.custom.IsPaintingStationAuthenticated \u003d 0\n\tself.session.custom.IsNumberPunchingAuthenticated \u003d 0\n\tself.session.custom.IsLiveTagStatusAuthenticated \u003d 0\n\tself.session.custom.IsGetDashBoardSerialNoAuthenticated \u003d 0\n\tself.session.custom.IsBOMCopyAuthenticated \u003d 0\n\tself.session.custom.IsPaintingConfigurationAuthenticated \u003d 0\n\tself.session.custom.IsLogNCAuthenticated \u003d 0\n\tall_sessions \u003d system.perspective.getSessionInfo()        \n\tfor ses in all_sessions:\n\t    if (ses.id \u003d\u003d self.session.props.id):\n\t        ipAddress \u003d ses.clientAddress\n\t        self.session.custom.currentIpAddress\u003dipAddress\n\tsystem.perspective.print(ipAddress)\n\t#Get details based on IP Address\n\tval\u003dsystem.db.runNamedQuery(\"Project_VECV/OperatorDashboard/getStationNameFromIPaddress\",{\u0027IPAddress\u0027:ipAddress})\n\tpyval\u003dsystem.dataset.toPyDataSet(val)\n\tip\u003d\u0027\u0027\n\twsId\u003d\u0027\u0027\n\tAreaId \u003d \u0027\u0027\n\tLineId \u003d \u0027\u0027\n\tAreaName \u003d \u0027\u0027\n\tLineName \u003d \u0027\u0027\n\tfor i in pyval:\n\t\tip \u003d i[\u0027WorkStationName\u0027]\n\t\twsId \u003d i[\u0027WorkStationId\u0027]\n\t\tAreaId \u003d i[\u0027AreaId\u0027]\n\t\tLineId \u003d i[\u0027LineId\u0027]\n\t\tAreaName \u003d i[\u0027AreaName\u0027]\n\t\tLineName \u003d i[\u0027LineName\u0027]\n\tself.session.custom.CurrentWorkStation \u003d ip\n\tself.session.custom.CurrentWorkStationId \u003d wsId\n\tself.session.custom.CurrentAreaId \u003d AreaId\n\tself.session.custom.CurrentLineId \u003d LineId\n\tself.session.custom.CurrentAreaName \u003d AreaName\n\tself.session.custom.CurrentLineName \u003d LineName\n\tsystem.perspective.print(\"self.session.custom.CurrentWorkStation %s\"%ip)\n\tsystem.perspective.print(\"self.session.custom.CurrentAreaName %s\"%AreaName)\n\tsystem.perspective.print(\"self.session.custom.CurrentLineName %s\"%LineName)\n\ttry:\n\t\timport json\n\t\tProject_VECV.Configuration.Common.AddLogDetails.showloader()\n\t\tuserDetails\u003d[]\n\t\tself.session.custom.menu \u003d []\n\t\troleID \u003d self.session.custom.UserRoleID\n\t\tuserID \u003d self.session.custom.loggedInUserId\n\t\t#get screen based on User\n\t\tds \u003d Project_VECV.NamedQuery.Login.Authenticate.GetAssignFormToUser(userID)\n\t\tif len(ds) \u003d\u003d 1 and len(ds[0][\u0027Instance\u0027]) \u003d\u003d 1:\n\t\t\tfor i in ds:\n\t\t\t\tinstances \u003d i[\"Instance\"]\n\t\t\t\tfor i in instances:\n\t\t\t\t\tformName \u003d (i[\"subMenuName\"]).lower().strip()\n\t\t\t\t\tif formName \u003d\u003d \u0027Plant Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPlantConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Device Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsDeviceConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027User Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsUserManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Role Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsRoleManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Role Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsRoleConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Shift Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsShiftConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Dashboard\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsDashboardAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Product Tracking\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsProductTrackingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Image Master Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsImageMasterConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027OPCode Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsOPCodeConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Work Instruction Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWorkInstructionConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Cycle Time Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsCycleTimeConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Location Routing\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLocationRoutingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Machine Build Data\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsMachineBuildDataAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027First Shot OK\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsFirstShotOKAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Hourly Production Report\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsHourlyProductionReportAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Rework\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsReworkAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027WIP Report\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWIPReportAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Order Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsOrderManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Washing Machine\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWashingMachineAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027SAP Data Upload\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsSAPDataUploadAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Material Group Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsMaterialGroupConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027ErrorProofing Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsErrorProofingConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027WorkStation\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWorkStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Torque Marking\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsTorqueMarkingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Model Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsModelConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Checklist Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsChecklistConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Quality Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsQualityManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Rework Station\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsReworkStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Painting Station\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPaintingStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Number Punching\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsNumberPunchingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027LiveTagStatus\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLiveTagStatusAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027GetDashBoardSerialNo\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsGetDashBoardSerialNoAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027BOM Copy\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsBOMCopyAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Painting Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPaintingConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027LogNC\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLogNCAuthenticated \u003d 1\t\t\n\t\t\t\t\ttargetUrl \u003d i[\u0027target\u0027]\n\t\t\tif str(userName).upper() \u003d\u003d str(self.session.custom.CurrentWorkStation).upper():\n\t\t\t\tsystem.perspective.navigate(targetUrl)\n\t\t\t\tself.session.custom.showSingleView \u003d True\n\t\t\telse:\n\t\t\t\tsystem.perspective.navigate(\u0027/accessDenied\u0027)\n\t\telif len(ds)\u003e0:\n\t\t\tself.session.custom.menu \u003d ds\n\t\t\tfor i in ds:\n\t\t\t\tinstances \u003d i[\"Instance\"]\n\t\t\t\tfor i in instances:\n\t\t\t\t\tformName \u003d (i[\"subMenuName\"]).lower().strip()\n\t\t\t\t\tif formName \u003d\u003d \u0027Plant Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPlantConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Device Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsDeviceConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027User Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsUserManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Role Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsRoleManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Role Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsRoleConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Shift Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsShiftConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Dashboard\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsDashboardAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Product Tracking\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsProductTrackingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Image Master Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsImageMasterConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027OPCode Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsOPCodeConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Work Instruction Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWorkInstructionConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Cycle Time Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsCycleTimeConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Location Routing\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLocationRoutingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Machine Build Data\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsMachineBuildDataAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027First Shot OK\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsFirstShotOKAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Hourly Production Report\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsHourlyProductionReportAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Rework\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsReworkAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027WIP Report\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWIPReportAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Order Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsOrderManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Washing Machine\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWashingMachineAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027SAP Data Upload\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsSAPDataUploadAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Material Group Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsMaterialGroupConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027ErrorProofing Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsErrorProofingConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027WorkStation\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsWorkStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Torque Marking\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsTorqueMarkingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Model Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsModelConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Checklist Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsChecklistConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Quality Management\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsQualityManagementAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Rework Station\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsReworkStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Painting Station\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPaintingStationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Number Punching\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsNumberPunchingAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027LiveTagStatus\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLiveTagStatusAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027GetDashBoardSerialNo\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsGetDashBoardSerialNoAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027BOM Copy\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsBOMCopyAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027Painting Configuration\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsPaintingConfigurationAuthenticated \u003d 1\n\t\t\t\t\telif formName \u003d\u003d \u0027LogNC\u0027.lower().strip():\n\t\t\t\t\t\tself.session.custom.IsLogNCAuthenticated \u003d 1\t\n\t\t\tsystem.perspective.navigate(\u0027/homepage\u0027)\n\t\telse:\n\t\t\t#get screen based on Role\n\t\t\tds \u003d Project_VECV.NamedQuery.Login.Authenticate.GetAssignFormToRole(roleID)\n\t\t\tif len(ds) \u003e 0 :\n\t\t\t\tself.session.custom.menu \u003d ds\n\t\t\t\tfor i in ds:\n\t\t\t\t\tinstances \u003d i[\"Instance\"]\n\t\t\t\t\tfor i in instances:\n\t\t\t\t\t\tformName \u003d (i[\"subMenuName\"]).lower().strip()\n\t\t\t\t\t\tif formName \u003d\u003d \u0027Plant Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsPlantConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Device Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsDeviceConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027User Management\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsUserManagementAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Role Management\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsRoleManagementAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Role Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsRoleConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Shift Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsShiftConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Dashboard\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsDashboardAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Product Tracking\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsProductTrackingAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Image Master Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsImageMasterConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027OPCode Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsOPCodeConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Work Instruction Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsWorkInstructionConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Cycle Time Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsCycleTimeConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Location Routing\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsLocationRoutingAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Machine Build Data\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsMachineBuildDataAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027First Shot OK\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsFirstShotOKAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Hourly Production Report\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsHourlyProductionReportAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Rework\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsReworkAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027WIP Report\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsWIPReportAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Order Management\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsOrderManagementAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Washing Machine\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsWashingMachineAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027SAP Data Upload\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsSAPDataUploadAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Material Group Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsMaterialGroupConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027ErrorProofing Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsErrorProofingConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027WorkStation\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsWorkStationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Torque Marking\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsTorqueMarkingAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Model Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsModelConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Checklist Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsChecklistConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Quality Management\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsQualityManagementAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Rework Station\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsReworkStationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Painting Station\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsPaintingStationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Number Punching\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsNumberPunchingAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027LiveTagStatus\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsLiveTagStatusAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027GetDashBoardSerialNo\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsGetDashBoardSerialNoAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027BOM Copy\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsBOMCopyAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027Painting Configuration\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsPaintingConfigurationAuthenticated \u003d 1\n\t\t\t\t\t\telif formName \u003d\u003d \u0027LogNC\u0027.lower().strip():\n\t\t\t\t\t\t\tself.session.custom.IsLogNCAuthenticated \u003d 1\t\n\t\t\t\tsystem.perspective.navigate(\u0027/homepage\u0027)\n\t\t\telse:\n\t\t\t\tsystem.perspective.navigate(\u0027/accessDenied\u0027)\n\t\tProject_VECV.Configuration.Common.AddLogDetails.closeloader()\n\texcept:\n\t\tscreenName \u003d\u0027Login\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Login/Login\u0027)\n\t\terrorFunction \u003d str(\u0027Message Handler:buttonClick -\u003e btnSubmit\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "Auth",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 22/08/2024\n\t\tPurpose:\t\t\t \n\t\t\t\tSend OTP to valid users.\n\t\"\"\"\t\n\ttry:\n\t\tuserName \u003d self.getSibling(\"txtUserName\").props.text\n\t\tuserPassword \u003d self.getSibling(\"txtPassword\").props.text\n\t\tdataset \u003d Project_VECV.NamedQuery.Login.Authenticate.isAuthenticate(userName, userPassword)\n\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\tfor data in pyData:\n\t\t\tisAuthenticate \u003d data[\u0027Result\u0027]\n\t\t#Authenticate MES User\n\t\tif isAuthenticate \u003d\u003d 1:\n\t\t\tself.session.custom.loggedInUserId \u003d data[\"Id\"]\n\t\t\tself.session.custom.loggedInUser \u003d data[\"UserName\"]\n\t\t\tself.session.custom.IsLoggedIn \u003d True\n\t\t\tself.session.custom.UserRoleID \u003d data[\"MST_Role_Id\"]\n\t\t\t#Authenticate AD User\n\t\t\tuser_details \u003dProject_VECV.ActiveDirectory.ActiveDirectoryUsers.getUserDetails(userName)\n\t\t\tif str(user_details).upper() \u003d\u003d \u0027None\u0027.upper():\n\t\t\t\twarningMessage \u003d \"Entered UserName is not added In Active Directory.\"\n\t\t\t\tstate \u003d \"warning\"\n\t\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(warningMessage), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\t\telse:\n\t\t\t\troleId \u003d system.db.runNamedQuery(\"Project_VECV/Login/getRole\",{\u0027userName\u0027:userName})\n\t\t\t\tsystem.perspective.print(\"role Id%s\"%roleId)\n\t\t\t\t#check role is operator if yes then no OTP required\n\t\t\t\tif roleId \u003d\u003d 2:\n\t\t\t\t\tsystem.perspective.sendMessage(\"buttonClick\",payload \u003d {}, scope \u003d \"page\")\t\t\t\n\t\t\t\telse:\n\t\t\t\t    # Specify the user source (replace \u0027VECV\u0027 with your actual AD user source name if changed in future)\n\t\t\t\t    Project_VECV.PopUp.loader.openLoader(True)\n\t\t\t\t    user_source \u003d \"VECV\"\n\t\t\t        # Get the user object from the user source\n\t\t\t        user \u003d system.user.getUser(user_source, userName)\n\t\t\t        if user is not None:\n\t\t\t\t\t\t# Get user details\n\t\t\t\t\t\temail \u003d str(user.getContactInfo()[0]).split(\u0027:\u0027)[1].strip()\n\t\t\t\t\t\t#OTP generation\n\t\t\t\t\t\tself.session.custom.OTP \u003d Project_VECV.ActiveDirectory.OTP.getOTP()\n\t\t\t\t\t\t#Mail Body\n\t\t\t\t\t\tbody \u003d \"\u003cHTML\u003e\u003cBODY\u003e\u003cH1\u003eMES OTP Authentication\u003c/H1\u003e\"\n\t\t\t\t\t\tbody +\u003d \"\u003cP\u003ePlease enter Below OTP to Complete MES Authentication.\u003c/P\u003e\u003cP\u003e\u003cB\u003e\"\n\t\t\t\t\t\tbody +\u003d str(self.session.custom.OTP)\n\t\t\t\t\t\tbody +\u003d \"\u003c/B\u003e\u003c/P\u003e\"\n\t\t\t\t\t\tbody+\u003d\"\u003cP\u003eIf you did not requested for this OTP, Please ignore the mail or contact support\u003c/P\u003e\u003c/BODY\u003e\u003c/HTML\u003e\"\n\t\t\t\t\t\t\n\t\t\t\t\t\trecipients \u003d [str(email)]\n\t\t\t\t\t\t#Mail Sending\n\t\t\t\t\t\tsystem.net.sendEmail(\"\",\"qdigitalization@vecvnet.com\", \"MES OTP Auth\", body, 1, recipients, smtpProfile \u003d \u0027SMTPEmail\u0027)\n\t\t\t\t\t\t \n\t\t\t\t\t\tProject_VECV.PopUp.loader.openLoader(False)\n\t\t\t\t\t\t#open Popup to enter OTP\n\t\t\t\t\t\tsystem.perspective.openPopup(\"#OTP\", \"Project_VECV/Templates/OTPView\",{\u0027Email\u0027:email})\n\t\telif isAuthenticate \u003d\u003d -2:\n\t\t\twarningMessage \u003d \"Invalid Credentials\"\n\t\t\tstate \u003d \"warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(warningMessage), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\telif isAuthenticate \u003d\u003d -1:\n\t\t\twarningMessage \u003d \"Inactive User. Please Contact System Administrator.\"\n\t\t\tstate \u003d \"warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(warningMessage), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\telse:\n\t\t\twarningMessage \u003d \"Credentials Expired. Please Contact System Administrator.\"\n\t\t\tstate \u003d \"warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(warningMessage), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\t\n\texcept:\n\t\tscreenName \u003d\u0027Login\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Login/Login\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:Auth -\u003e btnSubmit\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblLoginMsg"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": -0.5,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": -0.5,
+                          "rowIndex": 0,
+                          "span": 12
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 12
+                        }
+                      ],
+                      "height": 30
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#FFFFFF",
+                        "classes": "Project_VECV/Login/LabelHeader"
+                      },
+                      "text": "Welcome to MES Application"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblwarning"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 3,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 3,
+                          "span": 10
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 4,
+                          "span": 10
+                        }
+                      ],
+                      "height": 27
+                    },
+                    "props": {
+                      "style": {
+                        "classes": "Project_VECV/Login/LoginWarning"
+                      }
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "cntColumn"
+                },
+                "position": {
+                  "height": 1,
+                  "width": 1
+                },
+                "props": {
+                  "gutters": {
+                    "horizontal": 5
+                  }
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "cntLogin"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 1,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 10
+                },
+                {
+                  "colIndex": 2,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 8
+                },
+                {
+                  "colIndex": 4,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 4
+                }
+              ],
+              "height": 300
+            },
+            "props": {
+              "mode": "percent",
+              "style": {
+                "backgroundColor": "#FFFFFF",
+                "marginTop": "80px"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "meta": {
+              "name": "img"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 3,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 6
+                },
+                {
+                  "colIndex": 4,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 10
+                },
+                {
+                  "colIndex": 3,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 6
+                }
+              ],
+              "height": 75
+            },
+            "props": {
+              "fit": {
+                "mode": "fill"
+              },
+              "source": "/system/images/Logo/VECVLOGO.png",
+              "style": {
+                "marginTop": 40
+              },
+              "tint": {
+                "color": "#FFFFFF"
+              }
+            },
+            "type": "ia.display.image"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "gutters": {
+            "vertical": 0
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "events": {
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 27/03/2024\n\t\tPurpose: Clear username and password field.\t\n\t\"\"\"\n#\tself.getChild(\"cntColumn\").getChild(\"cntLogin\").getChild(\"cntColumn\").getChild(\"txtUserName\").focus()\n\tsystem.perspective.sendMessage(\"UserNameFocus\")\n\tself.getChild(\"cntColumn\").getChild(\"cntLogin\").getChild(\"cntColumn\").getChild(\"txtUserName\").props.text \u003d \u0027\u0027\n\tself.getChild(\"cntColumn\").getChild(\"cntLogin\").getChild(\"cntColumn\").getChild(\"txtPassword\").props.text \u003d \u0027\u0027\n\t"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/Login/LoginBackground"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

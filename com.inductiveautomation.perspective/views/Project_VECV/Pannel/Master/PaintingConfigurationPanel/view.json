@@ -1,0 +1,718 @@
+{
+  "custom": {
+    "UnitId": "value"
+  },
+  "params": {},
+  "propConfig": {
+    "custom.UnitId": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 720,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 20,
+                  "width": "auto",
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "Add"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values from panel. \n\t\"\"\"\n# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027PaintingConfigurationPanel\u0027\n#\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027areaId\u0027:-1,\u0027categoryId\u0027:-1,\n#\t\t\t\t\u0027isActive\u0027:int(1),\n#\t\t\t\t\u0027imagePath\u0027:\u0027\u0027}\t \n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\u0027areaId\u0027:-1,\n\t\t\t\t\u0027categoryId\u0027:-1,\n\t\t\t\t\u0027categoryName\u0027:\u0027\u0027,\n\t\t\t\t\u0027areaName\u0027:\u0027\u0027,\n\t\t\t\t\u0027imageName\u0027:\u0027\u0027,\n\t\t\t\t\u0027imagePath\u0027:\u0027\u0027,\n\t\t\t\t\u0027stepNo\u0027:\u0027\u0027,\n\t\t\t\t\u0027isActive\u0027:int(1),\n\t\t\t\t\u0027Id\u0027:\u0027\u0027,\n\t\t\t\t\u0027UnitId\u0027:\u0027\u0027\n\t\t\t\t}\n\t\t\t\t\n\tsystem.perspective.sendMessage(messageType, payload)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 14,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Area:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "enableValueCache": false,
+                        "parameters": {
+                          "ModelId": "{.../cntModel/drpModel.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Panel/getAreafromModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 39,
+                  "y": -4
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 3,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Category:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpCategory"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "queryPath": "Project_VECV/Painting/getPaintingType"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": -1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 60,
+                  "y": -5
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntCategory"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "custom": {
+                  "event": "",
+                  "imageName": "",
+                  "imagePath": "",
+                  "url": ""
+                },
+                "events": {
+                  "component": {
+                    "onFileReceived": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Upload image in file respository location. \n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\tarea \u003d self.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\t\tcategory \u003d self.parent.parent.getChild(\"cntCategory\").getChild(\"drpCategory\").props.value\n\n\t\t\n\t\tif area !\u003d -1 and category !\u003d -1:\n\t\t\n\t\t\t# accessing area dropdown\n\t\t\toptionsArea\u003dself.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.options\n\t\t\toptionsArea\u003dsystem.dataset.toPyDataSet(optionsArea)\n\t\t\tsystem.perspective.print(optionsArea)\n\t\t\tfor opt in optionsArea:\n\t\t\t    if opt[\u0027value\u0027] \u003d\u003d area:\n\t\t\t        area \u003d opt[\u0027label\u0027].lower()\n\t\t\t        break\n\t\t\tsystem.perspective.print(area)\n\t\t\t\n\t\t\t# accessing category dropdown\n\t\t\toptionsCategory\u003dself.parent.parent.getChild(\"cntCategory\").getChild(\"drpCategory\").props.options\n\t\t\toptionsCategory\u003dsystem.dataset.toPyDataSet(optionsCategory)\n\t\t\tsystem.perspective.print(optionsCategory)\n\t\t\tfor opt1 in optionsCategory:\n\t\t\t\tif opt1[\u0027value\u0027] \u003d\u003d category:\n\t\t\t\t\tcategory \u003d str(opt1[\u0027label\u0027].lower()).strip()\n\t\t\t\t\tbreak\n\t\t\tsystem.perspective.print(category)\n\t\t\t\n\t\t\timport os\n\t\t\tfixedDirectory \u003d\"//srdwsmesqa01/Ignition/Painting\"\n\t\n\t\t\tdrpSelection\u003dstr(\"/\"+area+\"/\"+category)\n\t\t\tdirectory\u003dfixedDirectory+drpSelection\n\t\t\t\n\t\t\t#creating directory if not exist\n\t\t\tif not os.path.exists(directory):\n\t\t\t    # Create the directory\n\t\t\t    system.perspective.print(os.makedirs(directory))\n\t\t\t    #print(os.path.exists(directory))\n\t\t\t    system.perspective.print(\"Directory created successfully!\")\n\t\t\telse:\n\t\t\t    system.perspective.print(\"Directory already exists!\")\n\t\t\n\t\t\t#getting timestamp\n\t\t\timport time\n\t\t\ttimeStamp \u003d (str(time.time()).split(\".\"))[0]\n\t\t\tsystem.perspective.print(timeStamp)\n\n\t\t\t#generating final image path\n\t\t\timageName \u003d str(timeStamp)\n\n\t\t\tself.custom.imageName \u003d imageName\n\t\t\t\t\n\t\t\timageName \u003d \"//\"+ imageName + \u0027.\u0027 + str(event.file.name).split(\u0027.\u0027)[-1]\n\t\t\timagePath \u003d directory + imageName\n\t\t\tsystem.perspective.print(imageName)\n\t\t\tsystem.perspective.print(imagePath)\n\t\t\t\n\t\t\t#putting url for database\n\t\t\tProject_VECV.Master.ImageMasterConfiguration.FileUpload.fileUpload(event, imagePath)\n\t\t\t\n\t\t\turl \u003d \"http:\"+imagePath.strip()\n\t\t\tself.custom.url \u003d url\n\t\t\tself.custom.event \u003d event\n\t\t\t\n\t\t\tself.custom.imagePath \u003d str(\u0027http:\u0027+imagePath)\n#\t\t\tevent.file.copyTo(imagePath)\n#\t\t\turl \u003d \"http:\"+imagePath.strip()\n##\t\t\turl \u003d \"http:\"+imagePath+imageName\n#\t\t\tsystem.perspective.print(\"URL \u003d %s\"%url)\n##\t\t\tself.getSibling(\"Image\").props.source \u003d url\n#\t\t\tself.custom.url \u003d url #drpSelection\n\t\t\t\n\t\telse:\n\t\t\tstate \u003d \u0027warning\u0027\n\t\t\tmessage \u003d \u0027Please select area and category before uploading Image.\u0027\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027PaintingConfigurationPanel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/Master/PaintingConfigurationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onFileReceived  -\u003e cntImageUpload/ImageUpload\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "ImageUpload"
+                },
+                "position": {
+                  "height": 37,
+                  "width": 152,
+                  "x": 68.65499961853027,
+                  "y": 12
+                },
+                "props": {
+                  "maxUploads": 1,
+                  "supportedFileTypes": [
+                    "png",
+                    "jpeg",
+                    "jpg"
+                  ]
+                },
+                "type": "ia.input.fileupload"
+              }
+            ],
+            "custom": {
+              "imageToRemove": ""
+            },
+            "meta": {
+              "name": "cntImageUpload"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 2,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "height": 20,
+                  "rotate": {
+                    "anchor": "50% 25%"
+                  },
+                  "width": "92%",
+                  "x": 9
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent"
+                  },
+                  "text": "Active:"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpActive"
+                },
+                "position": {
+                  "height": 30,
+                  "width": "92%",
+                  "x": 9,
+                  "y": 25
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if({.../cntHeader/lblHeader.props.text}\u003d\u0027Add\u0027\r\n,toBoolean(0),toBoolean(1)\r\n)"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": 1
+                    },
+                    {
+                      "label": "No",
+                      "value": 0
+                    }
+                  ],
+                  "style": {
+                    "classes": "Project_VECV/Panel/DropdownContent"
+                  },
+                  "value": 1
+                },
+                "type": "ia.input.dropdown"
+              },
+              {
+                "meta": {
+                  "name": "lblasterik"
+                },
+                "position": {
+                  "height": 20,
+                  "width": 10,
+                  "x": 45,
+                  "y": -6
+                },
+                "props": {
+                  "alignVertical": "bottom",
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "color": "#FF0000"
+                  },
+                  "text": "*"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntActive"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1.5,
+                  "rowIndex": 3,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1.5,
+                  "rowIndex": 2,
+                  "span": 12
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Reset all values from panel. \n\t\"\"\"\n\t# Write your script here\t\n\tsystem.perspective.closeDock(\u0027rightP\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027ImageConfigurationPanel\u0027\n\tpayload \u003d {\u0027UnitId\u0027:\u0027\u0027,\u0027headerLabel\u0027:headerLabel,\u0027areaId\u0027:-1,\u0027lineId\u0027:-1,\n\t\t\t\t\u0027WorkStationId\u0027:-1,\u0027imageName\u0027:\u0027\u0027,\u0027imageDescription\u0027:\u0027\u0027,\u0027isActive\u0027:int(1),\n\t\t\t\t\u0027imageTypeId\u0027:-1}\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\ttry:\n\t\turl \u003d \"C:\\Program Files\\Inductive Automation\\Ignition\\webserver\\webapps\\main\"+ self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url\n\t\tsystem.perspective.print(\"url\")\n\t\tsystem.perspective.print(url)\n\t\tProject_VECV.Master.ImageMasterConfiguration.Delete.deleteImage(url)\n\texcept:\n\t\tpass"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnCancel"
+                },
+                "position": {
+                  "height": 30,
+                  "rotate": {
+                    "anchor": "61% 25%"
+                  },
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/Panel/Button"
+                  },
+                  "text": "Cancel",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 0.5,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "md",
+                  "order": 3,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Add/Update data in db. \n\t\"\"\"\n\ttry:\n\t\theaderlabel \u003d self.parent.parent.getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\n\t\tareaId \u003d self.parent.parent.getChild(\"cntArea\").getChild(\"drpArea\").props.value\n\t\tcategoryId \u003d self.parent.parent.getChild(\"cntCategory\").getChild(\"drpCategory\").props.value\n\t\timageName \u003d self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.imageName\n\t\timagePath \u003d self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.imagePath\n\t\tstepNo \u003d 1\n\t\turl \u003d self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url\n\t\tuploadEvent \u003d self.parent.parent.getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.event\n\t\tisActive \u003d self.parent.parent.getChild(\"cntActive\").getChild(\"drpActive\").props.value\n\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\n\t\t\n\t\tif headerlabel \u003d\u003d \"Add\":\n\t\t\tif Project_VECV.Master.ImageMasterConfiguration.PaintingImageUpload.upload() :\n\t\t\t\tid\u003d0\n\t\t\t\tisActive \u003d 1\n\t\t\t\tresult\u003dProject_VECV.NamedQuery.Master.Painting.PaintingConfiguration.insert(int(areaId), int(categoryId), imageName, imagePath, int(stepNo), int(isActive), createdBy, int(id))\n\t\t\t\tsystem.perspective.print(\"data inserted\")\n\t\t\telse:\n\t\t\t\tsystem.perspective.print(\u0027image not uploaded\u0027)\n\t\telse:\n\t\t\tif Project_VECV.Master.ImageMasterConfiguration.PaintingImageUpload.upload() :\n\t\t\t\tId\u003dself.view.custom.UnitId\t\n\t\t\t\tresult\u003dProject_VECV.NamedQuery.Master.Painting.PaintingConfiguration.insert(areaId, categoryId, imageName, imagePath, stepNo, isActive, createdBy, Id)\t\n\t\t\telse:\n\t\t\t\tsystem.perspective.print(\u0027image not uploaded\u0027)\t\n\t\t\n\n\t\tif(result\u003d\u003d1):\n\t\t\tif headerlabel\u003d\u003d\"Add\":\n\t\t\t\tmessage \u003d \"Painting details added successfully.\"\n\t\t\t\t#auditMsg\u003dstr(imagename) +\" Painting details added successfully.\"\n\t\t\telse:\n\t\t\t\tmessage \u003d \"Painting details updated successfully.\"\n\t\t\t\t#auditMsg\u003dstr(imagename) +\" Painting details updated successfully\"\n\t\t\tstate \u003d \"success\"\n#\t\t\tmessage \u003d \u0027success\u0027\n\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\n\t\tmessageType \u003d \u0027tableRefresh\u0027    \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,scope \u003d \u0027page\u0027 )\n\t\t\n\t\t# to refresh Panel again\n\t\theaderLabel \u003d \"Add\"\n\t\tmessageType \u003d \u0027PaintingConfigurationPanel\u0027\n\t\t\t \n\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\n\t\t\t\t\t\u0027areaId\u0027:-1,\n\t\t\t\t\t\u0027categoryId\u0027:-1,\n\t\t\t\t\t\u0027categoryName\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027areaName\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027imageName\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027imagePath\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027stepNo\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027isActive\u0027:int(1),\n\t\t\t\t\t\u0027Id\u0027:\u0027\u0027,\n\t\t\t\t\t\u0027UnitId\u0027:\u0027\u0027\n\t\t\t\t\t}\n\t\t\t\t\t\n\t\tsystem.perspective.sendMessage(messageType, payload)\n\t\t#refresh panel ends here\n\t\t\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\"rightView\")\n\t\t\n#\t\t#addToAuditLogStartBlock\n#\t\tsystem.perspective.print(auditMsg)\n#\t\tcategory\u003d\u0027Master Configuration\u0027\n#\t\tsubCategory\u003d\u0027ImageMaster Configuration\u0027\n#\t\tif(Id!\u003d0):\n#\t\t\tprevDesc\u003dself.view.getChild(\"root\").custom.payload\n#\t\t\tcurDesc \u003d {\n#\t\t\t\t\"modelId\":model_id,\n#\t\t\t\t\"areaId\":area_id,\n#\t\t\t\t\"lineId\":line_id,\n#\t\t\t\t\"workStationId\":workstation_id,\n#\t\t\t\t\"imageName\":imagename,\n#\t\t\t\t\"imageDescription\":description,\n#\t\t\t\t\"imageTypeId\":imagetype_id,\n#\t\t\t\t\"isActive\":active\n#\t\t\t}\n#\t\t\tsystem.perspective.print(prevDesc)\n#\t\t\tsystem.perspective.print(curDesc)\n#\t\t\tdescription\u003dstr(auditMsg)+\"Where ID\u003d\"+str(Id)+\" With Previous Data-\u003e\"+str(prevDesc)+\" and Updated Data-\u003e\"+str(curDesc)\n#\t\telse:\n#\t\t\tdescription\u003dstr(auditMsg)\n#\t\tcreatedBy\u003dself.session.custom.loggedInUserId\n#\t\tProject_VECV.Configuration.Common.AddLogDetails.AddAuditLogs(category, subCategory, description, createdBy)\n#\t\t#addAuditLogEndBlock\n\texcept:\n\t\tscreenName \u003d\u0027Painting Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/PaintingConfigurationPannel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\n\t\n\t"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "btnSave"
+                },
+                "position": {
+                  "height": 30,
+                  "width": 100,
+                  "x": 26,
+                  "y": 5
+                },
+                "propConfig": {
+                  "props.enabled": {
+                    "binding": {
+                      "config": {
+                        "expression": "if( ({.../cntArea/drpArea.props.value} \u003e -1) \u0026\u0026\r\n({.../cntCategory/drpCategory.props.value} \u003e -1) \u0026\u0026\r\n({.../cntActive/drpActive.props.value} \u003e -1) \u0026\u0026\r\n({.../cntImageUpload/ImageUpload.custom.imagePath} !\u003d \u0027\u0027)\r\n,toBoolean(1),toBoolean(0))\r\n\r\n\r\n"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+                  },
+                  "text": "Save",
+                  "textStyle": {
+                    "classes": "Project_VECV/Panel/Button"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "ImageConfigurationPanel",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tload\u003dpayload.copy()\n\tsystem.perspective.print(\"Printing payload of msg handler-----------\u003e\")\n\tsystem.perspective.print(payload)\n\tload.pop(\u0027headerLabel\u0027)\n\tsystem.perspective.print(\"msg handler1-----------\u003e\")\n\timport json\n\tload_json \u003d json.dumps(load)\n\tself.view.getChild(\"root\").custom.payload\u003dload_json\n\tsystem.perspective.print(\"msg handler2-----------\u003e\")\n\tsystem.perspective.print(\"payload msghandler3-------------\u003e\")\n\tsystem.perspective.print(self.view.getChild(\"root\").custom.payload)\n\tsystem.perspective.print(\"Exit ImageConfigurationPanel\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "meta": {
+              "name": "cntSave"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 3,
+                  "span": 6
+                },
+                {
+                  "colIndex": 6,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 3,
+                  "span": 6
+                }
+              ],
+              "height": 60
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 1,
+          "width": 1
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "ImageChanged": false,
+      "payload": ""
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "custom.selectedImagePath": {
+        "binding": {
+          "config": {
+            "path": "./cntColumn/cntHeader/lblHeader.props.text"
+          },
+          "transforms": [
+            {
+              "code": "\tif value \u003d\u003d \u0027Add\u0027:\n\t\treturn \u0027\u0027\n\treturn value",
+              "type": "script"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "classes": "Project_VECV/Panel/BackgroundColor"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "PaintingConfigurationPanel",
+          "pageScope": true,
+          "script": "\t\"\"\"\n\t\tWritten By: Sagar Iparkar\n\t\tWritten Date: 27/05/2024\n\t\tPurpose: Insert row values into respective fields. \n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.view.custom.UnitId \u003d payload[\u0027Id\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntHeader\").getChild(\"lblHeader\").props.text\u003dpayload[\u0027headerLabel\u0027]\n\t\t\n#\t\t(areaId, categoryId, imageName, imagePath, stepNo, isActive, createdBy, id)\n\t\t\n\t\tself.getChild(\"cntColumn\").getChild(\"cntArea\").getChild(\"drpArea\").props.value \u003d payload[\u0027areaId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntCategory\").getChild(\"drpCategory\").props.value \u003d payload[\u0027categoryId\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.imageName \u003d payload[\u0027imageName\u0027]\n\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.imagePath \u003d payload[\u0027imagePath\u0027]\n\t\t#Step no. to be auto generated on save event\n\t\t\n\t\t\n\t\t\n#\t\tif payload[\u0027headerLabel\u0027] !\u003d \u0027Add\u0027:\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url \u003d payload[\u0027url\u0027]\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").custom.imageToRemove \u003d  payload[\u0027url\u0027]\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"Image\").props.source \u003d payload[\u0027url\u0027]\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageName\").getChild(\"txt\").custom.isSelectedImageName \u003d payload[\u0027imageName\u0027]\n#\t\telse:\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"Image\").props.source\u003d\u0027/system/images/VECV/no-image-available.png\u0027\n#\t\t\tself.getChild(\"cntColumn\").getChild(\"cntImageUpload\").getChild(\"ImageUpload\").custom.url \u003d \u0027/system/images/VECV/no-image-available.png\u0027\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntModel\").getChild(\"drpModel\").props.value\u003dpayload[\u0027modelId\u0027]\n\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntArea\").getChild(\"drpArea\").props.value\u003dpayload[\u0027areaId\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntLine\").getChild(\"drpLine\").props.value\u003dpayload[\u0027lineId\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntWorkStation\").getChild(\"drpWorkStation\").props.value\u003dpayload[\u0027workStationId\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntImageName\").getChild(\"txt\").props.text\u003dpayload[\u0027imageName\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntImageDescription\").getChild(\"txt\").props.text\u003dpayload[\u0027imageDescription\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntImageType\").getChild(\"drpImageType\").props.value\u003dpayload[\u0027imageTypeId\u0027]\n#\t\tself.getChild(\"cntColumn\").getChild(\"cntActive\").getChild(\"drpActive\").props.value\u003dpayload[\u0027isActive\u0027]\n\texcept:\n\t\tscreenName \u003d\u0027Painting Configuration Panel\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Master Configuration/PaintingConfigurationPanel\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003ePaintingConfigurationPanel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "MESPRODDB",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "a08f1067aa6fb20b7b28d612c1aa469da3efc84684b47632e5cb840aad90d392",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "cycleTime",
+        "sqlType": 4
+      },
+      {
+        "type": "Parameter",
+        "identifier": "AreaName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Station",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "StartTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "EndTime",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IssueType",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "downtime",
+        "sqlType": 2
+      }
+    ]
+  }
+}

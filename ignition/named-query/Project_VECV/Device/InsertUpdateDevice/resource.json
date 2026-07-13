@@ -1,0 +1,85 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "b6b62df3d8fdc249e719cadc2ae3d6703ab2c1bbb795a504cacd3a4f9820d21a",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "AssetNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DeviceName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IPAddress",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_DeviceType_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Port",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DeviceSerialNumber",
+        "sqlType": 7
+      }
+    ]
+  }
+}

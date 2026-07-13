@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "1b7df479556e653a0693c3d93c15fc835bd20557393dd6fe79da8ceefeef1d3a",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MaterialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MaterialType",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MaterialVersion",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Plant_Code",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "UOM",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsMBomRecord",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Mst_Area_Id",
+        "sqlType": 2
+      }
+    ]
+  }
+}

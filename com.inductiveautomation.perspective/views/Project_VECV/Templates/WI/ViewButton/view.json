@@ -1,0 +1,54 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 97
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027Action_Popup\u0027)\n\t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "height": 0.9778,
+          "width": 0.9897
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Button Project_VECV/CommonBackgroundColor/Button"
+          },
+          "text": "View"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "mode": "percent",
+      "style": {
+        "borderColor": "#FFFFFF",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "classes": "Project_VECV/CommonBackgroundColor/Button"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

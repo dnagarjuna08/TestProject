@@ -1,0 +1,127 @@
+{
+  "custom": {},
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\taction\u003dself.params.value\n\tif str(action)\u003d\u003d\u0027-1\u0027:\n\t\tself.getChild(\"root\").getChild(\"btn_SaveALL\").meta.visible\u003dTrue\n\t\tself.getChild(\"root\").getChild(\"btn_Save\").meta.visible\u003dFalse\n\telse:\n\t\tself.getChild(\"root\").getChild(\"btn_SaveALL\").meta.visible\u003dFalse\n\t\tself.getChild(\"root\").getChild(\"btn_Save\").meta.visible\u003dTrue"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "column": "value",
+    "columnIndex": "value",
+    "row": "value",
+    "rowData": "value",
+    "rowIndex": "value",
+    "value": "value"
+  },
+  "propConfig": {
+    "params.column": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.columnIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.row": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.rowIndex": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 38,
+      "width": 114
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttry:\n\t\tTabledata\u003dself.view.params.rowData\n\t\t\n\t\tsystem.perspective.print(\"self.view.params.row \" +str(self.view.params.row))\n\t\tsystem.perspective.print(\"Tabledata\" +str(Tabledata))\n\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n\t\tCycleTime\u003dTabledata.get(\"CycleTime\")\n\t\tMST_Line_Id\u003dTabledata.get(\"MST_Line_Id\")\n\t\tMSTCycleTimeId\u003dTabledata.get(\"MSTCycleTimeId\")\n\t\tShiftID\u003dTabledata.get(\"ShiftID\")\n\t\tMST_WorkStation_Id\u003dTabledata.get(\"MST_WorkStation_Id\")\n\t\tWorkStationName\u003dTabledata.get(\"WorkStationName\")\n\t\tGroupId\u003dTabledata.get(\"GroupId\")\n\t\tsystem.perspective.print(\"MSTCycleTimeId \" +str(MSTCycleTimeId))\n\t\t\n\t\tparams \u003d {\"MST_Line_Id\":MST_Line_Id,\"GroupID\":GroupId,\"ShiftID\":ShiftID,\"MST_WorkStation_Id\":MST_WorkStation_Id,\"CycleTime\":CycleTime,\"CreatedBy\":CreatedBy,\"MSTCycleTimeId\":MSTCycleTimeId}\n\t\tsystem.perspective.print(\"params\" +str(params))\n\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/CycleTimeConfiguration/AddUpdateCycleTime\",params)\n\t\t\n\t\tresult\u003dstr(result)\n\t\tsystem.perspective.print(\"result cycle time \" +str(result))\n\t\tif(result!\u003d\u00271\u0027):\n\t\t\tmessage \u003d str(result)\n\t\t\tstate \u003d \"warning\"\n\t\telif(result\u003d\u003d\u00271\u0027):\n\t\t\tmessage \u003d \"Cycle Time added successfully.\"\n\t\t\tstate \u003d \"success\"\n\t\t\t\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\t\n\t\tsystem.perspective.sendMessage(\"CycleTimeTableRefresh\", scope \u003d \"page\")\n\texcept:\n\t\tscreenName \u003d\u0027CycleTime\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/CycleTimeConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btn_Save"
+        },
+        "position": {
+          "height": 28,
+          "width": 76,
+          "x": 21.5,
+          "y": 5
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+          },
+          "text": "Save",
+          "textStyle": {
+            "classes": "Project_VECV/Panel/Button"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\ttry:\n\t\tTabledata\u003dself.view.params.rowData\n\t\tCreatedBy \u003d self.session.custom.loggedInUserId\n#\t\tCycleTime\u003dTabledata.get(\"CycleTime\")\n#\t\tMST_Line_Id\u003dTabledata.get(\"MST_Line_Id\")\n#\t\tMSTCycleTimeId\u003dTabledata.get(\"MSTCycleTimeId\")\n#\t\tShiftID\u003dTabledata.get(\"ShiftID\")\n#\t\tMST_WorkStation_Id\u003dTabledata.get(\"MST_WorkStation_Id\")\n#\t\tWorkStationName\u003dTabledata.get(\"WorkStationName\")\n#\t\tGroupId\u003dTabledata.get(\"GroupId\")\n#\t\tsystem.perspective.print(\"MSTCycleTimeId \" +str(MSTCycleTimeId))\n\t\tdtSet\u003dself.session.custom.dsCycleTime\n\t\tresult\u003d0\n\t\tfor i in range(len(dtSet)):\n\t\t\tif i \u003e 0:\t\t\t\n\t\t\t\tMSTCycleTimeId\u003ddtSet[i][\u0027MSTCycleTimeId\u0027]\n\t\t\t\tMST_Line_Id\u003ddtSet[i][\u0027MST_Line_Id\u0027]\n\t\t\t\tMSTCycleTimeId\u003ddtSet[i][\u0027MSTCycleTimeId\u0027]\n\t\t\t\tShiftID\u003ddtSet[i][\u0027ShiftID\u0027]\n\t\t\t\tGroupId\u003ddtSet[i][\u0027GroupId\u0027]\t\t\t\t\n\t\t\t\tMST_WorkStation_Id\u003ddtSet[i][\u0027MST_WorkStation_Id\u0027]\n\t\t\t\tCycleTime\u003ddtSet[i][\u0027CycleTime\u0027]\n\t\t\t\tparams \u003d {\"MST_Line_Id\":MST_Line_Id,\"GroupID\":GroupId,\"ShiftID\":ShiftID,\"MST_WorkStation_Id\":MST_WorkStation_Id,\"CycleTime\":CycleTime,\"CreatedBy\":CreatedBy,\"MSTCycleTimeId\":MSTCycleTimeId}\n\t\t\t\tsystem.perspective.print(\"params\" +str(params))\n\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/CycleTimeConfiguration/AddUpdateCycleTime\",params)\n\t\t\n\t\tresult\u003dstr(result)\n\t\tsystem.perspective.print(\"result cycle time \" +str(result))\n\t\tif(result!\u003d\u00271\u0027):\n\t\t\tmessage \u003d str(result)\n\t\t\tstate \u003d \"warning\"\n\t\telif(result\u003d\u003d\u00271\u0027):\n\t\t\tmessage \u003d \"Cycle Time added successfully.\"\n\t\t\tstate \u003d \"success\"\n\t\t\t\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\t\n\t\tsystem.perspective.sendMessage(\"CycleTimeTableRefresh\", scope \u003d \"page\")\n\texcept:\n\t\tscreenName \u003d\u0027CycleTime\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/CycleTimeConfiguration\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed  -\u003ecntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \t"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "btn_SaveALL",
+          "visible": false
+        },
+        "position": {
+          "height": 28,
+          "width": 76,
+          "x": 21.5,
+          "y": 5
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/CommonBackgroundColor/Button Project_VECV/CommonBackgroundColor/EnabledButton Project_VECV/Panel/Button"
+          },
+          "text": "Save All",
+          "textStyle": {
+            "classes": "Project_VECV/Panel/Button"
+          }
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

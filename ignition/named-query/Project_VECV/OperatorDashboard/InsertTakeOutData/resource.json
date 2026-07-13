@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "3c05bd6c35b4a47a1ae203d9eb3ee4d39c3cc12572b87d21d3596dea27d790a5",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "areaid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Lineid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "serial",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ordernum",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomid",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "station",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "operator",
+        "sqlType": 2
+      }
+    ]
+  }
+}

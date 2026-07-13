@@ -1,0 +1,65 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "dee2f8be5c9d91f0612c7834faa357f6e645c36aad2a8f6a9b6c40f35350653d",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "Area",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Shift",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Variant",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "User",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DailyTarget",
+        "sqlType": 1
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MonthlyTarget",
+        "sqlType": 1
+      }
+    ]
+  }
+}

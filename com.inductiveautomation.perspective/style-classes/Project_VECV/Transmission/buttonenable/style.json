@@ -1,0 +1,19 @@
+{
+  "base": {
+    "style": {}
+  },
+  "variants": [
+    {
+      "pseudo": "disabled",
+      "style": {
+        "backgroundColor": "#AAAAAA"
+      }
+    },
+    {
+      "pseudo": "enabled",
+      "style": {
+        "backgroundColor": "#283593"
+      }
+    }
+  ]
+}

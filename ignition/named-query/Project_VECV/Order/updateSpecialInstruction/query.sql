@@ -1,0 +1,1 @@
+UPDATE PRODUCTION_ORDER SET special_instruction = :SpecialInstruction  WHERE id = :Id  

@@ -1,0 +1,1 @@
+SELECT MST_Line_Id, LineName FROM MST_Line WHERE MST_Area_Id = :MST_Area_Id  and  IsActive = 1 

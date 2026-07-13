@@ -1,0 +1,70 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "fb4b7eb146171ebc7666edd3628b73cbb35d679606a25df2744b88c6f9d5f126",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ModifiedBy",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOM_Id",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GroupName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "GroupDescription",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 6
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_GroupConfId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

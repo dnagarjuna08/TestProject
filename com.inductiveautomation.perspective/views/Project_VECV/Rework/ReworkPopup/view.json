@@ -1,0 +1,620 @@
+{
+  "custom": {},
+  "params": {
+    "Area": "",
+    "AreaId": "",
+    "BOM": "",
+    "Line": "",
+    "LineId": "",
+    "OrderNumber": "",
+    "SerialNumber": "",
+    "Station": "",
+    "WorkStationId": ""
+  },
+  "propConfig": {
+    "params.Area": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.AreaId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.BOM": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Line": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.LineId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.OrderNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.SerialNumber": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Station": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.WorkStationId": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 180,
+      "width": 813
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\ttry:\n\t\tSerialNumber\u003dself.view.params.SerialNumber\n\t\tAreaId\u003dself.view.params.AreaId\n\t\tLineId\u003dself.view.params.LineId\n\t\tWorkStationId\u003dself.session.custom.CurrentWorkStationId\n\t\tTakeInWsId\u003dself.parent.parent.getChild(\"FlexContainer_5\").getChild(\"Dropdown\").props.value\n\t\tBOM\u003dself.view.params.BOM\n\t\tOrderNumber\u003dself.view.params.OrderNumber\n\t\tActionTaken\u003dself.parent.parent.getChild(\"FlexContainer_4\").getChild(\"Actiontxt\").props.text\n\t\tUserID\u003dself.session.custom.loggedInUserId\n\t\tShiftId\u003dsystem.db.runNamedQuery(\"Project_VECV/Shift/getMST_Shift_Id\",{\u0027Line\u0027:LineId})\n\t\tparams\u003d{\u0027SerialNumber\u0027:str(SerialNumber),\u0027WorkStation\u0027:int(WorkStationId),\u0027Line\u0027:int(LineId),\u0027Area\u0027:int(AreaId),\u0027Event\u0027:int(5),\n\t\t\u0027M_BOM_Id\u0027:int(BOM),\u0027Status\u0027:int(2),\u0027OrderNumber\u0027:str(OrderNumber),\u0027Shift\u0027:int(ShiftId),\u0027UserId\u0027:UserID}\n\t\tsystem.db.runNamedQuery(\"Project_VECV/Rework/insertReworkEvent\",params)\n\t\tparams1\u003d{\u0027SerialNumber\u0027:str(SerialNumber),\u0027TakeinStationId\u0027:int(TakeInWsId),\u0027LineId\u0027:int(LineId),\u0027AreaId\u0027:int(AreaId),\u0027Remarks\u0027:ActionTaken,\n\t\t\t\u0027BOM\u0027:int(BOM),\u0027ModifiedBy\u0027:UserID}\n\t\tResult1\u003dsystem.db.runNamedQuery(\"Project_VECV/Rework/updateReworkStatus\",params1)\n\t\tsystem.perspective.sendMessage(\"refreshTable\",scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.closePopup(\"Reworkpopup\")\t\n\t\tstate \u003d \u0027success\u0027\n\t\tmessage \u003d \u0027Rework completed successfully !\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\texcept Exception as e:\n\t\tscreenName \u003d\u0027ErrorProofing Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Pannel/ErProofPannel\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntSave/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\n\t\tstate \u003d \u0027error\u0027\n\t\tmessage \u003d \u0027Update failed!\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "updatebtn"
+            },
+            "position": {
+              "basis": "94px"
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "if ({.../FlexContainer_5/Dropdown.props.value}!\u003d-1,true,false)"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "backgroundColor": "#283593",
+                "borderStyle": "solid",
+                "marginLeft": 10,
+                "marginRight": 5
+              },
+              "text": "Submit"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 6,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 4
+            },
+            {
+              "colIndex": 9,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 3
+            }
+          ],
+          "height": 44
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "SerialNumberlbl"
+            },
+            "position": {
+              "basis": "107px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "Serial Number:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "SerialNumbertxt"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.SerialNumber"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "enabled": false,
+              "spellcheck": false
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Stationlbl"
+            },
+            "position": {
+              "basis": "113px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "TakeOut Station:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Stationtxt"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Station"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "enabled": false,
+              "spellcheck": false
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_2"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Arealbl"
+            },
+            "position": {
+              "basis": "45px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "Area:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Areatxt"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Area"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "enabled": false,
+              "spellcheck": false
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Linelbl"
+            },
+            "position": {
+              "basis": "45px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "Line:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Linetxt"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.Line"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "enabled": false,
+              "spellcheck": false
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_3"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 8,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 44
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Actionlbl"
+            },
+            "position": {
+              "basis": "90px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "Action Taken:"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Actiontxt"
+            },
+            "position": {
+              "grow": 1
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_4"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "md",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 8,
+              "name": "lg",
+              "order": 5,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 44
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Stationlbl"
+            },
+            "position": {
+              "basis": "80px"
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/Panel/LabelContent",
+                "color": "#FF0000",
+                "fontSize": "14px",
+                "fontWeight": "bold"
+              },
+              "text": "TakeIn Station:*"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Dropdown"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.options": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "MST_Line_Id": "{view.params.LineId}"
+                    },
+                    "queryPath": "Project_VECV/Panel/getWorkStation"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "props": {
+              "value": -1
+            },
+            "type": "ia.input.dropdown"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_5"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 4,
+              "name": "sm",
+              "order": 4,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "md",
+              "order": 3,
+              "rowIndex": 0,
+              "span": 4
+            },
+            {
+              "colIndex": 4,
+              "name": "lg",
+              "order": 4,
+              "rowIndex": 0,
+              "span": 4
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-around"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "breakpoints": [
+        {
+          "minWidth": 2,
+          "name": "sm"
+        },
+        {
+          "minWidth": 480,
+          "name": "md"
+        },
+        {
+          "minWidth": 773,
+          "name": "lg"
+        }
+      ],
+      "style": {
+        "marginBottom": 10,
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 10
+      }
+    },
+    "type": "ia.container.column"
+  }
+}

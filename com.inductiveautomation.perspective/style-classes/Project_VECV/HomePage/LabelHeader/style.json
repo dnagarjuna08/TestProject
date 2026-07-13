@@ -1,0 +1,15 @@
+{
+  "base": {
+    "style": {
+      "borderBottomColor": "#D5D5D5",
+      "borderBottomStyle": "solid",
+      "borderBottomWidth": "1px",
+      "color": "#ffffff",
+      "fontFamily": "Cambria",
+      "fontSize": "15px",
+      "fontWeight": "normal",
+      "textAlign": "left",
+      "wordWrap": "break-word"
+    }
+  }
+}

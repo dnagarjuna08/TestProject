@@ -1,0 +1,2 @@
+insert into trn_errorProofWrongScan ([MST_Area_Id],[MST_Line_Id] ,[MST_WorkStation_Id],[SerialNumber],[Scanvalue],[CreatedDate])
+VALUES ( :MST_Area_Id , :MST_Line_Id , :MST_WorkStation_Id , :SerialNumber , :Scanvalue ,GETDATE())

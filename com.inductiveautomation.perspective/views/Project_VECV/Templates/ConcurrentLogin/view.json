@@ -1,0 +1,79 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Warninglbl"
+        },
+        "position": {
+          "basis": "32px"
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/Label_Header",
+            "color": "#FF4747",
+            "fontSize": "30px",
+            "textAlign": "center"
+          },
+          "text": "Concurrent Login Found Please LogOut Other User and Re-Login"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tself.session.custom.IsLoggedIn \u003d False\n\tsystem.perspective.navigate(\u0027/\u0027)\n\tsystem.perspective.closeSession(\u0027Refresh the page to log in again.\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "ReLoginBtn"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "color": "#FFFFFF",
+                  "path": "material/login"
+                }
+              },
+              "text": "Re-Login"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "basis": "34px"
+        },
+        "props": {
+          "alignItems": "center",
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "center"
+    },
+    "type": "ia.container.flex"
+  }
+}

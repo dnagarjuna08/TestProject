@@ -1,0 +1,65 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "5689f02a4368071ed403d776f25e82194ee4492a0fcc13ab2c84d9d92267f2ac",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "modelId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "areaId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "workstationId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "sequence",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomId",
+        "sqlType": 2
+      }
+    ]
+  }
+}

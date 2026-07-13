@@ -1,0 +1,1225 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 784
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "addlbl"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1.5,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 0,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 50
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/Common/StatusBlinking/tableHeader",
+            "fontWeight": "lighter",
+            "textAlign": "center"
+          },
+          "text": "Transmission Type Configuration"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onRowClick": {
+              "config": {
+                "script": "\t\"\"\"\n\t\tWritten By: Akhil Aerra\n\t\tWritten Date: 14/10/2024\n\t\tPurpose: Delete/Update data on row selection. \n\t\"\"\"\n\ttry:\n\t\tselectedRow \u003d self.props.selection.data\n\t\tfor data in\tselectedRow:\n\t\t\tID \u003d data[\"ID\"]\n\t\t\tTMCode \u003d data[\"TM Code\"]\n\t\t\tModel \u003d data[\"Model\"]\n\t\t\tPunchingCode \u003d data[\"Punching Code\"]\n\t\t\tPunchingGroup \u003d data[\"Punching Group\"]\n\t\t\tWormSpeedoRatio \u003d data[\"Worm Speedo Ratio\"]\n\t\t\tDesign \u003d data[\"Design\"]\t\n\t\tself.props.columns[6].viewParams.Id\u003dint(ID)\n\t\tself.props.columns[6].viewParams.Design\u003dstr(Design)\n\t\tself.props.columns[6].viewParams.Model\u003dstr(Model)\n\t\tself.props.columns[6].viewParams.PunchingCode\u003dstr(PunchingCode)\n\t\tself.props.columns[6].viewParams.PunchingGroup\u003dstr(PunchingGroup)\n\t\tself.props.columns[6].viewParams.TMCode\u003dstr(TMCode)\n\t\tself.props.columns[6].viewParams.WormSpeedoRatio\u003dstr(WormSpeedoRatio)\n\t\tpayload \u003d {\u0027ID\u0027:int(ID)}\n\t\tsystem.perspective.sendMessage(\u0027TransmissionDeletePanel\u0027, payload, scope \u003d \u0027page\u0027 )\t\n\texcept:\n\t\tscreenName \u003d\u0027TransmissionType Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Transmission/Master/TransmissionType\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onRowClick -\u003e cntBody/table\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) "
+              },
+              "enabled": false,
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 3,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 506
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "queryPath": "Project_VECV/Transmission/TransmissionType/getTransmissionTypeData"
+              },
+              "transforms": [
+                {
+                  "code": "\tresult \u003d []\n\tdataset \u003d system.dataset.toPyDataSet(value)\n\tfor dt in dataset:\n\t\taction \u003d {\"Id\" : dt[\"ID\"],\"Design\" : dt[\"Design\"],\"WormSpeedoRatio\" : dt[\"Worm Speedo Ratio\"],\"PunchingGroup\" : dt[\"Punching Group\"],\"PunchingCode\" : dt[\"Punching Code\"],\n\t\t\"Model\" : dt[\"Model\"],\"TMCode\" : dt[\"TM Code\"]}\n\t\tparams \u003d {\"ID\" : dt[\"ID\"],\"Design\" : dt[\"Design\"],\"Worm Speedo Ratio\" : dt[\"Worm Speedo Ratio\"],\"Punching Group\" : dt[\"Punching Group\"],\"Punching Code\" : dt[\"Punching Code\"],\n\t\t\t\t\"Model\" : dt[\"Model\"],\"TM Code\" : dt[\"TM Code\"], \"Action\":{\"value\":action}}\n\t\tresult.append(params)\n\treturn result",
+                  "type": "script"
+                }
+              ],
+              "type": "query"
+            }
+          }
+        },
+        "props": {
+          "bodyStyle": {
+            "backgroundColor": "#FFFFFF"
+          },
+          "columns": [
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "TM Code",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "TM Code"
+              },
+              "justify": "left",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 30
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Model",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "Model"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 40
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Punching Code",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "Punching Code"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 45
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Punching Group",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "Punching Group"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "view",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 45
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Worm Speedo Ratio",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "Worm Speedo Ratio"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 45
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Design",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": "Design"
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": true,
+              "width": 40
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "Action",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": "Project_VECV/Common/StatusBlinking/tableHeader"
+                },
+                "title": ""
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "Project_VECV/Transmission/SubView/TransmissionTypeAction",
+              "visible": true,
+              "width": 27
+            },
+            {
+              "align": "center",
+              "boolean": "checkbox",
+              "dateFormat": "MM/DD/YYYY",
+              "editable": false,
+              "field": "ID",
+              "filter": {
+                "boolean": {
+                  "condition": ""
+                },
+                "date": {
+                  "condition": "",
+                  "value": ""
+                },
+                "enabled": false,
+                "number": {
+                  "condition": "",
+                  "value": ""
+                },
+                "string": {
+                  "condition": "",
+                  "value": ""
+                },
+                "visible": "on-hover"
+              },
+              "footer": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "header": {
+                "align": "center",
+                "justify": "left",
+                "style": {
+                  "classes": ""
+                },
+                "title": ""
+              },
+              "justify": "auto",
+              "nullFormat": {
+                "includeNullStrings": false,
+                "nullFormatValue": "",
+                "strict": false
+              },
+              "number": "value",
+              "numberFormat": "0,0.##",
+              "progressBar": {
+                "bar": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "max": 100,
+                "min": 0,
+                "track": {
+                  "color": "",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "value": {
+                  "enabled": true,
+                  "format": "0,0.##",
+                  "justify": "center",
+                  "style": {
+                    "classes": ""
+                  }
+                }
+              },
+              "render": "auto",
+              "resizable": false,
+              "sort": "none",
+              "sortable": false,
+              "strictWidth": false,
+              "style": {
+                "classes": ""
+              },
+              "toggleSwitch": {
+                "color": {
+                  "selected": "",
+                  "unselected": ""
+                }
+              },
+              "viewParams": {},
+              "viewPath": "",
+              "visible": false,
+              "width": ""
+            }
+          ],
+          "dragOrderable": false,
+          "filter": {
+            "enabled": true,
+            "style": {
+              "backgroundColor": "#FFFFFF"
+            }
+          },
+          "pager": {
+            "initialOption": 10,
+            "style": {
+              "backgroundColor": "#FFFFFF"
+            }
+          },
+          "rows": {
+            "height": "40px",
+            "striped": {
+              "enabled": false
+            },
+            "style": {
+              "borderColor": "#D5D5D5",
+              "borderStyle": "solid",
+              "borderWidth": 0.2
+            }
+          },
+          "style": {
+            "marginLeft": 5,
+            "marginRight": 5
+          },
+          "virtualized": false
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "refreshTable",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.refreshBinding(\u0027props.data\u0027)",
+              "sessionScope": false,
+              "viewScope": false
+            },
+            {
+              "messageType": "tableRefresh",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.refreshBinding(\u0027props.data\u0027)",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.table"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tTMCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text\n\tModelCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text\n\tPunchingCode \u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text\n\tPunchingGroup\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text\n\tWormSpeedoRatio\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text\n\tDesign\u003d self.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text\n\tUserID\u003dself.session.custom.loggedInUserId\n\tparams \u003d {\"BOM\" :str(TMCode).upper(),\n\t\t\"Model\" :str(ModelCode).upper(),\n\t\t\"PunchingCode\" :str(PunchingCode).upper(),\n\t\t\"PunchingGroup\" :str(PunchingGroup).upper(),\n\t\t\"WormSpeedoRatio\" :str(WormSpeedoRatio).upper(),\n\t\t\"Design\" :str(Design).upper(),\n\t\t\"CreatedBy\" :UserID}\n\tdata \u003d system.db.runNamedQuery(\"Project_VECV/Transmission/TransmissionType/AddTransmissionTypeData\",params)\n\tResult \u003d 0\n\tfor dt in data:\n\t\tsystem.perspective.print(dt[\u0027Result\u0027])\n\t\tResult \u003d dt[\u0027Result\u0027]\n\tif Result \u003d\u003d 0:\n\t\tstate \u003d \u0027info\u0027\n\t\tmessage \u003d \u0027TM Code is invalid or doesnot exist!\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\telif Result \u003d\u003d 2:\n\t\tstate \u003d \u0027info\u0027\n\t\tmessage \u003d \u0027Transmission Type already exist!\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\n\telse:\n\t\tstate \u003d \u0027success\u0027\n\t\tmessage \u003d \u0027Transmission Type created successfully !\u0027\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")\t\n\t\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text\u003d\u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text\u003d\u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text\u003d\u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text\u003d\u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text\u003d\u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text\u003d\u0027\u0027\n\tsystem.perspective.sendMessage(\"refreshTable\",scope\u003d\u0027page\u0027)"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "createbtn"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "propConfig": {
+                      "props.enabled": {
+                        "binding": {
+                          "config": {
+                            "expression": "if( {...../FlexContainer_0/TMCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_0/ModelCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_0/PunchingCodetxt.props.text} !\u003d \u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/PunchingGrouptxt.props.text} !\u003d\u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/WormSpeedratiotxt.props.text} !\u003d\u0027\u0027 \u0026\u0026\r\n{...../FlexContainer_1/Designtxt.props.text} !\u003d\u0027\u0027\r\n,toBoolean(1),toBoolean(0))"
+                          },
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#283593",
+                        "borderStyle": "solid",
+                        "marginLeft": 10,
+                        "marginRight": 5
+                      },
+                      "text": "Create"
+                    },
+                    "type": "ia.input.button"
+                  },
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"TMCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"ModelCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_0\").getChild(\"PunchingCodetxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"PunchingGrouptxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"WormSpeedratiotxt\").props.text \u003d \u0027\u0027\n\tself.parent.parent.parent.parent.getChild(\"FlexContainer_1\").getChild(\"Designtxt\").props.text \u003d \u0027\u0027"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "cancelbtn"
+                    },
+                    "position": {
+                      "basis": "80px"
+                    },
+                    "props": {
+                      "style": {
+                        "backgroundColor": "#283593",
+                        "borderStyle": "solid",
+                        "marginLeft": 5,
+                        "marginRight": 5
+                      },
+                      "text": "Cancel"
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "FlexContainer"
+                },
+                "position": {
+                  "basis": "30px"
+                },
+                "props": {
+                  "justify": "space-between",
+                  "style": {
+                    "marginBottom": 5,
+                    "marginTop": 5
+                  }
+                },
+                "type": "ia.container.flex"
+              },
+              {
+                "events": {
+                  "component": {
+                    "onFileReceived": {
+                      "config": {
+                        "script": "\ttry:\n\t    # Get the uploaded file from the event\n\t    uploaded_file \u003d event.file\n\t    createdBy\u003dself.session.custom.loggedInUserId\n\t    Project_VECV.Transmission.Upload.ExcelToDataset(uploaded_file,createdBy)\n\texcept Exception as e:\n\t\tsystem.perspective.print(str(e))"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "FileUpload"
+                },
+                "position": {
+                  "basis": "43px",
+                  "shrink": 0
+                },
+                "props": {
+                  "maxUploads": 1,
+                  "supportedFileTypes": [
+                    "xlsx"
+                  ]
+                },
+                "type": "ia.input.fileupload"
+              }
+            ],
+            "meta": {
+              "name": "ActionCnt"
+            },
+            "position": {
+              "basis": "189px"
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 0,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 3
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 2,
+              "rowIndex": 1,
+              "span": 3
+            }
+          ],
+          "height": 87
+        },
+        "props": {
+          "alignItems": "flex-start"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TMCodetxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "TM Code*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "ModelCodetxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "Model Code*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "PunchingCodetxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "Punching Code*"
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_0"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 43
+        },
+        "props": {
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "PunchingGrouptxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "Punching Group*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "WormSpeedratiotxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "Worm-Speedo Ratio*"
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "Designtxt"
+            },
+            "position": {
+              "basis": "250px",
+              "shrink": 0
+            },
+            "props": {
+              "placeholder": "Design*"
+            },
+            "type": "ia.input.text-field"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer_1"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 5,
+              "name": "sm",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 1
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 0,
+              "rowIndex": 1,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "lg",
+              "order": 1.5,
+              "rowIndex": 1,
+              "span": 12
+            }
+          ],
+          "height": 44
+        },
+        "props": {
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.column"
+  }
+}

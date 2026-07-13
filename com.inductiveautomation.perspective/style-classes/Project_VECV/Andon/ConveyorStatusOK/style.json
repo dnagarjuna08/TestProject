@@ -1,0 +1,25 @@
+{
+  "base": {
+    "animation": {
+      "duration": "1s",
+      "direction": "alternate-reverse",
+      "fillMode": "none",
+      "keyframes": {
+        "0%": {
+          "backgroundColor": "#00FF00",
+          "borderTopLeftRadius": "80px",
+          "borderTopRightRadius": "80px",
+          "borderBottomLeftRadius": "80px",
+          "borderBottomRightRadius": "80px"
+        },
+        "100%": {
+          "backgroundColor": "#00AC00",
+          "borderTopLeftRadius": "80px",
+          "borderTopRightRadius": "80px",
+          "borderBottomLeftRadius": "80px",
+          "borderBottomRightRadius": "80px"
+        }
+      }
+    }
+  }
+}

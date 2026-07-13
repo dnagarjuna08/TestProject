@@ -1,0 +1,141 @@
+{
+  "custom": {},
+  "params": {
+    "columnIndex": "value",
+    "rowData": "value",
+    "value": 4
+  },
+  "propConfig": {
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 25,
+      "width": 116
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\"\"\"\n\tWritten By: Sagar Iparkar\n\tWritten Date: 10/06/2024\n\tPurpose:\t\t\t \n\t\t\tStart/Complete orders from screen\n\t\"\"\"\n\ttry:\n\t\tfrom java.text import SimpleDateFormat\n\t\tfrom java.util import Date\n\t\t\n\t\taction \u003d self.view.params.value\n\t\trowData \u003d self.view.params.rowData\n\t\tsystem.perspective.print(\"rowData\"+str(rowData))\n\t\tareaId  \u003d self.session.custom.CurrentAreaId\n\t\tlineId \u003d self.session.custom.CurrentLineId\n\t\tworkstationId \u003d self.session.custom.CurrentWorkStationId\n\t\tAreaName \u003d self.session.custom.CurrentAreaName\n\t\tLineName \u003d self.session.custom.CurrentLineName\n\t\tWorkStationName \u003d self.session.custom.CurrentWorkStation\n\t\tsystem.perspective.print(\"in start script\")\n\t\tshiftdetails \u003d str(Project_VECV.WashingMachine.Shift.getShiftName(lineId))\n\t\tshiftdetails \u003d shiftdetails.split(\u0027-\u0027)\n\t\tif len(shiftdetails) \u003d\u003d 0:\n\t\t\tstate \u003d \"success\"\n\t\t\tmessage \u003d \u0027Shift Not Configured\u0027\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\telse:\n#\t\tareaId  \u003d 23\n#\t\tlineId \u003d38\n#\t\tworkstationId \u003d359\n\t\t\tshiftId \u003d shiftdetails[1]\n\t\t\tshiftCode \u003d shiftdetails[0]\n\t\t\tuserId \u003d self.session.custom.loggedInUserId\n\t\t\tbomId \u003d rowData[\u0027m_BOM_id\u0027]\n\t\t\tM_BOMNumber \u003d rowData[\u0027M_BOMNumber\u0027]\n\t\t\torderNumber \u003d rowData[\u0027order_number\u0027]\n\t\t\tserialNumber\u003d rowData[\u0027serial_number\u0027]\n\t\t\tgearRation\u003d rowData[\u0027GearRation\u0027]\n\t\t\torderStatusId \u003d 0\n\t\t\tif int(action) \u003d\u003d 1:\n\t\t\t\teventId \u003d 3\n\t\t\t\tmessage \u003d \u0027Number Punching Started\u0027\n\t\t\t\torderStatusId \u003d 1\n\t\t\t\ttry:\n\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\tdata\u003d\"Number punching started for Serial Number %s \"%serialNumber\n\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\texcept:\n\t\t\t\t\tpass\n#\t\t\t\ttry:\n#\t\t\t\t\tparams1 \u003d {\u0027AreaID\u0027:areaId,\u0027LineID\u0027:lineId}\n#\t\t\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/Shift/getShiftDetails\",params1)\n#\t\t\t\t\tshiftCode\u003dstr(result[0][\u0027Code\u0027])\n#\t\t\t\texcept:\t\n#\t\t\t\t\tshiftCode\u003d\u0027A\u0027\n\t\t\t\t\n\t#\t\t\tProject_VECV.TextFileRead.FileRead.fileWrite(serialNumber,gearRation,M_BOMNumber,shiftCode)\n\t#\t\t\tProject_VECV.TextFileRead.FileRead.fileWrite(serialNumber,gearRation)\n\t\t\t\t\n\t\t\t\t### Share details with PLC to punch data on plate\n\t\t\t\tnewserialNumber\u003dserialNumber.split(\u0027-\u0027)[0]\n\t\t\t\tsystem.perspective.print(gearRation)\n\t\t\t\tsystem.perspective.print(M_BOMNumber)\n\t\t\t\tsystem.perspective.print(serialNumber)\n\t\t\t\tsystem.perspective.print(shiftCode)\n#\t\t\t\tnow \u003d Date()\n#\t\t\t\tformatter \u003d SimpleDateFormat(\"dd/MM/yyyy\")\n#\t\t\t\tformatted_date \u003d formatter.format(now)\n#\t\t\t\ttagDate\u003dformatted_date\n#\t\t\t\tsystem.perspective.print(\"Date set for NumberPunching\u003d%s\"%tagDate)\n\n\t\t\t\tdateparams \u003d {\u0027SerialNumber\u0027: serialNumber,\u0027WorkStationName\u0027:WorkStationName}\n\t\t\t\tdateres \u003d system.db.runNamedQuery(\u0027Project_VECV/NumberPunching/getStartDate\u0027, dateparams)\n\t\t\t\tsystem.perspective.print(\u0027dateres\u003d%s\u0027%dateres)\n\t\t\t\t\n\t\t\t\t# Format the date\n\t\t\t\tif dateres is not None:\n\t\t\t\t    sdf \u003d SimpleDateFormat(\"dd/MM/yyyy\")\n\t\t\t\t    tagDate \u003d sdf.format(dateres)\n\t\t\t\t    system.perspective.print(\"Date set for NumberPunching\u003d%s\"%tagDate)\n\t\t\t\telse:\n\t\t\t\t    system.perspective.print(\"Date cannot be found in query for serialNumber\u003d%s\"%serialNumber)\n\t\t\t\t\n\t\t\t\ttry:\n\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\tdata\u003d\"Data sent to PLC for Serial Number %s gearRation %s M_BOMNumber %s shiftCode %s Date %s\"%(serialNumber,gearRation,M_BOMNumber,shiftCode,tagDate)\n\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\texcept:\n\t\t\t\t\tpass\n\t\t\t\t\n\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/MODEL\"%(AreaName,LineName,WorkStationName), M_BOMNumber)\n\t\t\t\t#system.perspective.print(\"AreaName\u003d %s LineName\u003d%s WorkStationName \u003d %s ,M_BOMNumber\u003d%s\"%(AreaName,LineName,WorkStationName,M_BOMNumber))\n\t\t\t\t#[default]Dewas/Legacy Axle/LEGACY AXLE MAIN LINE/LAML20/Number_Punching/MODEL \n\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/SERIAL_NUMBER\"%(AreaName,LineName,WorkStationName), newserialNumber)\n\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Shift\"%(AreaName,LineName,WorkStationName), shiftCode)\n\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Gear_Ratio\"%(AreaName,LineName,WorkStationName), gearRation)\n\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Date\"%(AreaName,LineName,WorkStationName), tagDate)\n\t\t\t\tsystem.perspective.print(\u0027TagWrite Successfull\u0027)\n\t\t\t\t\n\t\t\telse:\n\t\t\t\teventId \u003d 5\n\t\t\t\tmessage \u003d \u0027Number Punching Completed\u0027\n\t\t\t\ttry:\n\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\tdata\u003d\"Number punching Completed for Serial Number %s \"%serialNumber\n\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/MODEL\"%(AreaName,LineName,WorkStationName), \u0027\u0027)\n\t\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/SERIAL_NUMBER\"%(AreaName,LineName,WorkStationName), \u0027\u0027)\n\t\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Shift\"%(AreaName,LineName,WorkStationName), \u0027\u0027)\n\t\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Gear_Ratio\"%(AreaName,LineName,WorkStationName), \u0027\u0027)\n\t\t\t\t\tsystem.tag.writeBlocking(\"[default]Dewas/%s/%s/%s/Number_Punching/Date\"%(AreaName,LineName,WorkStationName), \u0027\u0027)\n\t\t\t\t\tstationName\u003dself.session.custom.CurrentWorkStation\n\t\t\t\t\tstate\u003d\u0027Info\u0027\n\t\t\t\t\tuserName\u003dself.session.custom.loggedInUser\n\t\t\t\t\tipAddress\u003dself.session.custom.currentIpAddress\n\t\t\t\t\tdata\u003d\"Number punching Completed for Serial Number %s and all tags reset\"%serialNumber\n\t\t\t\t\tProject_VECV.Audit.Logs.logUpload(stationName,state,userName,ipAddress,data)\n\t\t\t\texcept:\n\t\t\t\t\tpass\n\t\t\n\t\t\tparams \u003d {\u0027Area_Id\u0027:areaId,\u0027Line_Id\u0027:lineId,\u0027WorkStation_Id\u0027:workstationId,\u0027Event_Id\u0027:eventId,\u0027BOM_Id\u0027:bomId,\u0027Status_Id\u0027:orderStatusId,\u0027OperatorID\u0027:userId,\u0027CreatedBy\u0027:userId,\u0027OrderNumber\u0027:orderNumber,\u0027M_BOMNumber\u0027:M_BOMNumber,\u0027serialNumber\u0027:serialNumber}\t\n\t\t\tsystem.perspective.print(\"params number punching\" +str(params))\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/NumberPunching/addUpdateNumberPunching\",params)\n\t\t\tif str(result) \u003d\u003d \u00271\u0027:\n\t\t\t\tresult\u003dstr(result)\n\t\t\t\tsystem.perspective.print(\"message \" +str(result)+\u0027  \u0027+str(message))\n\t\t\t\tstate \u003d \"success\"\n\n\n\t\t\telse:\n\t\t\t\tmessage \u003d \u0027failed\u0027\n\t\t\t\tsystem.perspective.print(\"message \" +str(result)+\u0027  \u0027+str(message))\n\t\t\t\tstate \u003d \"warning\"\n\t\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")        \n\t\t\tsystem.perspective.sendMessage(\"OrderTableRefresh\", scope \u003d \"page\")\n\t\t\t\n\t\t\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027StartButton\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Templates/numberpunching/numberpunching\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onAction  -\u003e StartCompleteButton\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnStart"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 6
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 0,
+                  "rowIndex": 0,
+                  "span": 5
+                }
+              ],
+              "height": 23
+            },
+            "propConfig": {
+              "meta.visible": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 2 or value \u003d\u003d 1 or str(value) \u003d\u003d \u00272\u0027 or str(value) \u003d\u003d \u00271\u0027:\n\t\treturn True\n\telse:\n\t\treturn False\n\t ",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.value"
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tif value \u003d\u003d 1:\n\t\treturn \u0027Start\u0027\n\telif value \u003d\u003d 2:\n\t\treturn \u0027Complete\u0027\n\telse :\n\t\treturn \u0027Not Release\u0027",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "cntAction"
+        },
+        "position": {
+          "height": 24,
+          "width": 110
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 0,
+            "vertical": 5
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

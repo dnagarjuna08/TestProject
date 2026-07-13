@@ -1,0 +1,48 @@
+{
+  "custom": {},
+  "params": {
+    "isLoader": ""
+  },
+  "propConfig": {
+    "params.isLoader": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 91,
+      "width": 117
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "imgLoader",
+          "visible": 1
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "fit": {
+            "height": 150,
+            "mode": "cover",
+            "width": 150
+          },
+          "source": "/system/images/Logo/loading.gif",
+          "tint": {
+            "color": "#FFFFFF"
+          }
+        },
+        "type": "ia.display.image"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

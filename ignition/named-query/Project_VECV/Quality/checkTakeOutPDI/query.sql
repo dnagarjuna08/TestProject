@@ -1,0 +1,1 @@
+select IsTakeout  from TRN_ReleasedProductionOrder where SerialNumber =  :SerialNumber

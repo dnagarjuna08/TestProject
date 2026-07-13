@@ -1,0 +1,20 @@
+{
+  "base": {
+    "style": {
+      "borderColor": "#D5D5D5",
+      "borderWidth": "1px",
+      "borderRadius": "0px",
+      "borderTopLeftRadius": "5px",
+      "borderTopRightRadius": "5px",
+      "borderBottomLeftRadius": "5px",
+      "borderBottomRightRadius": "5px",
+      "fontFamily": "Roboto",
+      "fontSize": "12px",
+      "fontWeight": "normal",
+      "paddingBottom": "5px",
+      "paddingLeft": "10px",
+      "paddingRight": "10px",
+      "paddingTop": "5px"
+    }
+  }
+}

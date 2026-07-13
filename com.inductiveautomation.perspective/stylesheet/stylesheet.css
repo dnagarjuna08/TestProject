@@ -1,0 +1,75 @@
+/*#XYChart{*/
+/*	background-color: black;*/
+/*	transition: 1.0s;*/
+/*	font-weight: bold;*/
+/*	border: none;*/
+/*	border-radius: 4px*/
+/*	*/
+/*}*/
+/*#XYChart:hover{*/
+/*	backgroud-color: green;*/
+/*	transform: scale(1.1);*/
+/*}*/
+
+
+
+
+/**/
+/*.docked-view-left {*/
+/*	width: 200px !important;*/
+/*	display: 'visible';*/
+/*	handle:  'show';*/
+/*	content: 'push';*/
+/*}*/
+/**/
+/*.psc-nav {*/
+/*	width: 100px;*/
+/*	transition: width 0.5s ease-in-out;*/
+/*}*/
+/**/
+/*.psc-nav-section {*/
+/*	max-height: 40px;*/
+/*	color: var(--neutral-90);*/
+/*	transition: max-height 0.5s ease-in, color 0.5s ease-in-out;*/
+/*}*/
+/**/
+/*.psc-nav-section-arrow,*/
+/*.psc-nav-link {*/
+/*/*	opacity: 0;*/*/
+/*	color: var(--neutral-70);*/
+/*	transition: opacity 0.5s ease-in-out, color 0.5s ease-in-out, transform 0.5s ease-in-out;*/
+/*}*/
+/**/
+/*/* hover events */*/
+/**/
+/*.psc-nav:hover {*/
+/*	width: 200px;*/
+/*	color: #FFFFFF;*/
+/*}*/
+/**/
+/*.psc-nav:hover .psc-nav-section-arrow,*/
+/*.psc-nav:hover .psc-nav-link {*/
+/*	opacity: 1;*/
+/*}*/
+/**/
+/*.psc-nav-section:hover {*/
+/*	color: var(--callToAction);*/
+/*	transition: max-height 0.6s ease-in-out, color 0.5s ease-in-out;*/
+/*}*/
+/**/
+/*.psc-nav-section:hover .psc-nav-section-header .psc-nav-link,*/
+/*.psc-nav-link:hover {*/
+/*	color: var(--callToAction);*/
+/*}*/
+/**/
+/*.psc-nav-section:hover .psc-nav-section-arrow {*/
+/*	transform: rotate(90deg);*/
+/*}*/
+/**/
+/*.tab-menu menu-modern{*/
+/*	display: flex;*/
+/*    flex-wrap: wrap;*/
+/*	}*/
+
+
+

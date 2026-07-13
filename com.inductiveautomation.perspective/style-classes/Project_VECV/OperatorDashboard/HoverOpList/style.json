@@ -1,0 +1,31 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "#FFFFFF",
+      "borderStyle": "solid",
+      "borderWidth": "1px",
+      "borderTopLeftRadius": "2px",
+      "borderTopRightRadius": "2px",
+      "borderBottomLeftRadius": "2px",
+      "borderBottomRightRadius": "2px",
+      "fontWeight": "bold"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "#AAAAAA",
+        "borderColor": "#000000",
+        "borderStyle": "groove",
+        "borderWidth": "2px",
+        "borderTopLeftRadius": "3px",
+        "borderTopRightRadius": "3px",
+        "borderBottomLeftRadius": "3px",
+        "borderBottomRightRadius": "3px",
+        "color": "#FFFFFF",
+        "fontWeight": "bold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1105 @@
+{
+  "custom": {
+    "moduleData": [],
+    "roleData": [],
+    "screenData": []
+  },
+  "params": {
+    "formID": "",
+    "moduleIds": [],
+    "roleDescription": "",
+    "roleId": 0,
+    "roleName": ""
+  },
+  "propConfig": {
+    "custom.moduleData": {
+      "persistent": true
+    },
+    "custom.roleData": {
+      "persistent": true
+    },
+    "custom.screenData": {
+      "persistent": true
+    },
+    "params.formID": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.moduleIds": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.roleDescription": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.roleId": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.roleName": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lblHeader"
+                },
+                "position": {
+                  "height": 17,
+                  "width": 394,
+                  "x": 9,
+                  "y": 4
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelHeader"
+                  },
+                  "text": "User role details:"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "userRoleName",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tAssigned payload values to params\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tself.props.text \u003d payload[\"currentRoleName\"]\n\tself.view.params.roleName \u003d payload[\"roleName\"]\n\tself.view.params.roleDescription \u003d payload[\"roleDescription\"]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tOpen rolepopup display\t\t\t\n\t\"\"\"\t\n\t# Write your script here\t\n\tsystem.perspective.openDock(\u0027rightp\u0027)\n\tsystem.perspective.sendMessage(\"rolePopupDisplay\",payload\u003d{\"display\":0},scope\u003d\u0027page\u0027)\n\tsystem.perspective.sendMessage(\"savebutton\",payload\u003d{\"name\":\"Next\"},scope\u003d\u0027page\u0027)\n\tsystem.perspective.sendMessage(\"popup_View\",payload\u003d{\"display\":0,\"text\":\u0027\u0027},scope\u003d\u0027page\u0027)\t\n\t\t\n\t\n"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "lblClose"
+                },
+                "position": {
+                  "height": 14,
+                  "width": 18,
+                  "x": 35,
+                  "y": 8
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelClose"
+                  },
+                  "text": "X"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "cntHeader"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 0,
+                  "span": 12
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/CommonBackgroundColor/PanelHeader"
+              }
+            },
+            "type": "ia.container.coord"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tAdd/update module and form access to role\t\t\t\n\t\"\"\"\t\n\ttry:\n\t\tscreens \u003d self.view.custom.screenData\n\t\tif self.session.custom.type \u003d\u003d \"Add\":\n\t\t\troleName \u003d self.view.params.roleName\n\t\t\tdescription \u003d self.view.params.roleDescription\n\t\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.InsertRoles.InsertRolesConfiguration(roleName, description, createdBy)\n\t\t\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\t\t\tfor data in pyData:\n\t\t\t\troleID \u003d data[\"MST_Role_Id\"]\n\t\t\t\tbreak\n\t\t\t\t\n#\t\t\tscreens \u003d self.parent.getChild(\"TabContainer\").getChild(\"RoleColumnContainer\").getChild(\"FormFlexRepeater\").props.instances\n\t\t\tsystem.perspective.print(screens)\n\t\t\tfor screen in screens:\n\t\t\t\tsystem.perspective.print(screen)\n\t\t\t\tmoduleId \u003d screen[\"moduleId\"]\n\t\t\t\tformID \u003d  screen[\"Id\"]\n\t\t\t\tisEdit \u003d screen[\"IsSelected\"]\n\t\t\t\tif isEdit:\n\t\t\t\t\tisEdit \u003d 1\n\t\t\t\telse:\n\t\t\t\t\tisEdit \u003d 0\n\t\t\t\tProject_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.InsertRELRoleForm(roleID, moduleId, formID, createdBy, isEdit)\n\t\t\t\t\n\t\telse:\n#\t\t\tscreens \u003d self.parent.getChild(\"TabContainer\").getChild(\"RoleColumnContainer\").getChild(\"FormFlexRepeater\").props.instances\n\t\t\tMST_Role_Id \u003d self.session.custom.selectedRoleID\n\t\t\tcreatedBy \u003d self.session.custom.loggedInUserId\n\t\t\tfor screen in screens:\n\t\t\t\tsystem.perspective.print(screen)\n\t\t\t\tmoduleId \u003d screen[\"moduleId\"]\n\t\t\t\tformID \u003d  screen[\"Id\"]\n\t\t\t\tisEdit \u003d screen[\"IsSelected\"]\n\t\t\t\tProject_VECV.NamedQuery.Admin.Roles.InsertRELRoleForm.UpdateRELRoleForm(MST_Role_Id, moduleId, formID, createdBy, isEdit)\n\t\t\t\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\tsystem.perspective.sendMessage(\"rolePopupDisplay\",payload\u003d{\"display\":0},scope\u003d\u0027page\u0027)\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/RolePermission\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntColumn/btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t\t\n\t\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btn_Save"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 11,
+                  "name": "sm",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 11,
+                  "name": "md",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 11,
+                  "name": "lg",
+                  "order": 2,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/PopUp/Button"
+              },
+              "text": "Save"
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "savebutton",
+                  "pageScope": true,
+                  "script": "\n\ttry:\n\t#start of try block\n\t\tself.props.text \u003d payload[\"name\"]\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/RolePermission\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:savebutton  -\u003e btn_Save\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "ModuleFlexRepeater"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        }
+                      ],
+                      "height": 414
+                    },
+                    "propConfig": {
+                      "props.instances": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.moduleData"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/ModuleBoxSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      },
+                      "useDefaultViewWidth": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "moduleSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn selected module list\t\t\t\n\t\"\"\"\t\n\ttry:\n\t\t# implement your handler here\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tself.view.params.moduleIds.append(moduleId)\n\t\tmoduleIds \u003d self.view.params.moduleIds\n\t\tscreenData \u003d self.view.custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\toptionList.append(dict)\n\t\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList\n\t\t\t\t\t\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003emoduleSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "moduleDeSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn deselected module list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tmoduleId \u003d int(payload[\"ModuleID\"])\n\tself.view.params.moduleIds.remove(moduleId)\n\tmoduleIds \u003d self.view.params.moduleIds\n\tscreenData \u003d self.view.custom.screenData\n\tnewscreenData \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"moduleId\"] \u003d\u003d moduleId:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d False\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\n\t\tnewscreenData.append(dict)\n\tself.view.custom.screenData \u003d newscreenData\n\tmoduleIds \u003d self.view.params.moduleIds\n\tscreenData \u003d self.view.custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\tself.getSibling(\"FormFlexRepeater\").props.instances \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "moduleData",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn selected module edit permission information in list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\troleID \u003d self.session.custom.selectedRoleID\n\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getRolesModules(roleID)\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"Module name\"]\n\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\tdict[\"Id\"] \u003d data[\"Sr No\"]\n\t\toptionList.append(dict)\n\tself.view.custom.moduleData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "screenData",
+                          "pageScope": true,
+                          "script": "\t# implement your handler here\n\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn selected form edit permission information in list\t\t\t\n\t\"\"\"\t\n\tqueryParams \u003d {\"roleID\":self.session.custom.selectedRoleID}\n\tqueryPath \u003d \u0027Project_VECV/Role/Role_Screens/Get_ScreenData\u0027\n\tresult \u003d system.db.runNamedQuery(queryPath,queryParams)\n\t\n\tpyData \u003d system.dataset.toPyDataSet(result)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"Screen name\"]\n\t\tdict[\"Id\"] \u003d data[\"FormID\"]\n\t\tdict[\"moduleId\"] \u003d data[\"ModuleID\"]\n\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\toptionList.append(dict)\n\tself.view.custom.screenData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  },
+                  {
+                    "meta": {
+                      "name": "FormFlexRepeater",
+                      "tooltip": {
+                        "enabled": true
+                      }
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 6,
+                          "name": "sm",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "md",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "lg",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 6
+                        }
+                      ],
+                      "height": 414
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/FormBoxSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      },
+                      "useDefaultViewWidth": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "formSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn selected form list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tformID \u003d payload[\"formID\"]\n\tmoduleID \u003d payload[\"moduleID\"]\n\tscreenData \u003d self.view.custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d formID\n\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\toptionList.append(dict)\n\tself.view.custom.screenData \u003d optionList\n\t\n\t\t",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "formDeSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn deselected form list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tformID \u003d payload[\"formID\"]\n\tmoduleID \u003d payload[\"moduleID\"]\n\tscreenData \u003d self.view.custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d formID\n\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\tdict[\"IsSelected\"] \u003d False\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\toptionList.append(dict)\n\tsystem.perspective.print(optionList)\n\tself.view.custom.screenData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblModule"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0.5,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 0.5,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 0.5,
+                          "rowIndex": 0,
+                          "span": 6
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Modules"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblScreen"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 6,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 6
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 6
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Screens"
+                    },
+                    "type": "ia.display.label"
+                  }
+                ],
+                "meta": {
+                  "name": "RoleColumnContainer"
+                },
+                "type": "ia.container.column"
+              },
+              {
+                "children": [
+                  {
+                    "meta": {
+                      "name": "RolesFlexRepeater"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 1,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 410
+                    },
+                    "propConfig": {
+                      "props.instances": {
+                        "binding": {
+                          "config": {
+                            "path": "view.custom.roleData"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/RoleSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      },
+                      "useDefaultViewWidth": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "roleData",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn role data list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getRoles()\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"RoleName\"]\n\t\tdict[\"Id\"] \u003d data[\"MST_Role_Id\"]\n\t\toptionList.append(dict)\n\tself.props.instances \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblRoles"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 0,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 0,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Roles"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblUsers"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Users"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblModules"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 6,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Modules"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "lblScreens"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 9,
+                          "name": "sm",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "md",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "lg",
+                          "order": 0,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 60
+                    },
+                    "props": {
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "bold",
+                        "textAlign": "center"
+                      },
+                      "text": "Screens"
+                    },
+                    "type": "ia.display.label"
+                  },
+                  {
+                    "meta": {
+                      "name": "UserFlexRepeater"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 3,
+                          "name": "sm",
+                          "order": 2,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "md",
+                          "order": 2,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 3,
+                          "name": "lg",
+                          "order": 2,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 410
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/UserSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      }
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "getUserData",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user and its role details in list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tsystem.perspective.print(payload)\n\troleID \u003d payload[\"roleID\"]\n\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserBasedOnRoles(roleID)\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"UserName\"]\n\t\tdict[\"Id\"] \u003d data[\"MST_User_Id\"]\n\t\tdict[\"roleID\"] \u003d data[\"MST_Role_Id\"]\n\t\toptionList.append(dict)\n\tself.props.instances \u003d optionList\n\tsystem.perspective.print(\"message handler for user selection\")",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  },
+                  {
+                    "custom": {
+                      "moduleIds": [],
+                      "userModuleData": []
+                    },
+                    "meta": {
+                      "name": "UserModuleFlexRepeater"
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 6,
+                          "name": "sm",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "md",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 6,
+                          "name": "lg",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 410
+                    },
+                    "propConfig": {
+                      "props.instances": {
+                        "binding": {
+                          "config": {
+                            "path": "this.custom.userModuleData"
+                          },
+                          "type": "property"
+                        }
+                      }
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/UserModuleBoxSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      },
+                      "useDefaultViewWidth": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "usermoduleSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user selected modules list\t\t\t\n\t\"\"\"\t\n\ttry:\n\t\t# implement your handler here\n\t\tmoduleId \u003d int(payload[\"ModuleID\"])\n\t\tself.custom.moduleIds.append(moduleId)\n\t\tmoduleIds \u003d self.custom.moduleIds\n\t\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\t\toptionList \u003d []\n\t\tfor screen in screenData:\n\t\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\t\tdict \u003d {\n\t\t\t\t\t\"instanceStyle\": {\n\t\t\t\t\t  \"classes\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"instancePosition\": {}\n\t\t\t\t  }\n\t\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\toptionList.append(dict)\n\t\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList\n\t\t\t\t\t\n\texcept:\n\t\tscreenName \u003d\u0027Role configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/RolePermission/TabContainer/UserColumnContainer\u0027)  \n\t\terrorFunction \u003d str(\u0027MessageHandler--\u003eusermoduleSelection\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) ",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "usermoduleDeSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user deselected modules list\t\t\t\n\t\"\"\"\t\n\tpass\n\t# implement your handler here\n\tmoduleId \u003d int(payload[\"ModuleID\"])\n\tself.custom.moduleIds.remove(moduleId)\n\tmoduleIds \u003d self.custom.moduleIds\n\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\tnewscreenData \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"moduleId\"] \u003d\u003d moduleId:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d False\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\t\n\t\tnewscreenData.append(dict)\n\tself.getSibling(\"UserFormFlexRepeater\").custom.screenData \u003d newscreenData\n\tmoduleIds \u003d self.custom.moduleIds\n\tscreenData \u003d self.getSibling(\"UserFormFlexRepeater\").custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"moduleId\"] in moduleIds:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\t\toptionList.append(dict)\n\tself.getSibling(\"UserFormFlexRepeater\").props.instances \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "usermoduleData",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn selected modules with edit permission information in list\t\t\t\n\t\"\"\"\t\n\tuserID \u003d payload[\"userID\"]\n\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserModules(userID)\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"Module name\"]\n\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\tdict[\"Id\"] \u003d data[\"Sr No\"]\n\t\toptionList.append(dict)\n\tself.custom.userModuleData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  },
+                  {
+                    "custom": {
+                      "screenData": []
+                    },
+                    "meta": {
+                      "name": "UserFormFlexRepeater",
+                      "tooltip": {
+                        "enabled": true
+                      }
+                    },
+                    "position": {
+                      "breakpoints": [
+                        {
+                          "colIndex": 9,
+                          "name": "sm",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "md",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        },
+                        {
+                          "colIndex": 9,
+                          "name": "lg",
+                          "order": 3,
+                          "rowIndex": 0,
+                          "span": 3
+                        }
+                      ],
+                      "height": 410
+                    },
+                    "props": {
+                      "direction": "column",
+                      "path": "Project_VECV/Templates/UserFormBoxSelection",
+                      "style": {
+                        "borderBottomLeftRadius": 5,
+                        "borderBottomRightRadius": 5,
+                        "borderStyle": "solid",
+                        "borderTopLeftRadius": 5,
+                        "borderTopRightRadius": 5,
+                        "fontWeight": "lighter",
+                        "textAlign": "left"
+                      },
+                      "useDefaultViewWidth": false
+                    },
+                    "scripts": {
+                      "customMethods": [],
+                      "extensionFunctions": null,
+                      "messageHandlers": [
+                        {
+                          "messageType": "userformSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user selected form list\t\t\t\n\t\"\"\"\t\n\t# implement your handler here\n\tformID \u003d payload[\"formID\"]\n\tmoduleID \u003d payload[\"moduleID\"]\n\tscreenData \u003d self.custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d formID\n\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\toptionList.append(dict)\n\tself.custom.screenData \u003d optionList\n\t\n\t\t",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "userformDeSelection",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user deselected form list\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\tformID \u003d payload[\"formID\"]\n\tmoduleID \u003d payload[\"moduleID\"]\n\tscreenData \u003d self.custom.screenData\n\toptionList \u003d []\n\tfor screen in screenData:\n\t\tif screen[\"Id\"] \u003d\u003d formID and screen[\"moduleId\"] \u003d\u003d moduleID:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d formID\n\t\t\tdict[\"moduleId\"] \u003d moduleID\n\t\t\tdict[\"IsSelected\"] \u003d False\n\t\telse:\n\t\t\tdict \u003d {\n\t\t\t\t\"instanceStyle\": {\n\t\t\t\t  \"classes\": \"\"\n\t\t\t\t},\n\t\t\t\t\"instancePosition\": {}\n\t\t\t  }\n\t\t\tdict[\"fieldName\"] \u003d screen[\"fieldName\"]\n\t\t\tdict[\"Id\"] \u003d screen[\"Id\"]\n\t\t\tdict[\"moduleId\"] \u003d screen[\"moduleId\"]\n\t\t\tdict[\"IsSelected\"] \u003d screen[\"IsSelected\"]\n\t\toptionList.append(dict)\n\tsystem.perspective.print(optionList)\n\tself.custom.screenData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        },
+                        {
+                          "messageType": "userscreenData",
+                          "pageScope": true,
+                          "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tReturn user selected form with edit permission in list\t\t\t\n\t\"\"\"\n\t# implement your handler here\n\tuserID \u003d payload[\"userID\"]\n\tsystem.perspective.print(\"userscreenData\")\n\tdataset \u003d Project_VECV.NamedQuery.Admin.Roles.getData.getUserScreen(userID)\n\tpyData \u003d system.dataset.toPyDataSet(dataset)\n\toptionList \u003d []\n\tfor data in pyData:\n\t\tdict \u003d {\n\t\t\t\"instanceStyle\": {\n\t\t\t  \"classes\": \"\"\n\t\t\t},\n\t\t\t\"instancePosition\": {}\n\t\t  }\n\t\tdict[\"fieldName\"] \u003d data[\"Screen name\"]\n\t\tif data[\"Edit permission\"] \u003d\u003d 1:\n\t\t\tdict[\"IsSelected\"] \u003d True\n\t\telse:\n\t\t\tdict[\"IsSelected\"] \u003dFalse\n\t\tdict[\"Id\"] \u003d data[\"FormID\"]\n\t\tdict[\"moduleId\"] \u003d data[\"ModuleID\"]\n\t\toptionList.append(dict)\n\tself.custom.screenData \u003d optionList",
+                          "sessionScope": false,
+                          "viewScope": false
+                        }
+                      ]
+                    },
+                    "type": "ia.display.flex-repeater"
+                  }
+                ],
+                "meta": {
+                  "name": "UserColumnContainer"
+                },
+                "position": {
+                  "tabIndex": 1
+                },
+                "type": "ia.container.column"
+              }
+            ],
+            "meta": {
+              "name": "TabContainer"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 4,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 550
+            },
+            "props": {
+              "currentTabIndex": 1,
+              "menuType": "modern",
+              "tabSize": {
+                "height": 30,
+                "width": 100
+              },
+              "tabs": [
+                "Role Based",
+                "User Based"
+              ]
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "currentTabIndex",
+                  "pageScope": true,
+                  "script": "\n\ttry:\n\t#start of try block\n\t\tself.props.currentTabIndex \u003d payload[\"CurrentTabName\"]\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/RolePermission\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:currentTabIndex  -\u003e TabContainer\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.container.tab"
+          },
+          {
+            "events": {
+              "component": {
+                "onActionPerformed": {
+                  "config": {
+                    "script": "\n\ttry:\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\tsystem.perspective.sendMessage(\"rolePopupDisplay\",payload\u003d{\"display\":0},scope\u003d\u0027page\u0027)\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/RolePermission\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onActionPerformed -\u003e cntColumn/btnCancel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\t"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "btnCancel"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 10,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 10,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                },
+                {
+                  "colIndex": 10,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 2,
+                  "span": 1
+                }
+              ],
+              "height": 30
+            },
+            "props": {
+              "style": {
+                "classes": "Project_VECV/PopUp/Button"
+              },
+              "text": "Cancel"
+            },
+            "scripts": {
+              "customMethods": [],
+              "extensionFunctions": null,
+              "messageHandlers": [
+                {
+                  "messageType": "cancelButtonConfirmation",
+                  "pageScope": true,
+                  "script": "\t\"\"\"\n\tWritten By: Amitkumar Ravat\n\tWritten Date: 30/04/2024\n\tPurpose:\t\t\t \n\t\t\tCancel all selection and reset to default value.\t\t\t\n\t\"\"\"\n\ttry:\n\t#start of try block\n\t\tsystem.perspective.openDock(\u0027rightp\u0027)\n\t\tsystem.perspective.sendMessage(\"rolePopupDisplay\",payload\u003d{\"display\":0},scope\u003d\u0027page\u0027)\t\n\t\tsystem.perspective.sendMessage(\"savebutton\",payload\u003d{\"name\":\"Next\"},scope\u003d\u0027page\u0027)\n\t\tsystem.perspective.sendMessage(\"popup_View\",payload\u003d{\"display\":0,\"text\":\u0027\u0027},scope\u003d\u0027page\u0027)\t\n\t\tmessageType \u003d \u0027confirmationPopup\u0027   \n\t\tpayload\u003d{\u0027isVisible\u0027:0,\u0027message\u0027:\u0027\u0027,\u0027fromScreen\u0027:\u0027\u0027} \t \t\t\t\n\t\tsystem.perspective.sendMessage(messageType,payload,scope \u003d \u0027page\u0027 )\t\n\t#End of try block\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Role Configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/PopUp/RolePermission\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:confirmation  -\u003e TabContainer/btnCancel\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block",
+                  "sessionScope": false,
+                  "viewScope": false
+                }
+              ]
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": "100%",
+          "width": "100%"
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 2
+          }
+        },
+        "type": "ia.container.column"
+      }
+    ],
+    "custom": {
+      "lengthValue": 0,
+      "xy": "/system/images/Builtin/icons/48/start-48-active.png"
+    },
+    "meta": {
+      "name": "root"
+    },
+    "position": {
+      "x": 50,
+      "y": -131
+    },
+    "props": {
+      "style": {
+        "classes": "Project_VECV/CommonBackgroundColor/RightView Project_VECV/PopUp/BackgroundColor"
+      }
+    },
+    "type": "ia.container.coord"
+  }
+}

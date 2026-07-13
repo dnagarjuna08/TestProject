@@ -1,0 +1,1426 @@
+{
+  "custom": {
+    "Timeout": 87000,
+    "Timeout_SP_Seconds": 87000
+  },
+  "events": {
+    "system": {
+      "onStartup": {
+        "config": {
+          "script": "\t\"\"\"\n\tWritten By: Niladri Banejee\n\tWritten Date: 06/05/2024\n\tPurpose:\t\t\t \n\t\t\tAfter Session TimeOut all custom property of session are cleared.\t\n\t\t\tSo, On Startup check if previousPageUrl is cleared then go on Login page.\n\t\"\"\"\t\n\ttry:\n\t#start of try block \n\t\tpreviousPage \u003d self.session.custom.IsWorkInstructionConfigurationAuthenticated\n\t\tif not previousPage:\n\t\t\tsystem.perspective.navigate(\u0027/\u0027)\n\t\telse:\n\t\t\tcurrentUserModules \u003d self.session.custom.currentUserModules\n\t\t\tcurrentUserScreens \u003d self.session.custom.currentUserScreens\n\t\t\tscreenName \u003dself.params.Screenname\n\t\t\tvalue,editValue \u003d Project_VECV.UserRoleAuthentication.UserRoleAuthentication.getUserRoleAccessData(\u0027\u0027,screenName,currentUserModules,currentUserScreens)\t\n\t\t\tif(int(value) \u003d\u003d 0):\n\t\t\t\tsystem.perspective.navigate(\u0027/homepage\u0027)\t\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027Work Instruction\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/WorkInstruction\u0027)  \n\t\terrorFunction \u003d str(\u0027Event:onStartup  -\u003e WorkInstruction\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block"
+        },
+        "scope": "G",
+        "type": "script"
+      }
+    }
+  },
+  "params": {
+    "Screenname": "Workinstruction"
+  },
+  "propConfig": {
+    "custom.Timeout": {
+      "persistent": true
+    },
+    "custom.Timeout_SP_Seconds": {
+      "persistent": true
+    },
+    "params.Screenname": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "width": 1000
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "component": {
+                    "onRowClick": {
+                      "config": {
+                        "script": "\t\"\"\"\n\t\tWritten By: Gaurav Amrutkar\n\t\tWritten Date: 06/05/2024\n\t\tPurpose: Add/Update data on row selection. \n\t\"\"\"\n\ttry:\n\t\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\t\tsystem.perspective.openDock(\u0027rightView\u0027)\n\t\tselectedRow \u003d self.props.selection.selectedRow\n\t\tpydata \u003d system.dataset.toPyDataSet(self.props.data)\n\t\tcountWI \u003d 0\n\t\tselectedcol\u003dself.props.selection.selectedColumn\n\t\tif(len(pydata) \u003e 0):\n\t\t\tfor rows in range(len(pydata)):\n\t\t\t\tif(selectedRow \u003d\u003d rows):\n\t\t\t\t\tWIid \u003d pydata[rows][\u0027ID\u0027]\n\t\t\t\t\tname \u003d pydata[rows][\u0027WIName\u0027]\n\t\t\t\t\tdesc \u003d pydata[rows][\u0027Description\u0027]\n\t\t\t\t\tareaId \u003d pydata[rows][\u0027AreaID\u0027]\t\n\t\t\t\t\tlineId \u003d pydata[rows][\u0027LineID\u0027]\n\t\t\t\t\tworkStationId\u003dpydata[rows][\u0027WorkstationID\u0027]\n\t\t\t\t\t#curriculumCode\u003dpydata[rows][\u0027Curriculum code\u0027]\n\t\t\t\t\tisAcive \u003d pydata[rows][\u0027IsActive\u0027]\n\t\t\t\t\tBOMID\u003dpydata[rows][\u0027BOMID\u0027]\n\t\t\t\t\tModelID\u003dpydata[rows][\u0027ModelID\u0027]\n\t\t\t\t\t#isReworkWI\u003dpydata[rows][\u0027Rework work instruction\u0027]\n\t\t\t\t\tself.getSibling(\"cntRelation\").props.params.WI_ID\u003dWIid\n\t\t\t\t\tself.getSibling(\"cntRelation\").props.params.WI_Name\u003d\u0027WI name - \u0027+name\n\t\t\t\t\tbreak\n\t\t\t\t\t\n\t\t#params \u003d {\"WIID\":int(WIid)}\t\t\n\t\t#result \u003d system.db.runNamedQuery(\"Project_VECV/Master/WorkInstructionConfiguration/GetCountWI_Used (1)\",params)\n\t\t#system.perspective.sendMessage(\"getWICount\",payload \u003d {\"wiCount\":int(result)}, scope \u003d \"page\")\n\t\t#if(result\u003d\u003d0):\n\t\t\t#system.perspective.print(\u0027workStationId- \u0027+str(workStationId))\n\t\t\theaderLabel \u003d \"Edit\"\n\t\t\tmessageType \u003d \u0027WiGeneralPannel\u0027\t\n\t\t\tfolderName \u003d \u0027Project_VECV/WI\u0027\t\n\t\t\t#self.getSibling(\"cntDelete\").props.params.id \u003d int(WIid)\n\t\t\t#self.getSibling(\"cntDelete\").props.params.folderName \u003d folderName\n\t\t\t#self.getSibling(\"cntDelete\").props.params.colName \u003d \u0027ID\u0027\n\t\t\t#folderName \u003d \u0027Project_VECV/OPCode\u0027\n\t\t\tcolName \u003d \u0027ID\u0027\n\t\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1,\"id\":int(WIid),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\n\t\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\t\t#system.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\t\t#system.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":1}, scope \u003d \"page\")\n\t\t\t#system.perspective.print(WIid)\n\t\t\tparams \u003d {\"WIID\":int(WIid)}\n\t\t\tresult \u003d system.db.runNamedQuery(\"Project_VECV/Master/WorkInstructionConfiguration/GetWI_UsedStepCount\",params)\n\t\t\tUsedStepCount\u003dresult\n\t\t\t\t\t\n\t\t\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027WIid\u0027:int(WIid),\u0027name\u0027:str(name),\u0027desc\u0027:str(desc),\u0027areaId\u0027:int(areaId),\u0027lineId\u0027:int(lineId),\u0027WorkStationId\u0027:int(workStationId),\u0027isActive\u0027:int(isAcive),\u0027UsedStepCount\u0027:int(UsedStepCount),\u0027BOMID\u0027:int(BOMID),\u0027ModelID\u0027:int(ModelID)}\t\t \t\t\t\n\t\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\telse:\t\t\n\t\t\tProject_VECV.DWI.DWI.Validation.showPopup(\u0027You cannot edit/delete this workinstruction as it is in progress.\u0027)\n\t\t\n#\t\tif str(selectedcol)\u003d\u003d\u0027Relation\u0027:\n#\t\t\tsystem.perspective.closePopup(\u0027BitPopup\u0027)\n#\t\t\tmessageType \u003d \u0027GetRelationParameters\u0027   \t\t\t\t\n#\t\t\tpayload \u003d {\u0027FromScreen\u0027:\u0027WI\u0027,\u0027columnName\u0027:\u0027Relation\u0027}\t\t \t\t\t\n#\t\t\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n#\t\t\tsystem.perspective.sendMessage(\"ShowRelation\",scope \u003d \"page\")\n#\t\t\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n#\t\t\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n#\t\t\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\n\texcept: \n\t\t#start of except block  \n\t\t\tscreenName \u003d\u0027Work Instruction\u0027   \n\t\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/WorkInstruction\u0027)  \n\t\t\terrorFunction \u003d str(\u0027Event:onRowClick  -\u003e cntBody/tblWorkInstruction\u0027)  \n\t\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t\t#End of except block"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "tblWorkInstruction"
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "propConfig": {
+                  "props.data": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "Area": "{..../SearchPanel.props.params.Area}",
+                          "Line": "{..../SearchPanel.props.params.Line}",
+                          "Model": "{..../SearchPanel.props.params.Model}\r",
+                          "Workstation": "{..../SearchPanel.props.params.Workstation}"
+                        },
+                        "queryPath": "Project_VECV/Master/WorkInstructionConfiguration/GetWorkInstruction"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "props": {
+                  "cells": {
+                    "allowEditOn": "single-click"
+                  },
+                  "columns": [
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "MAKO_4/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "BOMID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "MAKO_4/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ModelName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Model"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "BOM",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "AreaName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Area"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "LineName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Line"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WIName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Work Instruction"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": "MAKO_4/Table/Header"
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkStationName",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": "Work Station"
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Description",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "IsActive",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "Action",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "center",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "center",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "Project_VECV/Templates/WI/ViewButton",
+                      "visible": true,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "AreaID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "LineID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": "Project_VECV/Table/Header"
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": false,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "WorkstationID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    },
+                    {
+                      "align": "center",
+                      "boolean": "checkbox",
+                      "dateFormat": "MM/DD/YYYY",
+                      "editable": false,
+                      "field": "ModelID",
+                      "footer": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "header": {
+                        "align": "center",
+                        "justify": "left",
+                        "style": {
+                          "classes": ""
+                        },
+                        "title": ""
+                      },
+                      "justify": "auto",
+                      "number": "value",
+                      "numberFormat": "0,0.##",
+                      "progressBar": {
+                        "bar": {
+                          "color": "#62A3F6",
+                          "linecap": "round",
+                          "width": 5
+                        },
+                        "max": 100,
+                        "track": {
+                          "color": "#DADADA",
+                          "linecap": "round",
+                          "width": 2
+                        },
+                        "value": {
+                          "color": "#7D7D7D",
+                          "show": true
+                        }
+                      },
+                      "render": "auto",
+                      "resizable": true,
+                      "sort": "none",
+                      "sortable": true,
+                      "strictWidth": false,
+                      "style": {
+                        "classes": ""
+                      },
+                      "toggleSwitch": {
+                        "color": {
+                          "selected": "#2196F3",
+                          "unselected": "#FFFFFF"
+                        }
+                      },
+                      "viewParams": {},
+                      "viewPath": "",
+                      "visible": false,
+                      "width": ""
+                    }
+                  ],
+                  "filter": {
+                    "enabled": true
+                  },
+                  "pager": {
+                    "initialOption": 10,
+                    "options": [
+                      10,
+                      25,
+                      50,
+                      100,
+                      100
+                    ]
+                  },
+                  "rows": {
+                    "highlight": {
+                      "enabled": false
+                    },
+                    "striped": {
+                      "enabled": false
+                    },
+                    "style": {
+                      "classes": "Project_VECV/Table/RowsBorder"
+                    }
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "tableRefresh",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 06/05/2024\n\t\tPurpose: make table refersh and reset in panel. \n\t\"\"\"\n\t# implement your handler here\n\t\n\t#equipData \u003d system.db.runNamedQuery(\"Project_VECV/Master/WorkInstructionConfiguration/GetWorkInstruction\")\t\n\t#self.props.data \u003d equipData\n\tself.refreshBinding(\"props.data\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027WiGeneralPannel\u0027   \t\t\t\t\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027WIid\u0027:int(0),\u0027name\u0027:\u0027\u0027,\u0027desc\u0027:\u0027\u0027,\u0027areaId\u0027:-1,\u0027lineId\u0027:-1,\u0027WorkStationId\u0027:-1,\u0027isActive\u0027:1,\u0027UsedStepCount\u0027:int(0)}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )\n\t\n\tsystem.perspective.sendMessage(\"tableRow\",payload \u003d {\"Index\":-1}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\t\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tself.props.pager.activePage\u003d1\n\tself.props.filter.results.enabled\u003d0\n\t\n\n\t\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "tableRow",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.props.selection.selectedRow \u003d payload[\u0027Index\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "popup_View",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\t\tsystem.perspective.print(\u0027In Popup\u0027)\n\t\t\n\t\tstate\u003dpayload[\u0027state\u0027]\n\t\tmessage\u003dpayload[\u0027text\u0027]\n\t\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    },
+                    {
+                      "messageType": "Action_Popup",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 06/05/2024\n\t\tPurpose: call message handler to open action popup. \n\t\"\"\"\n\theader\u003dstr(self.props.selection.data[0].ModelName)+\u0027 - \u0027 + str(self.props.selection.data[0].WorkStationName)+ \u0027 - \u0027 + str(self.props.selection.data[0].WIName)\n\tWIID\u003dself.props.selection.data[0].ID\n\tsystem.perspective.openPopup(\u0027101\u0027,\u0027Project_VECV/Templates/WI/WI_Details\u0027,params\u003d{\u0027WIID\u0027:WIID},modal\u003dTrue,title\u003dheader)",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.table"
+              },
+              {
+                "meta": {
+                  "name": "cntAddEditPopup",
+                  "visible": false
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "props": {
+                  "params": {
+                    "AsignedStepList": "",
+                    "AssignedFixtureList": "",
+                    "header": "",
+                    "wiId": "",
+                    "wiName": "",
+                    "workStationId": ""
+                  },
+                  "path": "Project_VECV/PopUp/AddEditWorkInstruction"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "addEditWorkInstruction",
+                      "pageScope": true,
+                      "script": "\t\"\"\"\n\tWritten By: Niladri Banerjee\n\tWritten Date: 06/05/2024\n\tPurpose:\n\t\t\tThis message handler written to refresh table,  \n\t\t\tpass default value to Maintenance Pannel and \n\t\t\treset button on the form like Edit and Delete.\n\t\"\"\"\n\t# implement your handler here\n\ttry:\n\t\tself.meta.visible \u003d payload[\u0027IsVisible\u0027]\n\t\tif(self.meta.visible\u003d\u003d1):\n\t\t\tself.props.params.workStationId \u003dpayload[\u0027WorkStationId\u0027]\n\t\t\tself.props.params.wiId \u003d int(payload[\u0027WIId\u0027])\n\t\t\tself.props.params.header\u003dstr(payload[\u0027Header\u0027])\n\t\t\twiId\u003dself.props.params.wiId\n\t\t\t#assignedFixtureList\u003d[]\n\t\t\t#self.props.params.AssignedFixtureList\u003d[]\n\t\t\t\n\t\t\t# For edit get selected WIId and get Details of step and fixture from the database \n\t\t\tif(wiId!\u003d0):\n\t\t\t\tassignedList\u003d[]\n\t\t\t\t# Getting AssignedStep from database for selected WIId\n\t\t\t\tparams \u003d {\"WIId\":int(wiId)}\t\t\t\n\t\t\t\tresult\u003dsystem.db.runNamedQuery(\"Project_VECV/Master/WorkInstructionConfiguration/GetWI_AssignedStep\",params)\t\n\t\t\t\tstepList \u003d system.dataset.toPyDataSet(result)\n\t\t\t\tif(len(stepList)\u003e0):\n\t\t\t\t\tfor rows in range(len(stepList)):\n\t\t\t\t\t\twiStepId\u003dstepList[rows][\u0027WIOPID\u0027]\n\t\t\t\t\t\tstepId\u003dstepList[rows][\u0027ID\u0027]\n\t\t\t\t\t\tstepclassId\u003dstepList[rows][\u0027OP Definition ID\u0027]\n\t\t\t\t\t\tsequenceNo\u003dstepList[rows][\u0027Sequence\u0027]\n\t\t\t\t\t\tstepName\u003dstepList[rows][\u0027OPCode\u0027]\n\t\t\t\t\t\tdescription\u003dstepList[rows][\u0027Description\u0027]\n\t\t\t\t\t\tModel\u003dstepList[rows][\u0027Model\u0027]\n\t\t\t\t\t\tstepClass\u003dstepList[rows][\u0027OPDefinition\u0027]\n\t\t\t\t\t\tassignedList.append({\"WIStepId\":wiStepId,\"ID\":stepId,\"Sequence\":int(sequenceNo),\"OP Code\":stepName,\"OP Definition ID\":stepclassId,\"Description\":description,\"OP Definition\":stepClass,\"Model\":Model})\n\t\t\t\t\tsystem.perspective.print(assignedList)\n\t\t\t\t\tself.props.params.AsignedStepList\u003dassignedList\n\texcept:\t\n\t\t#start of except block\t\t\n\t\tscreenName \u003d\u0027Work instruction\u0027 \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/WorkInstruction\u0027)\n\t\terrorFunction \u003d str(\u0027Message Handler:addEditWorkInstruction -\u003e cntBody/cntAddEditPopup\u0027)\n\t\terrorType\u003dstr(\u0027Application\u0027)\n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID()) \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description\n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error occur\t\t\t\n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber)\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cntPopUp",
+                  "visible": false
+                },
+                "position": {
+                  "height": 151,
+                  "width": 369,
+                  "x": "30%",
+                  "y": 151
+                },
+                "props": {
+                  "params": {
+                    "lblValue": ""
+                  },
+                  "path": "Project_VECV/PopUp/DisplayMessage",
+                  "style": {
+                    "borderColor": "#AAAAAA",
+                    "borderStyle": "solid",
+                    "borderWidth": "1px"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "popup_View",
+                      "pageScope": false,
+                      "script": "\t# implement your handler here\n\tsystem.perspective.print(\u0027In Popup\u0027)\n\t#self.meta.visible \u003d payload[\u0027display\u0027]\n\t#self.props.params.lblValue \u003d payload[\u0027text\u0027]\n\tstate\u003d\u0027success\u0027\n\tmessage\u003dpayload[\u0027text\u0027]\n\tProject_VECV.PopUp.Alerts.showAlert(str(state), str(state.capitalize()), str(message), \"true\", \"Okay\", \"\", \"\", \"\", \"\", \"closePopup\", \"closePopup\", \"closePopup\",\"\",\"\",\"\",\"\")",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cntDelete",
+                  "visible": false
+                },
+                "position": {
+                  "height": 151,
+                  "width": 369,
+                  "x": "30%",
+                  "y": 151
+                },
+                "props": {
+                  "params": {
+                    "colName": "Id",
+                    "folderName": "Project_VECV/WI",
+                    "id": 4,
+                    "message": "Work Instruction removal will affect the various products. Are you sure you want to remove?"
+                  },
+                  "path": "Project_VECV/PopUp/Delete",
+                  "style": {
+                    "borderColor": "#000000",
+                    "borderStyle": "solid",
+                    "borderWidth": "1px",
+                    "classes": "PopUp/Border",
+                    "outlineWidth": "0"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "deletePop",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.meta.visible \u003d payload[\u0027isVisible\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cntRelation",
+                  "visible": false
+                },
+                "position": {
+                  "height": "100%",
+                  "width": "100%"
+                },
+                "props": {
+                  "params": {
+                    "WI_ID": 58,
+                    "WI_Name": "WI name - axsdd"
+                  },
+                  "path": "Project_VECV/PopUp/WIRelation"
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "cntRelation",
+                      "pageScope": true,
+                      "script": "\t# implement your handler here\n\tself.meta.visible \u003d payload[\u0027IsVisible\u0027]",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "cntUpdate",
+                  "visible": false
+                },
+                "position": {
+                  "height": 151,
+                  "width": 369,
+                  "x": 400,
+                  "y": 151
+                },
+                "props": {
+                  "params": {
+                    "message": "Work instruction modification will affect various product. Are you sure you want to update? "
+                  },
+                  "path": "Project_VECV/PopUp/Update",
+                  "style": {
+                    "borderColor": "#000000",
+                    "borderStyle": "solid",
+                    "borderWidth": "1px",
+                    "classes": "MAKO_4/PopUp/Border",
+                    "outlineWidth": "0"
+                  }
+                },
+                "scripts": {
+                  "customMethods": [],
+                  "extensionFunctions": null,
+                  "messageHandlers": [
+                    {
+                      "messageType": "updatePop",
+                      "pageScope": true,
+                      "script": "\ttry:\n\t#start of try block  \n\t\tself.meta.visible \u003d payload[\u0027isVisible\u0027]\n\t#End of try block\t\t\n\texcept: \n\t#start of except block  \n\t\tscreenName \u003d\u0027WI configuration\u0027   \n\t\tfilePath\u003dstr(\u0027Project_VECV/Configuration/WI\u0027)  \n\t\terrorFunction \u003d str(\u0027Message Handler:updatePop-\u003e cntBody/cntUpdate\u0027)  \n\t\terrorType\u003dstr(\u0027Application\u0027)  \n\t\terrorCode \u003d str(Project_VECV.Common.GenerateUUID.getUniqueUUID())   \n\t\tdescription\u003dstr(sys.exc_info()[1]) #error description \n\t\tlineNumber\u003dstr(sys.exc_info()[2].tb_lineno) #lineno on which error \n\t\tProject_VECV.Configuration.Common.AddLogDetails.AddErrorLogs(screenName,filePath,errorFunction,errorType,errorCode,description,lineNumber) \n\t#End of except block\n\t\n\t",
+                      "sessionScope": false,
+                      "viewScope": false
+                    }
+                  ]
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "cntBody"
+            },
+            "position": {
+              "breakpoints": [
+                {
+                  "colIndex": 0,
+                  "name": "sm",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "md",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                },
+                {
+                  "colIndex": 0,
+                  "name": "lg",
+                  "order": 1,
+                  "rowIndex": 1,
+                  "span": 12
+                }
+              ],
+              "height": 565
+            },
+            "type": "ia.container.coord"
+          }
+        ],
+        "meta": {
+          "name": "cntColumn"
+        },
+        "position": {
+          "height": 640,
+          "width": "96%",
+          "x": 20,
+          "y": 68
+        },
+        "props": {
+          "gutters": {
+            "horizontal": 3
+          },
+          "style": {
+            "classes": "MAKO_4/CommonBackgroundColor/RootBorder"
+          }
+        },
+        "type": "ia.container.column"
+      },
+      {
+        "meta": {
+          "name": "lblHeader"
+        },
+        "position": {
+          "height": 15.04,
+          "width": 190.8,
+          "x": 5.5,
+          "y": 8
+        },
+        "props": {
+          "style": {
+            "classes": "Project_VECV/TopNavigation/Navigation"
+          },
+          "text": "Work instruction:",
+          "textStyle": {
+            "color": "#000000"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "SearchPanel"
+        },
+        "position": {
+          "breakpoints": [
+            {
+              "colIndex": 1,
+              "name": "sm",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 0,
+              "name": "md",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            },
+            {
+              "colIndex": 1,
+              "name": "lg",
+              "order": 1,
+              "rowIndex": 0,
+              "span": 12
+            }
+          ],
+          "height": 121.00000000000001,
+          "width": 969,
+          "x": 13.5,
+          "y": 7.52
+        },
+        "props": {
+          "params": {
+            "Area": -1,
+            "AreaVisible": true,
+            "Line": -1,
+            "LineVisible": true,
+            "Model": -1,
+            "ModelVisible": true,
+            "Workstation": -1,
+            "WorkstationVisible": true
+          },
+          "path": "Project_VECV/Pannel/SearchPanel"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\tself.view.custom.Timeout\u003dself.view.custom.Timeout_SP_Seconds"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        },
+        "onDoubleClick": {
+          "config": {
+            "script": "\t\"\"\"\n\t\tWritten By: Niladri Banerjee\n\t\tWritten Date: 06/05/2024\n\t\tPurpose: remove selection on double click and make reset in panel. \n\t\"\"\"\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblWorkInstruction\").props.selection.selectedRow \u003d -1\n\tself.getChild(\"cntColumn\").getChild(\"cntBody\").getChild(\"tblWorkInstruction\").props.selection.selectedColumn \u003d \u0027\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")   \n\tsystem.perspective.closeDock(\u0027rightp\u0027)\n\tsystem.perspective.openDock(\"rightView\")\n\theaderLabel \u003d \"Add\"\n\tmessageType \u003d \u0027WiGeneralPannel\u0027\t\n\tfolderName \u003d \u0027Project_VECV/WI\u0027\t\n\tcolName \u003d \u0027ID\u0027\n\tsystem.perspective.sendMessage(\"deleteIsVisible\",payload \u003d {\"IsVisible\":0,\"id\":int(WIid),\"folder\":str(folderName),\"colName\":str(colName)}, scope \u003d \"page\")\n\tsystem.perspective.sendMessage(\"isEditDisplay\",payload \u003d {\"IsVisible\":0}, scope \u003d \"page\")\n\tpayload \u003d {\u0027headerLabel\u0027:headerLabel,\u0027WIid\u0027:int(0),\u0027name\u0027:str(\u0027\u0027),\u0027desc\u0027:str(\u0027\u0027),\u0027areaId\u0027:int(-1),\u0027lineId\u0027:int(-1),\u0027WorkStationId\u0027:int(-1),\u0027isActive\u0027:int(1),\u0027UsedStepCount\u0027:int(0),\u0027BOMID\u0027:int(-1),\u0027ModelID\u0027:int(-1)}\t\t \t\t\t\n\tsystem.perspective.sendMessage(messageType, payload, scope \u003d \u0027page\u0027 )"
+          },
+          "scope": "G",
+          "type": "script"
+        },
+        "onMouseMove": {
+          "config": {
+            "script": "\tself.view.custom.Timeout\u003dself.view.custom.Timeout_SP_Seconds"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        }
+      },
+      "system": {
+        "onStartup": {
+          "config": {
+            "script": "\tself.view.custom.Timeout\u003dself.view.custom.Timeout_SP_Seconds"
+          },
+          "enabled": false,
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "classes": "MAKO_4/BackgroundImage/ContainerBackground MAKO_4/CommonBackgroundColor/RootBorder"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "open_pop_addedit",
+          "pageScope": true,
+          "script": "\tsystem.perspective.print(\u0027open_pop_addedit\u0027)\n\tsystem.perspective.openPopup(\u0027100\u0027, \u0027Project_VECV/PopUp/AddEditWorkInstruction\u0027,payload,showCloseIcon\u003dFalse)",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.coord"
+  }
+}

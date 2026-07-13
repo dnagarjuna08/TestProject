@@ -1,0 +1,1 @@
+select  MST_Role_Id from  MST_User where  UserName = :userName 

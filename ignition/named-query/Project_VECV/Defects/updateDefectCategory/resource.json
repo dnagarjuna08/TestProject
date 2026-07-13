@@ -1,0 +1,45 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "16a2be9b2312fa978c30d170e0626f9de1e5b19ef84f3a273c219a97d73f91b3",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "Arun",
+      "timestamp": "2026-04-03T04:08:55Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "DefectCategoryId",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "DefectCategory",
+        "sqlType": 7
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+select M_BOM_ID from TRN_ReleasedProductionOrder where SerialNumber=:SerialNumber 

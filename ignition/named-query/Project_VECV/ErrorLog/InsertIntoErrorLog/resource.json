@@ -1,0 +1,75 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "Query",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "815194e7a8a92c4d6c56cdf5e02b897624ce14e6cb9c513cd8c8da4db778b64e",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "ScreenName",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ErrorFunction",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ErrorCode",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "Description",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "lineNumber",
+        "sqlType": 2
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedDate",
+        "sqlType": 8
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ErrorType",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "FilePath",
+        "sqlType": 7
+      }
+    ]
+  }
+}

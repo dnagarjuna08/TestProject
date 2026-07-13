@@ -1,0 +1,1 @@
+truncate table REL_WorkInstructionStepTemp

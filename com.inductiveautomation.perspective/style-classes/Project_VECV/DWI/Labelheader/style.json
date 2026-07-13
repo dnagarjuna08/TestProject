@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "color": "#000000",
+      "fontFamily": "Cambria",
+      "fontSize": "14px",
+      "fontWeight": "bold",
+      "textAlign": "center"
+    }
+  }
+}

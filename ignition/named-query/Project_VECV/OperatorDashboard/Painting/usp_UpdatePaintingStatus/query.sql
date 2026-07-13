@@ -1,0 +1,17 @@
+exec usp_UpdatePaintingStatus
+@PaintingId= :PaintingId ,
+@MST_Area_Id = :AreaId,
+@MST_Line_Id = :LineId,
+@MST_WorkStation_Id = :WorkStationId,
+@MST_Event_Id = :MST_Event_Id ,
+@M_BOM_Id =:M_BOM_Id ,
+@MST_Status_Id  =  :MST_Status_Id ,
+@CreatedBy = :CreatedBy,
+@ShiftId = :ShiftId ,
+@OrderId = :OrderId ,
+@M_BOMNumber=  :M_BOMNumber ,
+@SerialNumber = :SerialNumber,
+@IsMaskingInProgress = :IsMaskingInProgress ,
+@IsMaskingCompleted = :IsMaskingCompleted ,
+@IsDemaskingInProgress=  :IsDemaskingInProgress ,
+@IsDemaskingCompleted =  :IsDemaskingCompleted 

@@ -1,0 +1,55 @@
+{
+  "custom": {},
+  "params": {
+    "Id": "",
+    "fieldName": "",
+    "roleID": ""
+  },
+  "propConfig": {
+    "params.Id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.fieldName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.roleID": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 45,
+      "width": 138
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "txtCycleTime"
+        },
+        "position": {
+          "basis": "149px"
+        },
+        "props": {
+          "format": 0,
+          "inputBounds": {
+            "maximum": 3000,
+            "minimum": 0
+          },
+          "style": {
+            "classes": "Project_VECV/Common/TextBox"
+          }
+        },
+        "type": "ia.input.numeric-entry-field"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

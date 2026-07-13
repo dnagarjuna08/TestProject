@@ -1,0 +1,1 @@
+select  MST_Level_Id as value , LevelName as label from MST_Level where isActive = 1 and MST_Level_Id > 1 order by MST_Level_Id

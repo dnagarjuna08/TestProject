@@ -1,0 +1,50 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "ScalarQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "54bbcca45f30e3f231dbaa3d68ec900a47feab16965d932e395da9e1ee0cd8e3",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "WIId",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "workstationid",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "bomid",
+        "sqlType": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "scope": "DG",
+  "version": 2,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "query.sql"
+  ],
+  "attributes": {
+    "useMaxReturnSize": false,
+    "autoBatchEnabled": false,
+    "fallbackValue": "",
+    "maxReturnSize": 100,
+    "cacheUnit": "SEC",
+    "type": "UpdateQuery",
+    "enabled": true,
+    "cacheAmount": 1,
+    "cacheEnabled": false,
+    "database": "",
+    "fallbackEnabled": false,
+    "lastModificationSignature": "e54804ec38bfeaf4c43c3fa2f352864c3c3344851ad6f6113e2e7f13f84f79b1",
+    "permissions": [
+      {
+        "zone": "",
+        "role": ""
+      }
+    ],
+    "lastModification": {
+      "actor": "external",
+      "timestamp": "2025-08-20T10:35:14Z"
+    },
+    "parameters": [
+      {
+        "type": "Parameter",
+        "identifier": "MST_Area_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Line_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Shift_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_WorkStation_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Event_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "M_BOM_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OrderNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "SerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_OPDefinition_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "OperatorID",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsExceedTime",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_Status_Id",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsActive",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "IsDeleted",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ConsumedSerialNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "ConsumedPartNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "CreatedBy",
+        "sqlType": 3
+      },
+      {
+        "type": "Parameter",
+        "identifier": "PartNumber",
+        "sqlType": 7
+      },
+      {
+        "type": "Parameter",
+        "identifier": "MST_ErrorProof_id",
+        "sqlType": 3
+      }
+    ]
+  }
+}

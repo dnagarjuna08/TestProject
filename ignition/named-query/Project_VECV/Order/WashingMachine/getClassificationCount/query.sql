@@ -1,0 +1,1 @@
+select count(*) from ClassificationData where M_BOM_Id = :BOM  and IsActive = 1

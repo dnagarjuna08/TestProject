@@ -1,0 +1,117 @@
+{
+  "custom": {},
+  "params": {
+    "Name": "value",
+    "Value": ""
+  },
+  "propConfig": {
+    "params.Name": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.Value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 79,
+      "width": 88
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "lblQG"
+        },
+        "position": {
+          "height": 40,
+          "rotate": {
+            "anchor": "-18% 0%"
+          },
+          "width": 88
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.Name"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "textStyle": {
+            "classes": "Project_VECV/OperatorDashboard/Rework_Status_Labels"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "lblQG_value"
+        },
+        "position": {
+          "height": 38,
+          "rotate": {
+            "anchor": "-18% 0%"
+          },
+          "width": 88,
+          "y": 41
+        },
+        "propConfig": {
+          "props.style.backgroundColor": {
+            "binding": {
+              "config": {
+                "path": "this.props.text"
+              },
+              "transforms": [
+                {
+                  "fallback": "#FFFFFF",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "OK",
+                      "output": "#00FF00"
+                    },
+                    {
+                      "input": "NOK",
+                      "output": "#FF0000"
+                    }
+                  ],
+                  "outputType": "color",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.Value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderStyle": "groove"
+          },
+          "textStyle": {
+            "classes": "Project_VECV/OperatorDashboard/Rework_Status_Labels"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

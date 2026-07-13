@@ -1,0 +1,139 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 600,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "userImage"
+        },
+        "position": {
+          "basis": "110px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "material/account_circle"
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "session.custom.loggedInUser"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn \"Hi, \" + str(value)",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "color": "#000000",
+            "fontWeight": "bold",
+            "textAlign": "center"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "path": "session.custom.menu"
+              },
+              "transforms": [
+                {
+                  "code": "\tsystem.perspective.print(\"value\")\n\tsystem.perspective.print(self.session.custom.menu)\n#\tsystem.perspective.print(\"value\")\n#\tsystem.perspective.print(value)\n\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "direction": "column",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "path": "Project_VECV/Navigation/submenu",
+          "style": {
+            "overflow": "hidden",
+            "padding": "0 20px"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "scripts": {
+          "customMethods": [
+            {
+              "name": "unselectedAllmenu",
+              "params": [],
+              "script": "\t# implement your method here\n\tfor menu in self.props.instances:\n\t\tsystem.perspective.print(\"menu--\u003e %s\"%menu)\n\t\tmenu[\u0027Selected\u0027] \u003d False\n\t\tmenu[\"DropIcon\"] \u003d \"material/arrow_drop_down\""
+            }
+          ],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "select_menu",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\t\"\"\"\n\t\tWritten By: Amitkumar Ravat\n\t\tWritten Date: 20/05/2024\n\t\tPurpose: To Show menu description. \n\t\"\"\"\n\tMenuDescription \u003d payload[\u0027MenuDescription\u0027]\n\tsystem.perspective.print(\"MenuDescription %s \"%MenuDescription)\n\tself.unselectedAllmenu()\n\tfor menu in self.props.instances:\n\t\tsystem.perspective.print(\"menu %s\"%menu)\n\t\tif menu[\u0027MenuDescription\u0027] \u003d\u003d MenuDescription:\n\t\t\tmenu[\u0027Selected\u0027]\u003dTrue\n\t\t\tmenu[\u0027DropIcon\u0027]\u003d\u0027material/arrow_drop_up\u0027",
+              "sessionScope": false,
+              "viewScope": false
+            },
+            {
+              "messageType": "unselect_menu",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tself.unselectedAllmenu()",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "backgroundColor": "#FFFFFF",
+        "border-right": "1px solid var(--neutral-30)",
+        "classes": "nav",
+        "font-Family": "HermesFB-Regular",
+        "font-size": "0.9rem"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

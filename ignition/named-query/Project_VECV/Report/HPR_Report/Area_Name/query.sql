@@ -1,0 +1,2 @@
+SELECT AreaName from  MST_Area 
+where IsActive =1

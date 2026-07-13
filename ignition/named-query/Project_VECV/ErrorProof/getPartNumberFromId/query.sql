@@ -1,0 +1,1 @@
+select  M_MaterialNumber from M_Material where M_Material_Id = :M_Material_Id and  IsActive = 1

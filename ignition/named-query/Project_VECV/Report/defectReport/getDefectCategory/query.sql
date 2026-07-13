@@ -1,0 +1,1 @@
+select DefectCategory from MST_Defect where IsActive=1 and IsDeleted=0

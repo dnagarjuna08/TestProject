@@ -1,0 +1,1 @@
+UPDATE dbo.MST_DefectSUBName SET DefecSubName = :DefectSubname, Demerit = :Demerit  WHERE  MST_DefectSUBName_Id = :DefectSubnameId;

@@ -1,0 +1,333 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 50
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Area :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "custom": {
+                  "selectedAreaIDs": ""
+                },
+                "meta": {
+                  "name": "drpArea"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "0",
+                          "DropdownType": "1",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tdataset \u003d system.dataset.toPyDataSet(value)\n\tresult \u003d []\n\tfor data in dataset:\n\t\tdict \u003d {}\n\t\tif \u0027Transmission\u0027 in data[1]: \n\t\t\tdict[\"label\"] \u003d data[1]\n\t\t\tdict[\"value\"] \u003d data[0]\n\t\t\tresult.append(dict)\n\treturn result",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "query"
+                    }
+                  },
+                  "props.value": {
+                    "onChange": {
+                      "enabled": null,
+                      "script": "\tAreaID \u003d self.props.value\n\tself.view.params.AreaValue\u003dself.props.value\n\tif str(AreaID).upper() \u003d\u003d \u0027All\u0027.upper():\n\t\tAreaID \u003d self.props.options\n\t\tAreaIds \u003d \u0027\u0027\n\t\tfor dt in AreaID:\n\t\t\tif str(dt[\u0027value\u0027]) !\u003d \u0027All\u0027:\n\t\t\t\tAreaIds +\u003d str(dt[\u0027value\u0027]) + \u0027,\u0027\n\telse:\n\t\tAreaIds \u003d str(AreaID) + \u0027,\u0027\n\tself.view.params.Area \u003d AreaIds\n\tparams \u003d {\u0027DropdownType\u0027:2,\u0027AreaID\u0027:AreaIds,\u0027LineID\u0027:0}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getallDropdowns\",params)\n\t\n\tdataset \u003d system.dataset.toPyDataSet(dataset)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\t\t\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.options \u003d datalist\n\t\t\n\tparams \u003d {\u0027DropdownType\u0027:17,\u0027AreaID\u0027:AreaIds,\u0027LineID\u0027:0}\n\tdataset \u003d system.db.runNamedQuery(\"Project_VECV/Report/reportAction/getallDropdowns\",params)\n\tdataset \u003d system.dataset.toPyDataSet(dataset)\n\tdatalist \u003d []\n\tparams \u003d {\u0027value\u0027:\u0027All\u0027,\u0027label\u0027:\u0027Select All\u0027}\n\tdatalist.append(params)\n\tfor data in dataset:\n\t\tparams \u003d {\u0027value\u0027:data[\u0027value\u0027],\u0027label\u0027:data[\u0027label\u0027]}\n\t\tdatalist.append(params)\n\tself.parent.parent.getChild(\"cntRAcode\").getChild(\"drpRACode\").props.options \u003d datalist\n\tself.parent.parent.getChild(\"cntRAcode\").getChild(\"drpRACode\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntLine\").getChild(\"drpLine\").props.value \u003d -1\n\tself.parent.parent.getChild(\"cntStation\").getChild(\"drpStation\").props.value \u003d -1"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntArea"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "50px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "Line :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpLine"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaID": "{.../cntArea/drpArea.props.value}",
+                          "DropdownType": "2",
+                          "LineID": "0"
+                        },
+                        "queryPath": "Project_VECV/Panel/getallDropdowns"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntLine"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px",
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "WorkStation :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpStation"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "LineId": "{.../cntLine/drpLine.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getWorkStation"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntStation"
+            },
+            "position": {
+              "basis": "290px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "ET Code :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpRACode"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "AreaId": "{.../cntArea/drpArea.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Transmission/Poka-yoke/getModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntETcode"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px",
+                "marginLeft": "5px",
+                "marginRight": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "lbl"
+                },
+                "position": {
+                  "basis": "90px"
+                },
+                "props": {
+                  "style": {
+                    "classes": "Project_VECV/Panel/LabelContent",
+                    "fontWeight": "bold"
+                  },
+                  "text": "TM Code :"
+                },
+                "type": "ia.display.label"
+              },
+              {
+                "meta": {
+                  "name": "drpRACode"
+                },
+                "position": {
+                  "basis": "256px"
+                },
+                "propConfig": {
+                  "props.options": {
+                    "binding": {
+                      "config": {
+                        "parameters": {
+                          "ModelId": "{.../cntETcode/drpRACode.props.value}"
+                        },
+                        "queryPath": "Project_VECV/Master/OPCodeConfiguration/GetBOMFromModel"
+                      },
+                      "type": "query"
+                    }
+                  }
+                },
+                "type": "ia.input.dropdown"
+              }
+            ],
+            "meta": {
+              "name": "cntTMcode"
+            },
+            "position": {
+              "basis": "261px"
+            },
+            "props": {
+              "justify": "flex-end",
+              "style": {
+                "margin": "10px",
+                "marginLeft": "5px",
+                "marginRight": "5px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "cntSelectionFilter"
+        },
+        "position": {
+          "basis": "50px",
+          "grow": 1,
+          "shrink": 0
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

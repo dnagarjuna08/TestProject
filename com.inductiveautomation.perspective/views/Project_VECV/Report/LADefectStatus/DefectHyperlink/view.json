@@ -1,0 +1,88 @@
+{
+  "custom": {},
+  "params": {
+    "MST_WorkStation_Id": 331,
+    "columnIndex": "",
+    "count": 1,
+    "date": "2025-02-26 15:49:36.000",
+    "rowData": "",
+    "value": ""
+  },
+  "propConfig": {
+    "params.MST_WorkStation_Id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.columnIndex": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.count": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.date": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.rowData": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 632,
+      "width": 826
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Table"
+            },
+            "position": {
+              "height": 483,
+              "width": 715
+            },
+            "propConfig": {
+              "props.data": {
+                "binding": {
+                  "config": {
+                    "parameters": {
+                      "MST_WorkStation_Id": "{view.params.MST_WorkStation_Id}",
+                      "date": "{view.params.date}",
+                      "row": "{view.params.count}"
+                    },
+                    "queryPath": "Project_VECV/Report/getQualityDefects"
+                  },
+                  "type": "query"
+                }
+              }
+            },
+            "type": "ia.display.table"
+          }
+        ],
+        "meta": {
+          "name": "MainCnt"
+        },
+        "position": {
+          "height": 537,
+          "width": 745
+        },
+        "type": "ia.container.coord"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

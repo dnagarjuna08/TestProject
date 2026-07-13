@@ -1,0 +1,1 @@
+SELECT MST_Shift_Id,ShiftName FROM MST_Shift where isdeleted=0
